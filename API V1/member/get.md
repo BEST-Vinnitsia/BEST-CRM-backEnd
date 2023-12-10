@@ -1,9 +1,9 @@
 
 > [!success] interfaces
-> [IMember](interfaces.md#IMember)
-> [IPhone](interfaces.md#IPhone)
-> [ISocialNetworks](interfaces.md#ISocialNetworks)
-> [IBestEmail](interfaces.md#IBestEmail)
+> [IMember](BEST/BEST%20CRM/API%20V1/member/interfaces.md#IMember)
+> [IPhone](BEST/BEST%20CRM/API%20V1/member/interfaces.md#IPhone)
+> [ISocialNetworks](BEST/BEST%20CRM/API%20V1/member/interfaces.md#ISocialNetworks)
+> [IBestEmail](BEST/BEST%20CRM/API%20V1/member/interfaces.md#IBestEmail)
 
 ## by-member-id
 #### member
