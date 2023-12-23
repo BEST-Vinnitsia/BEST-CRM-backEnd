@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
+import { IServerInfo } from './types/serverInfo.type';
 
 @Injectable()
 export class AppService {
-  serverInfo(): any {
+  serverInfo(): IServerInfo {
     return {
       name: 'BEST vinnie CRM System',
       version: 'v0.1',

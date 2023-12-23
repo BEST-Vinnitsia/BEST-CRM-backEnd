@@ -38,3 +38,8 @@ yarn.lock
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# database
+dev.db
+dev.db-journal
+migrations
