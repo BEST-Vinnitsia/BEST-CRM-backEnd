@@ -12,7 +12,7 @@ export class MembershipService {
   }
 
   public async getById(data: IMembershipGetById): Promise<IMembership> {
-    const res = await this.membershipDb.findById(data);
+    const res = await this.membershipDb.findById({ id: data.id });
     return res;
   }
 }

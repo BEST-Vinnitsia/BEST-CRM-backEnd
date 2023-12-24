@@ -1,41 +1,87 @@
+import { IMembership } from './membership.type';
+
 export interface IMember {
   id: string; // uuid V4
+  membership_id: string; // uuid V4
   email: string; // demo@gmail.com
   password: string;
-
   surname: string;
   full_name: string;
   middle_name: string;
-  birthday: Date /* 
-  const currentDate = new Date();
-  const isoDateTimeString = currentDate.toISOString();
-
-  const unixTimeZero = Date.parse('2023-12-23T10:38:29.000Z');
- */;
-
+  birthday: Date;
   group: string; // УБ-21б
   faculty: string; // ФМІБ
-
-  // updated in the future
-  // recruitment_id: string; // uuid V4
-
-  membership_id: string; // uuid V4
-
   clothing_size: string; // L
-
-  // updated in the future
-  // home_address: string; // м. Вінниця, вул. Келицька 100
-  // public_profile: boolean; // true
-
   create_date: Date;
 }
 
-export interface IMemberCreate
-  extends Pick<
-    IMember,
-    'email' | 'password' | 'surname' | 'full_name' | 'middle_name' | 'birthday' | 'group' | 'faculty' | 'membership_id'
-  > {}
+// Create member
+export interface IMemberCreate extends Omit<IMember, 'id' | 'create_date'> {}
+export interface IMemberCreateRes extends Omit<IMember, 'password' | 'membership_id'> {
+  membership: IMembership;
+}
+export interface IMemberDbCreate extends Omit<IMember, 'id' | 'create_date'> {}
+export interface IMemberDbCreateRes extends Omit<IMember, 'password' | 'membership_id'> {
+  membership: IMembership;
+}
 
-export interface IMemberGet extends Omit<IMember, 'password'> {}
+// Get list
+export interface IMemberGetListRes extends Omit<IMember, 'password' | 'membership_id'> {
+  membership: IMembership;
+}
+export interface IMemberDbGetListRes extends Omit<IMember, 'password' | 'membership_id'> {
+  membership: IMembership;
+}
+
+// Get by id
 export interface IMemberGetById extends Pick<IMember, 'id'> {}
+export interface IMemberGetByIdRes extends Omit<IMember, 'password' | 'membership_id'> {
+  membership: IMembership;
+}
+export interface IMemberDbGetById extends Pick<IMember, 'id'> {}
+export interface IMemberDbGetByIdRes extends Omit<IMember, 'password' | 'membership_id'> {
+  membership: IMembership;
+}
+
+// Get by email
 export interface IMemberGetByEmail extends Pick<IMember, 'email'> {}
+export interface IMemberGetByEmailRes extends Omit<IMember, 'password' | 'membership_id'> {
+  membership: IMembership;
+}
+export interface IMemberDbGetByEmail extends Pick<IMember, 'email'> {}
+export interface IMemberDbGetByEmailRes extends Omit<IMember, 'password' | 'membership_id'> {
+  membership: IMembership;
+}
+
+
+// export interface IMember {
+//   id: string; // uuid V4
+//   email: string; // demo@gmail.com
+//   password: string;
+
+//   surname: string;
+//   full_name: string;
+//   middle_name: string;
+//   birthday: Date /*
+//   const currentDate = new Date();
+//   const isoDateTimeString = currentDate.toISOString();
+
+//   const unixTimeZero = Date.parse('2023-12-23T10:38:29.000Z');
+//  */;
+
+//   group: string; // УБ-21б
+//   faculty: string; // ФМІБ
+
+//   // updated in the future
+//   // recruitment_id: string; // uuid V4
+
+//   membership_id: string; // uuid V4
+
+//   clothing_size: string; // L
+
+//   // updated in the future
+//   // home_address: string; // м. Вінниця, вул. Келицька 100
+//   // public_profile: boolean; // true
+
+//   create_date: Date;
+// }

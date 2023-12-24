@@ -35,6 +35,10 @@ export class MemberCreateDto {
 
   @IsNotEmpty()
   @IsString()
+  clothing_size: string;
+
+  @IsNotEmpty()
+  @IsString()
   @IsUUID('4')
   membership_id: string;
 }

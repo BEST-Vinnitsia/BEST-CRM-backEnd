@@ -13,7 +13,11 @@ export class MembershipDbService {
   }
 
   public async findById({ id }: IMembershipGetById): Promise<IMembership> {
-    const user = await handlerError(this.database.membership.findUnique({ where: { id } }));
+    const user = await handlerError(
+      this.database.membership.findUnique({
+        where: { id },
+      }),
+    );
     return user;
   }
 }
