@@ -18,9 +18,8 @@ export interface IMember {
 
   // updated in the future
   // recruitment_id: string; // uuid V4
-  // membership_id: string; // uuid V4
 
-  membership: string; // delete in the future
+  membership_id: string; // uuid V4
 
   clothing_size: string; // L
 
@@ -28,13 +27,13 @@ export interface IMember {
   // home_address: string; // м. Вінниця, вул. Келицька 100
   // public_profile: boolean; // true
 
-  createDate: Date;
+  create_date: Date;
 }
 
 export interface IMemberCreate
   extends Pick<
     IMember,
-    'email' | 'password' | 'surname' | 'full_name' | 'middle_name' | 'birthday' | 'group' | 'faculty' | 'membership'
+    'email' | 'password' | 'surname' | 'full_name' | 'middle_name' | 'birthday' | 'group' | 'faculty' | 'membership_id'
   > {}
 
 export interface IMemberGet extends Omit<IMember, 'password'> {}

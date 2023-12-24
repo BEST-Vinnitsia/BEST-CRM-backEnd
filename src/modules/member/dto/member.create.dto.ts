@@ -1,4 +1,4 @@
-import { IsDateString, IsNotEmpty, IsString } from 'class-validator';
+import { IsDateString, IsNotEmpty, IsString, IsUUID } from 'class-validator';
 
 export class MemberCreateDto {
   @IsNotEmpty()
@@ -35,5 +35,6 @@ export class MemberCreateDto {
 
   @IsNotEmpty()
   @IsString()
-  membership: string;
+  @IsUUID('4')
+  membership_id: string;
 }

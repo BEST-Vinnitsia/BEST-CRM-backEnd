@@ -16,10 +16,10 @@ const selectMemberGetWithDb = {
   faculty: true,
   group: true,
 
-  membership: true,
+  membership_id: true,
 
   clothing_size: true,
-  createDate: true,
+  create_date: true,
 };
 
 @Injectable()
@@ -35,11 +35,11 @@ export class MemberDbService {
     birthday,
     faculty,
     group,
-    membership,
+    membership_id,
   }: IMemberCreate): Promise<IMemberGet> {
     const user = await handlerError(
       this.database.member.create({
-        data: { email, password, full_name, middle_name, surname, birthday, faculty, group, membership },
+        data: { email, password, full_name, middle_name, surname, birthday, faculty, group, membership_id },
         select: selectMemberGetWithDb,
       }),
     );
@@ -57,7 +57,7 @@ export class MemberDbService {
 
   public async findByEmail({ email }: IMemberGetByEmail): Promise<IMemberGet> {
     const user = await handlerError(
-      this.database.member.findFirst({
+      this.database.member.findUnique({
         where: { email },
         select: selectMemberGetWithDb,
       }),
@@ -67,7 +67,7 @@ export class MemberDbService {
 
   public async findById({ id }: IMemberGetById): Promise<IMemberGet> {
     const user = await handlerError(
-      this.database.member.findFirst({
+      this.database.member.findUnique({
         where: { id },
         select: selectMemberGetWithDb,
       }),
