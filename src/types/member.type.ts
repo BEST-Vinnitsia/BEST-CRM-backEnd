@@ -1,3 +1,6 @@
+import { IMemberBestEmail } from './memberBestEmail.type';
+import { IMemberEmail } from './memberEmail.type';
+import { IMemberPhone } from './memberPhone.type';
 import { IMembership } from './membership.type';
 
 export interface IMember {
@@ -37,22 +40,26 @@ export interface IMemberDbGetListRes extends Omit<IMember, 'password' | 'members
 export interface IMemberGetById extends Pick<IMember, 'id'> {}
 export interface IMemberGetByIdRes extends Omit<IMember, 'password' | 'membership_id'> {
   membership: IMembership;
+  member_best_email: IMemberBestEmail[];
+  member_email: IMemberEmail[];
+  member_phone: IMemberPhone[];
 }
 export interface IMemberDbGetById extends Pick<IMember, 'id'> {}
 export interface IMemberDbGetByIdRes extends Omit<IMember, 'password' | 'membership_id'> {
   membership: IMembership;
+  member_best_email: IMemberBestEmail[];
+  member_email: IMemberEmail[];
+  member_phone: IMemberPhone[];
 }
 
 // Get by email
 export interface IMemberGetByEmail extends Pick<IMember, 'email'> {}
-export interface IMemberGetByEmailRes extends Omit<IMember, 'password' | 'membership_id'> {
-  membership: IMembership;
-}
+export interface IMemberGetByEmailRes extends Omit<IMember, 'password'> {}
 export interface IMemberDbGetByEmail extends Pick<IMember, 'email'> {}
-export interface IMemberDbGetByEmailRes extends Omit<IMember, 'password' | 'membership_id'> {
-  membership: IMembership;
-}
+export interface IMemberDbGetByEmailRes extends Omit<IMember, 'password'> {}
 
+// Find by iid
+export interface IMemberFindById extends Omit<IMember, 'password'> {}
 
 // export interface IMember {
 //   id: string; // uuid V4
