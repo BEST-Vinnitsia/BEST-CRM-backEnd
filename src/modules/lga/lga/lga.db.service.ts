@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { DatabaseService } from '../database/database.service';
+import { DatabaseService } from '../../database/database.service';
 import { ILgaDbCreate, ILgaDbCreateRes, ILgaDbGetById, ILgaDbGetByIdRes, ILgaDbGetListRes } from 'src/types/lga.type';
 import { handlerError } from 'src/utils/handlerError';
 

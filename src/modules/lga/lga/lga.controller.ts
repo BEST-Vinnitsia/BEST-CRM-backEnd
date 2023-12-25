@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Query } from '@nestjs/common';
+import { Controller, Get, Post, Query, Body } from '@nestjs/common';
 import { LgaService } from './lga.service';
 import { LgaGetByIdDto } from './dto/lga.getById.dto';
 import { LgaCreateDto } from './dto/lga.create.dto';
@@ -8,7 +8,7 @@ export class LgaController {
   constructor(private readonly lgaService: LgaService) {}
 
   @Post('create')
-  async create(@Query() data: LgaCreateDto) {
+  async create(@Body() data: LgaCreateDto) {
     return await this.lgaService.create(data);
   }
 
@@ -17,7 +17,7 @@ export class LgaController {
     return await this.lgaService.getList();
   }
 
-  @Get('b-id')
+  @Get('by-id')
   async byId(@Query() data: LgaGetByIdDto) {
     return await this.lgaService.getById(data);
   }
