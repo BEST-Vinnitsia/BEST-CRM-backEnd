@@ -1,6 +1,6 @@
-import { IsBoolean, IsDateString, IsNotEmpty, IsString } from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsString } from 'class-validator';
 
-export class LgaBoardCreateDto {
+export class BoardCreateDto {
   @IsNotEmpty()
   @IsString()
   name: string;

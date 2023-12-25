@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { LgaBoardToMemberDbService } from './coordinatorToMember.db.service';
-import { ILgaBoardToMemberCreate, ILgaBoardToMemberCreateRes, ILgaBoardToMemberGetById, ILgaBoardToMemberGetByIdRes, ILgaBoardToMemberGetListRes } from 'src/types/lgaBoardToMember.type';
+import { ILgaBoardToMemberCreate, ILgaBoardToMemberCreateRes, ILgaBoardToMemberGetById, ILgaBoardToMemberGetByIdRes, ILgaBoardToMemberGetListRes } from 'src/types/boardToMember.type';
 
 
 @Injectable()

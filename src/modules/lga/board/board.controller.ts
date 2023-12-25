@@ -1,24 +1,24 @@
 import { Controller, Get, Post, Query, Body } from '@nestjs/common';
-import { LgaBoardService } from './board.service';
-import { LgaBoardGetByIdDto } from './dto/board.getById.dto';
-import { LgaBoardCreateDto } from './dto/board.create.dto';
+import { BoardService } from './board.service';
+import { BoardGetByIdDto } from './dto/board.getById.dto';
+import { BoardCreateDto } from './dto/board.create.dto';
 
 @Controller('lga/board')
-export class LgaBoardController {
-  constructor(private readonly lgaBoardService: LgaBoardService) {}
+export class BoardController {
+  constructor(private readonly boardService: BoardService) {}
 
   @Post('create')
-  async create(@Body() data: LgaBoardCreateDto) {
-    return await this.lgaBoardService.create(data);
+  async create(@Body() data: BoardCreateDto) {
+    return await this.boardService.create(data);
   }
 
   @Get('list')
   async list() {
-    return await this.lgaBoardService.getList();
+    return await this.boardService.getList();
   }
 
   @Get('by-id')
-  async byId(@Query() data: LgaBoardGetByIdDto) {
-    return await this.lgaBoardService.getById(data);
+  async byId(@Query() data: BoardGetByIdDto) {
+    return await this.boardService.getById(data);
   }
 }

@@ -6,7 +6,7 @@ import {
   ILgaBoardCommitteeToMemberGetById,
   ILgaBoardCommitteeToMemberGetByIdRes,
   ILgaBoardCommitteeToMemberGetListRes,
-} from 'src/types/lgaBoardCommitteeToMember.type';
+} from 'src/types/boardCommitteeToMember.type';
 
 @Injectable()
 export class LgaBoardCommitteeToMemberService {

@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
 
-export class LgaBoardToMemberGetByIdDto {
+export class BoardToMemberGetByIdDto {
   @IsNotEmpty()
   @IsString()
   @IsUUID('4')

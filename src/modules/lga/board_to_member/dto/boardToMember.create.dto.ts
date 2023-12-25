@@ -1,6 +1,6 @@
 import { IsBoolean, IsDateString, IsNotEmpty, IsString, IsUUID } from 'class-validator';
 
-export class LgaBoardToMemberCreateDto {
+export class BoardToMemberCreateDto {
   @IsNotEmpty()
   @IsString()
   @IsUUID('4')

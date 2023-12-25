@@ -7,7 +7,7 @@ import {
   ILgaBoardToMemberDbGetById,
   ILgaBoardToMemberDbGetByIdRes,
   ILgaBoardToMemberDbGetListRes,
-} from 'src/types/lgaBoardToMember.type';
+} from 'src/types/boardToMember.type';
 
 @Injectable()
 export class LgaBoardToMemberDbService {

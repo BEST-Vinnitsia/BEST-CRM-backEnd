@@ -6,7 +6,7 @@ import {
   ILgaBoardGetById,
   ILgaBoardGetByIdRes,
   ILgaBoardGetListRes,
-} from 'src/types/lgaBoard.type';
+} from 'src/types/board.type';
 
 @Injectable()
 export class LgaBoardService {
