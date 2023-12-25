@@ -12,7 +12,7 @@ export interface IBoardCreateRes extends IBoard {}
 export interface IBoardDbCreate extends Omit<IBoard, 'id' | 'create_date'> {}
 export interface IBoardDbCreateRes extends IBoard {}
 
-// Get by list
+// Get list
 export interface IBoardGetListRes extends IBoard {}
 export interface IBoardDbGetListRes extends IBoard {}
 

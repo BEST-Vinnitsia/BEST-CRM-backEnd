@@ -31,6 +31,11 @@ import { MembershipController } from './membership/membership.controller';
 import { MembershipService } from './membership/membership.service';
 import { MembershipDbService } from './membership/membership.db.service';
 
+// Translation
+import { TranslationController } from './translation/translation.controller';
+import { TranslationService } from './translation/translation.service';
+import { TranslationDbService } from './translation/translation.db.service';
+
 @Module({
   imports: [DatabaseModule],
   controllers: [
@@ -48,6 +53,9 @@ import { MembershipDbService } from './membership/membership.db.service';
 
     // Membership
     MembershipController,
+
+    // Translation
+    TranslationController,
   ],
   providers: [
     LgaService,
@@ -60,7 +68,7 @@ import { MembershipDbService } from './membership/membership.db.service';
     BoardToMemberDbService,
     BoardCommitteeToMemberService,
     BoardCommitteeToMemberDbService,
-    
+
     // Coordinator
     CoordinatorService,
     CoordinatorDbService,
@@ -72,6 +80,10 @@ import { MembershipDbService } from './membership/membership.db.service';
     // Membership
     MembershipService,
     MembershipDbService,
+
+    // Translation
+    TranslationService,
+    TranslationDbService,
   ],
 })
 export class LgaModule {}

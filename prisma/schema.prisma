@@ -116,7 +116,6 @@ model translation {
   lga_id        String
   membership_id String
   member_id     String
-  name          String   @unique
   create_date   DateTime @default(now())
 
   lga        lga        @relation(fields: [lga_id], references: [id])
