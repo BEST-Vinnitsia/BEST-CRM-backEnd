@@ -5,20 +5,20 @@ import { ILgaBoardToMemberCreate, ILgaBoardToMemberCreateRes, ILgaBoardToMemberG
 
 @Injectable()
 export class LgaBoardToMemberService {
-  constructor(private readonly lgaBoardDb: LgaBoardToMemberDbService) {}
+  constructor(private readonly lgaBoardToMemberDb: LgaBoardToMemberDbService) {}
 
   async create(data: ILgaBoardToMemberCreate): Promise<ILgaBoardToMemberCreateRes> {
-    const lga = await this.lgaBoardDb.create(data);
+    const lga = await this.lgaBoardToMemberDb.create(data);
     return lga;
   }
 
   async getList(): Promise<ILgaBoardToMemberGetListRes[]> {
-    const lga = await this.lgaBoardDb.findAll();
+    const lga = await this.lgaBoardToMemberDb.findAll();
     return lga;
   }
 
   async getById(data: ILgaBoardToMemberGetById): Promise<ILgaBoardToMemberGetByIdRes> {
-    const lga = await this.lgaBoardDb.findById(data);
+    const lga = await this.lgaBoardToMemberDb.findById(data);
     return lga;
   }
 }
