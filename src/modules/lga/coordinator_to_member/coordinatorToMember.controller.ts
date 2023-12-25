@@ -1,24 +1,24 @@
 import { Controller, Get, Post, Query, Body } from '@nestjs/common';
-import { LgaBoardToMemberService } from './coordinatorToMember.service';
-import { LgaBoardToMemberGetByIdDto } from './dto/lgaBoardToMember.getById.dto';
-import { LgaBoardToMemberCreateDto } from './dto/lgaBoardToMember.create.dto';
+import { CoordinatorToMemberService } from './coordinatorToMember.service';
+import { CoordinatorToMemberGetByIdDto } from './dto/lgaBoardToMember.getById.dto';
+import { CoordinatorToMemberCreateDto } from './dto/lgaBoardToMember.create.dto';
 
-@Controller('lga/board/to/member')
-export class LgaBoardToMemberController {
-  constructor(private readonly lgaBoardToMemberService: LgaBoardToMemberService) {}
+@Controller('lga/coordinator/to/member')
+export class CoordinatorToMemberController {
+  constructor(private readonly coordinatorToMemberService: CoordinatorToMemberService) {}
 
   @Post('create')
-  async create(@Body() data: LgaBoardToMemberCreateDto) {
-    return await this.lgaBoardToMemberService.create(data);
+  async create(@Body() data: CoordinatorToMemberCreateDto) {
+    return await this.coordinatorToMemberService.create(data);
   }
 
   @Get('list')
   async list() {
-    return await this.lgaBoardToMemberService.getList();
+    return await this.coordinatorToMemberService.getList();
   }
 
   @Get('by-id')
-  async byId(@Query() data: LgaBoardToMemberGetByIdDto) {
-    return await this.lgaBoardToMemberService.getById(data);
+  async byId(@Query() data: CoordinatorToMemberGetByIdDto) {
+    return await this.coordinatorToMemberService.getById(data);
   }
 }

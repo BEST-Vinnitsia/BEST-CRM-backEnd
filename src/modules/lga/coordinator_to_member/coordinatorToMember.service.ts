@@ -1,24 +1,29 @@
 import { Injectable } from '@nestjs/common';
-import { LgaBoardToMemberDbService } from './coordinatorToMember.db.service';
-import { ILgaBoardToMemberCreate, ILgaBoardToMemberCreateRes, ILgaBoardToMemberGetById, ILgaBoardToMemberGetByIdRes, ILgaBoardToMemberGetListRes } from 'src/types/boardToMember.type';
-
+import { CoordinatorToMemberDbService } from './coordinatorToMember.db.service';
+import {
+  ICoordinatorToMemberCreate,
+  ICoordinatorToMemberCreateRes,
+  ICoordinatorToMemberGetById,
+  ICoordinatorToMemberGetByIdRes,
+  ICoordinatorToMemberGetListRes,
+} from 'src/types/coordinatorToMember.type';
 
 @Injectable()
-export class LgaBoardToMemberService {
-  constructor(private readonly lgaBoardToMemberDb: LgaBoardToMemberDbService) {}
+export class CoordinatorToMemberService {
+  constructor(private readonly coordinatorToMemberDb: CoordinatorToMemberDbService) {}
 
-  async create(data: ILgaBoardToMemberCreate): Promise<ILgaBoardToMemberCreateRes> {
-    const lga = await this.lgaBoardToMemberDb.create(data);
+  async create(data: ICoordinatorToMemberCreate): Promise<ICoordinatorToMemberCreateRes> {
+    const lga = await this.coordinatorToMemberDb.create(data);
     return lga;
   }
 
-  async getList(): Promise<ILgaBoardToMemberGetListRes[]> {
-    const lga = await this.lgaBoardToMemberDb.findAll();
+  async getList(): Promise<ICoordinatorToMemberGetListRes[]> {
+    const lga = await this.coordinatorToMemberDb.findAll();
     return lga;
   }
 
-  async getById(data: ILgaBoardToMemberGetById): Promise<ILgaBoardToMemberGetByIdRes> {
-    const lga = await this.lgaBoardToMemberDb.findById(data);
+  async getById(data: ICoordinatorToMemberGetById): Promise<ICoordinatorToMemberGetByIdRes> {
+    const lga = await this.coordinatorToMemberDb.findById(data);
     return lga;
   }
 }

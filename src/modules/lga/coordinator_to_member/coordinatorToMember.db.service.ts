@@ -2,29 +2,32 @@ import { Injectable } from '@nestjs/common';
 import { DatabaseService } from '../../database/database.service';
 import { handlerError } from 'src/utils/handlerError';
 import {
-  ILgaBoardToMemberDbCreate,
-  ILgaBoardToMemberDbCreateRes,
-  ILgaBoardToMemberDbGetById,
-  ILgaBoardToMemberDbGetByIdRes,
-  ILgaBoardToMemberDbGetListRes,
-} from 'src/types/boardToMember.type';
+  ICoordinatorToMemberDbCreate,
+  ICoordinatorToMemberDbCreateRes,
+  ICoordinatorToMemberDbGetById,
+  ICoordinatorToMemberDbGetByIdRes,
+  ICoordinatorToMemberDbGetListRes,
+} from 'src/types/coordinatorToMember.type';
 
 @Injectable()
-export class LgaBoardToMemberDbService {
+export class CoordinatorToMemberDbService {
   constructor(private readonly database: DatabaseService) {}
 
-  public async create({ board_id, member_id }: ILgaBoardToMemberDbCreate): Promise<ILgaBoardToMemberDbCreateRes> {
-    const lga = await handlerError(this.database.member_to_board.create({ data: { board_id, member_id } }));
+  public async create({
+    coordinator_id,
+    member_id,
+  }: ICoordinatorToMemberDbCreate): Promise<ICoordinatorToMemberDbCreateRes> {
+    const lga = await handlerError(this.database.member_to_coordinator.create({ data: { coordinator_id, member_id } }));
     return lga;
   }
 
-  public async findAll(): Promise<ILgaBoardToMemberDbGetListRes[]> {
-    const lga = await handlerError(this.database.member_to_board.findMany());
+  public async findAll(): Promise<ICoordinatorToMemberDbGetListRes[]> {
+    const lga = await handlerError(this.database.member_to_coordinator.findMany());
     return lga;
   }
 
-  public async findById({ id }: ILgaBoardToMemberDbGetById): Promise<ILgaBoardToMemberDbGetByIdRes> {
-    const lga = await handlerError(this.database.member_to_board.findUnique({ where: { id } }));
+  public async findById({ id }: ICoordinatorToMemberDbGetById): Promise<ICoordinatorToMemberDbGetByIdRes> {
+    const lga = await handlerError(this.database.member_to_coordinator.findUnique({ where: { id } }));
     return lga;
   }
 }

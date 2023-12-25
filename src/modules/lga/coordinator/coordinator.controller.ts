@@ -1,24 +1,24 @@
 import { Controller, Get, Post, Query, Body } from '@nestjs/common';
-import { LgaBoardService } from './coordinator.service';
-import { LgaBoardGetByIdDto } from './dto/coordinator.getById.dto';
-import { LgaBoardCreateDto } from './dto/coordinator.create.dto';
+import { CoordinatorService } from './coordinator.service';
+import { CoordinatorGetByIdDto } from './dto/coordinator.getById.dto';
+import { CoordinatorCreateDto } from './dto/coordinator.create.dto';
 
-@Controller('lga/board')
-export class LgaBoardController {
-  constructor(private readonly lgaBoardService: LgaBoardService) {}
+@Controller('lga/coordinator')
+export class CoordinatorController {
+  constructor(private readonly coordinatorService: CoordinatorService) {}
 
   @Post('create')
-  async create(@Body() data: LgaBoardCreateDto) {
-    return await this.lgaBoardService.create(data);
+  async create(@Body() data: CoordinatorCreateDto) {
+    return await this.coordinatorService.create(data);
   }
 
   @Get('list')
   async list() {
-    return await this.lgaBoardService.getList();
+    return await this.coordinatorService.getList();
   }
 
   @Get('by-id')
-  async byId(@Query() data: LgaBoardGetByIdDto) {
-    return await this.lgaBoardService.getById(data);
+  async byId(@Query() data: CoordinatorGetByIdDto) {
+    return await this.coordinatorService.getById(data);
   }
 }

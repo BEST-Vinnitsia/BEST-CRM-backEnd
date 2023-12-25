@@ -1,29 +1,29 @@
 import { Injectable } from '@nestjs/common';
-import { LgaBoardDbService } from './coordinator.db.service';
+import { CoordinatorDbService } from './coordinator.db.service';
 import {
-  ILgaBoardCreate,
-  ILgaBoardCreateRes,
-  ILgaBoardGetById,
-  ILgaBoardGetByIdRes,
-  ILgaBoardGetListRes,
-} from 'src/types/board.type';
+  ICoordinatorCreate,
+  ICoordinatorCreateRes,
+  ICoordinatorGetById,
+  ICoordinatorGetByIdRes,
+  ICoordinatorGetListRes,
+} from 'src/types/coordinator.type';
 
 @Injectable()
-export class LgaBoardService {
-  constructor(private readonly lgaBoardDb: LgaBoardDbService) {}
+export class CoordinatorService {
+  constructor(private readonly coordinatorDb: CoordinatorDbService) {}
 
-  async create(data: ILgaBoardCreate): Promise<ILgaBoardCreateRes> {
-    const lga = await this.lgaBoardDb.create(data);
+  async create(data: ICoordinatorCreate): Promise<ICoordinatorCreateRes> {
+    const lga = await this.coordinatorDb.create(data);
     return lga;
   }
 
-  async getList(): Promise<ILgaBoardGetListRes[]> {
-    const lga = await this.lgaBoardDb.findAll();
+  async getList(): Promise<ICoordinatorGetListRes[]> {
+    const lga = await this.coordinatorDb.findAll();
     return lga;
   }
 
-  async getById(data: ILgaBoardGetById): Promise<ILgaBoardGetByIdRes> {
-    const lga = await this.lgaBoardDb.findById(data);
+  async getById(data: ICoordinatorGetById): Promise<ICoordinatorGetByIdRes> {
+    const lga = await this.coordinatorDb.findById(data);
     return lga;
   }
 }

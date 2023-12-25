@@ -2,29 +2,35 @@ import { Injectable } from '@nestjs/common';
 import { DatabaseService } from '../../database/database.service';
 import { handlerError } from 'src/utils/handlerError';
 import {
-  ILgaBoardDbCreate,
-  ILgaBoardDbCreateRes,
-  ILgaBoardDbGetById,
-  ILgaBoardDbGetByIdRes,
-  ILgaBoardDbGetListRes,
-} from 'src/types/board.type';
+  ICoordinatorDbCreate,
+  ICoordinatorDbCreateRes,
+  ICoordinatorDbGetById,
+  ICoordinatorDbGetByIdRes,
+  ICoordinatorDbGetListRes,
+} from 'src/types/coordinator.type';
 
 @Injectable()
-export class LgaBoardDbService {
+export class CoordinatorDbService {
   constructor(private readonly database: DatabaseService) {}
 
-  public async create({ name, is_active, committee_is_active }: ILgaBoardDbCreate): Promise<ILgaBoardDbCreateRes> {
-    const lga = await handlerError(this.database.board.create({ data: { name, is_active, committee_is_active } }));
+  public async create({
+    name,
+    is_active,
+    committee_is_active,
+  }: ICoordinatorDbCreate): Promise<ICoordinatorDbCreateRes> {
+    const lga = await handlerError(
+      this.database.coordinator.create({ data: { name, is_active, committee_is_active } }),
+    );
     return lga;
   }
 
-  public async findAll(): Promise<ILgaBoardDbGetListRes[]> {
-    const lga = await handlerError(this.database.board.findMany());
+  public async findAll(): Promise<ICoordinatorDbGetListRes[]> {
+    const lga = await handlerError(this.database.coordinator.findMany());
     return lga;
   }
 
-  public async findById({ id }: ILgaBoardDbGetById): Promise<ILgaBoardDbGetByIdRes> {
-    const lga = await handlerError(this.database.board.findUnique({ where: { id } }));
+  public async findById({ id }: ICoordinatorDbGetById): Promise<ICoordinatorDbGetByIdRes> {
+    const lga = await handlerError(this.database.coordinator.findUnique({ where: { id } }));
     return lga;
   }
 }

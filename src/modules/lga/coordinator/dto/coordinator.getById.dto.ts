@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
 
-export class LgaBoardGetByIdDto {
+export class CoordinatorGetByIdDto {
   @IsNotEmpty()
   @IsString()
   @IsUUID('4')

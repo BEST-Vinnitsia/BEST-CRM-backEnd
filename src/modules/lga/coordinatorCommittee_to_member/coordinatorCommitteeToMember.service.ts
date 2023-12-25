@@ -1,29 +1,29 @@
 import { Injectable } from '@nestjs/common';
-import { LgaBoardCommitteeToMemberDbService } from './coordinatorCommitteeToMember.db.service';
+import { CoordinatorCommitteeToMemberDbService } from './coordinatorCommitteeToMember.db.service';
 import {
-  ILgaBoardCommitteeToMemberCreate,
-  ILgaBoardCommitteeToMemberCreateRes,
-  ILgaBoardCommitteeToMemberGetById,
-  ILgaBoardCommitteeToMemberGetByIdRes,
-  ILgaBoardCommitteeToMemberGetListRes,
-} from 'src/types/boardCommitteeToMember.type';
+  ICoordinatorCommitteeToMemberCreate,
+  ICoordinatorCommitteeToMemberCreateRes,
+  ICoordinatorCommitteeToMemberGetById,
+  ICoordinatorCommitteeToMemberGetByIdRes,
+  ICoordinatorCommitteeToMemberGetListRes,
+} from 'src/types/coordinatorCommitteeToMember.type';
 
 @Injectable()
-export class LgaBoardCommitteeToMemberService {
-  constructor(private readonly lgaBoardCommitteeToMemberDb: LgaBoardCommitteeToMemberDbService) {}
+export class CoordinatorCommitteeToMemberService {
+  constructor(private readonly coordinatorCommitteeToMemberDb: CoordinatorCommitteeToMemberDbService) {}
 
-  async create(data: ILgaBoardCommitteeToMemberCreate): Promise<ILgaBoardCommitteeToMemberCreateRes> {
-    const lga = await this.lgaBoardCommitteeToMemberDb.create(data);
+  async create(data: ICoordinatorCommitteeToMemberCreate): Promise<ICoordinatorCommitteeToMemberCreateRes> {
+    const lga = await this.coordinatorCommitteeToMemberDb.create(data);
     return lga;
   }
 
-  async getList(): Promise<ILgaBoardCommitteeToMemberGetListRes[]> {
-    const lga = await this.lgaBoardCommitteeToMemberDb.findAll();
+  async getList(): Promise<ICoordinatorCommitteeToMemberGetListRes[]> {
+    const lga = await this.coordinatorCommitteeToMemberDb.findAll();
     return lga;
   }
 
-  async getById(data: ILgaBoardCommitteeToMemberGetById): Promise<ILgaBoardCommitteeToMemberGetByIdRes> {
-    const lga = await this.lgaBoardCommitteeToMemberDb.findById(data);
+  async getById(data: ICoordinatorCommitteeToMemberGetById): Promise<ICoordinatorCommitteeToMemberGetByIdRes> {
+    const lga = await this.coordinatorCommitteeToMemberDb.findById(data);
     return lga;
   }
 }
