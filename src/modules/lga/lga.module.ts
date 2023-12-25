@@ -12,10 +12,19 @@ import { LgaBoardToMemberDbService } from './board_to_member/lgaBoardToMember.db
 import { LgaBoardCommitteeToMemberController } from './boardCommittee_to_member/lgaBoardCommitteeToMember.controller';
 import { LgaBoardCommitteeToMemberService } from './boardCommittee_to_member/lgaBoardCommitteeToMember.service';
 import { LgaBoardCommitteeToMemberDbService } from './boardCommittee_to_member/lgaBoardCommitteeToMember.db.service';
+import { MembershipController } from './membership/membership.controller';
+import { MembershipService } from './membership/membership.service';
+import { MembershipDbService } from './membership/membership.db.service';
 
 @Module({
   imports: [DatabaseModule],
-  controllers: [LgaController, LgaBoardController, LgaBoardToMemberController, LgaBoardCommitteeToMemberController],
+  controllers: [
+    LgaController,
+    LgaBoardController,
+    LgaBoardToMemberController,
+    LgaBoardCommitteeToMemberController,
+    MembershipController,
+  ],
   providers: [
     LgaService,
     LgaDbService,
@@ -25,6 +34,8 @@ import { LgaBoardCommitteeToMemberDbService } from './boardCommittee_to_member/l
     LgaBoardToMemberDbService,
     LgaBoardCommitteeToMemberService,
     LgaBoardCommitteeToMemberDbService,
+    MembershipService,
+    MembershipDbService,
   ],
 })
 export class LgaModule {}
