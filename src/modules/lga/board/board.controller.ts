@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Query, Body } from '@nestjs/common';
-import { LgaBoardService } from './lgaBoard.service';
-import { LgaBoardGetByIdDto } from './dto/lgaBoard.getById.dto';
-import { LgaBoardCreateDto } from './dto/lgaBoard.create.dto';
+import { LgaBoardService } from './board.service';
+import { LgaBoardGetByIdDto } from './dto/board.getById.dto';
+import { LgaBoardCreateDto } from './dto/board.create.dto';
 
 @Controller('lga/board')
 export class LgaBoardController {

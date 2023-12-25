@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { LgaBoardToMemberDbService } from './lgaBoardToMember.db.service';
+import { LgaBoardToMemberDbService } from './boardToMember.db.service';
 import { ILgaBoardToMemberCreate, ILgaBoardToMemberCreateRes, ILgaBoardToMemberGetById, ILgaBoardToMemberGetByIdRes, ILgaBoardToMemberGetListRes } from 'src/types/lgaBoardToMember.type';
 
 

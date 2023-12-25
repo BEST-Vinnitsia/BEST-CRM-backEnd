@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Query, Body } from '@nestjs/common';
-import { LgaBoardCommitteeToMemberService } from './lgaBoardCommitteeToMember.service';
-import { LgaBoardCommitteeToMemberGetByIdDto } from './dto/lgaBoardCommitteeToMember.getById.dto';
-import { LgaBoardCommitteeToMemberCreateDto } from './dto/lgaBoardCommitteeToMember.create.dto';
+import { LgaBoardCommitteeToMemberService } from './boardCommitteeToMember.service';
+import { LgaBoardCommitteeToMemberGetByIdDto } from './dto/boardCommitteeToMember.getById.dto';
+import { LgaBoardCommitteeToMemberCreateDto } from './dto/boardCommitteeToMember.create.dto';
 
 @Controller('lga/board/committee/to/member')
 export class LgaBoardCommitteeToMemberController {

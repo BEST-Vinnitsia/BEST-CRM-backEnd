@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { LgaBoardDbService } from './lgaBoard.db.service';
+import { LgaBoardDbService } from './board.db.service';
 import {
   ILgaBoardCreate,
   ILgaBoardCreateRes,

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { LgaBoardCommitteeToMemberDbService } from './lgaBoardCommitteeToMember.db.service';
+import { LgaBoardCommitteeToMemberDbService } from './boardCommitteeToMember.db.service';
 import {
   ILgaBoardCommitteeToMemberCreate,
   ILgaBoardCommitteeToMemberCreateRes,
