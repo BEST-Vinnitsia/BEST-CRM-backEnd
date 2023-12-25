@@ -11,21 +11,21 @@ import {
 export class MemberSocialNetworksService {
   constructor(private readonly memberSocialNetworksDb: MemberSocialNetworksDbService) {}
 
-  public async createSocialNetworks(data: IMemberSocialNetworksCreate): Promise<IMemberSocialNetworksCreateRes> {
+  public async create(data: IMemberSocialNetworksCreate): Promise<IMemberSocialNetworksCreateRes> {
     const findMemberById = await this.memberSocialNetworksDb.findMemberById({ id: data.member_id });
     if (!findMemberById) throw new NotFoundException('Member not found');
 
-    const newSocialNetworks = await this.memberSocialNetworksDb.createSocialNetworks(data);
+    const newSocialNetworks = await this.memberSocialNetworksDb.create(data);
     return newSocialNetworks;
   }
 
-  public async getSocialNetworksListById(
+  public async getByMemberId(
     data: IMemberSocialNetworksGetListByMemberId,
   ): Promise<IMemberSocialNetworksGetListByMemberIdRes[]> {
     const findMemberById = await this.memberSocialNetworksDb.findMemberById({ id: data.member_id });
     if (!findMemberById) throw new NotFoundException('Member not found');
 
-    const socialNetworks = await this.memberSocialNetworksDb.getSocialNetworksListByMemberId(data);
+    const socialNetworks = await this.memberSocialNetworksDb.findByMemberId(data);
     return socialNetworks;
   }
 }

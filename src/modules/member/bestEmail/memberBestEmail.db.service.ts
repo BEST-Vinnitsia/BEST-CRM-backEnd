@@ -19,12 +19,12 @@ export class MemberBestEmailDbService {
     return member;
   }
 
-  public async createBestEmail({ member_id, email }: IMemberBestEmailDbCreate): Promise<IMemberBestEmailDbCreateRes> {
+  public async create({ member_id, email }: IMemberBestEmailDbCreate): Promise<IMemberBestEmailDbCreateRes> {
     const newEmail = await handlerError(this.database.member_best_email.create({ data: { member_id, email } }));
     return newEmail;
   }
 
-  public async getBestEmailListByMemberId({
+  public async findByMemberId({
     member_id,
   }: IMemberBestEmailDbGetListByMemberId): Promise<IMemberBestEmailDbGetListByMemberIdRes[]> {
     const emails = await handlerError(this.database.member_best_email.findMany({ where: { member_id } }));

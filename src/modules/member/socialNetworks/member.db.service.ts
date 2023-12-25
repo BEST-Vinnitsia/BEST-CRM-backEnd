@@ -19,7 +19,7 @@ export class MemberSocialNetworksDbService {
     return member;
   }
 
-  public async createSocialNetworks({
+  public async create({
     member_id,
     name,
     url,
@@ -30,7 +30,7 @@ export class MemberSocialNetworksDbService {
     return newEmail;
   }
 
-  public async getSocialNetworksListByMemberId({
+  public async findByMemberId({
     member_id,
   }: IMemberSocialNetworksDbGetListByMemberId): Promise<IMemberSocialNetworksDbGetListByMemberIdRes[]> {
     const emails = await handlerError(this.database.member_social_networks.findMany({ where: { member_id } }));

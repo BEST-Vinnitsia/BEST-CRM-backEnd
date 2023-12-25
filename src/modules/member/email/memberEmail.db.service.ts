@@ -19,12 +19,12 @@ export class MemberEmailDbService {
     return member;
   }
 
-  public async createEmail({ member_id, email }: IMemberEmailDbCreate): Promise<IMemberEmailDbCreateRes> {
+  public async create({ member_id, email }: IMemberEmailDbCreate): Promise<IMemberEmailDbCreateRes> {
     const newEmail = await handlerError(this.database.member_email.create({ data: { member_id, email } }));
     return newEmail;
   }
 
-  public async getEmailListByMemberId({
+  public async findByMemberId({
     member_id,
   }: IMemberEmailDbGetListByMemberId): Promise<IMemberEmailDbGetListByMemberIdRes[]> {
     const emails = await handlerError(this.database.member_email.findMany({ where: { member_id } }));

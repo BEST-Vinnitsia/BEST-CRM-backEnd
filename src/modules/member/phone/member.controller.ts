@@ -9,12 +9,12 @@ export class MemberPhoneController {
   constructor(private readonly memberPhoneService: MemberPhoneService) {}
 
   @Post('create')
-  async phoneCreate(@Body() data: MemberPhoneCreateDto) {
-    return await this.memberPhoneService.createPhone(data);
+  async create(@Body() data: MemberPhoneCreateDto) {
+    return await this.memberPhoneService.create(data);
   }
 
   @Get('by-member-id')
-  async phoneByMemberId(@Query() data: MemberPhoneGetByMemberIdDto) {
-    return await this.memberPhoneService.getPhoneListById(data);
+  async byMemberId(@Query() data: MemberPhoneGetByMemberIdDto) {
+    return await this.memberPhoneService.getByMemberId(data);
   }
 }

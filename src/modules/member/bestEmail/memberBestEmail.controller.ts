@@ -9,12 +9,12 @@ export class MemberBestEmailController {
   constructor(private readonly memberBestEmailService: MemberBestEmailService) {}
 
   @Post('create')
-  async bestEmailCreate(@Body() data: MemberBestEmailCreateDto) {
-    return await this.memberBestEmailService.createBestEmail(data);
+  async create(@Body() data: MemberBestEmailCreateDto) {
+    return await this.memberBestEmailService.create(data);
   }
 
   @Get('by-member-id')
-  async bestEmailByMemberId(@Query() data: MemberBestEmailGetByMemberIdDto) {
-    return await this.memberBestEmailService.getBestEmailListById(data);
+  async byMemberId(@Query() data: MemberBestEmailGetByMemberIdDto) {
+    return await this.memberBestEmailService.getByMemberId(data);
   }
 }

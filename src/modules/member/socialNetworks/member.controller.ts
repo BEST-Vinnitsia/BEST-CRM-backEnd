@@ -9,12 +9,12 @@ export class MemberSocialNetworksController {
   constructor(private readonly memberSocialNetworksService: MemberSocialNetworksService) {}
 
   @Post('create')
-  async socialNetworksCreate(@Body() data: MemberSocialNetworksCreateDto) {
-    return await this.memberSocialNetworksService.createSocialNetworks(data);
+  async create(@Body() data: MemberSocialNetworksCreateDto) {
+    return await this.memberSocialNetworksService.create(data);
   }
 
   @Get('by-member-id')
-  async socialNetworksByMemberId(@Query() data: MemberSocialNetworksGetByMemberIdDto) {
-    return await this.memberSocialNetworksService.getSocialNetworksListById(data);
+  async byMemberId(@Query() data: MemberSocialNetworksGetByMemberIdDto) {
+    return await this.memberSocialNetworksService.getByMemberId(data);
   }
 }

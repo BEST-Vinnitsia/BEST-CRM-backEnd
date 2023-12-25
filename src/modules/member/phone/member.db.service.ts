@@ -19,12 +19,12 @@ export class MemberPhoneDbService {
     return member;
   }
 
-  public async createPhone({ member_id, phone }: IMemberPhoneDbCreate): Promise<IMemberPhoneDbCreateRes> {
+  public async create({ member_id, phone }: IMemberPhoneDbCreate): Promise<IMemberPhoneDbCreateRes> {
     const newPhone = await handlerError(this.database.member_phone.create({ data: { member_id, phone } }));
     return newPhone;
   }
 
-  public async getPhoneListByMemberId({
+  public async findByMemberId({
     member_id,
   }: IMemberPhoneDbGetListByMemberId): Promise<IMemberPhoneDbGetListByMemberIdRes[]> {
     const phones = await handlerError(this.database.member_phone.findMany({ where: { member_id } }));

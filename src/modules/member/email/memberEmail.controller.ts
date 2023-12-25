@@ -9,12 +9,12 @@ export class MemberEmailController {
   constructor(private readonly memberEmailService: MemberEmailService) {}
 
   @Post('create')
-  async emailCreate(@Body() data: MemberEmailCreateDto) {
-    return await this.memberEmailService.createEmail(data);
+  async create(@Body() data: MemberEmailCreateDto) {
+    return await this.memberEmailService.create(data);
   }
 
   @Get('by-member-id')
-  async emailByMemberId(@Query() data: MemberEmailGetByMemberIdDto) {
-    return await this.memberEmailService.getEmailListById(data);
+  async byMemberId(@Query() data: MemberEmailGetByMemberIdDto) {
+    return await this.memberEmailService.getByMemberId(data);
   }
 }
