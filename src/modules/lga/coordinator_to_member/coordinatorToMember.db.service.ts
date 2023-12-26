@@ -16,8 +16,11 @@ export class CoordinatorToMemberDbService {
   public async create({
     coordinator_id,
     member_id,
+    cadence_id,
   }: ICoordinatorToMemberDbCreate): Promise<ICoordinatorToMemberDbCreateRes> {
-    const lga = await handlerError(this.database.member_to_coordinator.create({ data: { coordinator_id, member_id } }));
+    const lga = await handlerError(
+      this.database.member_to_coordinator.create({ data: { coordinator_id, member_id, cadence_id } }),
+    );
     return lga;
   }
 

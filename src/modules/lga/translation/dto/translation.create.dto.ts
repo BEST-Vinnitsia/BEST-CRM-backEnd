@@ -4,7 +4,7 @@ export class TranslationCreateDto {
   @IsNotEmpty()
   @IsString()
   @IsUUID('4')
-  lga_id: string;
+  meeting_id: string;
 
   @IsNotEmpty()
   @IsString()

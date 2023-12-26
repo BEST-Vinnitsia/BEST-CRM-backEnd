@@ -16,9 +16,10 @@ export class CoordinatorCommitteeToMemberDbService {
   public async create({
     coordinator_id,
     member_id,
+    cadence_id,
   }: ICoordinatorCommitteeToMemberDbCreate): Promise<ICoordinatorCommitteeToMemberDbCreateRes> {
     const lga = await handlerError(
-      this.database.member_to_coordinator_committee.create({ data: { coordinator_id, member_id } }),
+      this.database.member_to_coordinator_committee.create({ data: { coordinator_id, member_id, cadence_id } }),
     );
     return lga;
   }

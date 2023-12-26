@@ -13,8 +13,8 @@ import {
 export class BoardToMemberDbService {
   constructor(private readonly database: DatabaseService) {}
 
-  public async create({ board_id, member_id }: IBoardToMemberDbCreate): Promise<IBoardToMemberDbCreateRes> {
-    const lga = await handlerError(this.database.member_to_board.create({ data: { board_id, member_id } }));
+  public async create({ board_id, member_id, cadence_id }: IBoardToMemberDbCreate): Promise<IBoardToMemberDbCreateRes> {
+    const lga = await handlerError(this.database.member_to_board.create({ data: { board_id, member_id, cadence_id } }));
     return lga;
   }
 

@@ -1,14 +1,17 @@
 export interface ICoordinatorCommitteeToMember {
   id: string;
+  cadence_id: string;
   coordinator_id: string;
   member_id: string;
   create_date: Date;
 }
 
 // Get by id
-export interface ICoordinatorCommitteeToMemberCreate extends Omit<ICoordinatorCommitteeToMember, 'id' | 'create_date'> {}
+export interface ICoordinatorCommitteeToMemberCreate
+  extends Omit<ICoordinatorCommitteeToMember, 'id' | 'create_date'> {}
 export interface ICoordinatorCommitteeToMemberCreateRes extends ICoordinatorCommitteeToMember {}
-export interface ICoordinatorCommitteeToMemberDbCreate extends Omit<ICoordinatorCommitteeToMember, 'id' | 'create_date'> {}
+export interface ICoordinatorCommitteeToMemberDbCreate
+  extends Omit<ICoordinatorCommitteeToMember, 'id' | 'create_date'> {}
 export interface ICoordinatorCommitteeToMemberDbCreateRes extends ICoordinatorCommitteeToMember {}
 
 // Get by list

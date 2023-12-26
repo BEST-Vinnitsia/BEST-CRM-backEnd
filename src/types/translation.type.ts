@@ -1,6 +1,6 @@
 export interface ITranslation {
   id: string; // uuid V4
-  lga_id: string;
+  meeting_id: string;
   member_id: string;
   membership_id: string;
   create_date: Date;

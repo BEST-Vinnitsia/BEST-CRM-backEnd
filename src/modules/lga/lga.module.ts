@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common';
-import { LgaController } from './lga/lga.controller';
 import { DatabaseModule } from '../database/database.module';
-import { LgaService } from './lga/lga.service';
-import { LgaDbService } from './lga/lga.db.service';
+
+// Meeting
+import { MeetingController } from './meeting/meeting.controller';
+import { MeetingService } from './meeting/meeting.service';
+import { MeetingDbService } from './meeting/meeting.db.service';
 
 // Board
 import { BoardController } from './board/board.controller';
@@ -39,7 +41,7 @@ import { TranslationDbService } from './translation/translation.db.service';
 @Module({
   imports: [DatabaseModule],
   controllers: [
-    LgaController,
+    MeetingController,
 
     // Board
     BoardController,
@@ -58,8 +60,9 @@ import { TranslationDbService } from './translation/translation.db.service';
     TranslationController,
   ],
   providers: [
-    LgaService,
-    LgaDbService,
+    // Meeting
+    MeetingService,
+    MeetingDbService,
 
     // Board
     BoardService,

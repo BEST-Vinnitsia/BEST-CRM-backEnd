@@ -1,5 +1,6 @@
 export interface IBoardToMember {
   id: string;
+  cadence_id: string;
   board_id: string;
   member_id: string;
   create_date: Date;

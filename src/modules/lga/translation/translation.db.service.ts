@@ -13,10 +13,14 @@ import {
 export class TranslationDbService {
   constructor(private readonly database: DatabaseService) {}
 
-  public async create({ lga_id, member_id, membership_id }: ITranslationDbCreate): Promise<ITranslationDbCreateRes> {
+  public async create({
+    meeting_id,
+    member_id,
+    membership_id,
+  }: ITranslationDbCreate): Promise<ITranslationDbCreateRes> {
     const user = await handlerError(
       this.database.translation.create({
-        data: { lga_id, member_id, membership_id },
+        data: { meeting_id, member_id, membership_id },
       }),
     );
     return user;

@@ -82,22 +82,29 @@ model member_social_networks {
 // LGA
 // 
 
-model lga {
+model meeting {
   id          String   @id @default(uuid())
-  event_date  DateTime
+  cadence_id  String
+  name        String
+  date        DateTime
   create_date DateTime @default(now())
 
   translation translation[]
-  cadence     cadence[]
+  cadence     cadence       @relation(fields: [cadence_id], references: [id])
 }
 
 model cadence {
   id          String   @id @default(uuid())
-  lga_id      String
   number      Int
+  start_date  DateTime
+  end_date    DateTime
   create_date DateTime @default(now())
 
-  lga lga @relation(fields: [lga_id], references: [id])
+  meeting                         meeting[]
+  member_to_board                 member_to_board[]
+  member_to_board_committee       member_to_board_committee[]
+  member_to_coordinator           member_to_coordinator[]
+  member_to_coordinator_committee member_to_coordinator_committee[]
 }
 
 //* ----------------  translation  ---------------- *//
@@ -113,12 +120,12 @@ model membership {
 
 model translation {
   id            String   @id @default(uuid())
-  lga_id        String
+  meeting_id    String
   membership_id String
   member_id     String
   create_date   DateTime @default(now())
 
-  lga        lga        @relation(fields: [lga_id], references: [id])
+  meeting    meeting    @relation(fields: [meeting_id], references: [id])
   membership membership @relation(fields: [membership_id], references: [id])
   member     member     @relation(fields: [member_id], references: [id])
 }
@@ -138,22 +145,26 @@ model board {
 
 model member_to_board {
   id          String   @id @default(uuid())
+  cadence_id  String
   board_id    String
   member_id   String
   create_date DateTime @default(now())
 
-  board  board  @relation(fields: [board_id], references: [id])
-  member member @relation(fields: [member_id], references: [id])
+  board   board   @relation(fields: [board_id], references: [id])
+  member  member  @relation(fields: [member_id], references: [id])
+  cadence cadence @relation(fields: [cadence_id], references: [id])
 }
 
 model member_to_board_committee {
   id          String   @id @default(uuid())
+  cadence_id  String
   board_id    String
   member_id   String
   create_date DateTime @default(now())
 
-  board  board  @relation(fields: [board_id], references: [id])
-  member member @relation(fields: [member_id], references: [id])
+  board   board   @relation(fields: [board_id], references: [id])
+  member  member  @relation(fields: [member_id], references: [id])
+  cadence cadence @relation(fields: [cadence_id], references: [id])
 }
 
 //* ----------------  coordinator  ---------------- *//
@@ -171,22 +182,26 @@ model coordinator {
 
 model member_to_coordinator {
   id             String   @id @default(uuid())
+  cadence_id     String
   coordinator_id String
   member_id      String
   create_date    DateTime @default(now())
 
   coordinator coordinator @relation(fields: [coordinator_id], references: [id])
   member      member      @relation(fields: [member_id], references: [id])
+  cadence     cadence     @relation(fields: [cadence_id], references: [id])
 }
 
 model member_to_coordinator_committee {
   id             String   @id @default(uuid())
+  cadence_id     String
   coordinator_id String
   member_id      String
   create_date    DateTime @default(now())
 
   coordinator coordinator @relation(fields: [coordinator_id], references: [id])
   member      member      @relation(fields: [member_id], references: [id])
+  cadence     cadence     @relation(fields: [cadence_id], references: [id])
 }
 
 // 

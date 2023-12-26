@@ -9,5 +9,10 @@ export class BoardCommitteeToMemberCreateDto {
   @IsNotEmpty()
   @IsString()
   @IsUUID('4')
+  cadence_id: string;
+
+  @IsNotEmpty()
+  @IsString()
+  @IsUUID('4')
   member_id: string;
 }

@@ -16,8 +16,11 @@ export class BoardCommitteeToMemberDbService {
   public async create({
     board_id,
     member_id,
+    cadence_id,
   }: IBoardCommitteeToMemberDbCreate): Promise<IBoardCommitteeToMemberDbCreateRes> {
-    const lga = await handlerError(this.database.member_to_board_committee.create({ data: { board_id, member_id } }));
+    const lga = await handlerError(
+      this.database.member_to_board_committee.create({ data: { board_id, member_id, cadence_id } }),
+    );
     return lga;
   }
 

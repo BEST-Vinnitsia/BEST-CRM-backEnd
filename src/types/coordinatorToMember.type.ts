@@ -1,5 +1,6 @@
 export interface ICoordinatorToMember {
   id: string;
+  cadence_id: string;
   coordinator_id: string;
   member_id: string;
   create_date: Date;

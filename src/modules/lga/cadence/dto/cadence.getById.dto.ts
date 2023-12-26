@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
 
-export class LgaGetByIdDto {
+export class CadenceGetByIdDto {
   @IsNotEmpty()
   @IsString()
   @IsUUID('4')
