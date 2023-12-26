@@ -3,7 +3,7 @@ import { BoardService } from './board.service';
 import { BoardGetByIdDto } from './dto/board.getById.dto';
 import { BoardCreateDto } from './dto/board.create.dto';
 
-@Controller('board')
+@Controller('api/v/1/board')
 export class BoardController {
   constructor(private readonly boardService: BoardService) {}
 

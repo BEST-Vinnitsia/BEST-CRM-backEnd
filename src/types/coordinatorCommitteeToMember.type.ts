@@ -6,7 +6,7 @@ export interface ICoordinatorCommitteeToMember {
   create_date: Date;
 }
 
-// Get by id
+// Create
 export interface ICoordinatorCommitteeToMemberCreate
   extends Omit<ICoordinatorCommitteeToMember, 'id' | 'create_date'> {}
 export interface ICoordinatorCommitteeToMemberCreateRes extends ICoordinatorCommitteeToMember {}

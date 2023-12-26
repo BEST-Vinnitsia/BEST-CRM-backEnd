@@ -6,7 +6,7 @@ export interface IMeeting {
   create_date: Date;
 }
 
-// Get by id
+// Create
 export interface IMeetingCreate extends Omit<IMeeting, 'id' | 'create_date'> {}
 export interface IMeetingCreateRes extends IMeeting {}
 export interface IMeetingDbCreate extends Omit<IMeeting, 'id' | 'create_date'> {}

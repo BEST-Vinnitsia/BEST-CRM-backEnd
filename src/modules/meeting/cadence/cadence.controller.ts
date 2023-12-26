@@ -3,7 +3,7 @@ import { CadenceService } from './cadence.service';
 import { CadenceGetByIdDto } from './dto/cadence.getById.dto';
 import { CadenceCreateDto } from './dto/cadence.create.dto';
 
-@Controller('meeting/cadence')
+@Controller('api/v/1/meeting/cadence')
 export class CadenceController {
   constructor(private readonly cadenceService: CadenceService) {}
 

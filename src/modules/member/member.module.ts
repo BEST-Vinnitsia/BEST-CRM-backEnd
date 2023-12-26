@@ -29,8 +29,6 @@ import { MembershipDbService } from './membership/membership.db.service';
     MemberPhoneController,
     MemberBestEmailController,
     MemberSocialNetworksController,
-
-    // Membership
     MembershipController,
   ],
   providers: [
@@ -49,7 +47,6 @@ import { MembershipDbService } from './membership/membership.db.service';
     MemberSocialNetworksService,
     MemberSocialNetworksDbService,
 
-    // Membership
     MembershipService,
     MembershipDbService,
   ],

@@ -53,7 +53,6 @@ export class MemberDbService {
     );
     if (user) {
       delete user.password;
-      delete user.membership_id;
       return user;
     }
     return null;
@@ -68,7 +67,6 @@ export class MemberDbService {
     if (users) {
       users.map((item) => {
         delete item.password;
-        delete item.membership_id;
       });
       return users;
     }
@@ -84,7 +82,6 @@ export class MemberDbService {
     );
     if (user) {
       delete user.password;
-      delete user.membership_id;
       return user;
     }
     return null;

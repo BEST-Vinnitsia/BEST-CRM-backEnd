@@ -4,7 +4,7 @@ import { MemberEmailCreateDto } from './dto/memberEmail.create.dto';
 import { MemberEmailGetByMemberIdDto } from './dto/memberEmail.getByMemberId.dto';
 
 @UsePipes(new ValidationPipe())
-@Controller('member/email')
+@Controller('api/v/1/member/email')
 export class MemberEmailController {
   constructor(private readonly memberEmailService: MemberEmailService) {}
 

@@ -5,13 +5,13 @@ export interface IMemberBestEmail {
   create_date: Date;
 }
 
-// create
+// Create
 export interface IMemberBestEmailCreate extends Omit<IMemberBestEmail, 'id' | 'create_date'> {}
 export interface IMemberBestEmailCreateRes extends IMemberBestEmail {}
 export interface IMemberBestEmailDbCreate extends Omit<IMemberBestEmail, 'id' | 'create_date'> {}
 export interface IMemberBestEmailDbCreateRes extends IMemberBestEmail {}
 
-// get list by member id
+// Get list by member id
 export interface IMemberBestEmailGetListByMemberId extends Pick<IMemberBestEmail, 'member_id'> {}
 export interface IMemberBestEmailGetListByMemberIdRes extends IMemberBestEmail {}
 export interface IMemberBestEmailDbGetListByMemberId extends Pick<IMemberBestEmail, 'member_id'> {}

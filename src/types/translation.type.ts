@@ -6,7 +6,7 @@ export interface ITranslation {
   create_date: Date;
 }
 
-// create
+// Create
 export interface ITranslationCreate extends Omit<ITranslation, 'id' | 'create_date'> {}
 export interface ITranslationCreateRes extends ITranslation {}
 export interface ITranslationDbCreate extends Omit<ITranslation, 'id' | 'create_date'> {}

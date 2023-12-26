@@ -6,7 +6,7 @@ export interface ICoordinator {
   create_date: Date;
 }
 
-// Get by id
+// Create
 export interface ICoordinatorCreate extends Omit<ICoordinator, 'id' | 'create_date'> {}
 export interface ICoordinatorCreateRes extends ICoordinator {}
 export interface ICoordinatorDbCreate extends Omit<ICoordinator, 'id' | 'create_date'> {}

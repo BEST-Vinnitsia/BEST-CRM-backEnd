@@ -3,7 +3,7 @@ import { BoardToMemberService } from './boardToMember.service';
 import { BoardToMemberGetByIdDto } from './dto/boardToMember.getById.dto';
 import { BoardToMemberCreateDto } from './dto/boardToMember.create.dto';
 
-@Controller('board/to/member')
+@Controller('api/v/1/board/to/member')
 export class BoardToMemberController {
   constructor(private readonly BoardToMemberService: BoardToMemberService) {}
 

@@ -3,7 +3,7 @@ import { CoordinatorService } from './coordinator.service';
 import { CoordinatorGetByIdDto } from './dto/coordinator.getById.dto';
 import { CoordinatorCreateDto } from './dto/coordinator.create.dto';
 
-@Controller('coordinator')
+@Controller('api/v/1/coordinator')
 export class CoordinatorController {
   constructor(private readonly coordinatorService: CoordinatorService) {}
 

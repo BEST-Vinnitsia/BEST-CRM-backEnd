@@ -6,7 +6,7 @@ export interface IBoardToMember {
   create_date: Date;
 }
 
-// Get by id
+// Create
 export interface IBoardToMemberCreate extends Omit<IBoardToMember, 'id' | 'create_date'> {}
 export interface IBoardToMemberCreateRes extends IBoardToMember {}
 export interface IBoardToMemberDbCreate extends Omit<IBoardToMember, 'id' | 'create_date'> {}

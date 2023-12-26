@@ -18,34 +18,34 @@ export interface IMember {
   create_date: Date;
 }
 
-// Create member
+// Create
 export interface IMemberCreate extends Omit<IMember, 'id' | 'create_date'> {}
-export interface IMemberCreateRes extends Omit<IMember, 'password' | 'membership_id'> {
+export interface IMemberCreateRes extends Omit<IMember, 'password'> {
   membership: IMembership;
 }
 export interface IMemberDbCreate extends Omit<IMember, 'id' | 'create_date'> {}
-export interface IMemberDbCreateRes extends Omit<IMember, 'password' | 'membership_id'> {
+export interface IMemberDbCreateRes extends Omit<IMember, 'password'> {
   membership: IMembership;
 }
 
 // Get list
-export interface IMemberGetListRes extends Omit<IMember, 'password' | 'membership_id'> {
+export interface IMemberGetListRes extends Omit<IMember, 'password'> {
   membership: IMembership;
 }
-export interface IMemberDbGetListRes extends Omit<IMember, 'password' | 'membership_id'> {
+export interface IMemberDbGetListRes extends Omit<IMember, 'password'> {
   membership: IMembership;
 }
 
 // Get by id
 export interface IMemberGetById extends Pick<IMember, 'id'> {}
-export interface IMemberGetByIdRes extends Omit<IMember, 'password' | 'membership_id'> {
+export interface IMemberGetByIdRes extends Omit<IMember, 'password'> {
   membership: IMembership;
   member_best_email: IMemberBestEmail[];
   member_email: IMemberEmail[];
   member_phone: IMemberPhone[];
 }
 export interface IMemberDbGetById extends Pick<IMember, 'id'> {}
-export interface IMemberDbGetByIdRes extends Omit<IMember, 'password' | 'membership_id'> {
+export interface IMemberDbGetByIdRes extends Omit<IMember, 'password'> {
   membership: IMembership;
   member_best_email: IMemberBestEmail[];
   member_email: IMemberEmail[];
@@ -82,7 +82,7 @@ export interface IMemberFindById extends Omit<IMember, 'password'> {}
 //   // updated in the future
 //   // recruitment_id: string; // uuid V4
 
-//   membership_id: string; // uuid V4
+// string; // uuid V4
 
 //   clothing_size: string; // L
 

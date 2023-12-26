@@ -4,7 +4,7 @@ import { MemberPhoneGetByMemberIdDto } from './dto/memberPhone.getByMemberId.dto
 import { MemberPhoneCreateDto } from './dto/memberPhone.create.dto';
 
 @UsePipes(new ValidationPipe())
-@Controller('member/phone')
+@Controller('api/v/1/member/phone')
 export class MemberPhoneController {
   constructor(private readonly memberPhoneService: MemberPhoneService) {}
 

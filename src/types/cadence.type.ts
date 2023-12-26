@@ -6,7 +6,7 @@ export interface ICadence {
   create_date: Date;
 }
 
-// Get by id
+// Create
 export interface ICadenceCreate extends Omit<ICadence, 'id' | 'create_date'> {}
 export interface ICadenceCreateRes extends ICadence {}
 export interface ICadenceDbCreate extends Omit<ICadence, 'id' | 'create_date'> {}

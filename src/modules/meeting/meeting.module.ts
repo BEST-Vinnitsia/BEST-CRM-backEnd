@@ -11,9 +11,23 @@ import { TranslationController } from './translation/translation.controller';
 import { TranslationService } from './translation/translation.service';
 import { TranslationDbService } from './translation/translation.db.service';
 
+// Cadence
+import { CadenceController } from './cadence/cadence.controller';
+import { CadenceDbService } from './cadence/cadence.db.service';
+import { CadenceService } from './cadence/cadence.service';
+
 @Module({
   imports: [DatabaseModule],
-  controllers: [MeetingController, TranslationController],
-  providers: [MeetingService, MeetingDbService, TranslationService, TranslationDbService],
+  controllers: [MeetingController, TranslationController, CadenceController],
+  providers: [
+    MeetingService,
+    MeetingDbService,
+
+    TranslationService,
+    TranslationDbService,
+
+    CadenceService,
+    CadenceDbService,
+  ],
 })
-export class LgaModule {}
+export class MeetingModule {}

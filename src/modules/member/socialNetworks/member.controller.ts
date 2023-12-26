@@ -4,7 +4,7 @@ import { MemberSocialNetworksGetByMemberIdDto } from './dto/memberSocialNetworks
 import { MemberSocialNetworksCreateDto } from './dto/memberSocialNetworks.create.dto';
 
 @UsePipes(new ValidationPipe())
-@Controller('member/social-networks')
+@Controller('api/v/1/member/social-networks')
 export class MemberSocialNetworksController {
   constructor(private readonly memberSocialNetworksService: MemberSocialNetworksService) {}
 

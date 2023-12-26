@@ -3,7 +3,7 @@ import { TranslationService } from './translation.service';
 import { TranslationGetByIdDto } from './dto/translation.getById.dto';
 import { TranslationCreateDto } from './dto/translation.create.dto';
 
-@Controller('meeting/translation')
+@Controller('api/v/1/meeting/translation')
 export class TranslationController {
   constructor(private readonly translationService: TranslationService) {}
 
