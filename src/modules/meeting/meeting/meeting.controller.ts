@@ -3,7 +3,7 @@ import { MeetingService } from './meeting.service';
 import { MeetingGetByIdDto } from './dto/meeting.getById.dto';
 import { MeetingCreateDto } from './dto/meeting.create.dto';
 
-@Controller('lga')
+@Controller('meeting')
 export class MeetingController {
   constructor(private readonly meetingService: MeetingService) {}
 

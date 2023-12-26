@@ -3,7 +3,7 @@ import { CoordinatorToMemberService } from './coordinatorToMember.service';
 import { CoordinatorToMemberGetByIdDto } from './dto/lgaBoardToMember.getById.dto';
 import { CoordinatorToMemberCreateDto } from './dto/lgaBoardToMember.create.dto';
 
-@Controller('lga/coordinator/to/member')
+@Controller('coordinator/to/member')
 export class CoordinatorToMemberController {
   constructor(private readonly coordinatorToMemberService: CoordinatorToMemberService) {}
 

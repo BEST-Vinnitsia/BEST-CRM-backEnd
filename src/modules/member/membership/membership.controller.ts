@@ -2,7 +2,7 @@ import { Controller, Get, Query } from '@nestjs/common';
 import { MembershipService } from './membership.service';
 import { MembershipGetByIdDto } from './dto/membership.getById.dto';
 
-@Controller('membership')
+@Controller('member/membership')
 export class MembershipController {
   constructor(private readonly membershipService: MembershipService) {}
 

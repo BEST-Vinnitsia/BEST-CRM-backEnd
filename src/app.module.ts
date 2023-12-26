@@ -1,12 +1,21 @@
 import { Module } from '@nestjs/common';
+import { DatabaseModule } from './modules/database/database.module';
+
+// App
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { DatabaseModule } from './modules/database/database.module';
+
+// Member
 import { MemberModule } from './modules/member/member.module';
-import { LgaModule } from './modules/lga/lga.module';
+
+// Board
+import { BoardModule } from './modules/board/board.module';
+
+// Coordinator
+import { CoordinatorModule } from './modules/coordinator/coordinator.module';
 
 @Module({
-  imports: [DatabaseModule, MemberModule, LgaModule],
+  imports: [DatabaseModule, MemberModule, BoardModule, CoordinatorModule],
   controllers: [AppController],
   providers: [AppService],
 })

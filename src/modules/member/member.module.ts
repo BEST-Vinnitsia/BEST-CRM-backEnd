@@ -16,8 +16,23 @@ import { MemberPhoneController } from './phone/member.controller';
 import { MemberBestEmailController } from './bestEmail/memberBestEmail.controller';
 import { MemberSocialNetworksController } from './socialNetworks/member.controller';
 
+// Membership
+import { MembershipController } from './membership/membership.controller';
+import { MembershipService } from './membership/membership.service';
+import { MembershipDbService } from './membership/membership.db.service';
+
 @Module({
   imports: [DatabaseModule],
+  controllers: [
+    MemberController,
+    MemberEmailController,
+    MemberPhoneController,
+    MemberBestEmailController,
+    MemberSocialNetworksController,
+
+    // Membership
+    MembershipController,
+  ],
   providers: [
     MemberService,
     MemberDbService,
@@ -33,13 +48,10 @@ import { MemberSocialNetworksController } from './socialNetworks/member.controll
 
     MemberSocialNetworksService,
     MemberSocialNetworksDbService,
-  ],
-  controllers: [
-    MemberController,
-    MemberEmailController,
-    MemberPhoneController,
-    MemberBestEmailController,
-    MemberSocialNetworksController,
+
+    // Membership
+    MembershipService,
+    MembershipDbService,
   ],
 })
 export class MemberModule {}
