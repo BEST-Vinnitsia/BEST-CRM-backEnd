@@ -31,7 +31,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"member_id\": \"f6ae681c-703f-4cd4-be98-c4eb2963a780\",\r\n    \"phone\": \"3231323132\"\r\n}",
+									"raw": "{\r\n    \"member_id\": \"de820e60-048f-4300-b6c0-d9e47ecb336c\",\r\n    \"phone\": \"3231323132\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -39,11 +39,14 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/member/phone/create",
+									"raw": "{{url}}/api/v/1/member/phone/create",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
+										"v",
+										"1",
 										"member",
 										"phone",
 										"create"
@@ -124,7 +127,7 @@
 							]
 						},
 						{
-							"name": "by-id",
+							"name": "by- member d",
 							"event": [
 								{
 									"listen": "test",
@@ -140,11 +143,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/member/phone/by-member-id/?member_id=f6ae681c-703f-4cd4-be98-c4eb2963a780",
+									"raw": "{{url}}/api/v/1/member/phone/by-member-id/?member_id=de820e60-048f-4300-b6c0-d9e47ecb336c",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
+										"v",
+										"1",
 										"member",
 										"phone",
 										"by-member-id",
@@ -153,7 +159,7 @@
 									"query": [
 										{
 											"key": "member_id",
-											"value": "f6ae681c-703f-4cd4-be98-c4eb2963a780"
+											"value": "de820e60-048f-4300-b6c0-d9e47ecb336c"
 										}
 									]
 								},
@@ -254,7 +260,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"member_id\": \"f6ae681c-703f-4cd4-be98-c4eb2963a780\",\r\n    \"email\": \"test@gmail.com\"\r\n}",
+									"raw": "{\r\n    \"member_id\": \"de820e60-048f-4300-b6c0-d9e47ecb336c\",\r\n    \"email\": \"test@gmail.com\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -262,11 +268,14 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/member/email/create",
+									"raw": "{{url}}/api/v/1/member/email/create",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
+										"v",
+										"1",
 										"member",
 										"email",
 										"create"
@@ -347,7 +356,7 @@
 							]
 						},
 						{
-							"name": "by-id",
+							"name": "by member id",
 							"event": [
 								{
 									"listen": "test",
@@ -363,11 +372,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/member/email/by-member-id/?member_id=f6ae681c-703f-4cd4-be98-c4eb2963a780",
+									"raw": "{{url}}/api/v/1/member/email/by-member-id/?member_id=de820e60-048f-4300-b6c0-d9e47ecb336c",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
+										"v",
+										"1",
 										"member",
 										"email",
 										"by-member-id",
@@ -376,7 +388,7 @@
 									"query": [
 										{
 											"key": "member_id",
-											"value": "f6ae681c-703f-4cd4-be98-c4eb2963a780"
+											"value": "de820e60-048f-4300-b6c0-d9e47ecb336c"
 										}
 									]
 								},
@@ -477,7 +489,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"member_id\": \"f6ae681c-703f-4cd4-be98-c4eb2963a780\",\r\n    \"email\": \"test@best-eu.org\"\r\n}",
+									"raw": "{\r\n    \"member_id\": \"de820e60-048f-4300-b6c0-d9e47ecb336c\",\r\n    \"email\": \"test@best-eu.org\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -485,11 +497,14 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/member/best-email/create",
+									"raw": "{{url}}/api/v/1/member/best-email/create",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
+										"v",
+										"1",
 										"member",
 										"best-email",
 										"create"
@@ -570,7 +585,7 @@
 							]
 						},
 						{
-							"name": "by-id",
+							"name": "by member id",
 							"event": [
 								{
 									"listen": "test",
@@ -586,11 +601,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/member/best-email/by-member-id/?member_id=f6ae681c-703f-4cd4-be98-c4eb2963a780",
+									"raw": "{{url}}/api/v/1/member/best-email/by-member-id/?member_id=de820e60-048f-4300-b6c0-d9e47ecb336c",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
+										"v",
+										"1",
 										"member",
 										"best-email",
 										"by-member-id",
@@ -599,7 +617,7 @@
 									"query": [
 										{
 											"key": "member_id",
-											"value": "f6ae681c-703f-4cd4-be98-c4eb2963a780"
+											"value": "de820e60-048f-4300-b6c0-d9e47ecb336c"
 										}
 									]
 								},
@@ -700,7 +718,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"member_id\": \"f6ae681c-703f-4cd4-be98-c4eb2963a780\",\r\n    \"name\": \"google\",\r\n    \"url\": \"http://google.com\"\r\n}",
+									"raw": "{\r\n    \"member_id\": \"de820e60-048f-4300-b6c0-d9e47ecb336c\",\r\n    \"name\": \"google\",\r\n    \"url\": \"http://google.com\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -708,11 +726,14 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/member/social-networks/create",
+									"raw": "{{url}}/api/v/1/member/social-networks/create",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
+										"v",
+										"1",
 										"member",
 										"social-networks",
 										"create"
@@ -793,7 +814,7 @@
 							]
 						},
 						{
-							"name": "by-id",
+							"name": "by member id",
 							"event": [
 								{
 									"listen": "test",
@@ -809,11 +830,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/member/social-networks/by-member-id/?member_id=f6ae681c-703f-4cd4-be98-c4eb2963a780",
+									"raw": "{{url}}/api/v/1/member/social-networks/by-member-id/?member_id=de820e60-048f-4300-b6c0-d9e47ecb336c",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
+										"v",
+										"1",
 										"member",
 										"social-networks",
 										"by-member-id",
@@ -822,7 +846,7 @@
 									"query": [
 										{
 											"key": "member_id",
-											"value": "f6ae681c-703f-4cd4-be98-c4eb2963a780"
+											"value": "de820e60-048f-4300-b6c0-d9e47ecb336c"
 										}
 									]
 								},
@@ -923,7 +947,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\": \"asdasddsd\",\r\n    \"password\": \"asdsad\",\r\n    \"surname\": \"asdasd\",\r\n    \"full_name\": \"asdasd\",\r\n    \"middle_name\": \"asdsd\",\r\n    \"birthday\": \"2023-12-23T10:38:29.000Z\",\r\n    \"group\": \"asdasd\",\r\n    \"faculty\": \"asdasd\",\r\n    \"membership_id\": \"968df91f-8486-4175-a658-d3c7122ac935\"\r\n}",
+									"raw": "{\r\n    \"email\": \"asdasddsd\",\r\n    \"password\": \"asdsad\",\r\n    \"surname\": \"asdasd\",\r\n    \"full_name\": \"asdasd\",\r\n    \"middle_name\": \"asdsd\",\r\n    \"birthday\": \"2023-12-23T10:38:29.000Z\",\r\n    \"group\": \"asdasd\",\r\n    \"faculty\": \"asdasd\",\r\n    \"clothing_size\": \"L\",\r\n    \"membership_id\": \"9edb5850-65c0-42a0-8cb8-fd7973546de2\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -931,11 +955,14 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/member/create",
+									"raw": "{{url}}/api/v/1/member/create",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
+										"v",
+										"1",
 										"member",
 										"create"
 									]
@@ -1031,11 +1058,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/member/list",
+									"raw": "{{url}}/api/v/1/member/list",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
+										"v",
+										"1",
 										"member",
 										"list"
 									]
@@ -1131,18 +1161,21 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/member/by-id?id=f6ae681c-703f-4cd4-be98-c4eb2963a780",
+									"raw": "{{url}}/api/v/1/member/by-id?id=de820e60-048f-4300-b6c0-d9e47ecb336c",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
+										"v",
+										"1",
 										"member",
 										"by-id"
 									],
 									"query": [
 										{
 											"key": "id",
-											"value": "f6ae681c-703f-4cd4-be98-c4eb2963a780"
+											"value": "de820e60-048f-4300-b6c0-d9e47ecb336c"
 										}
 									]
 								},
@@ -1237,11 +1270,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/member/by-email?email=asdasddsd",
+									"raw": "{{url}}/api/v/1/member/by-email?email=asdasddsd",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
+										"api",
+										"v",
+										"1",
 										"member",
 										"by-email"
 									],
@@ -1727,15 +1763,347 @@
 							]
 						}
 					]
+				},
+				{
+					"name": "membership",
+					"item": [
+						{
+							"name": "create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"full\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/member/membership/create",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"member",
+										"membership",
+										"create"
+									]
+								},
+								"description": "Gets information about the authenticated user."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
+								},
+								{
+									"name": "Rate Limit Exceeded",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "Too Many Requests",
+									"code": 429,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
+								}
+							]
+						},
+						{
+							"name": "list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/member/membership/list",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"member",
+										"membership",
+										"list"
+									]
+								},
+								"description": "Gets information about the authenticated user."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
+								},
+								{
+									"name": "Rate Limit Exceeded",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "Too Many Requests",
+									"code": 429,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
+								}
+							]
+						},
+						{
+							"name": "by-id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/member/membership/by-id?id=9edb5850-65c0-42a0-8cb8-fd7973546de2",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"member",
+										"membership",
+										"by-id"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "9edb5850-65c0-42a0-8cb8-fd7973546de2"
+										}
+									]
+								},
+								"description": "Gets information about the authenticated user."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
+								},
+								{
+									"name": "Rate Limit Exceeded",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "Too Many Requests",
+									"code": 429,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
+								}
+							]
+						}
+					]
 				}
 			],
 			"description": "The `/me` endpoints let you manage information about the authenticated user."
 		},
 		{
-			"name": "LGA",
+			"name": "Meeting",
 			"item": [
 				{
-					"name": "lga",
+					"name": "meeting",
 					"item": [
 						{
 							"name": "create",
@@ -1755,7 +2123,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"event_date\": \"2023-12-24T20:12:28.647Z\"\r\n}",
+									"raw": "{\r\n    \"cadence_id\": \"d4e81434-c25e-4af6-b655-452660b874bb\",\r\n    \"name\": \"lga\",\r\n    \"date\": \"2023-12-26T23:26:30.929Z\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1763,12 +2131,15 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/lga/create",
+									"raw": "{{url}}/api/v/1/meeting/create",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
-										"lga",
+										"api",
+										"v",
+										"1",
+										"meeting",
 										"create"
 									]
 								},
@@ -1863,12 +2234,15 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/lga/list",
+									"raw": "{{url}}/api/v/1/meeting/list",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
-										"lga",
+										"api",
+										"v",
+										"1",
+										"meeting",
 										"list"
 									]
 								},
@@ -1963,1986 +2337,21 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/lga/by-id?id=7c19e215-e1a1-4560-bafb-8fef1ec13813",
+									"raw": "{{url}}/api/v/1/meeting/by-id?id=9914315c-7b3d-4dc5-9048-78782bc43a1a",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
-										"lga",
+										"api",
+										"v",
+										"1",
+										"meeting",
 										"by-id"
 									],
 									"query": [
 										{
 											"key": "id",
-											"value": "7c19e215-e1a1-4560-bafb-8fef1ec13813"
-										}
-									]
-								},
-								"description": "Gets information about the authenticated user."
-							},
-							"response": [
-								{
-									"name": "Successful Response",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"name": "Content-Type",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
-								},
-								{
-									"name": "Rate Limit Exceeded",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "Too Many Requests",
-									"code": 429,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "board",
-					"item": [
-						{
-							"name": "create",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"HR\",\r\n    \"is_active\": true,\r\n    \"committee_is_active\": true\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/lga/board/create",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"lga",
-										"board",
-										"create"
-									]
-								},
-								"description": "Gets information about the authenticated user."
-							},
-							"response": [
-								{
-									"name": "Successful Response",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"name": "Content-Type",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
-								},
-								{
-									"name": "Rate Limit Exceeded",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "Too Many Requests",
-									"code": 429,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
-								}
-							]
-						},
-						{
-							"name": "list",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/lga/board/list",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"lga",
-										"board",
-										"list"
-									]
-								},
-								"description": "Gets information about the authenticated user."
-							},
-							"response": [
-								{
-									"name": "Successful Response",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"name": "Content-Type",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
-								},
-								{
-									"name": "Rate Limit Exceeded",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "Too Many Requests",
-									"code": 429,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
-								}
-							]
-						},
-						{
-							"name": "by-id",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/lga/board/by-id?id=b5cb9d0e-a104-43b3-9b5c-774d546910e9",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"lga",
-										"board",
-										"by-id"
-									],
-									"query": [
-										{
-											"key": "id",
-											"value": "b5cb9d0e-a104-43b3-9b5c-774d546910e9"
-										}
-									]
-								},
-								"description": "Gets information about the authenticated user."
-							},
-							"response": [
-								{
-									"name": "Successful Response",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"name": "Content-Type",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
-								},
-								{
-									"name": "Rate Limit Exceeded",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "Too Many Requests",
-									"code": 429,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "board to member",
-					"item": [
-						{
-							"name": "create",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"board_id\": \"80746955-73f3-4a0c-b182-ab553887d282\",\r\n    \"member_id\": \"f6ae681c-703f-4cd4-be98-c4eb2963a780\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/lga/board/to/member/create",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"lga",
-										"board",
-										"to",
-										"member",
-										"create"
-									]
-								},
-								"description": "Gets information about the authenticated user."
-							},
-							"response": [
-								{
-									"name": "Successful Response",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"name": "Content-Type",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
-								},
-								{
-									"name": "Rate Limit Exceeded",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "Too Many Requests",
-									"code": 429,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
-								}
-							]
-						},
-						{
-							"name": "list",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/lga/board/to/member/list",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"lga",
-										"board",
-										"to",
-										"member",
-										"list"
-									]
-								},
-								"description": "Gets information about the authenticated user."
-							},
-							"response": [
-								{
-									"name": "Successful Response",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"name": "Content-Type",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
-								},
-								{
-									"name": "Rate Limit Exceeded",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "Too Many Requests",
-									"code": 429,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
-								}
-							]
-						},
-						{
-							"name": "by-id",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/lga/board/to/member/by-id?id=48bce98d-fd22-40e3-896d-d16705953a7f",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"lga",
-										"board",
-										"to",
-										"member",
-										"by-id"
-									],
-									"query": [
-										{
-											"key": "id",
-											"value": "48bce98d-fd22-40e3-896d-d16705953a7f"
-										}
-									]
-								},
-								"description": "Gets information about the authenticated user."
-							},
-							"response": [
-								{
-									"name": "Successful Response",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"name": "Content-Type",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
-								},
-								{
-									"name": "Rate Limit Exceeded",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "Too Many Requests",
-									"code": 429,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "board committee to member",
-					"item": [
-						{
-							"name": "create",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"board_id\": \"80746955-73f3-4a0c-b182-ab553887d282\",\r\n    \"member_id\": \"f6ae681c-703f-4cd4-be98-c4eb2963a780\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/lga/board/committee/to/member/create",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"lga",
-										"board",
-										"committee",
-										"to",
-										"member",
-										"create"
-									]
-								},
-								"description": "Gets information about the authenticated user."
-							},
-							"response": [
-								{
-									"name": "Successful Response",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"name": "Content-Type",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
-								},
-								{
-									"name": "Rate Limit Exceeded",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "Too Many Requests",
-									"code": 429,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
-								}
-							]
-						},
-						{
-							"name": "list",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/lga/board/committee/to/member/list",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"lga",
-										"board",
-										"committee",
-										"to",
-										"member",
-										"list"
-									]
-								},
-								"description": "Gets information about the authenticated user."
-							},
-							"response": [
-								{
-									"name": "Successful Response",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"name": "Content-Type",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
-								},
-								{
-									"name": "Rate Limit Exceeded",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "Too Many Requests",
-									"code": 429,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
-								}
-							]
-						},
-						{
-							"name": "by-id",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/lga/board/committee/to/member/by-id?id=d49a5c4a-904a-48ee-9b60-63cef53f2a30",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"lga",
-										"board",
-										"committee",
-										"to",
-										"member",
-										"by-id"
-									],
-									"query": [
-										{
-											"key": "id",
-											"value": "d49a5c4a-904a-48ee-9b60-63cef53f2a30"
-										}
-									]
-								},
-								"description": "Gets information about the authenticated user."
-							},
-							"response": [
-								{
-									"name": "Successful Response",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"name": "Content-Type",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
-								},
-								{
-									"name": "Rate Limit Exceeded",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "Too Many Requests",
-									"code": 429,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "coordinator",
-					"item": [
-						{
-							"name": "create",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"IT\",\r\n    \"is_active\": true,\r\n    \"committee_is_active\": true\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/lga/coordinator/create",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"lga",
-										"coordinator",
-										"create"
-									]
-								},
-								"description": "Gets information about the authenticated user."
-							},
-							"response": [
-								{
-									"name": "Successful Response",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"name": "Content-Type",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
-								},
-								{
-									"name": "Rate Limit Exceeded",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "Too Many Requests",
-									"code": 429,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
-								}
-							]
-						},
-						{
-							"name": "list",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/lga/coordinator/list",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"lga",
-										"coordinator",
-										"list"
-									]
-								},
-								"description": "Gets information about the authenticated user."
-							},
-							"response": [
-								{
-									"name": "Successful Response",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"name": "Content-Type",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
-								},
-								{
-									"name": "Rate Limit Exceeded",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "Too Many Requests",
-									"code": 429,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
-								}
-							]
-						},
-						{
-							"name": "by-id",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/lga/coordinator/by-id?id=989bf941-5094-4d42-818f-29221da2c126",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"lga",
-										"coordinator",
-										"by-id"
-									],
-									"query": [
-										{
-											"key": "id",
-											"value": "989bf941-5094-4d42-818f-29221da2c126"
-										}
-									]
-								},
-								"description": "Gets information about the authenticated user."
-							},
-							"response": [
-								{
-									"name": "Successful Response",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"name": "Content-Type",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
-								},
-								{
-									"name": "Rate Limit Exceeded",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "Too Many Requests",
-									"code": 429,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "coordinator to member",
-					"item": [
-						{
-							"name": "create",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"coordinator_id\": \"989bf941-5094-4d42-818f-29221da2c126\",\r\n    \"member_id\": \"f6ae681c-703f-4cd4-be98-c4eb2963a780\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/lga/coordinator/to/member/create",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"lga",
-										"coordinator",
-										"to",
-										"member",
-										"create"
-									]
-								},
-								"description": "Gets information about the authenticated user."
-							},
-							"response": [
-								{
-									"name": "Successful Response",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"name": "Content-Type",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
-								},
-								{
-									"name": "Rate Limit Exceeded",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "Too Many Requests",
-									"code": 429,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
-								}
-							]
-						},
-						{
-							"name": "list",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/lga/coordinator/to/member/list",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"lga",
-										"coordinator",
-										"to",
-										"member",
-										"list"
-									]
-								},
-								"description": "Gets information about the authenticated user."
-							},
-							"response": [
-								{
-									"name": "Successful Response",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"name": "Content-Type",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
-								},
-								{
-									"name": "Rate Limit Exceeded",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "Too Many Requests",
-									"code": 429,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
-								}
-							]
-						},
-						{
-							"name": "by-id",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/lga/coordinator/to/member/by-id?id=ddaf11eb-5179-42d6-a4c2-87e043c8b277",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"lga",
-										"coordinator",
-										"to",
-										"member",
-										"by-id"
-									],
-									"query": [
-										{
-											"key": "id",
-											"value": "ddaf11eb-5179-42d6-a4c2-87e043c8b277"
-										}
-									]
-								},
-								"description": "Gets information about the authenticated user."
-							},
-							"response": [
-								{
-									"name": "Successful Response",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"name": "Content-Type",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
-								},
-								{
-									"name": "Rate Limit Exceeded",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "Too Many Requests",
-									"code": 429,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
-								}
-							]
-						}
-					]
-				},
-				{
-					"name": "coordinator committee to member",
-					"item": [
-						{
-							"name": "create",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"coordinator_id\": \"989bf941-5094-4d42-818f-29221da2c126\",\r\n    \"member_id\": \"f6ae681c-703f-4cd4-be98-c4eb2963a780\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/lga/coordinator/committee/to/member/create",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"lga",
-										"coordinator",
-										"committee",
-										"to",
-										"member",
-										"create"
-									]
-								},
-								"description": "Gets information about the authenticated user."
-							},
-							"response": [
-								{
-									"name": "Successful Response",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"name": "Content-Type",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
-								},
-								{
-									"name": "Rate Limit Exceeded",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "Too Many Requests",
-									"code": 429,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
-								}
-							]
-						},
-						{
-							"name": "list",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/lga/coordinator/committee/to/member/list",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"lga",
-										"coordinator",
-										"committee",
-										"to",
-										"member",
-										"list"
-									]
-								},
-								"description": "Gets information about the authenticated user."
-							},
-							"response": [
-								{
-									"name": "Successful Response",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"name": "Content-Type",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
-								},
-								{
-									"name": "Rate Limit Exceeded",
-									"originalRequest": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://api.getpostman.com/me",
-											"protocol": "https",
-											"host": [
-												"api",
-												"getpostman",
-												"com"
-											],
-											"path": [
-												"me"
-											]
-										}
-									},
-									"status": "Too Many Requests",
-									"code": 429,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json",
-											"description": {
-												"content": "",
-												"type": "text/plain"
-											}
-										}
-									],
-									"cookie": [],
-									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
-								}
-							]
-						},
-						{
-							"name": "by-id",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{url}}/lga/coordinator/committee/to/member/by-id?id=59f5b6ea-d5c2-4ff3-b51d-2306b443af18",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"lga",
-										"coordinator",
-										"committee",
-										"to",
-										"member",
-										"by-id"
-									],
-									"query": [
-										{
-											"key": "id",
-											"value": "59f5b6ea-d5c2-4ff3-b51d-2306b443af18"
+											"value": "9914315c-7b3d-4dc5-9048-78782bc43a1a"
 										}
 									]
 								},
@@ -4043,7 +2452,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"lga_id\": \"7c19e215-e1a1-4560-bafb-8fef1ec13813\",\r\n    \"member_id\": \"f6ae681c-703f-4cd4-be98-c4eb2963a780\",\r\n    \"membership_id\": \"28181258-50ef-4c9b-8b1d-00caa7d7ddee\"\r\n}",
+									"raw": "{\r\n    \"meeting_id\": \"9914315c-7b3d-4dc5-9048-78782bc43a1a\",\r\n    \"member_id\": \"de820e60-048f-4300-b6c0-d9e47ecb336c\",\r\n    \"membership_id\": \"9edb5850-65c0-42a0-8cb8-fd7973546de2\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -4051,12 +2460,15 @@
 									}
 								},
 								"url": {
-									"raw": "{{url}}/lga/translation/create",
+									"raw": "{{url}}/api/v/1/meeting/translation/create",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
-										"lga",
+										"api",
+										"v",
+										"1",
+										"meeting",
 										"translation",
 										"create"
 									]
@@ -4152,12 +2564,15 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/lga/translation/list",
+									"raw": "{{url}}/api/v/1/meeting/translation/list",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
-										"lga",
+										"api",
+										"v",
+										"1",
+										"meeting",
 										"translation",
 										"list"
 									]
@@ -4253,19 +2668,22 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/lga/translation/by-id?id=37701d44-1bb9-4442-b3b5-937272ff0ae4",
+									"raw": "{{url}}/api/v/1/meeting/translation/by-id?id=c8275086-fc11-43c0-8ac2-126172206e37",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
-										"lga",
+										"api",
+										"v",
+										"1",
+										"meeting",
 										"translation",
 										"by-id"
 									],
 									"query": [
 										{
 											"key": "id",
-											"value": "37701d44-1bb9-4442-b3b5-937272ff0ae4"
+											"value": "c8275086-fc11-43c0-8ac2-126172206e37"
 										}
 									]
 								},
@@ -4346,8 +2764,121 @@
 					]
 				},
 				{
-					"name": "membership",
+					"name": "cadence",
 					"item": [
+						{
+							"name": "create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"number\": 1,\r\n    \"start_date\": \"2023-12-26T23:26:30.929Z\",\r\n    \"end_date\": \"2023-12-26T23:26:30.929Z\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/meeting/cadence/create",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"meeting",
+										"cadence",
+										"create"
+									]
+								},
+								"description": "Gets information about the authenticated user."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
+								},
+								{
+									"name": "Rate Limit Exceeded",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "Too Many Requests",
+									"code": 429,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
+								}
+							]
+						},
 						{
 							"name": "list",
 							"event": [
@@ -4365,12 +2896,16 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/membership/list",
+									"raw": "{{url}}/api/v/1/meeting/cadence/list",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
-										"membership",
+										"api",
+										"v",
+										"1",
+										"meeting",
+										"cadence",
 										"list"
 									]
 								},
@@ -4465,18 +3000,2036 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{url}}/membership/by-id?id=968df91f-8486-4175-a658-d3c7122ac935",
+									"raw": "{{url}}/api/v/1/meeting/cadence/by-id?id=d4e81434-c25e-4af6-b655-452660b874bb",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
-										"membership",
+										"api",
+										"v",
+										"1",
+										"meeting",
+										"cadence",
 										"by-id"
 									],
 									"query": [
 										{
 											"key": "id",
-											"value": "968df91f-8486-4175-a658-d3c7122ac935"
+											"value": "d4e81434-c25e-4af6-b655-452660b874bb"
+										}
+									]
+								},
+								"description": "Gets information about the authenticated user."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
+								},
+								{
+									"name": "Rate Limit Exceeded",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "Too Many Requests",
+									"code": 429,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Board",
+			"item": [
+				{
+					"name": "board",
+					"item": [
+						{
+							"name": "create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"HR\",\r\n    \"is_active\": true,\r\n    \"committee_is_active\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/board/create",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"board",
+										"create"
+									]
+								},
+								"description": "Gets information about the authenticated user."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
+								},
+								{
+									"name": "Rate Limit Exceeded",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "Too Many Requests",
+									"code": 429,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
+								}
+							]
+						},
+						{
+							"name": "list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/board/list",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"board",
+										"list"
+									]
+								},
+								"description": "Gets information about the authenticated user."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
+								},
+								{
+									"name": "Rate Limit Exceeded",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "Too Many Requests",
+									"code": 429,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
+								}
+							]
+						},
+						{
+							"name": "by-id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/board/by-id?id=4f829c36-9c5a-4123-b974-d3485731401f",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"board",
+										"by-id"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "4f829c36-9c5a-4123-b974-d3485731401f"
+										}
+									]
+								},
+								"description": "Gets information about the authenticated user."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
+								},
+								{
+									"name": "Rate Limit Exceeded",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "Too Many Requests",
+									"code": 429,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "board to member",
+					"item": [
+						{
+							"name": "create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cadence_id\": \"d4e81434-c25e-4af6-b655-452660b874bb\",\r\n    \"board_id\": \"4f829c36-9c5a-4123-b974-d3485731401f\",\r\n    \"member_id\": \"de820e60-048f-4300-b6c0-d9e47ecb336c\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/board/to/member/create",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"board",
+										"to",
+										"member",
+										"create"
+									]
+								},
+								"description": "Gets information about the authenticated user."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
+								},
+								{
+									"name": "Rate Limit Exceeded",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "Too Many Requests",
+									"code": 429,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
+								}
+							]
+						},
+						{
+							"name": "list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/board/to/member/list",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"board",
+										"to",
+										"member",
+										"list"
+									]
+								},
+								"description": "Gets information about the authenticated user."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
+								},
+								{
+									"name": "Rate Limit Exceeded",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "Too Many Requests",
+									"code": 429,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
+								}
+							]
+						},
+						{
+							"name": "by-id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/board/to/member/by-id?id=4a378c5b-e70c-47ce-b3db-c2064b6fab2b",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"board",
+										"to",
+										"member",
+										"by-id"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "4a378c5b-e70c-47ce-b3db-c2064b6fab2b"
+										}
+									]
+								},
+								"description": "Gets information about the authenticated user."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
+								},
+								{
+									"name": "Rate Limit Exceeded",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "Too Many Requests",
+									"code": 429,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "board committee to member",
+					"item": [
+						{
+							"name": "create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cadence_id\": \"d4e81434-c25e-4af6-b655-452660b874bb\",\r\n    \"board_id\": \"4f829c36-9c5a-4123-b974-d3485731401f\",\r\n    \"member_id\": \"de820e60-048f-4300-b6c0-d9e47ecb336c\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/board/committee/to/member/create",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"board",
+										"committee",
+										"to",
+										"member",
+										"create"
+									]
+								},
+								"description": "Gets information about the authenticated user."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
+								},
+								{
+									"name": "Rate Limit Exceeded",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "Too Many Requests",
+									"code": 429,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
+								}
+							]
+						},
+						{
+							"name": "list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/board/committee/to/member/list",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"board",
+										"committee",
+										"to",
+										"member",
+										"list"
+									]
+								},
+								"description": "Gets information about the authenticated user."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
+								},
+								{
+									"name": "Rate Limit Exceeded",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "Too Many Requests",
+									"code": 429,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
+								}
+							]
+						},
+						{
+							"name": "by-id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/board/committee/to/member/by-id?id=1448736c-1744-4c6c-8614-aa6e95da6f2f",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"board",
+										"committee",
+										"to",
+										"member",
+										"by-id"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1448736c-1744-4c6c-8614-aa6e95da6f2f"
+										}
+									]
+								},
+								"description": "Gets information about the authenticated user."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
+								},
+								{
+									"name": "Rate Limit Exceeded",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "Too Many Requests",
+									"code": 429,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Coordinator",
+			"item": [
+				{
+					"name": "coordinator",
+					"item": [
+						{
+							"name": "create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"IT\",\r\n    \"is_active\": true,\r\n    \"committee_is_active\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/coordinator/create",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"coordinator",
+										"create"
+									]
+								},
+								"description": "Gets information about the authenticated user."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
+								},
+								{
+									"name": "Rate Limit Exceeded",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "Too Many Requests",
+									"code": 429,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
+								}
+							]
+						},
+						{
+							"name": "list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/coordinator/list",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"coordinator",
+										"list"
+									]
+								},
+								"description": "Gets information about the authenticated user."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
+								},
+								{
+									"name": "Rate Limit Exceeded",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "Too Many Requests",
+									"code": 429,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
+								}
+							]
+						},
+						{
+							"name": "by-id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/coordinator/by-id?id=c0666422-861b-4a1a-a07f-baa62ef2acd4",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"coordinator",
+										"by-id"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "c0666422-861b-4a1a-a07f-baa62ef2acd4"
+										}
+									]
+								},
+								"description": "Gets information about the authenticated user."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
+								},
+								{
+									"name": "Rate Limit Exceeded",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "Too Many Requests",
+									"code": 429,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "coordinator to member",
+					"item": [
+						{
+							"name": "create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cadence_id\": \"d4e81434-c25e-4af6-b655-452660b874bb\",\r\n    \"coordinator_id\": \"c0666422-861b-4a1a-a07f-baa62ef2acd4\",\r\n    \"member_id\": \"de820e60-048f-4300-b6c0-d9e47ecb336c\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/coordinator/to/member/create",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"coordinator",
+										"to",
+										"member",
+										"create"
+									]
+								},
+								"description": "Gets information about the authenticated user."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
+								},
+								{
+									"name": "Rate Limit Exceeded",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "Too Many Requests",
+									"code": 429,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
+								}
+							]
+						},
+						{
+							"name": "list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/coordinator/to/member/list",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"coordinator",
+										"to",
+										"member",
+										"list"
+									]
+								},
+								"description": "Gets information about the authenticated user."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
+								},
+								{
+									"name": "Rate Limit Exceeded",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "Too Many Requests",
+									"code": 429,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
+								}
+							]
+						},
+						{
+							"name": "by-id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/coordinator/to/member/by-id?id=43d5268d-85eb-465f-a832-d375c6f64565",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"coordinator",
+										"to",
+										"member",
+										"by-id"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "43d5268d-85eb-465f-a832-d375c6f64565"
+										}
+									]
+								},
+								"description": "Gets information about the authenticated user."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
+								},
+								{
+									"name": "Rate Limit Exceeded",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "Too Many Requests",
+									"code": 429,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "coordinator committee to member",
+					"item": [
+						{
+							"name": "create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cadence_id\": \"d4e81434-c25e-4af6-b655-452660b874bb\",\r\n    \"coordinator_id\": \"c0666422-861b-4a1a-a07f-baa62ef2acd4\",\r\n    \"member_id\": \"de820e60-048f-4300-b6c0-d9e47ecb336c\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/coordinator/committee/to/member/create",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"coordinator",
+										"committee",
+										"to",
+										"member",
+										"create"
+									]
+								},
+								"description": "Gets information about the authenticated user."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
+								},
+								{
+									"name": "Rate Limit Exceeded",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "Too Many Requests",
+									"code": 429,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
+								}
+							]
+						},
+						{
+							"name": "list",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/coordinator/committee/to/member/list",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"coordinator",
+										"committee",
+										"to",
+										"member",
+										"list"
+									]
+								},
+								"description": "Gets information about the authenticated user."
+							},
+							"response": [
+								{
+									"name": "Successful Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"name": "Content-Type",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"user\": {\n        \"id\": 12345678,\n        \"username\": \"taylor-lee\",\n        \"email\": \"taylor.lee@example.com\",\n        \"fullName\": \"Taylor Lee\",\n        \"avatar\": \"https://example.com/user/r5u9qpvmujfjf6lbqmga.jpg\",\n        \"isPublic\": true\n    },\n    \"operations\": [\n        {\n            \"name\": \"mock_usage\",\n            \"limit\": 1000000,\n            \"usage\": 110276,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"monitor_request_runs\",\n            \"limit\": 10000000,\n            \"usage\": 1141750,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"api_usage\",\n            \"limit\": 1000000,\n            \"usage\": 16240,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"custom_domains\",\n            \"limit\": 25,\n            \"usage\": 25,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"serverless_requests\",\n            \"limit\": 10000,\n            \"usage\": 0,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"integrations\",\n            \"limit\": 5000,\n            \"usage\": 1018,\n            \"overage\": 0\n        },\n        {\n            \"name\": \"cloud_agent_requests\",\n            \"limit\": 1000000,\n            \"usage\": 1615,\n            \"overage\": 0\n        }\n    ]\n}"
+								},
+								{
+									"name": "Rate Limit Exceeded",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://api.getpostman.com/me",
+											"protocol": "https",
+											"host": [
+												"api",
+												"getpostman",
+												"com"
+											],
+											"path": [
+												"me"
+											]
+										}
+									},
+									"status": "Too Many Requests",
+									"code": 429,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"description": {
+												"content": "",
+												"type": "text/plain"
+											}
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"rateLimited\",\n    \"message\": \"Rate limit exceeded. Please retry after 1669048687\"\n}"
+								}
+							]
+						},
+						{
+							"name": "by-id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/coordinator/committee/to/member/by-id?id=aac701e6-b031-4e1b-a851-8d026f169113",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"coordinator",
+										"committee",
+										"to",
+										"member",
+										"by-id"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "aac701e6-b031-4e1b-a851-8d026f169113"
 										}
 									]
 								},
