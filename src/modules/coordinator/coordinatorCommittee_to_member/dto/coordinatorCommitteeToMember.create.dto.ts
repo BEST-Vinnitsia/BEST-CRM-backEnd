@@ -1,6 +1,6 @@
 import { IsBoolean, IsDateString, IsNotEmpty, IsString, IsUUID } from 'class-validator';
 
-export class CoordinatorCommitteeToMemberCreateDto {
+export class CoordinatorCommitteeToMember_Create_Dto {
   @IsNotEmpty()
   @IsString()
   @IsUUID('4')

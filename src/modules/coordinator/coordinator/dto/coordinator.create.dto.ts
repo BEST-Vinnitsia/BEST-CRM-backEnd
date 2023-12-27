@@ -1,6 +1,6 @@
 import { IsBoolean, IsDateString, IsNotEmpty, IsString } from 'class-validator';
 
-export class CoordinatorCreateDto {
+export class Coordinator_Create_Dto {
   @IsNotEmpty()
   @IsString()
   name: string;
