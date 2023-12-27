@@ -1,50 +1,65 @@
 
-#### IMember
+#### Member
 ```TS
-interface IMember {
-	id: string; // uuid V4
-	email: string; // demo@gmail.com
-	password: string;
-
-	surname: string;
-	full_name: string;
-	middle_name: string;
-	birthday: Date;
-
-	group: string; // УБ-21б
-	faculty: string; // ФМІБ
-
-	recrutment_id: string; // uuid V4
-	membership_id: string; // uuid V4
-	
-	clothing_size: string; // L
-	home_addres: string; // м. Вінниця, вул. Келицька 100
-	publick_profile: boolean; // true
+export interface IMember {
+  id: string; // uuid V4
+  membership_id: string; // uuid V4
+  email: string; // demo@gmail.com
+  password: string;
+  surname: string;
+  full_name: string;
+  middle_name: string;
+  birthday: Date;
+  group: string; // УБ-21б
+  faculty: string; // ФМІБ
+  clothing_size: string; // L
+  create_date: Date;
 }
 ```
-#### IPhone
+#### Phone
 ```TS
-interface IPhone  {
-	id: string; // uuid V4
-	member_id: string; // uuid V4
-	phone: string; // +380971234567
+export interface IMemberPhone {
+  id: string;
+  member_id: string;
+  phone: string;
+  create_date: Date;
 }
 ```
-#### ISocialNetworks
+#### SocialNetworks
 ```TS
-interface ISocialNetworks  {
-	id: string; // uuid V4
-	member_id: string; // uuid V4
-	name: string; // Telegram, LinkedIn...
-	url: string; // https://...
+export interface IMemberSocialNetworks {
+  id: string;
+  member_id: string;
+  name: string;
+  url: string;
+  create_date: Date;
 }
 ```
-#### IBestEmail
+#### BestEmail
 ```TS
-interface IBestEmail  {
-	id: string; // uuid V4
-	member_id: string; // uuid V4
-	email: string;
+export interface IMemberBestEmail {
+  id: string;
+  member_id: string;
+  email: string;
+  create_date: Date;
 }
 ```
 
+# Email
+```TS
+export interface IMemberEmail {
+  id: string;
+  member_id: string;
+  email: string;
+  create_date: Date;
+}
+```
+
+# Membership
+```TS
+export interface IMembership {
+  id: string; // uuid V4
+  name: string;
+  create_date: Date;
+}
+```
