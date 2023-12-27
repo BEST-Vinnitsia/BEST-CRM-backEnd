@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { DatabaseService } from '../../database/database.service';
 import {
-  IMeetingDbCreate,
-  IMeetingDbCreateRes,
-  IMeetingDbGetById,
-  IMeetingDbGetByIdRes,
-  IMeetingDbGetListRes,
+  IMeeting_Db_Create,
+  IMeeting_Db_Create_Res,
+  IMeeting_Db_GetById,
+  IMeeting_Db_GetById_Res,
+  IMeeting_Db_GetList_Res,
 } from 'src/types/meeting.type';
 import { handlerError } from 'src/utils/handlerError';
 
@@ -13,18 +13,35 @@ import { handlerError } from 'src/utils/handlerError';
 export class MeetingDbService {
   constructor(private readonly database: DatabaseService) {}
 
-  public async create({ date, name, cadence_id }: IMeetingDbCreate): Promise<IMeetingDbCreateRes> {
-    const lga = await handlerError(this.database.meeting.create({ data: { date, name, cadence_id } }));
-    return lga;
+  /**
+   * create meeting
+   */
+  public async create({ date, name, cadence_id }: IMeeting_Db_Create): Promise<IMeeting_Db_Create_Res> {
+    const newMeeting = await handlerError(
+      this.database.meeting.create({
+        data: {
+          date,
+          name: name.toLocaleLowerCase(),
+          cadence_id,
+        },
+      }),
+    );
+    return newMeeting;
   }
 
-  public async findAll(): Promise<IMeetingDbGetListRes[]> {
-    const lga = await handlerError(this.database.meeting.findMany());
-    return lga;
+  /**
+   * get meeting list
+   */
+  public async findAll(): Promise<IMeeting_Db_GetList_Res[]> {
+    const meetingList = await handlerError(this.database.meeting.findMany());
+    return meetingList;
   }
 
-  public async findById({ id }: IMeetingDbGetById): Promise<IMeetingDbGetByIdRes> {
-    const lga = await handlerError(this.database.meeting.findUnique({ where: { id } }));
-    return lga;
+  /**
+   * get meeting by id
+   */
+  public async findById({ id }: IMeeting_Db_GetById): Promise<IMeeting_Db_GetById_Res> {
+    const meeting = await handlerError(this.database.meeting.findUnique({ where: { id } }));
+    return meeting;
   }
 }

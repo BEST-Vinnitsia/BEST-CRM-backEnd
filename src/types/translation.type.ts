@@ -7,17 +7,17 @@ export interface ITranslation {
 }
 
 // Create
-export interface ITranslationCreate extends Omit<ITranslation, 'id' | 'create_date'> {}
-export interface ITranslationCreateRes extends ITranslation {}
-export interface ITranslationDbCreate extends Omit<ITranslation, 'id' | 'create_date'> {}
-export interface ITranslationDbCreateRes extends ITranslation {}
+export interface ITranslation_Create extends Omit<ITranslation, 'id' | 'create_date'> {}
+export interface ITranslation_Create_Res extends ITranslation {}
+export interface ITranslation_Db_Create extends Omit<ITranslation, 'id' | 'create_date'> {}
+export interface ITranslation_Db_Create_Res extends ITranslation {}
 
 // Get list
-export interface ITranslationGetListRes extends ITranslation {}
-export interface ITranslationDbGetListRes extends ITranslation {}
+export interface ITranslation_GetList_Res extends ITranslation {}
+export interface ITranslation_Db_GetList_Res extends ITranslation {}
 
 // Get by id
-export interface ITranslationGetById extends Pick<ITranslation, 'id'> {}
-export interface ITranslationGetByIdRes extends ITranslation {}
-export interface ITranslationDbGetById extends Pick<ITranslation, 'id'> {}
-export interface ITranslationDbGetByIdRes extends ITranslation {}
+export interface ITranslation_GetById extends Pick<ITranslation, 'id'> {}
+export interface ITranslation_GetById_Res extends ITranslation {}
+export interface ITranslation_Db_GetById extends Pick<ITranslation, 'id'> {}
+export interface ITranslation_Db_GetById_Res extends ITranslation {}

@@ -7,17 +7,21 @@ export interface ICadence {
 }
 
 // Create
-export interface ICadenceCreate extends Omit<ICadence, 'id' | 'create_date'> {}
-export interface ICadenceCreateRes extends ICadence {}
-export interface ICadenceDbCreate extends Omit<ICadence, 'id' | 'create_date'> {}
-export interface ICadenceDbCreateRes extends ICadence {}
+export interface ICadence_Create extends Omit<ICadence, 'id' | 'create_date'> {}
+export interface ICadence_Create_Res extends ICadence {}
+export interface ICadence_Db_Create extends Omit<ICadence, 'id' | 'create_date'> {}
+export interface ICadence_Db_Create_Res extends ICadence {}
 
 // Get by list
-export interface ICadenceGetListRes extends ICadence {}
-export interface ICadenceDbGetListRes extends ICadence {}
+export interface ICadence_GetList_Res extends ICadence {}
+export interface ICadence_Db_GetList_Res extends ICadence {}
 
 // Get by id
-export interface ICadenceGetById extends Pick<ICadence, 'id'> {}
-export interface ICadenceGetByIdRes extends ICadence {}
-export interface ICadenceDbGetById extends Pick<ICadence, 'id'> {}
-export interface ICadenceDbGetByIdRes extends ICadence {}
+export interface ICadence_GetById extends Pick<ICadence, 'id'> {}
+export interface ICadence_GetById_Res extends ICadence {}
+export interface ICadence_Db_GetById extends Pick<ICadence, 'id'> {}
+export interface ICadence_Db_GetById_Res extends ICadence {}
+
+// Get by number
+export interface ICadence_Db_GetByNumber extends Pick<ICadence, 'number'> {}
+export interface ICadence_Db_GetByNumber_Res extends ICadence {}

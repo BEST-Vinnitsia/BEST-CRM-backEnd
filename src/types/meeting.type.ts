@@ -7,17 +7,17 @@ export interface IMeeting {
 }
 
 // Create
-export interface IMeetingCreate extends Omit<IMeeting, 'id' | 'create_date'> {}
-export interface IMeetingCreateRes extends IMeeting {}
-export interface IMeetingDbCreate extends Omit<IMeeting, 'id' | 'create_date'> {}
-export interface IMeetingDbCreateRes extends IMeeting {}
+export interface IMeeting_Create extends Omit<IMeeting, 'id' | 'create_date'> {}
+export interface IMeeting_Create_Res extends IMeeting {}
+export interface IMeeting_Db_Create extends Omit<IMeeting, 'id' | 'create_date'> {}
+export interface IMeeting_Db_Create_Res extends IMeeting {}
 
 // Get by list
-export interface IMeetingGetListRes extends IMeeting {}
-export interface IMeetingDbGetListRes extends IMeeting {}
+export interface IMeeting_GetList_Res extends IMeeting {}
+export interface IMeeting_Db_GetList_Res extends IMeeting {}
 
 // Get by id
-export interface IMeetingGetById extends Pick<IMeeting, 'id'> {}
-export interface IMeetingGetByIdRes extends IMeeting {}
-export interface IMeetingDbGetById extends Pick<IMeeting, 'id'> {}
-export interface IMeetingDbGetByIdRes extends IMeeting {}
+export interface IMeeting_GetById extends Pick<IMeeting, 'id'> {}
+export interface IMeeting_GetById_Res extends IMeeting {}
+export interface IMeeting_Db_GetById extends Pick<IMeeting, 'id'> {}
+export interface IMeeting_Db_GetById_Res extends IMeeting {}

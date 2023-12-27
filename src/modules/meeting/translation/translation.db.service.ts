@@ -2,22 +2,21 @@ import { Injectable } from '@nestjs/common';
 import { DatabaseService } from '../../database/database.service';
 import { handlerError } from 'src/utils/handlerError';
 import {
-  ITranslationDbCreate,
-  ITranslationDbCreateRes,
-  ITranslationDbGetById,
-  ITranslationDbGetByIdRes,
-  ITranslationDbGetListRes,
+  ITranslation_Db_Create,
+  ITranslation_Db_Create_Res,
+  ITranslation_Db_GetById,
+  ITranslation_Db_GetById_Res,
+  ITranslation_Db_GetList_Res,
 } from 'src/types/translation.type';
 
 @Injectable()
 export class TranslationDbService {
   constructor(private readonly database: DatabaseService) {}
 
-  public async create({
-    meeting_id,
-    member_id,
-    membership_id,
-  }: ITranslationDbCreate): Promise<ITranslationDbCreateRes> {
+  /**
+   * create translation
+   */
+  public async create({ meeting_id, member_id, membership_id }: ITranslation_Db_Create): Promise<ITranslation_Db_Create_Res> {
     const user = await handlerError(
       this.database.translation.create({
         data: { meeting_id, member_id, membership_id },
@@ -26,12 +25,18 @@ export class TranslationDbService {
     return user;
   }
 
-  public async findAll(): Promise<ITranslationDbGetListRes[]> {
+  /**
+   * get translation list
+   */
+  public async findAll(): Promise<ITranslation_Db_GetList_Res[]> {
     const user = await handlerError(this.database.translation.findMany());
     return user;
   }
 
-  public async findById({ id }: ITranslationDbGetById): Promise<ITranslationDbGetByIdRes> {
+  /**
+   * get translation by id
+   */
+  public async findById({ id }: ITranslation_Db_GetById): Promise<ITranslation_Db_GetById_Res> {
     const user = await handlerError(
       this.database.translation.findUnique({
         where: { id },

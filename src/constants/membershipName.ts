@@ -1,0 +1,1 @@
+export const membershipName = ['extended', 'observer', 'baby', 'full', 'alumni'];

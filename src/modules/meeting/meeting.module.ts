@@ -1,6 +1,9 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from '../database/database.module';
 
+// App
+import { AppDbService } from 'src/app.db.service';
+
 // Meeting
 import { MeetingController } from './meeting/meeting.controller';
 import { MeetingService } from './meeting/meeting.service';
@@ -20,7 +23,7 @@ import { CadenceService } from './cadence/cadence.service';
   imports: [DatabaseModule],
   controllers: [MeetingController, TranslationController, CadenceController],
   providers: [
-    MeetingService,
+    MeetingService, //
     MeetingDbService,
 
     TranslationService,
@@ -28,6 +31,8 @@ import { CadenceService } from './cadence/cadence.service';
 
     CadenceService,
     CadenceDbService,
+
+    AppDbService,
   ],
 })
 export class MeetingModule {}
