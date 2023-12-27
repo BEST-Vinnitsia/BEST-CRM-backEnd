@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
 
-export class TranslationCreateDto {
+export class Translation_Create_Dto {
   @IsNotEmpty()
   @IsString()
   @IsUUID('4')

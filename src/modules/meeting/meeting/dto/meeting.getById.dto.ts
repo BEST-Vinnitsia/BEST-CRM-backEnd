@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
 
-export class MeetingGetByIdDto {
+export class Meeting_GetById_Dto {
   @IsNotEmpty()
   @IsString()
   @IsUUID('4')

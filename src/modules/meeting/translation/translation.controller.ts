@@ -1,14 +1,14 @@
 import { Controller, Get, Query, Post, Body } from '@nestjs/common';
 import { TranslationService } from './translation.service';
-import { TranslationGetByIdDto } from './dto/translation.getById.dto';
-import { TranslationCreateDto } from './dto/translation.create.dto';
+import { Translation_GetById_Dto } from './dto/translation.getById.dto';
+import { Translation_Create_Dto } from './dto/translation.create.dto';
 
 @Controller('api/v/1/meeting/translation')
 export class TranslationController {
   constructor(private readonly translationService: TranslationService) {}
 
   @Post('create')
-  async create(@Body() data: TranslationCreateDto) {
+  async create(@Body() data: Translation_Create_Dto) {
     return await this.translationService.create(data);
   }
 
@@ -18,7 +18,7 @@ export class TranslationController {
   }
 
   @Get('by-id')
-  async byId(@Query() data: TranslationGetByIdDto) {
+  async byId(@Query() data: Translation_GetById_Dto) {
     return await this.translationService.getById(data);
   }
 }

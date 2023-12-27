@@ -1,6 +1,6 @@
 import { IsDateString, IsNotEmpty, IsNumberString, IsString, IsUUID } from 'class-validator';
 
-export class CadenceCreateDto {
+export class Cadence_Create_Dto {
   @IsNotEmpty()
   @IsDateString()
   start_date: Date;

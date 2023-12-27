@@ -1,6 +1,6 @@
 import { IsDateString, IsNotEmpty, IsString, IsUUID } from 'class-validator';
 
-export class MeetingCreateDto {
+export class Meeting_Create_Dto {
   @IsNotEmpty()
   @IsDateString()
   date: Date;
