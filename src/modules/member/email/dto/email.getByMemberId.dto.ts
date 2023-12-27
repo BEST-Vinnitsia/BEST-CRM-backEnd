@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
 
-export class MemberBestEmailGetByMemberIdDto {
+export class Email_GetByMemberId_Dto {
   @IsNotEmpty()
   @IsString()
   @IsUUID('4')

@@ -7,6 +7,6 @@
   "jsxBracketSameLine": false,
   "arrowParens": "always",
   "array": "none",
-  "printWidth": 120,
+  "printWidth": 150,
   "object": "none"
 }

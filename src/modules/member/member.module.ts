@@ -1,20 +1,30 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from '../database/database.module';
+
+// Member
 import { MemberService } from './member/member.service';
 import { MemberDbService } from './member/member.db.service';
-import { MemberEmailService } from './email/memberEmail.service';
-import { MemberPhoneService } from './phone/member.service';
-import { MemberBestEmailService } from './bestEmail/memberBestEmail.service';
-import { MemberSocialNetworksService } from './socialNetworks/member.service';
-import { MemberSocialNetworksDbService } from './socialNetworks/member.db.service';
-import { MemberBestEmailDbService } from './bestEmail/memberBestEmail.db.service';
-import { MemberPhoneDbService } from './phone/member.db.service';
-import { MemberEmailDbService } from './email/memberEmail.db.service';
 import { MemberController } from './member/member.controller';
-import { MemberEmailController } from './email/memberEmail.controller';
-import { MemberPhoneController } from './phone/member.controller';
-import { MemberBestEmailController } from './bestEmail/memberBestEmail.controller';
-import { MemberSocialNetworksController } from './socialNetworks/member.controller';
+
+// Email
+import { EmailService } from './email/email.service';
+import { EmailDbService } from './email/email.db.service';
+import { EmailController } from './email/email.controller';
+
+// Phone
+import { PhoneService } from './phone/phone.service';
+import { PhoneDbService } from './phone/phone.db.service';
+import { PhoneController } from './phone/phone.controller';
+
+// BestEmail
+import { BestEmailService } from './bestEmail/bestEmail.service';
+import { BestEmailDbService } from './bestEmail/bestEmail.db.service';
+import { BestEmailController } from './bestEmail/bestEmail.controller';
+
+// SocialNetwork
+import { SocialNetworkService } from './socialNetwork/socialNetwork.service';
+import { SocialNetworkDbService } from './socialNetwork/socialNetwork.db.service';
+import { SocialNetworkController } from './socialNetwork/socialNetwork.controller';
 
 // Membership
 import { MembershipController } from './membership/membership.controller';
@@ -23,29 +33,22 @@ import { MembershipDbService } from './membership/membership.db.service';
 
 @Module({
   imports: [DatabaseModule],
-  controllers: [
-    MemberController,
-    MemberEmailController,
-    MemberPhoneController,
-    MemberBestEmailController,
-    MemberSocialNetworksController,
-    MembershipController,
-  ],
+  controllers: [MemberController, EmailController, PhoneController, BestEmailController, SocialNetworkController, MembershipController],
   providers: [
     MemberService,
     MemberDbService,
 
-    MemberEmailService,
-    MemberEmailDbService,
+    EmailService,
+    EmailDbService,
 
-    MemberPhoneService,
-    MemberPhoneDbService,
+    PhoneService,
+    PhoneDbService,
 
-    MemberBestEmailService,
-    MemberBestEmailDbService,
+    BestEmailService,
+    BestEmailDbService,
 
-    MemberSocialNetworksService,
-    MemberSocialNetworksDbService,
+    SocialNetworkService,
+    SocialNetworkDbService,
 
     MembershipService,
     MembershipDbService,

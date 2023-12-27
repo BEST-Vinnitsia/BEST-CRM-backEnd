@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
 
-export class MemberEmailCreateDto {
+export class BestEmail_Create_Dto {
   @IsNotEmpty()
   @IsString()
   @IsUUID('4')

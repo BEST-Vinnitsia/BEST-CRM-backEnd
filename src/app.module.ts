@@ -4,6 +4,7 @@ import { DatabaseModule } from './modules/database/database.module';
 // App
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AppDbService } from './app.db.service';
 
 // Member
 import { MemberModule } from './modules/member/member.module';
@@ -20,6 +21,6 @@ import { MeetingModule } from './modules/meeting/meeting.module';
 @Module({
   imports: [DatabaseModule, MemberModule, BoardModule, CoordinatorModule, MeetingModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, AppDbService],
 })
 export class AppModule {}

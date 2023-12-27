@@ -1,41 +1,58 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { MemberDbService } from './member.db.service';
 import {
-  IMemberCreate,
-  IMemberCreateRes,
-  IMemberGetByEmail,
-  IMemberGetByEmailRes,
-  IMemberGetById,
-  IMemberGetByIdRes,
-  IMemberGetListRes,
+  IMember_Create,
+  IMember_Create_Res,
+  IMember_GetByEmail,
+  IMember_GetByEmail_Res,
+  IMember_GetById,
+  IMember_GetById_Res,
+  IMember_GetList_Res,
 } from 'src/types/member.type';
 
 @Injectable()
 export class MemberService {
   constructor(private readonly memberDb: MemberDbService) {}
 
-  public async create(data: IMemberCreate): Promise<IMemberCreateRes> {
-    const findMemberByEmail = await this.memberDb.findByEmail({ email: data.email });
-    if (findMemberByEmail) throw new BadRequestException('Member is exist');
+  /**
+   * create member
+   */
+  public async create(data: IMember_Create): Promise<IMember_Create_Res> {
+    // checking if the member exists
+    const member = await this.memberDb.findByEmail({ email: data.email });
+    if (member) throw new BadRequestException('member is exist');
 
-    const res = await this.memberDb.create(data);
-    return res;
+    const newMember = await this.memberDb.create(data);
+    return newMember;
   }
 
-  public async getList(): Promise<IMemberGetListRes[]> {
-    const res = await this.memberDb.findAll();
-    return res;
+  /**
+   * get member list
+   */
+  public async getList(): Promise<IMember_GetList_Res[]> {
+    const memberList = await this.memberDb.findAll();
+    return memberList;
   }
 
-  public async getById(data: IMemberGetById): Promise<IMemberGetByIdRes> {
-    const findMemberById = await this.memberDb.findById({ id: data.id });
-    if (!findMemberById) throw new NotFoundException('Member not found');
-    return findMemberById;
+  /**
+   * get member by id
+   */
+  public async getById(data: IMember_GetById): Promise<IMember_GetById_Res> {
+    // checking if the member exists
+    const member = await this.memberDb.findById({ id: data.id });
+    if (!member) throw new NotFoundException('member not found');
+
+    return member;
   }
 
-  public async getByEmail(data: IMemberGetByEmail): Promise<IMemberGetByEmailRes> {
-    const findMemberByEmail = await this.memberDb.findByEmail({ email: data.email });
-    if (!findMemberByEmail) throw new NotFoundException('Member not found');
-    return findMemberByEmail;
+  /**
+   * get member by email
+   */
+  public async getByEmail(data: IMember_GetByEmail): Promise<IMember_GetByEmail_Res> {
+    // checking if the member exists
+    const member = await this.memberDb.findByEmail({ email: data.email });
+    if (!member) throw new NotFoundException('member not found');
+
+    return member;
   }
 }

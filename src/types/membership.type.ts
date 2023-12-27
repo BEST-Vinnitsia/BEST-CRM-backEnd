@@ -5,17 +5,21 @@ export interface IMembership {
 }
 
 // Create
-export interface IMembershipCreate extends Omit<IMembership, 'id' | 'create_date'> {}
-export interface IMembershipCreateRes extends IMembership {}
-export interface IMembershipDbCreate extends Omit<IMembership, 'id' | 'create_date'> {}
-export interface IMembershipDbCreateRes extends IMembership {}
+export interface IMembership_Create extends Omit<IMembership, 'id' | 'create_date'> {}
+export interface IMembership_Create_Res extends IMembership {}
+export interface IMembership_Db_Create extends Omit<IMembership, 'id' | 'create_date'> {}
+export interface IMembership_Db_Create_Res extends IMembership {}
 
 // Get list
-export interface IMembershipGetListRes extends IMembership {}
-export interface IMembershipDbGetListRes extends IMembership {}
+export interface IMembership_GetList_Res extends IMembership {}
+export interface IMembership_Db_GetList_Res extends IMembership {}
 
 // Get by id
-export interface IMembershipGetById extends Pick<IMembership, 'id'> {}
-export interface IMembershipGetByIdRes extends IMembership {}
-export interface IMembershipDbGetById extends Pick<IMembership, 'id'> {}
-export interface IMembershipDbGetByIdRes extends IMembership {}
+export interface IMembership_GetById extends Pick<IMembership, 'id'> {}
+export interface IMembership_GetById_Res extends IMembership {}
+export interface IMembership_Db_GetById extends Pick<IMembership, 'id'> {}
+export interface IMembership_Db_GetById_Res extends IMembership {}
+
+// Get by name
+export interface IMembership_Db_GetByName extends Pick<IMembership, 'name'> {}
+export interface IMembership_Db_GetByName_Res extends IMembership {}
