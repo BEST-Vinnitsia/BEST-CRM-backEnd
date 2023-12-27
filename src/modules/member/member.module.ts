@@ -1,6 +1,9 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from '../database/database.module';
 
+// App
+import { AppDbService } from 'src/app.db.service';
+
 // Member
 import { MemberService } from './member/member.service';
 import { MemberDbService } from './member/member.db.service';
@@ -52,6 +55,8 @@ import { MembershipDbService } from './membership/membership.db.service';
 
     MembershipService,
     MembershipDbService,
+
+    AppDbService,
   ],
 })
 export class MemberModule {}
