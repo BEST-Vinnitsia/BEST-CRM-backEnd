@@ -7,17 +7,17 @@ export interface ICoordinatorToMember {
 }
 
 // Create
-export interface ICoordinatorToMemberCreate extends Omit<ICoordinatorToMember, 'id' | 'create_date'> {}
-export interface ICoordinatorToMemberCreateRes extends ICoordinatorToMember {}
-export interface ICoordinatorToMemberDbCreate extends Omit<ICoordinatorToMember, 'id' | 'create_date'> {}
-export interface ICoordinatorToMemberDbCreateRes extends ICoordinatorToMember {}
+export interface ICoordinatorToMember_Create extends Omit<ICoordinatorToMember, 'id' | 'create_date'> {}
+export interface ICoordinatorToMember_Create_Res extends ICoordinatorToMember {}
+export interface ICoordinatorToMember_Db_Create extends Omit<ICoordinatorToMember, 'id' | 'create_date'> {}
+export interface ICoordinatorToMember_Db_Create_Res extends ICoordinatorToMember {}
 
 // Get by list
-export interface ICoordinatorToMemberGetListRes extends ICoordinatorToMember {}
-export interface ICoordinatorToMemberDbGetListRes extends ICoordinatorToMember {}
+export interface ICoordinatorToMember_GetList_Res extends ICoordinatorToMember {}
+export interface ICoordinatorToMember_Db_GetList_Res extends ICoordinatorToMember {}
 
 // Get by id
-export interface ICoordinatorToMemberGetById extends Pick<ICoordinatorToMember, 'id'> {}
-export interface ICoordinatorToMemberGetByIdRes extends ICoordinatorToMember {}
-export interface ICoordinatorToMemberDbGetById extends Pick<ICoordinatorToMember, 'id'> {}
-export interface ICoordinatorToMemberDbGetByIdRes extends ICoordinatorToMember {}
+export interface ICoordinatorToMember_GetById extends Pick<ICoordinatorToMember, 'id'> {}
+export interface ICoordinatorToMember_GetById_Res extends ICoordinatorToMember {}
+export interface ICoordinatorToMember_Db_GetById extends Pick<ICoordinatorToMember, 'id'> {}
+export interface ICoordinatorToMember_Db_GetById_Res extends ICoordinatorToMember {}

@@ -7,19 +7,17 @@ export interface ICoordinatorCommitteeToMember {
 }
 
 // Create
-export interface ICoordinatorCommitteeToMemberCreate
-  extends Omit<ICoordinatorCommitteeToMember, 'id' | 'create_date'> {}
-export interface ICoordinatorCommitteeToMemberCreateRes extends ICoordinatorCommitteeToMember {}
-export interface ICoordinatorCommitteeToMemberDbCreate
-  extends Omit<ICoordinatorCommitteeToMember, 'id' | 'create_date'> {}
-export interface ICoordinatorCommitteeToMemberDbCreateRes extends ICoordinatorCommitteeToMember {}
+export interface ICoordinatorCommitteeToMember_Create extends Omit<ICoordinatorCommitteeToMember, 'id' | 'create_date'> {}
+export interface ICoordinatorCommitteeToMember_Create_Res extends ICoordinatorCommitteeToMember {}
+export interface ICoordinatorCommitteeToMember_Db_Create extends Omit<ICoordinatorCommitteeToMember, 'id' | 'create_date'> {}
+export interface ICoordinatorCommitteeToMember_Db_Create_Res extends ICoordinatorCommitteeToMember {}
 
 // Get by list
-export interface ICoordinatorCommitteeToMemberGetListRes extends ICoordinatorCommitteeToMember {}
-export interface ICoordinatorCommitteeToMemberDbGetListRes extends ICoordinatorCommitteeToMember {}
+export interface ICoordinatorCommitteeToMember_GetList_Res extends ICoordinatorCommitteeToMember {}
+export interface ICoordinatorCommitteeToMember_Db_GetList_Res extends ICoordinatorCommitteeToMember {}
 
 // Get by id
-export interface ICoordinatorCommitteeToMemberGetById extends Pick<ICoordinatorCommitteeToMember, 'id'> {}
-export interface ICoordinatorCommitteeToMemberGetByIdRes extends ICoordinatorCommitteeToMember {}
-export interface ICoordinatorCommitteeToMemberDbGetById extends Pick<ICoordinatorCommitteeToMember, 'id'> {}
-export interface ICoordinatorCommitteeToMemberDbGetByIdRes extends ICoordinatorCommitteeToMember {}
+export interface ICoordinatorCommitteeToMember_GetById extends Pick<ICoordinatorCommitteeToMember, 'id'> {}
+export interface ICoordinatorCommitteeToMember_GetById_Res extends ICoordinatorCommitteeToMember {}
+export interface ICoordinatorCommitteeToMember_Db_GetById extends Pick<ICoordinatorCommitteeToMember, 'id'> {}
+export interface ICoordinatorCommitteeToMember_Db_GetById_Res extends ICoordinatorCommitteeToMember {}
