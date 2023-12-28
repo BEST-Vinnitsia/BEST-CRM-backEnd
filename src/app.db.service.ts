@@ -26,4 +26,14 @@ export class AppDbService {
     const cadence = await handlerError(this.database.cadence.findUnique({ where: { id } }));
     return cadence;
   }
+
+  public async findCoordinatorById({ id }: { id: string }) {
+    const coordinator = await handlerError(this.database.coordinator.findUnique({ where: { id } }));
+    return coordinator;
+  }
+
+  public async findCoordinatorToMember({ cadence_id, coordinator_id }: { cadence_id: string; coordinator_id: string }) {
+    const coordinatorToMember = await handlerError(this.database.member_to_coordinator.findFirst({ where: { cadence_id, coordinator_id } }));
+    return coordinatorToMember;
+  }
 }

@@ -1,10 +1,10 @@
 import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
 
-export class CoordinatorToMember_GetById_Dto {
+export class CoordinatorToMember_List_Dto {
   @IsNotEmpty()
   @IsString()
   @IsUUID('4')
-  id: string;
+  coordinator_id: string;
 
   @IsNotEmpty()
   @IsString()

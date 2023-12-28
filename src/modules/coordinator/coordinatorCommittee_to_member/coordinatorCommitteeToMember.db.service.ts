@@ -18,17 +18,29 @@ export class CoordinatorCommitteeToMemberDbService {
     member_id,
     cadence_id,
   }: ICoordinatorCommitteeToMember_Db_Create): Promise<ICoordinatorCommitteeToMember_Db_Create_Res> {
-    const lga = await handlerError(this.database.member_to_coordinator_committee.create({ data: { coordinator_id, member_id, cadence_id } }));
-    return lga;
+    const newCoordinatorCommitteeToMember = await handlerError(
+      this.database.member_to_coordinator_committee.create({
+        data: {
+          coordinator_id,
+          member_id,
+          cadence_id,
+        },
+      }),
+    );
+    return newCoordinatorCommitteeToMember;
   }
 
   public async findAll(): Promise<ICoordinatorCommitteeToMember_Db_GetList_Res[]> {
-    const lga = await handlerError(this.database.member_to_coordinator_committee.findMany());
-    return lga;
+    const coordinatorCommitteeToMemberList = await handlerError(this.database.member_to_coordinator_committee.findMany());
+    return coordinatorCommitteeToMemberList;
   }
 
   public async findById({ id }: ICoordinatorCommitteeToMember_Db_GetById): Promise<ICoordinatorCommitteeToMember_Db_GetById_Res> {
-    const lga = await handlerError(this.database.member_to_coordinator_committee.findUnique({ where: { id } }));
-    return lga;
+    const coordinatorCommitteeToMember = await handlerError(
+      this.database.member_to_coordinator_committee.findUnique({
+        where: { id },
+      }),
+    );
+    return coordinatorCommitteeToMember;
   }
 }

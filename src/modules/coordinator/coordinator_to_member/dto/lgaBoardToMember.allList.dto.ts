@@ -1,11 +1,6 @@
 import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
 
-export class CoordinatorToMember_GetById_Dto {
-  @IsNotEmpty()
-  @IsString()
-  @IsUUID('4')
-  id: string;
-
+export class CoordinatorToMember_AllList_Dto {
   @IsNotEmpty()
   @IsString()
   @IsUUID('4')
