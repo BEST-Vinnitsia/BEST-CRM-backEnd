@@ -37,6 +37,5 @@ export interface ICoordinatorToMember_Db_GetCadenceById extends Pick<ICoordinato
 export interface ICoordinatorToMember_Db_GetCadenceById_Res extends ICoordinatorToMember {}
 
 // Get by member id
-export interface ICoordinatorToMember_Db_GetByMemberIdCoordinatorIdCadenceId
-  extends Pick<ICoordinatorToMember, 'member_id' | 'cadence_id' | 'coordinator_id'> {}
-export interface ICoordinatorToMember_Db_GetByMemberIdCoordinatorIdCadenceId_Res extends ICoordinatorToMember {}
+export interface ICoordinatorToMember_Db_GetMemberAsCoordinator extends Pick<ICoordinatorToMember, 'member_id' | 'cadence_id' | 'coordinator_id'> {}
+export interface ICoordinatorToMember_Db_GetMemberAsCoordinator_Res extends ICoordinatorToMember {}

@@ -12,9 +12,11 @@ export interface ICoordinatorCommitteeToMember_Create_Res extends ICoordinatorCo
 export interface ICoordinatorCommitteeToMember_Db_Create extends Omit<ICoordinatorCommitteeToMember, 'id' | 'create_date'> {}
 export interface ICoordinatorCommitteeToMember_Db_Create_Res extends ICoordinatorCommitteeToMember {}
 
-// Get by list
-export interface ICoordinatorCommitteeToMember_GetList_Res extends ICoordinatorCommitteeToMember {}
-export interface ICoordinatorCommitteeToMember_Db_GetList_Res extends ICoordinatorCommitteeToMember {}
+// Get list by cadence_id
+export interface ICoordinatorCommitteeToMember_GetListByCadence extends Pick<ICoordinatorCommitteeToMember, 'cadence_id'> {}
+export interface ICoordinatorCommitteeToMember_GetListByCadence_Res extends ICoordinatorCommitteeToMember {}
+export interface ICoordinatorCommitteeToMember_Db_GetListByCadence extends Pick<ICoordinatorCommitteeToMember, 'cadence_id'> {}
+export interface ICoordinatorCommitteeToMember_Db_GetListByCadence_Res extends ICoordinatorCommitteeToMember {}
 
 // Get by id
 export interface ICoordinatorCommitteeToMember_GetById extends Pick<ICoordinatorCommitteeToMember, 'id'> {}

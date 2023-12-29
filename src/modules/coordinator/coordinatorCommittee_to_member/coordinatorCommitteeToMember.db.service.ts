@@ -6,13 +6,17 @@ import {
   ICoordinatorCommitteeToMember_Db_Create_Res,
   ICoordinatorCommitteeToMember_Db_GetById,
   ICoordinatorCommitteeToMember_Db_GetById_Res,
-  ICoordinatorCommitteeToMember_Db_GetList_Res,
+  ICoordinatorCommitteeToMember_Db_GetListByCadence,
+  ICoordinatorCommitteeToMember_Db_GetListByCadence_Res,
 } from 'src/types/coordinatorCommitteeToMember.type';
 
 @Injectable()
 export class CoordinatorCommitteeToMemberDbService {
   constructor(private readonly database: DatabaseService) {}
 
+  /**
+   * create coordinatorCommitteeToMember
+   */
   public async create({
     coordinator_id,
     member_id,
@@ -30,11 +34,23 @@ export class CoordinatorCommitteeToMemberDbService {
     return newCoordinatorCommitteeToMember;
   }
 
-  public async findAll(): Promise<ICoordinatorCommitteeToMember_Db_GetList_Res[]> {
-    const coordinatorCommitteeToMemberList = await handlerError(this.database.member_to_coordinator_committee.findMany());
+  /**
+   * get coordinatorCommitteeToMember list
+   */
+  public async findAllByCadenceId({
+    cadence_id,
+  }: ICoordinatorCommitteeToMember_Db_GetListByCadence): Promise<ICoordinatorCommitteeToMember_Db_GetListByCadence_Res[]> {
+    const coordinatorCommitteeToMemberList = await handlerError(
+      this.database.member_to_coordinator_committee.findMany({
+        where: { cadence_id },
+      }),
+    );
     return coordinatorCommitteeToMemberList;
   }
 
+  /**
+   * get coordinatorCommitteeToMember by id
+   */
   public async findById({ id }: ICoordinatorCommitteeToMember_Db_GetById): Promise<ICoordinatorCommitteeToMember_Db_GetById_Res> {
     const coordinatorCommitteeToMember = await handlerError(
       this.database.member_to_coordinator_committee.findUnique({

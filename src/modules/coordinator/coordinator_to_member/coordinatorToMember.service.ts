@@ -25,13 +25,28 @@ export class CoordinatorToMemberService {
    * create coordinatorToMember
    */
   async create(data: ICoordinatorToMember_Create): Promise<ICoordinatorToMember_Create_Res> {
+    // check is coordinator is exist
+    const member = await this.appDbService.findMemberById({ id: data.member_id });
+    if (!member) throw new NotFoundException('this member is not exist');
+
+    // check is cadence is exist
+    const cadence = await this.appDbService.findCadenceById({ id: data.cadence_id });
+    if (!cadence) throw new NotFoundException('this cadence is not exist');
+
+    // check is coordinator is exist
+    const coordinator = await this.appDbService.findCoordinatorById({ id: data.coordinator_id });
+    if (!coordinator) throw new NotFoundException('this coordinator is not exist');
+
+    // check is coordinator is active
+    if (!coordinator.is_active) throw new BadRequestException('this coordinator is not active now');
+
     // check if coordinatorToMember is exist
-    const coordinator = await this.coordinatorToMemberDb.findByMemberId_CadenceId_CoordinatorId({
+    const memberAsCoordinator = await this.coordinatorToMemberDb.findMemberAsCoordinator({
       cadence_id: data.cadence_id,
       coordinator_id: data.coordinator_id,
       member_id: data.member_id,
     });
-    if (coordinator) throw new BadRequestException('this coordinator is exist');
+    if (memberAsCoordinator) throw new BadRequestException('this coordinator is exist');
 
     const newCoordinatorToMember = await this.coordinatorToMemberDb.create(data);
     return newCoordinatorToMember;
@@ -45,16 +60,9 @@ export class CoordinatorToMemberService {
     return coordinatorToMemberList;
   }
 
-  /**
-   * get coordinatorToMember list by cadence_id
-   */
-  async getAllList(data: ICoordinatorToMember_GetAllList): Promise<ICoordinatorToMember_GetAllList_Res[]> {
-    const coordinatorToMemberList = await this.coordinatorToMemberDb.findAllByCadenceId(data);
-    return coordinatorToMemberList;
-  }
 
   /**
-   * get coordinatorToMember by member id & cadence id & coordinator id
+   * get coordinatorCommitteeToMember by member_id & cadence_id & coordinator_id
    */
   async getById(data: ICoordinatorToMember_GetById): Promise<ICoordinatorToMember_GetById_Res> {
     // check if coordinatorToMember is exist
@@ -65,7 +73,7 @@ export class CoordinatorToMemberService {
   }
 
   /**
-   * get coordinatorToMember by cadence id
+   * get coordinatorCommitteeToMember by cadence id
    */
   async getByCadenceId(data: ICoordinatorToMember_GetByCadenceId): Promise<ICoordinatorToMember_GetByCadenceId_Res[]> {
     // check if cadence is exist

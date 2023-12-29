@@ -5,7 +5,8 @@ import {
   ICoordinatorCommitteeToMember_Create_Res,
   ICoordinatorCommitteeToMember_GetById,
   ICoordinatorCommitteeToMember_GetById_Res,
-  ICoordinatorCommitteeToMember_GetList_Res,
+  ICoordinatorCommitteeToMember_GetListByCadence,
+  ICoordinatorCommitteeToMember_GetListByCadence_Res,
 } from 'src/types/coordinatorCommitteeToMember.type';
 import { AppDbService } from 'src/app.db.service';
 
@@ -16,6 +17,9 @@ export class CoordinatorCommitteeToMemberService {
     private readonly appDbService: AppDbService,
   ) {}
 
+  /**
+   * create coordinatorCommitteeToMember
+   */
   async create(data: ICoordinatorCommitteeToMember_Create): Promise<ICoordinatorCommitteeToMember_Create_Res> {
     // check if member is exist
     const member = await this.appDbService.findMemberById({ id: data.member_id });
@@ -46,13 +50,22 @@ export class CoordinatorCommitteeToMemberService {
     return newCoordinatorCommitteeToMember;
   }
 
-  async getList(): Promise<ICoordinatorCommitteeToMember_GetList_Res[]> {
-    const coordinatorCommitteeToMemberList = await this.coordinatorCommitteeToMemberDb.findAll();
+  /**
+   * get coordinatorCommitteeToMember list by cadence_id
+   */
+  async getListByCadenceId(data: ICoordinatorCommitteeToMember_GetListByCadence): Promise<ICoordinatorCommitteeToMember_GetListByCadence_Res[]> {
+    const coordinatorCommitteeToMemberList = await this.coordinatorCommitteeToMemberDb.findAllByCadenceId(data);
     return coordinatorCommitteeToMemberList;
   }
 
+  /**
+   * get coordinatorCommitteeToMember by id
+   */
   async getById(data: ICoordinatorCommitteeToMember_GetById): Promise<ICoordinatorCommitteeToMember_GetById_Res> {
+    // check if coordinator committee to member is exist
     const coordinatorCommitteeToMember = await this.coordinatorCommitteeToMemberDb.findById(data);
+    if (!coordinatorCommitteeToMember) throw new NotFoundException('this coordinator committee to member is not found');
+
     return coordinatorCommitteeToMember;
   }
 }

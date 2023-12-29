@@ -9,11 +9,11 @@ import {
   ICoordinatorToMember_Db_GetList_Res,
   ICoordinatorToMember_Db_GetCadenceById,
   ICoordinatorToMember_Db_GetCadenceById_Res,
-  ICoordinatorToMember_Db_GetByMemberIdCoordinatorIdCadenceId,
-  ICoordinatorToMember_Db_GetByMemberIdCoordinatorIdCadenceId_Res,
   ICoordinatorToMember_Db_GetList,
   ICoordinatorToMember_Db_GetAllList,
   ICoordinatorToMember_Db_GetAllList_Res,
+  ICoordinatorToMember_Db_GetMemberAsCoordinator,
+  ICoordinatorToMember_Db_GetMemberAsCoordinator_Res,
 } from 'src/types/coordinatorToMember.type';
 
 @Injectable()
@@ -82,11 +82,11 @@ export class CoordinatorToMemberDbService {
   /**
    * get coordinatorToMember by member id & cadence id & coordinator id
    */
-  public async findByMemberId_CadenceId_CoordinatorId({
+  public async findMemberAsCoordinator({
     member_id,
     cadence_id,
     coordinator_id,
-  }: ICoordinatorToMember_Db_GetByMemberIdCoordinatorIdCadenceId): Promise<ICoordinatorToMember_Db_GetByMemberIdCoordinatorIdCadenceId_Res> {
+  }: ICoordinatorToMember_Db_GetMemberAsCoordinator): Promise<ICoordinatorToMember_Db_GetMemberAsCoordinator_Res> {
     const coordinatorToMember = await handlerError(
       this.database.member_to_coordinator.findFirst({
         where: { member_id, cadence_id, coordinator_id },

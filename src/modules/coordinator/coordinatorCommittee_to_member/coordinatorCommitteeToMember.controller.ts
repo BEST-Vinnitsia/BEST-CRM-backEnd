@@ -2,6 +2,7 @@ import { Controller, Get, Post, Query, Body } from '@nestjs/common';
 import { CoordinatorCommitteeToMemberService } from './coordinatorCommitteeToMember.service';
 import { CoordinatorCommitteeToMember_GetById_Dto } from './dto/coordinatorCommitteeToMember.getById.dto';
 import { CoordinatorCommitteeToMember_Create_Dto } from './dto/coordinatorCommitteeToMember.create.dto';
+import { CoordinatorCommitteeToMember_GetListByCadenceId_Dto } from './dto/coordinatorCommitteeToMember.getById.dto copy';
 
 @Controller('api/v/1/coordinator/committee/to/member')
 export class CoordinatorCommitteeToMemberController {
@@ -13,8 +14,8 @@ export class CoordinatorCommitteeToMemberController {
   }
 
   @Get('list')
-  async list() {
-    return await this.coordinatorCommitteeToMemberService.getList();
+  async list(@Query() data: CoordinatorCommitteeToMember_GetListByCadenceId_Dto) {
+    return await this.coordinatorCommitteeToMemberService.getListByCadenceId(data);
   }
 
   @Get('by-id')

@@ -14,15 +14,11 @@ export class CoordinatorToMemberController {
     return await this.coordinatorToMemberService.create(data);
   }
 
-  @Get('committee/list')
+  @Get('list')
   async list(@Query() data: CoordinatorToMember_List_Dto) {
     return await this.coordinatorToMemberService.getList(data);
   }
 
-  @Get('all-committees/list')
-  async allList(@Query() data: CoordinatorToMember_AllList_Dto) {
-    return await this.coordinatorToMemberService.getAllList(data);
-  }
 
   @Get('by-id')
   async byId(@Query() data: CoordinatorToMember_GetById_Dto) {
