@@ -13,30 +13,36 @@ datasource db {
 model member {
   id            String   @id @default(uuid())
   membership_id String
+  // recrutment_id String
+  // 
   email         String   @unique
   password      String
+  best_email    String?
+  // 
   surname       String
   full_name     String
   middle_name   String
   birthday      DateTime
+  // 
   group         String
   faculty       String
+  // 
   clothing_size String?
+  home_address   String?
+  // 
   create_date   DateTime @default(now())
+  last_edit     DateTime @updatedAt
 
   // info about member
-  member_phone           member_phone[]
-  member_best_email      member_best_email[]
-  member_social_networks member_social_networks[]
-  member_email           member_email[]
+  member_phone          member_phone[]
+  member_social_network member_social_network[]
+  member_email          member_email[]
 
   // LGA
-  membership                      membership                        @relation(fields: [membership_id], references: [id])
-  translation                     translation[]
-  member_to_board                 member_to_board[]
-  member_to_board_committee       member_to_board_committee[]
-  member_to_coordinator           member_to_coordinator[]
-  member_to_coordinator_committee member_to_coordinator_committee[]
+  membership            membership              @relation(fields: [membership_id], references: [id])
+  translation           translation[]
+  member_to_board       member_to_board[]
+  member_to_coordinator member_to_coordinator[]
 }
 
 //* ----------------  info about member  ---------------- *//
@@ -46,6 +52,7 @@ model member_phone {
   member_id   String
   phone       String
   create_date DateTime @default(now())
+  last_edit   DateTime @updatedAt
 
   member member @relation(fields: [member_id], references: [id])
 }
@@ -55,25 +62,18 @@ model member_email {
   member_id   String
   email       String
   create_date DateTime @default(now())
+  last_edit   DateTime @updatedAt
 
   member member @relation(fields: [member_id], references: [id])
 }
 
-model member_best_email {
-  id          String   @id @default(uuid())
-  member_id   String
-  email       String
-  create_date DateTime @default(now())
-
-  member member @relation(fields: [member_id], references: [id])
-}
-
-model member_social_networks {
+model member_social_network {
   id          String   @id @default(uuid())
   member_id   String
   name        String
   url         String
   create_date DateTime @default(now())
+  last_edit   DateTime @updatedAt
 
   member member @relation(fields: [member_id], references: [id])
 }
@@ -88,6 +88,7 @@ model meeting {
   name        String
   date        DateTime
   create_date DateTime @default(now())
+  last_edit   DateTime @updatedAt
 
   translation translation[]
   cadence     cadence       @relation(fields: [cadence_id], references: [id])
@@ -99,12 +100,11 @@ model cadence {
   start_date  DateTime
   end_date    DateTime
   create_date DateTime @default(now())
+  last_edit   DateTime @updatedAt
 
-  meeting                         meeting[]
-  member_to_board                 member_to_board[]
-  member_to_board_committee       member_to_board_committee[]
-  member_to_coordinator           member_to_coordinator[]
-  member_to_coordinator_committee member_to_coordinator_committee[]
+  meeting               meeting[]
+  member_to_board       member_to_board[]
+  member_to_coordinator member_to_coordinator[]
 }
 
 //* ----------------  translation  ---------------- *//
@@ -113,6 +113,7 @@ model membership {
   id          String   @id @default(uuid())
   name        String   @unique
   create_date DateTime @default(now())
+  last_edit   DateTime @updatedAt
 
   translation translation[]
   member      member[]
@@ -124,6 +125,7 @@ model translation {
   membership_id String
   member_id     String
   create_date   DateTime @default(now())
+  last_edit     DateTime @updatedAt
 
   meeting    meeting    @relation(fields: [meeting_id], references: [id])
   membership membership @relation(fields: [membership_id], references: [id])
@@ -138,9 +140,9 @@ model board {
   is_active           Boolean
   committee_is_active Boolean
   create_date         DateTime @default(now())
+  last_edit           DateTime @updatedAt
 
-  member_to_board           member_to_board[]
-  member_to_board_committee member_to_board_committee[]
+  member_to_board member_to_board[]
 }
 
 model member_to_board {
@@ -148,19 +150,9 @@ model member_to_board {
   cadence_id  String
   board_id    String
   member_id   String
+  is_leader   Boolean
   create_date DateTime @default(now())
-
-  board   board   @relation(fields: [board_id], references: [id])
-  member  member  @relation(fields: [member_id], references: [id])
-  cadence cadence @relation(fields: [cadence_id], references: [id])
-}
-
-model member_to_board_committee {
-  id          String   @id @default(uuid())
-  cadence_id  String
-  board_id    String
-  member_id   String
-  create_date DateTime @default(now())
+  last_edit   DateTime @updatedAt
 
   board   board   @relation(fields: [board_id], references: [id])
   member  member  @relation(fields: [member_id], references: [id])
@@ -175,9 +167,9 @@ model coordinator {
   is_active           Boolean
   committee_is_active Boolean
   create_date         DateTime @default(now())
+  last_edit           DateTime @updatedAt
 
-  member_to_coordinator           member_to_coordinator[]
-  member_to_coordinator_committee member_to_coordinator_committee[]
+  member_to_coordinator member_to_coordinator[]
 }
 
 model member_to_coordinator {
@@ -185,19 +177,9 @@ model member_to_coordinator {
   cadence_id     String
   coordinator_id String
   member_id      String
+  is_leader      Boolean
   create_date    DateTime @default(now())
-
-  coordinator coordinator @relation(fields: [coordinator_id], references: [id])
-  member      member      @relation(fields: [member_id], references: [id])
-  cadence     cadence     @relation(fields: [cadence_id], references: [id])
-}
-
-model member_to_coordinator_committee {
-  id             String   @id @default(uuid())
-  cadence_id     String
-  coordinator_id String
-  member_id      String
-  create_date    DateTime @default(now())
+  last_edit      DateTime @updatedAt
 
   coordinator coordinator @relation(fields: [coordinator_id], references: [id])
   member      member      @relation(fields: [member_id], references: [id])
@@ -216,6 +198,7 @@ model panish {
   special     Boolean
   event_date  DateTime
   create_date DateTime @default(now())
+  last_edit   DateTime @updatedAt
 }
 
 model photo_album {
@@ -224,4 +207,5 @@ model photo_album {
   url         String
   event_date  DateTime
   create_date DateTime @default(now())
+  last_edit   DateTime @updatedAt
 }

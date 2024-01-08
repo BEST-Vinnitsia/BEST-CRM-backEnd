@@ -1,25 +1,22 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from './modules/database/database.module';
 
-// App
+/* ----------------  APP  ---------------- */
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AppDbService } from './app.db.service';
 
-// Member
+/* ----------------  MEMBER  ---------------- */
 import { MemberModule } from './modules/member/member.module';
-
-// Board
-import { BoardModule } from './modules/board/board.module';
-
-// Coordinator
-import { CoordinatorModule } from './modules/coordinator/coordinator.module';
-
-// Meeting
-import { MeetingModule } from './modules/meeting/meeting.module';
+import { MembershipModule } from './modules/membership/membership.module';
 
 @Module({
-  imports: [DatabaseModule, MemberModule, BoardModule, CoordinatorModule, MeetingModule],
+  imports: [
+    DatabaseModule,
+    // member
+    MemberModule,
+    MembershipModule,
+  ],
   controllers: [AppController],
   providers: [AppService, AppDbService],
 })

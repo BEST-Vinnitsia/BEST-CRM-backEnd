@@ -6,7 +6,7 @@ export class AppService {
   serverInfo(): IServerInfo {
     return {
       name: 'BEST vinnie CRM System',
-      version: 'v0.1',
+      version: 'v0.3',
       api: {
         lastVersion: 'v1',
         supportedVersion: ['v1'],
