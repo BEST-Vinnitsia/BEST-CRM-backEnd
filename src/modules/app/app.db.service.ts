@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { DatabaseService } from './modules/database/database.service';
-import { handlerError } from './utils/handlerError';
+import { DatabaseService } from '../database/database.service';
+import { handlerError } from '../../utils/handlerError';
 
 @Injectable()
 export class AppDbService {

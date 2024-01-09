@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { DatabaseModule } from './modules/database/database.module';
+import { DatabaseModule } from '../database/database.module';
 
 /* ----------------  APP  ---------------- */
 import { AppController } from './app.controller';
@@ -7,8 +7,8 @@ import { AppService } from './app.service';
 import { AppDbService } from './app.db.service';
 
 /* ----------------  MEMBER  ---------------- */
-import { MemberModule } from './modules/member/member.module';
-import { MembershipModule } from './modules/membership/membership.module';
+import { MemberModule } from '../member/member.module';
+import { MembershipModule } from '../membership/membership.module';
 
 @Module({
   imports: [

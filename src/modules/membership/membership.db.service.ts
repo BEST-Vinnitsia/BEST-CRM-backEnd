@@ -33,7 +33,7 @@ export class MembershipDbService {
 
   // find many
   public async findMany(): Promise<IMembership_get_list_RES[]> {
-    const membership = await handlerError(this.database.membership.findMany({}));
+    const membership = await handlerError(this.database.membership.findMany());
     return membership;
   }
 

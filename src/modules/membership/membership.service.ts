@@ -11,7 +11,7 @@ import {
   IMembership_update,
   IMembership_update_RES,
 } from 'src/types/member/membership.type';
-import { AppDbService } from 'src/app.db.service';
+import { AppDbService } from '../app/app.db.service';
 
 @Injectable()
 export class MembershipService {

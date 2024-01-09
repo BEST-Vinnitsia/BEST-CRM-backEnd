@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { DatabaseModule } from '../database/database.module';
 
 // App
-import { AppDbService } from 'src/app.db.service';
+import { AppDbService } from '../app/app.db.service';
 
 // Membership
 import { MembershipController } from './membership.controller';
