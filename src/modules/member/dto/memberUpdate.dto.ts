@@ -12,7 +12,7 @@ export class MemberUpdateDto {
   @IsNotEmpty()
   @IsString()
   @IsUUID('4')
-  membership_id: string;
+  membershipId: string;
 
   //
 
@@ -30,7 +30,7 @@ export class MemberUpdateDto {
   @IsString()
   @IsEmail()
   @IsOptional()
-  best_email: string;
+  bestEmail: string;
 
   //
 
@@ -41,13 +41,13 @@ export class MemberUpdateDto {
 
   @IsNotEmpty()
   @IsString()
-  @Matches(Regex.member.full_name)
-  full_name: string;
+  @Matches(Regex.member.fullName)
+  fullName: string;
 
   @IsNotEmpty()
   @IsString()
-  @Matches(Regex.member.middle_name)
-  middle_name: string;
+  @Matches(Regex.member.middleName)
+  middleName: string;
 
   @IsNotEmpty()
   @IsDateString()
@@ -70,10 +70,10 @@ export class MemberUpdateDto {
   @IsString()
   @IsEnum(ClothingSizeEnum)
   @IsOptional()
-  clothing_size: string;
+  clothingSize: string;
 
   @IsNotEmpty()
   @IsString()
   @IsOptional()
-  home_address: string;
+  homeAddress: string;
 }

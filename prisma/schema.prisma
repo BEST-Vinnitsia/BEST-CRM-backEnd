@@ -10,202 +10,202 @@ datasource db {
   url      = "file:./dev.db"
 }
 
-model member {
-  id            String   @id @default(uuid())
-  membership_id String
-  // recrutment_id String
+model Member {
+  id           String   @id @default(uuid())
+  membershipId String
+  // recrutmentId String
   // 
-  email         String   @unique
-  password      String
-  best_email    String?
+  email        String   @unique
+  password     String
+  bestEmail    String?
   // 
-  surname       String
-  full_name     String
-  middle_name   String
-  birthday      DateTime
+  surname      String
+  fullName     String
+  middleName   String
+  birthday     DateTime
   // 
-  group         String
-  faculty       String
+  group        String
+  faculty      String
   // 
-  clothing_size String?
-  home_address   String?
+  clothingSize String?
+  homeAddress  String?
   // 
-  create_date   DateTime @default(now())
-  last_edit     DateTime @updatedAt
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
   // info about member
-  member_phone          member_phone[]
-  member_social_network member_social_network[]
-  member_email          member_email[]
+  memberPhone         MemberPhone[]
+  memberSocialNetwork MemberSocialNetwork[]
+  memberEmail         MemberEmail[]
 
   // LGA
-  membership            membership              @relation(fields: [membership_id], references: [id])
-  translation           translation[]
-  member_to_board       member_to_board[]
-  member_to_coordinator member_to_coordinator[]
+  membership          Membership            @relation(fields: [membershipId], references: [id])
+  translation         Translation[]
+  memberToBoard       MemberToBoard[]
+  memberToCoordinator MemberToCoordinator[]
 }
 
 //* ----------------  info about member  ---------------- *//
 
-model member_phone {
-  id          String   @id @default(uuid())
-  member_id   String
-  phone       String
-  create_date DateTime @default(now())
-  last_edit   DateTime @updatedAt
+model MemberPhone {
+  id        String   @id @default(uuid())
+  memberId  String
+  phone     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  member member @relation(fields: [member_id], references: [id])
+  member Member @relation(fields: [memberId], references: [id])
 }
 
-model member_email {
-  id          String   @id @default(uuid())
-  member_id   String
-  email       String
-  create_date DateTime @default(now())
-  last_edit   DateTime @updatedAt
+model MemberEmail {
+  id        String   @id @default(uuid())
+  memberId  String
+  email     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  member member @relation(fields: [member_id], references: [id])
+  member Member @relation(fields: [memberId], references: [id])
 }
 
-model member_social_network {
-  id          String   @id @default(uuid())
-  member_id   String
-  name        String
-  url         String
-  create_date DateTime @default(now())
-  last_edit   DateTime @updatedAt
+model MemberSocialNetwork {
+  id        String   @id @default(uuid())
+  memberId  String
+  name      String
+  url       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  member member @relation(fields: [member_id], references: [id])
+  member Member @relation(fields: [memberId], references: [id])
 }
 
 // 
 // LGA
 // 
 
-model meeting {
-  id          String   @id @default(uuid())
-  cadence_id  String
-  name        String
-  date        DateTime
-  create_date DateTime @default(now())
-  last_edit   DateTime @updatedAt
+model Meeting {
+  id        String   @id @default(uuid())
+  cadenceId String
+  name      String
+  date      DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  translation translation[]
-  cadence     cadence       @relation(fields: [cadence_id], references: [id])
+  translation Translation[]
+  cadence     Cadence       @relation(fields: [cadenceId], references: [id])
 }
 
-model cadence {
-  id          String   @id @default(uuid())
-  number      Int
-  start_date  DateTime
-  end_date    DateTime
-  create_date DateTime @default(now())
-  last_edit   DateTime @updatedAt
+model Cadence {
+  id         String   @id @default(uuid())
+  number     Int
+  startDate DateTime
+  endDate   DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
-  meeting               meeting[]
-  member_to_board       member_to_board[]
-  member_to_coordinator member_to_coordinator[]
+  meeting             Meeting[]
+  memberToBoard       MemberToBoard[]
+  memberToCoordinator MemberToCoordinator[]
 }
 
 //* ----------------  translation  ---------------- *//
 
-model membership {
-  id          String   @id @default(uuid())
-  name        String   @unique
-  create_date DateTime @default(now())
-  last_edit   DateTime @updatedAt
+model Membership {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  translation translation[]
-  member      member[]
+  translation Translation[]
+  member      Member[]
 }
 
-model translation {
-  id            String   @id @default(uuid())
-  meeting_id    String
-  membership_id String
-  member_id     String
-  create_date   DateTime @default(now())
-  last_edit     DateTime @updatedAt
+model Translation {
+  id           String   @id @default(uuid())
+  meetingId    String
+  membershipId String
+  memberId     String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
-  meeting    meeting    @relation(fields: [meeting_id], references: [id])
-  membership membership @relation(fields: [membership_id], references: [id])
-  member     member     @relation(fields: [member_id], references: [id])
+  meeting    Meeting    @relation(fields: [meetingId], references: [id])
+  membership Membership @relation(fields: [membershipId], references: [id])
+  member     Member     @relation(fields: [memberId], references: [id])
 }
 
 //* ----------------  board  ---------------- *//
 
-model board {
-  id                  String   @id @default(uuid())
-  name                String   @unique
-  is_active           Boolean
-  committee_is_active Boolean
-  create_date         DateTime @default(now())
-  last_edit           DateTime @updatedAt
+model Board {
+  id                String   @id @default(uuid())
+  name              String   @unique
+  isActive          Boolean
+  committeeIsActive Boolean
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 
-  member_to_board member_to_board[]
+  memberToBoard MemberToBoard[]
 }
 
-model member_to_board {
-  id          String   @id @default(uuid())
-  cadence_id  String
-  board_id    String
-  member_id   String
-  is_leader   Boolean
-  create_date DateTime @default(now())
-  last_edit   DateTime @updatedAt
+model MemberToBoard {
+  id        String   @id @default(uuid())
+  cadenceId String
+  boardId   String
+  memberId  String
+  isLeader  Boolean
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  board   board   @relation(fields: [board_id], references: [id])
-  member  member  @relation(fields: [member_id], references: [id])
-  cadence cadence @relation(fields: [cadence_id], references: [id])
+  board   Board   @relation(fields: [boardId], references: [id])
+  member  Member  @relation(fields: [memberId], references: [id])
+  cadence Cadence @relation(fields: [cadenceId], references: [id])
 }
 
 //* ----------------  coordinator  ---------------- *//
 
-model coordinator {
-  id                  String   @id @default(uuid())
-  name                String   @unique
-  is_active           Boolean
-  committee_is_active Boolean
-  create_date         DateTime @default(now())
-  last_edit           DateTime @updatedAt
+model Coordinator {
+  id                String   @id @default(uuid())
+  name              String   @unique
+  isActive          Boolean
+  committeeIsActive Boolean
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 
-  member_to_coordinator member_to_coordinator[]
+  memberToCoordinator MemberToCoordinator[]
 }
 
-model member_to_coordinator {
-  id             String   @id @default(uuid())
-  cadence_id     String
-  coordinator_id String
-  member_id      String
-  is_leader      Boolean
-  create_date    DateTime @default(now())
-  last_edit      DateTime @updatedAt
+model MemberToCoordinator {
+  id            String   @id @default(uuid())
+  cadenceId     String
+  coordinatorId String
+  memberId      String
+  isLeader      Boolean
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
-  coordinator coordinator @relation(fields: [coordinator_id], references: [id])
-  member      member      @relation(fields: [member_id], references: [id])
-  cadence     cadence     @relation(fields: [cadence_id], references: [id])
+  coordinator Coordinator @relation(fields: [coordinatorId], references: [id])
+  member      Member      @relation(fields: [memberId], references: [id])
+  cadence     Cadence     @relation(fields: [cadenceId], references: [id])
 }
 
 // 
 // EVENT
 // 
 
-model panish {
+model Panish {
   id          String   @id @default(uuid())
   name        String
   description String
   event       String
   special     Boolean
-  event_date  DateTime
-  create_date DateTime @default(now())
-  last_edit   DateTime @updatedAt
+  eventDate   DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
-model photo_album {
-  id          String   @id @default(uuid())
-  name        String
-  url         String
-  event_date  DateTime
-  create_date DateTime @default(now())
-  last_edit   DateTime @updatedAt
+model PhotoAlbum {
+  id        String   @id @default(uuid())
+  name      String
+  url       String
+  eventDate DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

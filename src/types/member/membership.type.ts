@@ -1,8 +1,8 @@
 export interface IMembership {
   id: string;
   name: string;
-  create_date: Date;
-  last_edit: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 //
@@ -23,11 +23,11 @@ export interface IMembership_check_name extends Pick<IMembership, 'name'> {}
 export interface IMembership_check_name_RES extends IMembership {}
 
 /* ----------------  POST  ---------------- */
-export interface IMembership_create extends Omit<IMembership, 'id' | 'create_date' | 'last_edit'> {}
+export interface IMembership_create extends Omit<IMembership, 'id' | 'createdAt' | 'updatedAt'> {}
 export interface IMembership_create_RES extends IMembership {}
 
 /* ----------------  PUT  ---------------- */
-export interface IMembership_update extends Omit<IMembership, 'create_date' | 'last_edit'> {}
+export interface IMembership_update extends Omit<IMembership, 'createdAt' | 'updatedAt'> {}
 export interface IMembership_update_RES extends IMembership {}
 
 /* ----------------  DELETE  ---------------- */

@@ -63,7 +63,7 @@ export class MembershipService {
     const membership = await this.membershipDBService.findById({ id: data.id });
     if (!membership) throw new BadRequestException('membership is not exist');
 
-    const membershipUse = await this.appDBService.findListByMembership({ membership_id: membership.id });
+    const membershipUse = await this.appDBService.findListByMembership({ membershipId: membership.id });
     if (membershipUse) throw new BadRequestException(['Change the membership of these members', membershipUse]);
 
     const deleteMembership = await this.membershipDBService.delete(membership);

@@ -5,25 +5,25 @@ import { ISocialNetwork } from './socialNetwork.type';
 
 export interface IMember {
   id: string;
-  membership_id: string;
+  membershipId: string;
   // recruitment_id: string
   email: string;
   password: string;
-  best_email: string | null;
+  bestEmail: string | null;
   //
   surname: string;
-  full_name: string;
-  middle_name: string;
+  fullName: string;
+  middleName: string;
   birthday: Date;
   //
   group: string;
   faculty: string;
   //
-  clothing_size: string | null;
-  home_address: string | null;
+  clothingSize: string | null;
+  homeAddress: string | null;
   //
-  create_date: Date;
-  last_edit: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 //
@@ -41,9 +41,9 @@ export interface IMember_get_list_RES extends IMember {
 export interface IMember_get_id extends Pick<IMember, 'id'> {}
 export interface IMember_get_id_RES extends IMember {
   membership: IMembership;
-  member_email: IEmail[];
-  member_phone: IPhone[];
-  member_social_network: ISocialNetwork[];
+  memberEmail: IEmail[];
+  memberPhone: IPhone[];
+  memberSocialNetwork: ISocialNetwork[];
 }
 
 // check by id
@@ -55,13 +55,13 @@ export interface IMember_check_email extends Pick<IMember, 'email'> {}
 export interface IMember_check_email_RES extends IMember {}
 
 /* ----------------  POST  ---------------- */
-export interface IMember_create extends Omit<IMember, 'id' | 'create_date' | 'last_edit'> {}
+export interface IMember_create extends Omit<IMember, 'id' | 'createdAt' | 'updatedAt'> {}
 export interface IMember_create_RES extends IMember {
   membership: IMembership;
 }
 
 /* ----------------  PUT  ---------------- */
-export interface IMember_update extends Omit<IMember, 'create_date' | 'last_edit'> {}
+export interface IMember_update extends Omit<IMember, 'createdAt' | 'updatedAt'> {}
 export interface IMember_update_RES extends IMember {}
 
 /* ----------------  DELETE  ---------------- */

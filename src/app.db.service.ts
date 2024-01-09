@@ -9,10 +9,10 @@ export class AppDbService {
   /* ----------------  member  ---------------- */
 
   // find list by membership
-  public async findListByMembership({ membership_id }: { membership_id: string }) {
+  public async findListByMembership({ membershipId }: { membershipId: string }) {
     const memberList = await handlerError(
       this.database.member.findMany({
-        where: { membership_id },
+        where: { membershipId },
         include: { membership: true },
       }),
     );

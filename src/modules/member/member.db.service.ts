@@ -28,22 +28,22 @@ export class MemberDbService {
     const member = await handlerError(
       this.database.member.create({
         data: {
-          membership_id: data.membership_id,
+          membershipId: data.membershipId,
           //
           email: data.email.toLocaleLowerCase(),
           password: data.password,
-          best_email: data.best_email ? data.best_email.toLocaleLowerCase() : null,
+          bestEmail: data.bestEmail ? data.bestEmail.toLocaleLowerCase() : null,
           //
-          full_name: data.full_name.toLocaleLowerCase(),
-          middle_name: data.middle_name.toLocaleLowerCase(),
+          fullName: data.fullName.toLocaleLowerCase(),
+          middleName: data.middleName.toLocaleLowerCase(),
           surname: data.surname.toLocaleLowerCase(),
           birthday: data.birthday,
           //
           faculty: data.faculty.toLocaleLowerCase(),
           group: data.group.toLocaleLowerCase(),
           //
-          clothing_size: data.clothing_size ? data.clothing_size.toLocaleUpperCase() : null,
-          home_address: data.home_address ? data.home_address.toLocaleLowerCase() : null,
+          clothingSize: data.clothingSize ? data.clothingSize.toLocaleUpperCase() : null,
+          homeAddress: data.homeAddress ? data.homeAddress.toLocaleLowerCase() : null,
         },
         include: { membership: true },
       }),
@@ -68,7 +68,7 @@ export class MemberDbService {
     const member = await handlerError(
       this.database.member.findUnique({
         where: { id },
-        include: { membership: true, member_email: true, member_phone: true, member_social_network: true },
+        include: { membership: true, memberEmail: true, memberPhone: true, memberSocialNetwork: true },
       }),
     );
     return member;
@@ -93,22 +93,22 @@ export class MemberDbService {
       this.database.member.update({
         where: { id: data.id },
         data: {
-          membership_id: data.membership_id,
+          membershipId: data.membershipId,
           //
           email: data.email.toLocaleLowerCase(),
           password: data.password,
-          best_email: data.best_email ? data.best_email.toLocaleLowerCase() : null,
+          bestEmail: data.bestEmail ? data.bestEmail.toLocaleLowerCase() : null,
           //
-          full_name: data.full_name.toLocaleLowerCase(),
-          middle_name: data.middle_name.toLocaleLowerCase(),
+          fullName: data.fullName.toLocaleLowerCase(),
+          middleName: data.middleName.toLocaleLowerCase(),
           surname: data.surname.toLocaleLowerCase(),
           birthday: data.birthday,
           //
           faculty: data.faculty.toLocaleLowerCase(),
           group: data.group.toLocaleLowerCase(),
           //
-          clothing_size: data.clothing_size ? data.clothing_size.toLocaleUpperCase() : null,
-          home_address: data.home_address ? data.home_address.toLocaleLowerCase() : null,
+          clothingSize: data.clothingSize ? data.clothingSize.toLocaleUpperCase() : null,
+          homeAddress: data.homeAddress ? data.homeAddress.toLocaleLowerCase() : null,
         },
         include: { membership: true },
       }),
