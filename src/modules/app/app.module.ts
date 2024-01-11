@@ -10,14 +10,16 @@ import { AppDbService } from './app.db.service';
 import { MemberModule } from '../member/member.module';
 import { MembershipModule } from '../membership/membership.module';
 import { CadenceModule } from '../cadence/cadence.module';
+import { BoardModule } from '../board/board.module';
 
 @Module({
   imports: [
     DatabaseModule,
-    // member
+    //
     MemberModule,
     MembershipModule,
     CadenceModule,
+    BoardModule,
   ],
   controllers: [AppController],
   providers: [AppService, AppDbService],
