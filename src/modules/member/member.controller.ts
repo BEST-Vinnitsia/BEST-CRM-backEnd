@@ -2,9 +2,9 @@ import { Body, Controller, Get, Post, Query, Delete, Put } from '@nestjs/common'
 import { MemberService } from './member.service';
 import { MemberCreateDto } from './dto/memberCreate.dto';
 import { MemberGetByIdDto } from './dto/memberGetById.dto';
+import { MemberUpdateDto } from './dto/memberUpdate.dto';
 import { MemberDeleteByIdDto } from './dto/memberDeleteById.dto';
 import { MemberDeleteArrayByIdDto } from './dto/memberDeleteArrayById.dto';
-import { MemberUpdateDto } from './dto/memberUpdate.dto';
 
 @Controller('api/v/1/member')
 export class MemberController {

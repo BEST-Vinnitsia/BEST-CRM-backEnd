@@ -95,12 +95,12 @@ model Meeting {
 }
 
 model Cadence {
-  id         String   @id @default(uuid())
-  number     Int
+  id        String   @id @default(uuid())
+  number    Int      @unique
   startDate DateTime
   endDate   DateTime
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   meeting             Meeting[]
   memberToBoard       MemberToBoard[]

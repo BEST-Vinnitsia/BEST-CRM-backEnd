@@ -2,8 +2,8 @@ import { Body, Controller, Get, Post, Query, Delete, Put } from '@nestjs/common'
 import { MembershipService } from './membership.service';
 import { MembershipGetByIdDto } from './dto/membershipGetId.dto';
 import { MembershipCreateDto } from './dto/membershipCreate.dto';
-import { MembershipDeleteDto } from './dto/membershipDelete.dto';
 import { MembershipUpdateDto } from './dto/membershipUpdate.dto';
+import { MembershipDeleteDto } from './dto/membershipDelete.dto';
 
 @Controller('api/v/1/membership')
 export class MembershipController {
