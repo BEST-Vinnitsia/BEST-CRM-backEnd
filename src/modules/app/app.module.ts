@@ -11,6 +11,7 @@ import { MemberModule } from '../member/member.module';
 import { MembershipModule } from '../membership/membership.module';
 import { CadenceModule } from '../cadence/cadence.module';
 import { BoardModule } from '../board/board.module';
+import { CoordinatorModule } from '../coordinator/coordinator.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { BoardModule } from '../board/board.module';
     MembershipModule,
     CadenceModule,
     BoardModule,
+    CoordinatorModule,
   ],
   controllers: [AppController],
   providers: [AppService, AppDbService],
