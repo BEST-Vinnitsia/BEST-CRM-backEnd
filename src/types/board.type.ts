@@ -21,8 +21,8 @@ export interface IBoard_get_id extends Pick<IBoard, 'id'> {}
 export interface IBoard_get_id_RES extends IBoard {}
 
 // check by number
-export interface IBoar_check_name extends Pick<IBoard, 'name'> {}
-export interface IBoar_check_name_RES extends IBoard {}
+export interface IBoard_check_name extends Pick<IBoard, 'name'> {}
+export interface IBoard_check_name_RES extends IBoard {}
 
 /* ----------------  POST  ---------------- */
 export interface IBoard_create extends Omit<IBoard, 'id' | 'createdAt' | 'updatedAt'> {}

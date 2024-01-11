@@ -11,8 +11,8 @@ import {
   IBoard_update_RES,
   IBoard_delete,
   IBoard_delete_RES,
-  IBoar_check_name,
-  IBoar_check_name_RES,
+  IBoard_check_name,
+  IBoard_check_name_RES,
 } from 'src/types/board.type';
 
 @Injectable()
@@ -48,7 +48,7 @@ export class BoardDbService {
   }
 
   // check by number
-  public async checkByName({ name }: IBoar_check_name): Promise<IBoar_check_name_RES> {
+  public async checkByName({ name }: IBoard_check_name): Promise<IBoard_check_name_RES> {
     const board = await handlerError(this.database.board.findUnique({ where: { name } }));
     return board;
   }

@@ -41,8 +41,8 @@ model Member {
   // LGA
   membership          Membership            @relation(fields: [membershipId], references: [id])
   translation         Translation[]
-  memberToBoard       MemberToBoard[]
-  memberToCoordinator MemberToCoordinator[]
+  boardToMember       BoardToMember[]
+  coordinatorToMember CoordinatorToMember[]
 }
 
 //* ----------------  info about member  ---------------- *//
@@ -103,8 +103,8 @@ model Cadence {
   updatedAt DateTime @updatedAt
 
   meeting             Meeting[]
-  memberToBoard       MemberToBoard[]
-  memberToCoordinator MemberToCoordinator[]
+  boardToMember       BoardToMember[]
+  coordinatorToMember CoordinatorToMember[]
 }
 
 //* ----------------  translation  ---------------- *//
@@ -142,10 +142,10 @@ model Board {
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 
-  memberToBoard MemberToBoard[]
+  boardToMember BoardToMember[]
 }
 
-model MemberToBoard {
+model BoardToMember {
   id        String   @id @default(uuid())
   cadenceId String
   boardId   String
@@ -169,10 +169,10 @@ model Coordinator {
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 
-  memberToCoordinator MemberToCoordinator[]
+  coordinatorToMember CoordinatorToMember[]
 }
 
-model MemberToCoordinator {
+model CoordinatorToMember {
   id            String   @id @default(uuid())
   cadenceId     String
   coordinatorId String

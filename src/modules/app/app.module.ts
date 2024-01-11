@@ -12,6 +12,7 @@ import { MembershipModule } from '../membership/membership.module';
 import { CadenceModule } from '../cadence/cadence.module';
 import { BoardModule } from '../board/board.module';
 import { CoordinatorModule } from '../coordinator/coordinator.module';
+import { BoardToMemberModule } from '../boardToMember/boardToMember.module';
 
 @Module({
   imports: [
@@ -19,8 +20,12 @@ import { CoordinatorModule } from '../coordinator/coordinator.module';
     //
     MemberModule,
     MembershipModule,
+
     CadenceModule,
+
     BoardModule,
+    BoardToMemberModule,
+
     CoordinatorModule,
   ],
   controllers: [AppController],
