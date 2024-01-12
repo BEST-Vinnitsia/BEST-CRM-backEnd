@@ -30,6 +30,11 @@ export enum CommitteeEnum {
   DESIGN = 'design committee',
 }
 
+export enum MeetingEnum {
+  LGA = 'LGA',
+  GM = 'GM',
+}
+
 export enum ClothingSizeEnum {
   S = 'S',
   M = 'M',

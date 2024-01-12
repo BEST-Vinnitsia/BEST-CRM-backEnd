@@ -14,6 +14,7 @@ import { BoardModule } from '../board/board.module';
 import { CoordinatorModule } from '../coordinator/coordinator.module';
 import { BoardToMemberModule } from '../boardToMember/boardToMember.module';
 import { CoordinatorToMemberModule } from '../coordinatorToMember/coordinatorToMember.module';
+import { MeetingModule } from '../meeting/meeting.module';
 
 @Module({
   imports: [
@@ -29,6 +30,8 @@ import { CoordinatorToMemberModule } from '../coordinatorToMember/coordinatorToM
 
     CoordinatorModule,
     CoordinatorToMemberModule,
+
+    MeetingModule,
   ],
   controllers: [AppController],
   providers: [AppService, AppDbService],
