@@ -13,6 +13,7 @@ import { CadenceModule } from '../cadence/cadence.module';
 import { BoardModule } from '../board/board.module';
 import { CoordinatorModule } from '../coordinator/coordinator.module';
 import { BoardToMemberModule } from '../boardToMember/boardToMember.module';
+import { CoordinatorToMemberModule } from '../coordinatorToMember/coordinatorToMember.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { BoardToMemberModule } from '../boardToMember/boardToMember.module';
     BoardToMemberModule,
 
     CoordinatorModule,
+    CoordinatorToMemberModule,
   ],
   controllers: [AppController],
   providers: [AppService, AppDbService],
