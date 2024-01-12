@@ -2,13 +2,16 @@ import { IsDateString, IsNotEmpty, IsOptional, IsString, IsUUID, IsEmail, Matche
 import { ClothingSizeEnum } from 'src/constants/enums';
 import { Regex } from 'src/constants/regex';
 import { IsDateWithinRange } from 'src/pipes/isDateWithinRange.pipe';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class MemberUpdateDto {
+  @ApiProperty()
   @IsNotEmpty()
   @IsString()
   @IsUUID('4')
   id: string;
 
+  @ApiProperty()
   @IsNotEmpty()
   @IsString()
   @IsUUID('4')
@@ -16,16 +19,19 @@ export class MemberUpdateDto {
 
   //
 
+  @ApiProperty()
   @IsNotEmpty()
   @IsString()
   @IsEmail()
   email: string;
 
+  @ApiProperty()
   @IsNotEmpty()
   @IsString()
   @Matches(Regex.member.password, { message: 'Incorrect password' })
   password: string;
 
+  @ApiProperty()
   @IsNotEmpty()
   @IsString()
   @IsEmail()
@@ -34,21 +40,25 @@ export class MemberUpdateDto {
 
   //
 
+  @ApiProperty()
   @IsNotEmpty()
   @IsString()
   @Matches(Regex.member.surname)
   surname: string;
 
+  @ApiProperty()
   @IsNotEmpty()
   @IsString()
   @Matches(Regex.member.fullName)
   fullName: string;
 
+  @ApiProperty()
   @IsNotEmpty()
   @IsString()
   @Matches(Regex.member.middleName)
   middleName: string;
 
+  @ApiProperty()
   @IsNotEmpty()
   @IsDateString()
   @IsDateWithinRange(new Date('1900-01-01'), new Date())
@@ -56,22 +66,26 @@ export class MemberUpdateDto {
 
   //
 
+  @ApiProperty()
   @IsNotEmpty()
   @IsString()
   group: string;
 
+  @ApiProperty()
   @IsNotEmpty()
   @IsString()
   faculty: string;
 
   //
 
+  @ApiProperty()
   @IsNotEmpty()
   @IsString()
   @IsEnum(ClothingSizeEnum)
   @IsOptional()
   clothingSize: string;
 
+  @ApiProperty()
   @IsNotEmpty()
   @IsString()
   @IsOptional()
