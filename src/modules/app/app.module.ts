@@ -15,6 +15,7 @@ import { CoordinatorModule } from '../coordinator/coordinator.module';
 import { BoardToMemberModule } from '../boardToMember/boardToMember.module';
 import { CoordinatorToMemberModule } from '../coordinatorToMember/coordinatorToMember.module';
 import { MeetingModule } from '../meeting/meeting.module';
+import { TranslationModule } from '../translation/translation.module';
 
 @Module({
   imports: [
@@ -32,6 +33,8 @@ import { MeetingModule } from '../meeting/meeting.module';
     CoordinatorToMemberModule,
 
     MeetingModule,
+
+    TranslationModule,
   ],
   controllers: [AppController],
   providers: [AppService, AppDbService],
