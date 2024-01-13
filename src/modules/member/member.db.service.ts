@@ -69,20 +69,7 @@ export class MemberDbService {
     return member;
   }
 
-  // check by id
-  public async checkById({ id }: IMemberCheckById): Promise<IMember> {
-    const member = await handlerError(this.database.member.findUnique({ where: { id } }));
-    return member;
-  }
-
-  // check by email
-  public async checkByEmail({ email }: IMemberCheckEmail): Promise<IMember> {
-    const member = await handlerError(this.database.member.findUnique({ where: { email } }));
-    return member;
-  }
-
   /* ----------------  UPDATE  ---------------- */
-
   public async update(data: IMemberUpdate): Promise<IMember> {
     const member = await handlerError(
       this.database.member.update({
@@ -112,10 +99,22 @@ export class MemberDbService {
   }
 
   /* ----------------  DELETE  ---------------- */
-
-  // delete by id
-  public async deleteById({ id }: IMemberDelete): Promise<IMember> {
+  public async delete({ id }: IMemberDelete): Promise<IMember> {
     const member = await handlerError(this.database.member.delete({ where: { id } }));
+    return member;
+  }
+
+  /* ----------------  CHECK  ---------------- */
+
+  // check by id
+  public async checkById({ id }: IMemberCheckById): Promise<IMember> {
+    const member = await handlerError(this.database.member.findUnique({ where: { id } }));
+    return member;
+  }
+
+  // check by email
+  public async checkByEmail({ email }: IMemberCheckEmail): Promise<IMember> {
+    const member = await handlerError(this.database.member.findUnique({ where: { email } }));
     return member;
   }
 }

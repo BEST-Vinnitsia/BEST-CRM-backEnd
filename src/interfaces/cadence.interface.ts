@@ -16,9 +16,6 @@ export interface ICadence {
 // get by id
 export interface ICadenceGetById extends Pick<ICadence, 'id'> {}
 
-// check by number
-export interface ICadenceCheckNumber extends Pick<ICadence, 'number'> {}
-
 /* ----------------  POST  ---------------- */
 export interface ICadenceCreate extends Omit<ICadence, 'id' | 'createdAt' | 'updatedAt'> {}
 

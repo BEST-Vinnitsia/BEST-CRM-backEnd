@@ -16,9 +16,6 @@ export interface IBoard {
 // get by id
 export interface IBoardGetById extends Pick<IBoard, 'id'> {}
 
-// check by number
-export interface IBoardCheckName extends Pick<IBoard, 'name'> {}
-
 /* ----------------  POST  ---------------- */
 export interface IBoardCreate extends Omit<IBoard, 'id' | 'createdAt' | 'updatedAt'> {}
 

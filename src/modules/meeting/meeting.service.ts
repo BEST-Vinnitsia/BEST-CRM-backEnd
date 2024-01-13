@@ -10,38 +10,39 @@ export class MeetingService {
 
   // get list
   public async getList(): Promise<IMeeting[]> {
-    const membershipList = await this.meetingDBService.findMany();
-    return membershipList;
+    const meetingList = await this.meetingDBService.findMany();
+    return meetingList;
   }
 
   // get by id
   public async getById(data: IMeetingGetById): Promise<IMeeting> {
-    // checking if the member exists
-    const membership = await this.meetingDBService.findById({ id: data.id });
-    if (!membership) throw new NotFoundException('cadence not found');
+    const meeting = await this.meetingDBService.findById({ id: data.id });
+    if (!meeting) throw new NotFoundException('meeting not found');
 
-    return membership;
+    return meeting;
   }
 
   /* ----------------  POST  ---------------- */
   public async create(data: IMeetingCreate): Promise<IMeeting> {
-    const newMembership = await this.meetingDBService.create(data);
-    return newMembership;
+    const meetingNew = await this.meetingDBService.create(data);
+    return meetingNew;
   }
 
   /* ----------------  PUT  ---------------- */
   public async update(data: IMeetingUpdate): Promise<IMeeting> {
-    const updateMembership = await this.meetingDBService.update(data);
-    return updateMembership;
+    const meetingById = await this.meetingDBService.findById({ id: data.id });
+    if (!meetingById) throw new NotFoundException('meeting is not exist');
+
+    const meetingUpdate = await this.meetingDBService.update(data);
+    return meetingUpdate;
   }
 
   /* ----------------  DELETE  ---------------- */
   public async delete(data: IMeetingDelete): Promise<IMeeting> {
-    // checking if the member exists
-    const membership = await this.meetingDBService.findById({ id: data.id });
-    if (!membership) throw new BadRequestException('cadence is not exist');
+    const meetingById = await this.meetingDBService.findById({ id: data.id });
+    if (!meetingById) throw new NotFoundException('meeting is not exist');
 
-    const deleteMembership = await this.meetingDBService.delete(membership);
-    return deleteMembership;
+    const meetingDelete = await this.meetingDBService.delete(data);
+    return meetingDelete;
   }
 }

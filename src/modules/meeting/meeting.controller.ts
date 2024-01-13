@@ -16,7 +16,7 @@ export class MeetingController {
   /* ----------------  GET  ---------------- */
 
   @Get('list')
-  @ApiCreatedResponse({ type: MeetingDto })
+  @ApiCreatedResponse({ type: [MeetingDto] })
   async list() {
     return await this.meetingService.getList();
   }

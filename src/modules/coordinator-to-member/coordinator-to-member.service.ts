@@ -16,38 +16,39 @@ export class CoordinatorToMemberService {
 
   // get list
   public async getList(): Promise<ICoordinatorToMember[]> {
-    const membershipList = await this.coordinatorToMemberDBService.findMany();
-    return membershipList;
+    const coordinatorToMemberList = await this.coordinatorToMemberDBService.findMany();
+    return coordinatorToMemberList;
   }
 
   // get by id
   public async getById(data: ICoordinatorToMemberGetById): Promise<ICoordinatorToMember> {
-    // checking if the member exists
-    const membership = await this.coordinatorToMemberDBService.findById({ id: data.id });
-    if (!membership) throw new NotFoundException('cadence not found');
+    const coordinatorToMember = await this.coordinatorToMemberDBService.findById({ id: data.id });
+    if (!coordinatorToMember) throw new NotFoundException('coordinator to member not found');
 
-    return membership;
+    return coordinatorToMember;
   }
 
   /* ----------------  POST  ---------------- */
   public async create(data: ICoordinatorToMemberCreate): Promise<ICoordinatorToMember> {
-    const newMembership = await this.coordinatorToMemberDBService.create(data);
-    return newMembership;
+    const coordinatorToMember = await this.coordinatorToMemberDBService.create(data);
+    return coordinatorToMember;
   }
 
   /* ----------------  PUT  ---------------- */
   public async update(data: ICoordinatorToMemberUpdate): Promise<ICoordinatorToMember> {
-    const updateMembership = await this.coordinatorToMemberDBService.update(data);
-    return updateMembership;
+    const coordinatorToMemberById = await this.coordinatorToMemberDBService.checkById({ id: data.id });
+    if (!coordinatorToMemberById) throw new NotFoundException('coordinator to member is not exist');
+
+    const coordinatorToMember = await this.coordinatorToMemberDBService.update(data);
+    return coordinatorToMember;
   }
 
   /* ----------------  DELETE  ---------------- */
   public async delete(data: ICoordinatorToMemberDelete): Promise<ICoordinatorToMember> {
-    // checking if the member exists
-    const membership = await this.coordinatorToMemberDBService.findById({ id: data.id });
-    if (!membership) throw new BadRequestException('cadence is not exist');
+    const coordinatorToMemberById = await this.coordinatorToMemberDBService.checkById({ id: data.id });
+    if (!coordinatorToMemberById) throw new NotFoundException('coordinator to member is not exist');
 
-    const deleteMembership = await this.coordinatorToMemberDBService.delete(membership);
-    return deleteMembership;
+    const coordinatorToMemberDelete = await this.coordinatorToMemberDBService.delete(data);
+    return coordinatorToMemberDelete;
   }
 }

@@ -4,7 +4,6 @@ import { handlerError } from 'src/utils/handlerError';
 import {
   IMembership,
   IMembershipCreate,
-  IMembershipCheckName,
   IMembershipGetById,
   IMembershipDelete,
   IMembershipUpdate,
@@ -38,16 +37,6 @@ export class MembershipDbService {
     return membership;
   }
 
-  // check by name
-  public async checkByName({ name }: IMembershipCheckName): Promise<IMembership> {
-    const membership = await handlerError(
-      this.database.membership.findUnique({
-        where: { name: name.toLocaleLowerCase() },
-      }),
-    );
-    return membership;
-  }
-
   /* ----------------  UPDATE  ---------------- */
   public async update(data: IMembershipUpdate): Promise<IMembership> {
     const membership = await handlerError(
@@ -62,6 +51,20 @@ export class MembershipDbService {
   /* ----------------  DELETE  ---------------- */
   public async delete(data: IMembershipDelete): Promise<IMembership> {
     const membership = await handlerError(this.database.membership.delete({ where: { id: data.id } }));
+    return membership;
+  }
+
+  /* ----------------  CHECK  ---------------- */
+
+  // check by id
+  public async checkById({ id }: { id: string }): Promise<IMembership> {
+    const membership = await handlerError(this.database.membership.findUnique({ where: { id } }));
+    return membership;
+  }
+
+  // check by name
+  public async checkByName({ name }: { name: string }): Promise<IMembership> {
+    const membership = await handlerError(this.database.membership.findUnique({ where: { name: name.toLocaleLowerCase() } }));
     return membership;
   }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { DatabaseService } from '../database/database.service';
 import { handlerError } from 'src/utils/handlerError';
-import { IBoard, IBoardCreate, IBoardGetById, IBoardUpdate, IBoardDelete, IBoardCheckName } from 'src/interfaces/board.interface';
+import { IBoard, IBoardCreate, IBoardGetById, IBoardUpdate, IBoardDelete } from 'src/interfaces/board.interface';
 
 @Injectable()
 export class BoardDbService {
@@ -35,12 +35,6 @@ export class BoardDbService {
     return board;
   }
 
-  // check by number
-  public async checkByName({ name }: IBoardCheckName): Promise<IBoard> {
-    const board = await handlerError(this.database.board.findUnique({ where: { name } }));
-    return board;
-  }
-
   /* ----------------  UPDATE  ---------------- */
   public async update(data: IBoardUpdate): Promise<IBoard> {
     const board = await handlerError(
@@ -58,6 +52,20 @@ export class BoardDbService {
   /* ----------------  DELETE  ---------------- */
   public async delete(data: IBoardDelete): Promise<IBoard> {
     const board = await handlerError(this.database.board.delete({ where: { id: data.id } }));
+    return board;
+  }
+
+  /* ----------------  CHECK  ---------------- */
+
+  // check by id
+  public async checkById({ id }: { id: string }): Promise<IBoard> {
+    const board = await handlerError(this.database.board.findUnique({ where: { id } }));
+    return board;
+  }
+
+  // check by number
+  public async checkByName({ name }: { name: string }): Promise<IBoard> {
+    const board = await handlerError(this.database.board.findUnique({ where: { name } }));
     return board;
   }
 }

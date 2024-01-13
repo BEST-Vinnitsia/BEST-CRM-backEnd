@@ -16,7 +16,7 @@ export class MemberController {
   /* ----------------  GET  ---------------- */
 
   @Get('list')
-  @ApiCreatedResponse({ type: MemberDto })
+  @ApiCreatedResponse({ type: [MemberDto] })
   async list() {
     return await this.memberService.getList();
   }
@@ -45,7 +45,7 @@ export class MemberController {
 
   @Delete('by-id')
   @ApiCreatedResponse({ type: MemberDto })
-  async deleteById(@Query() data: MemberDeleteDto) {
+  async delete(@Query() data: MemberDeleteDto) {
     return await this.memberService.deleteById(data);
   }
 }

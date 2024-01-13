@@ -16,38 +16,39 @@ export class BoardToMemberService {
 
   // get list
   public async getList(): Promise<IBoardToMember[]> {
-    const membershipList = await this.boardToMemberDBService.findMany();
-    return membershipList;
+    const boardToMemberList = await this.boardToMemberDBService.findMany();
+    return boardToMemberList;
   }
 
   // get by id
   public async getById(data: IBoardToMemberGetById): Promise<IBoardToMember> {
-    // checking if the member exists
-    const membership = await this.boardToMemberDBService.findById({ id: data.id });
-    if (!membership) throw new NotFoundException('cadence not found');
+    const boardToMember = await this.boardToMemberDBService.findById({ id: data.id });
+    if (!boardToMember) throw new NotFoundException('board to member not found');
 
-    return membership;
+    return boardToMember;
   }
 
   /* ----------------  POST  ---------------- */
   public async create(data: IBoardToMemberCreate): Promise<IBoardToMember> {
-    const newMembership = await this.boardToMemberDBService.create(data);
-    return newMembership;
+    const boardToMember = await this.boardToMemberDBService.create(data);
+    return boardToMember;
   }
 
   /* ----------------  PUT  ---------------- */
   public async update(data: IBoardToMemberUpdate): Promise<IBoardToMember> {
-    const updateMembership = await this.boardToMemberDBService.update(data);
-    return updateMembership;
+    const boardToMember = await this.boardToMemberDBService.checkById({ id: data.id });
+    if (!boardToMember) throw new NotFoundException('board to member not found');
+
+    const boardToMemberUpdate = await this.boardToMemberDBService.update(data);
+    return boardToMemberUpdate;
   }
 
   /* ----------------  DELETE  ---------------- */
   public async delete(data: IBoardToMemberDelete): Promise<IBoardToMember> {
-    // checking if the member exists
-    const membership = await this.boardToMemberDBService.findById({ id: data.id });
-    if (!membership) throw new BadRequestException('cadence is not exist');
+    const boardToMember = await this.boardToMemberDBService.checkById({ id: data.id });
+    if (!boardToMember) throw new NotFoundException('board to member is not exist');
 
-    const deleteMembership = await this.boardToMemberDBService.delete(membership);
-    return deleteMembership;
+    const boardToMemberDelete = await this.boardToMemberDBService.delete(boardToMember);
+    return boardToMemberDelete;
   }
 }

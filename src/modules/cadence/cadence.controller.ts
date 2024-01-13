@@ -16,7 +16,7 @@ export class CadenceController {
   /* ----------------  GET  ---------------- */
 
   @Get('list')
-  @ApiCreatedResponse({ type: CadenceDto })
+  @ApiCreatedResponse({ type: [CadenceDto] })
   async list() {
     return await this.cadenceService.getList();
   }

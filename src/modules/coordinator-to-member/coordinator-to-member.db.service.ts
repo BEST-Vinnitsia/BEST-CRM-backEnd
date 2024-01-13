@@ -63,4 +63,12 @@ export class CoordinatorToMemberDbService {
     const board = await handlerError(this.database.coordinatorToMember.delete({ where: { id: data.id } }));
     return board;
   }
+
+  /* ----------------  CHECK  ---------------- */
+
+  // check by id
+  public async checkById({ id }: { id: string }): Promise<ICoordinatorToMember> {
+    const board = await handlerError(this.database.coordinatorToMember.findUnique({ where: { id } }));
+    return board;
+  }
 }

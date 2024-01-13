@@ -16,40 +16,39 @@ export class CadenceService {
 
   // get by id
   public async getById(data: ICadenceGetById): Promise<ICadence> {
-    // checking if the member exists
-    const membership = await this.cadenceDBService.findById({ id: data.id });
-    if (!membership) throw new NotFoundException('cadence not found');
+    const cadence = await this.cadenceDBService.findById({ id: data.id });
+    if (!cadence) throw new NotFoundException('cadence not found');
 
-    return membership;
+    return cadence;
   }
 
   /* ----------------  POST  ---------------- */
   public async create(data: ICadenceCreate): Promise<ICadence> {
-    // checking if the member exists
-    const membership = await this.cadenceDBService.checkByNumber({ number: data.number });
-    if (membership) throw new BadRequestException('cadence is exist');
+    const cadence = await this.cadenceDBService.checkByNumber({ number: data.number });
+    if (cadence) throw new BadRequestException('cadence is exist');
 
-    const newMembership = await this.cadenceDBService.create(data);
-    return newMembership;
+    const cadenceNew = await this.cadenceDBService.create(data);
+    return cadenceNew;
   }
 
   /* ----------------  PUT  ---------------- */
   public async update(data: ICadenceUpdate): Promise<ICadence> {
-    // checking if the member exists
-    const membership = await this.cadenceDBService.checkByNumber({ number: data.number });
-    if (membership) throw new BadRequestException('cadence is exist');
+    const cadenceById = await this.cadenceDBService.checkById({ id: data.id });
+    if (!cadenceById) throw new NotFoundException('cadence not found');
 
-    const updateMembership = await this.cadenceDBService.update(data);
-    return updateMembership;
+    const cadenceByName = await this.cadenceDBService.checkByNumber({ number: data.number });
+    if (cadenceByName) throw new BadRequestException('cadence is exist');
+
+    const cadenceUpdate = await this.cadenceDBService.update(data);
+    return cadenceUpdate;
   }
 
   /* ----------------  DELETE  ---------------- */
   public async delete(data: ICadenceDelete): Promise<ICadence> {
-    // checking if the member exists
-    const membership = await this.cadenceDBService.findById({ id: data.id });
-    if (!membership) throw new BadRequestException('cadence is not exist');
+    const cadence = await this.cadenceDBService.checkById({ id: data.id });
+    if (!cadence) throw new NotFoundException('cadence not found');
 
-    const deleteMembership = await this.cadenceDBService.delete(membership);
-    return deleteMembership;
+    const cadenceDelete = await this.cadenceDBService.delete(data);
+    return cadenceDelete;
   }
 }

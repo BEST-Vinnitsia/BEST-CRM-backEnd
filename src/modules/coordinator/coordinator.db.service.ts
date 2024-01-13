@@ -1,14 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { DatabaseService } from '../database/database.service';
 import { handlerError } from 'src/utils/handlerError';
-import {
-  ICoordinator,
-  ICoordinatorCreate,
-  ICoordinatorGetById,
-  ICoordinatorUpdate,
-  ICoordinatorDelete,
-  ICoordinatorCheckName,
-} from 'src/interfaces/coordinator.interface';
+import { ICoordinator, ICoordinatorCreate, ICoordinatorGetById, ICoordinatorUpdate, ICoordinatorDelete } from 'src/interfaces/coordinator.interface';
 
 @Injectable()
 export class CoordinatorDbService {
@@ -42,12 +35,6 @@ export class CoordinatorDbService {
     return coordinator;
   }
 
-  // check by number
-  public async checkByName({ name }: ICoordinatorCheckName): Promise<ICoordinator> {
-    const coordinator = await handlerError(this.database.coordinator.findUnique({ where: { name } }));
-    return coordinator;
-  }
-
   /* ----------------  UPDATE  ---------------- */
   public async update(data: ICoordinatorUpdate): Promise<ICoordinator> {
     const coordinator = await handlerError(
@@ -65,6 +52,20 @@ export class CoordinatorDbService {
   /* ----------------  DELETE  ---------------- */
   public async delete(data: ICoordinatorDelete): Promise<ICoordinator> {
     const coordinator = await handlerError(this.database.coordinator.delete({ where: { id: data.id } }));
+    return coordinator;
+  }
+
+  /* ----------------  CHECK  ---------------- */
+
+  // check by id
+  public async checkById({ id }: { id: string }): Promise<ICoordinator> {
+    const coordinator = await handlerError(this.database.coordinator.findUnique({ where: { id } }));
+    return coordinator;
+  }
+
+  // check by number
+  public async checkByName({ name }: { name: string }): Promise<ICoordinator> {
+    const coordinator = await handlerError(this.database.coordinator.findUnique({ where: { name } }));
     return coordinator;
   }
 }

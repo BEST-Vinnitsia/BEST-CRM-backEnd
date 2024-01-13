@@ -55,4 +55,12 @@ export class TranslationDbService {
     const board = await handlerError(this.database.translation.delete({ where: { id: data.id } }));
     return board;
   }
+
+  /* ----------------  CHECK  ---------------- */
+
+  // check by id
+  public async checkById({ id }: { id: string }): Promise<ITranslation> {
+    const board = await handlerError(this.database.translation.findUnique({ where: { id } }));
+    return board;
+  }
 }

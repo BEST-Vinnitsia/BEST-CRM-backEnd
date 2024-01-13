@@ -16,7 +16,7 @@ export class BoardToMemberController {
   /* ----------------  GET  ---------------- */
 
   @Get('list')
-  @ApiCreatedResponse({ type: BoardToMemberDto })
+  @ApiCreatedResponse({ type: [BoardToMemberDto] })
   async list() {
     return await this.boardToMemberService.getList();
   }

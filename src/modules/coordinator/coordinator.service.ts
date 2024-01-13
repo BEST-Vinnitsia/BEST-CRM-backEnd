@@ -10,42 +10,45 @@ export class CoordinatorService {
 
   // get list
   public async getList(): Promise<ICoordinator[]> {
-    const membershipList = await this.coordinatorDBService.findMany();
-    return membershipList;
+    const coordinatorList = await this.coordinatorDBService.findMany();
+    return coordinatorList;
   }
 
   // get by id
   public async getById(data: ICoordinatorGetById): Promise<ICoordinator> {
-    // checking if the member exists
-    const membership = await this.coordinatorDBService.findById({ id: data.id });
-    if (!membership) throw new NotFoundException('cadence not found');
+    const coordinator = await this.coordinatorDBService.findById({ id: data.id });
+    if (!coordinator) throw new NotFoundException('cadence not found');
 
-    return membership;
+    return coordinator;
   }
 
   /* ----------------  POST  ---------------- */
   public async create(data: ICoordinatorCreate): Promise<ICoordinator> {
-    // checking if the member exists
-    const membership = await this.coordinatorDBService.checkByName({ name: data.name });
-    if (membership) throw new BadRequestException('cadence is exist');
+    const coordinator = await this.coordinatorDBService.checkByName({ name: data.name });
+    if (coordinator) throw new BadRequestException('cadence is exist');
 
-    const newMembership = await this.coordinatorDBService.create(data);
-    return newMembership;
+    const coordinatorNew = await this.coordinatorDBService.create(data);
+    return coordinatorNew;
   }
 
   /* ----------------  PUT  ---------------- */
   public async update(data: ICoordinatorUpdate): Promise<ICoordinator> {
-    const updateMembership = await this.coordinatorDBService.update(data);
-    return updateMembership;
+    const coordinatorById = await this.coordinatorDBService.checkById({ id: data.id });
+    if (!coordinatorById) throw new NotFoundException('cadence not found');
+
+    // const coordinatorByName = await this.coordinatorDBService.checkByName({ name: data.name });
+    // if (coordinatorByName) throw new BadRequestException('cadence is exist');
+
+    const coordinatorUpdate = await this.coordinatorDBService.update(data);
+    return coordinatorUpdate;
   }
 
   /* ----------------  DELETE  ---------------- */
   public async delete(data: ICoordinatorDelete): Promise<ICoordinator> {
-    // checking if the member exists
-    const membership = await this.coordinatorDBService.findById({ id: data.id });
-    if (!membership) throw new BadRequestException('cadence is not exist');
+    const coordinator = await this.coordinatorDBService.checkById({ id: data.id });
+    if (!coordinator) throw new NotFoundException('cadence is not exist');
 
-    const deleteMembership = await this.coordinatorDBService.delete(membership);
-    return deleteMembership;
+    const coordinatorDelete = await this.coordinatorDBService.delete(data);
+    return coordinatorDelete;
   }
 }

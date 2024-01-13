@@ -16,7 +16,7 @@ export class CoordinatorToMemberController {
   /* ----------------  GET  ---------------- */
 
   @Get('list')
-  @ApiCreatedResponse({type: CoordinatorToMemberDto})
+  @ApiCreatedResponse({type: [CoordinatorToMemberDto]})
   async list() {
     return await this.coordinatorToMemberService.getList();
   }

@@ -55,4 +55,12 @@ export class MeetingDbService {
     const board = await handlerError(this.database.meeting.delete({ where: { id: data.id } }));
     return board;
   }
+
+  /* ----------------  CHECK  ---------------- */
+
+  // check by id
+  public async checkById({ id }: { id: string }): Promise<IMeeting> {
+    const board = await handlerError(this.database.meeting.findUnique({ where: { id } }));
+    return board;
+  }
 }

@@ -10,42 +10,42 @@ export class BoardService {
 
   // get list
   public async getList(): Promise<IBoard[]> {
-    const membershipList = await this.boardDBService.findMany();
-    return membershipList;
+    const boardList = await this.boardDBService.findMany();
+    return boardList;
   }
 
   // get by id
   public async getById(data: IBoardGetById): Promise<IBoard> {
-    // checking if the member exists
-    const membership = await this.boardDBService.findById({ id: data.id });
-    if (!membership) throw new NotFoundException('cadence not found');
+    const board = await this.boardDBService.findById({ id: data.id });
+    if (!board) throw new NotFoundException('board not found');
 
-    return membership;
+    return board;
   }
 
   /* ----------------  POST  ---------------- */
   public async create(data: IBoardCreate): Promise<IBoard> {
-    // checking if the member exists
-    const membership = await this.boardDBService.checkByName({ name: data.name });
-    if (membership) throw new BadRequestException('cadence is exist');
+    const board = await this.boardDBService.checkByName({ name: data.name });
+    if (board) throw new BadRequestException('board is exist');
 
-    const newMembership = await this.boardDBService.create(data);
-    return newMembership;
+    const boardNew = await this.boardDBService.create(data);
+    return boardNew;
   }
 
   /* ----------------  PUT  ---------------- */
   public async update(data: IBoardUpdate): Promise<IBoard> {
-    const updateMembership = await this.boardDBService.update(data);
-    return updateMembership;
+    const board = await this.boardDBService.checkById({ id: data.id });
+    if (!board) throw new NotFoundException('board is not exist');
+
+    const membershipUpdate = await this.boardDBService.update(data);
+    return membershipUpdate;
   }
 
   /* ----------------  DELETE  ---------------- */
   public async delete(data: IBoardDelete): Promise<IBoard> {
-    // checking if the member exists
-    const membership = await this.boardDBService.findById({ id: data.id });
-    if (!membership) throw new BadRequestException('cadence is not exist');
+    const board = await this.boardDBService.checkById({ id: data.id });
+    if (!board) throw new NotFoundException('board is not exist');
 
-    const deleteMembership = await this.boardDBService.delete(membership);
-    return deleteMembership;
+    const boardDelete = await this.boardDBService.delete(data);
+    return boardDelete;
   }
 }

@@ -25,7 +25,6 @@ export class MemberService {
 
   // get by id
   public async getById(data: IMemberGetId): Promise<IMemberGetIdRes> {
-    // checking if the member exists
     const member = await this.memberDBService.findById({ id: data.id });
     if (!member) throw new NotFoundException('member not found');
 
@@ -34,33 +33,28 @@ export class MemberService {
 
   /* ----------------  POST  ---------------- */
   public async create(data: IMemberCreate): Promise<IMemberCreateRes> {
-    // checking if the member exists
-    const member = await this.memberDBService.checkByEmail({ email: data.email });
-    if (member) throw new BadRequestException('member is exist');
+    const memberByEmail = await this.memberDBService.checkByEmail({ email: data.email });
+    if (memberByEmail) throw new BadRequestException('member is exist');
 
-    const newMember = await this.memberDBService.create(data);
-    return newMember;
+    const memberNew = await this.memberDBService.create(data);
+    return memberNew;
   }
 
   /* ----------------  PUT  ---------------- */
   public async update(data: IMemberUpdate): Promise<IMember> {
-    // checking if the member exists
-    const member = await this.memberDBService.checkById({ id: data.id });
-    if (!member) throw new BadRequestException('member is not exist');
+    const memberById = await this.memberDBService.checkById({ id: data.id });
+    if (!memberById) throw new NotFoundException('member not found');
 
-    const updateMember = await this.memberDBService.update(data);
-    return updateMember;
+    const memberUpdate = await this.memberDBService.update(data);
+    return memberUpdate;
   }
 
   /* ----------------  DELETE  ---------------- */
-
-  // delete by id
   public async deleteById(data: IMemberDelete): Promise<IMember> {
-    // checking if the member exists
-    const member = await this.memberDBService.checkById({ id: data.id });
-    if (!member) throw new NotFoundException('member not found');
+    const memberById = await this.memberDBService.checkById({ id: data.id });
+    if (!memberById) throw new NotFoundException('member not found');
 
-    const deleteMember = await this.memberDBService.deleteById({ id: data.id });
-    return deleteMember;
+    const memberDelete = await this.memberDBService.delete({ id: data.id });
+    return memberDelete;
   }
 }

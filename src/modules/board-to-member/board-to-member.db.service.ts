@@ -8,6 +8,7 @@ import {
   IBoardToMemberUpdate,
   IBoardToMemberDelete,
 } from 'src/interfaces/board-to-member.interface';
+import { IMember } from 'src/interfaces/member/member.type';
 
 @Injectable()
 export class BoardToMemberDbService {
@@ -62,5 +63,19 @@ export class BoardToMemberDbService {
   public async delete(data: IBoardToMemberDelete): Promise<IBoardToMember> {
     const board = await handlerError(this.database.boardToMember.delete({ where: { id: data.id } }));
     return board;
+  }
+
+  /* ----------------  CHECK  ---------------- */
+
+  // check by id
+  public async checkById({ id }: { id: string }): Promise<IBoardToMember> {
+    const board = await handlerError(this.database.boardToMember.findUnique({ where: { id } }));
+    return board;
+  }
+
+  // check member by membership
+  public async checkMemberByMembership({ memberId }: { memberId: string }): Promise<IMember> {
+    const member = await handlerError(this.database.member.findFirstOrThrow({ where: { id: memberId } }));
+    return member;
   }
 }

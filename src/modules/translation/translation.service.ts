@@ -10,13 +10,12 @@ export class TranslationService {
 
   // get list
   public async getList(): Promise<ITranslation[]> {
-    const membershipList = await this.translationDBService.findMany();
-    return membershipList;
+    const translationList = await this.translationDBService.findMany();
+    return translationList;
   }
 
   // get by id
   public async getById(data: ITranslationGetById): Promise<ITranslation> {
-    // checking if the member exists
     const membership = await this.translationDBService.findById({ id: data.id });
     if (!membership) throw new NotFoundException('cadence not found');
 
@@ -25,23 +24,25 @@ export class TranslationService {
 
   /* ----------------  POST  ---------------- */
   public async create(data: ITranslationCreate): Promise<ITranslation> {
-    const newMembership = await this.translationDBService.create(data);
-    return newMembership;
+    const translationNew = await this.translationDBService.create(data);
+    return translationNew;
   }
 
   /* ----------------  PUT  ---------------- */
   public async update(data: ITranslationUpdate): Promise<ITranslation> {
-    const updateMembership = await this.translationDBService.update(data);
-    return updateMembership;
+    const translationById = await this.translationDBService.checkById({ id: data.id });
+    if (!translationById) throw new NotFoundException('cadence is not exist');
+
+    const translationUpdate = await this.translationDBService.update(data);
+    return translationUpdate;
   }
 
   /* ----------------  DELETE  ---------------- */
   public async delete(data: ITranslationDelete): Promise<ITranslation> {
-    // checking if the member exists
-    const membership = await this.translationDBService.findById({ id: data.id });
-    if (!membership) throw new BadRequestException('cadence is not exist');
+    const translationById = await this.translationDBService.checkById({ id: data.id });
+    if (!translationById) throw new NotFoundException('cadence is not exist');
 
-    const deleteMembership = await this.translationDBService.delete(membership);
-    return deleteMembership;
+    const translationDelete = await this.translationDBService.delete(data);
+    return translationDelete;
   }
 }
