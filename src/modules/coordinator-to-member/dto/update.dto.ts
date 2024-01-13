@@ -1,27 +1,28 @@
 import { IsBoolean, IsNotEmpty, IsString, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { ICoordinatorToMemberUpdate } from 'src/interfaces/coordinator-to-member.interface';
+import { randomUUID } from 'crypto';
 
 export class CoordinatorToMemberUpdateDto implements ICoordinatorToMemberUpdate {
-  @ApiProperty()
+  @ApiProperty({ example: randomUUID() })
   @IsNotEmpty()
   @IsString()
   @IsUUID('4')
   id: string;
 
-  @ApiProperty()
+  @ApiProperty({ example: randomUUID() })
   @IsNotEmpty()
   @IsString()
   @IsUUID('4')
   cadenceId: string;
 
-  @ApiProperty()
+  @ApiProperty({ example: randomUUID() })
   @IsNotEmpty()
   @IsString()
   @IsUUID('4')
   coordinatorId: string;
 
-  @ApiProperty()
+  @ApiProperty({ example: randomUUID() })
   @IsNotEmpty()
   @IsString()
   @IsUUID('4')

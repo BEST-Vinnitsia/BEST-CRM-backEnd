@@ -2,9 +2,10 @@ import { IsDateString, IsEnum, IsNotEmpty, IsString, IsUUID } from 'class-valida
 import { MeetingEnum } from 'src/constants/enums';
 import { ApiProperty } from '@nestjs/swagger';
 import { IMeetingUpdate } from 'src/interfaces/meeting.interface';
+import { randomUUID } from 'crypto';
 
 export class MeetingUpdateDto implements IMeetingUpdate {
-  @ApiProperty()
+  @ApiProperty({ example: randomUUID() })
   @IsNotEmpty()
   @IsString()
   @IsUUID('4')

@@ -45,10 +45,10 @@ export class MemberDto implements IMember {
 
   //
 
-  @ApiProperty({ enum: ClothingSizeEnum })
+  @ApiProperty({ required: false, enum: ClothingSizeEnum })
   clothingSize: string;
 
-  @ApiProperty()
+  @ApiProperty({ required: false })
   homeAddress: string;
 
   //

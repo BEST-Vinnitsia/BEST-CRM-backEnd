@@ -4,15 +4,16 @@ import { Regex } from 'src/constants/regex';
 import { IsDateWithinRange } from 'src/pipes/isDateWithinRange.pipe';
 import { ApiProperty } from '@nestjs/swagger';
 import { IMemberUpdate } from 'src/interfaces/member/member.type';
+import { randomUUID } from 'crypto';
 
 export class MemberUpdateDto implements IMemberUpdate {
-  @ApiProperty()
+  @ApiProperty({ example: randomUUID() })
   @IsNotEmpty()
   @IsString()
   @IsUUID('4')
   id: string;
 
-  @ApiProperty()
+  @ApiProperty({ example: randomUUID() })
   @IsNotEmpty()
   @IsString()
   @IsUUID('4')
@@ -79,14 +80,14 @@ export class MemberUpdateDto implements IMemberUpdate {
 
   //
 
-  @ApiProperty()
+  @ApiProperty({ required: false, enum: ClothingSizeEnum })
   @IsNotEmpty()
   @IsString()
   @IsEnum(ClothingSizeEnum)
   @IsOptional()
   clothingSize: string;
 
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @IsNotEmpty()
   @IsString()
   @IsOptional()
