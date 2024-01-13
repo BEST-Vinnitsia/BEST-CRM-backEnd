@@ -7,6 +7,7 @@ import {
   IBoardToMemberGetById,
   IBoardToMemberUpdate,
 } from 'src/interfaces/board-to-member.interface';
+import { MembershipEnum } from 'src/constants/enums';
 
 @Injectable()
 export class BoardToMemberService {
@@ -30,6 +31,20 @@ export class BoardToMemberService {
 
   /* ----------------  POST  ---------------- */
   public async create(data: IBoardToMemberCreate): Promise<IBoardToMember> {
+    const memberById = await this.boardToMemberDBService.checkMemberAndMembership({ memberId: data.memberId });
+    if (!memberById) throw new NotFoundException('member is not found');
+    if (
+      (memberById.membership.name !== MembershipEnum.FULL && data.isLeader === true) ||
+      (memberById.membership.name !== MembershipEnum.ALUMNI && data.isLeader === true)
+    )
+      throw new BadRequestException('member is not have Full membership');
+
+    const cadenceById = await this.boardToMemberDBService.checkCadenceById({ cadenceId: data.cadenceId });
+    if (!cadenceById) throw new NotFoundException('cadence is not found');
+
+    const boardById = await this.boardToMemberDBService.checkBoardById({ boardId: data.boardId });
+    if (!boardById) throw new NotFoundException('board is not found');
+
     const boardToMember = await this.boardToMemberDBService.create(data);
     return boardToMember;
   }

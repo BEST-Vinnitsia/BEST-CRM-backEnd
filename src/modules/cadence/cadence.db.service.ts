@@ -69,4 +69,10 @@ export class CadenceDbService {
     const cadence = await handlerError(this.database.cadence.findUnique({ where: { number } }));
     return cadence;
   }
+
+  // check mux number
+  public async checkMaxNumber(): Promise<any> {
+    const cadence = await handlerError(this.database.cadence.aggregate({ _max: { number: true } }));
+    return cadence._max.number;
+  }
 }

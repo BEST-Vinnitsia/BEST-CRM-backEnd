@@ -9,6 +9,9 @@ import {
   IBoardToMemberDelete,
 } from 'src/interfaces/board-to-member.interface';
 import { IMember } from 'src/interfaces/member/member.type';
+import { IMembership } from 'src/interfaces/member/membership.type';
+import { ICadence } from 'src/interfaces/cadence.interface';
+import { IBoard } from 'src/interfaces/board.interface';
 
 @Injectable()
 export class BoardToMemberDbService {
@@ -73,9 +76,26 @@ export class BoardToMemberDbService {
     return board;
   }
 
-  // check member by membership
-  public async checkMemberByMembership({ memberId }: { memberId: string }): Promise<IMember> {
-    const member = await handlerError(this.database.member.findFirstOrThrow({ where: { id: memberId } }));
+  // check by cadence
+  public async checkCadenceById({ cadenceId }: { cadenceId: string }): Promise<ICadence> {
+    const cadence = await handlerError(this.database.cadence.findUnique({ where: { id: cadenceId } }));
+    return cadence;
+  }
+
+  // check Board by id
+  public async checkBoardById({ boardId }: { boardId: string }): Promise<IBoard> {
+    const board = await handlerError(this.database.board.findUnique({ where: { id: boardId } }));
+    return board;
+  }
+
+  // check member and membership
+  public async checkMemberAndMembership({ memberId }: { memberId: string }): Promise<IMember & { membership: IMembership }> {
+    const member = await handlerError(
+      this.database.member.findFirst({
+        where: { id: memberId },
+        include: { membership: true },
+      }),
+    );
     return member;
   }
 }

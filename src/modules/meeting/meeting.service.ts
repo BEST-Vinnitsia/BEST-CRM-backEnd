@@ -24,6 +24,9 @@ export class MeetingService {
 
   /* ----------------  POST  ---------------- */
   public async create(data: IMeetingCreate): Promise<IMeeting> {
+    const cadenceById = await this.meetingDBService.checkCadenceById({ cadenceId: data.cadenceId });
+    if (!cadenceById) throw new NotFoundException('cadence not found');
+
     const meetingNew = await this.meetingDBService.create(data);
     return meetingNew;
   }

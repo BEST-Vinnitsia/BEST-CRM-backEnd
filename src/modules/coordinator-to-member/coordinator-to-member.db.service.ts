@@ -8,6 +8,10 @@ import {
   ICoordinatorToMemberUpdate,
   ICoordinatorToMemberDelete,
 } from 'src/interfaces/coordinator-to-member.interface';
+import { ICadence } from 'src/interfaces/cadence.interface';
+import { ICoordinator } from 'src/interfaces/coordinator.interface';
+import { IMember } from 'src/interfaces/member/member.type';
+import { IMembership } from 'src/interfaces/member/membership.type';
 
 @Injectable()
 export class CoordinatorToMemberDbService {
@@ -70,5 +74,28 @@ export class CoordinatorToMemberDbService {
   public async checkById({ id }: { id: string }): Promise<ICoordinatorToMember> {
     const board = await handlerError(this.database.coordinatorToMember.findUnique({ where: { id } }));
     return board;
+  }
+
+  // check by cadence
+  public async checkCadenceById({ cadenceId }: { cadenceId: string }): Promise<ICadence> {
+    const cadence = await handlerError(this.database.cadence.findUnique({ where: { id: cadenceId } }));
+    return cadence;
+  }
+
+  // check coordinator by id
+  public async checkCoordinatorById({ coordinatorId }: { coordinatorId: string }): Promise<ICoordinator> {
+    const coordinator = await handlerError(this.database.coordinator.findUnique({ where: { id: coordinatorId } }));
+    return coordinator;
+  }
+
+  // check member and membership
+  public async checkMemberAndMembership({ memberId }: { memberId: string }): Promise<IMember & { membership: IMembership }> {
+    const member = await handlerError(
+      this.database.member.findFirst({
+        where: { id: memberId },
+        include: { membership: true },
+      }),
+    );
+    return member;
   }
 }

@@ -2,7 +2,7 @@ import { IsNotEmpty, IsDateString, IsNumber } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { ICadenceCreate } from 'src/interfaces/cadence.interface';
 
-export class CadenceCreateDto implements ICadenceCreate{
+export class CadenceCreateDto implements ICadenceCreate {
   @ApiProperty()
   @IsNotEmpty()
   @IsNumber()

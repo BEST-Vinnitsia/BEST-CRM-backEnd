@@ -7,6 +7,7 @@ import {
   ICoordinatorToMemberGetById,
   ICoordinatorToMemberUpdate,
 } from 'src/interfaces/coordinator-to-member.interface';
+import { MembershipEnum } from 'src/constants/enums';
 
 @Injectable()
 export class CoordinatorToMemberService {
@@ -30,6 +31,21 @@ export class CoordinatorToMemberService {
 
   /* ----------------  POST  ---------------- */
   public async create(data: ICoordinatorToMemberCreate): Promise<ICoordinatorToMember> {
+    const memberById = await this.coordinatorToMemberDBService.checkMemberAndMembership({ memberId: data.memberId });
+    if (!memberById) throw new NotFoundException('member is not found');
+    if (
+      (memberById.membership.name !== MembershipEnum.BABY && data.isLeader === true) ||
+      (memberById.membership.name !== MembershipEnum.FULL && data.isLeader === true) ||
+      (memberById.membership.name !== MembershipEnum.ALUMNI && data.isLeader === true)
+    )
+      throw new BadRequestException('member is not have Baby Full or Alumni membership');
+
+    const cadenceById = await this.coordinatorToMemberDBService.checkCadenceById({ cadenceId: data.cadenceId });
+    if (!cadenceById) throw new NotFoundException('cadence is not found');
+
+    const coordinatorById = await this.coordinatorToMemberDBService.checkCoordinatorById({ coordinatorId: data.coordinatorId });
+    if (!coordinatorById) throw new NotFoundException('board is not found');
+
     const coordinatorToMember = await this.coordinatorToMemberDBService.create(data);
     return coordinatorToMember;
   }
