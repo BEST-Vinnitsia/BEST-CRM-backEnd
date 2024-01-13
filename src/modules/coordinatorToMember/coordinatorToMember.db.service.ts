@@ -2,15 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { DatabaseService } from '../database/database.service';
 import { handlerError } from 'src/utils/handlerError';
 import {
+  ICoordinatorToMember,
   ICoordinatorToMember_create,
-  ICoordinatorToMember_create_RES,
   ICoordinatorToMember_get_id,
-  ICoordinatorToMember_get_id_RES,
-  ICoordinatorToMember_get_list_RES,
   ICoordinatorToMember_update,
-  ICoordinatorToMember_update_RES,
   ICoordinatorToMember_delete,
-  ICoordinatorToMember_delete_RES,
 } from 'src/types/coordinatorToMember.type';
 
 @Injectable()
@@ -18,7 +14,7 @@ export class CoordinatorToMemberDbService {
   constructor(private readonly database: DatabaseService) {}
 
   /* ----------------  CREATE  ---------------- */
-  public async create(data: ICoordinatorToMember_create): Promise<ICoordinatorToMember_create_RES> {
+  public async create(data: ICoordinatorToMember_create): Promise<ICoordinatorToMember> {
     const board = await handlerError(
       this.database.coordinatorToMember.create({
         data: {
@@ -35,19 +31,19 @@ export class CoordinatorToMemberDbService {
   /* ----------------  READ  ---------------- */
 
   // find many
-  public async findMany(): Promise<ICoordinatorToMember_get_list_RES[]> {
+  public async findMany(): Promise<ICoordinatorToMember[]> {
     const board = await handlerError(this.database.coordinatorToMember.findMany());
     return board;
   }
 
   // find by id
-  public async findById({ id }: ICoordinatorToMember_get_id): Promise<ICoordinatorToMember_get_id_RES> {
+  public async findById({ id }: ICoordinatorToMember_get_id): Promise<ICoordinatorToMember> {
     const board = await handlerError(this.database.coordinatorToMember.findUnique({ where: { id } }));
     return board;
   }
 
   /* ----------------  UPDATE  ---------------- */
-  public async update(data: ICoordinatorToMember_update): Promise<ICoordinatorToMember_update_RES> {
+  public async update(data: ICoordinatorToMember_update): Promise<ICoordinatorToMember> {
     const board = await handlerError(
       this.database.coordinatorToMember.update({
         where: { id: data.id },
@@ -63,7 +59,7 @@ export class CoordinatorToMemberDbService {
   }
 
   /* ----------------  DELETE  ---------------- */
-  public async delete(data: ICoordinatorToMember_delete): Promise<ICoordinatorToMember_delete_RES> {
+  public async delete(data: ICoordinatorToMember_delete): Promise<ICoordinatorToMember> {
     const board = await handlerError(this.database.coordinatorToMember.delete({ where: { id: data.id } }));
     return board;
   }

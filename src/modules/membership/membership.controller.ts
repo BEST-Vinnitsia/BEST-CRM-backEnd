@@ -1,9 +1,9 @@
 import { Body, Controller, Get, Post, Query, Delete, Put } from '@nestjs/common';
 import { MembershipService } from './membership.service';
-import { MembershipGetByIdDto } from './dto/membershipGetId.dto';
-import { MembershipCreateDto } from './dto/membershipCreate.dto';
-import { MembershipUpdateDto } from './dto/membershipUpdate.dto';
-import { MembershipDeleteDto } from './dto/membershipDelete.dto';
+import { MembershipGetByIdDto } from './dto/getId.dto';
+import { MembershipCreateDto } from './dto/create.dto';
+import { MembershipUpdateDto } from './dto/update.dto';
+import { MembershipDeleteDto } from './dto/delete.dto';
 import { ApiCreatedResponse, ApiTags, ApiSecurity } from '@nestjs/swagger';
 
 @ApiSecurity('basic')

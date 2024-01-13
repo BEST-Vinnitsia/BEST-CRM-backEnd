@@ -1,35 +1,21 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { TranslationDbService } from './translation.db.service';
-import {
-  ITranslation_create,
-  ITranslation_create_RES,
-  ITranslation_delete,
-  ITranslation_delete_RES,
-  ITranslation_get_id,
-  ITranslation_get_id_RES,
-  ITranslation_get_list_RES,
-  ITranslation_update,
-  ITranslation_update_RES,
-} from 'src/types/translation.type';
-import { AppDbService } from '../app/app.db.service';
+import { ITranslation, ITranslation_create, ITranslation_delete, ITranslation_get_id, ITranslation_update } from 'src/types/translation.type';
 
 @Injectable()
 export class TranslationService {
-  constructor(
-    private readonly translationDBService: TranslationDbService,
-    private readonly appDBService: AppDbService,
-  ) {}
+  constructor(private readonly translationDBService: TranslationDbService) {}
 
   /* ----------------  GET  ---------------- */
 
   // get list
-  public async getList(): Promise<ITranslation_get_list_RES[]> {
+  public async getList(): Promise<ITranslation[]> {
     const membershipList = await this.translationDBService.findMany();
     return membershipList;
   }
 
   // get by id
-  public async getById(data: ITranslation_get_id): Promise<ITranslation_get_id_RES> {
+  public async getById(data: ITranslation_get_id): Promise<ITranslation> {
     // checking if the member exists
     const membership = await this.translationDBService.findById({ id: data.id });
     if (!membership) throw new NotFoundException('cadence not found');
@@ -38,19 +24,19 @@ export class TranslationService {
   }
 
   /* ----------------  POST  ---------------- */
-  public async create(data: ITranslation_create): Promise<ITranslation_create_RES> {
+  public async create(data: ITranslation_create): Promise<ITranslation> {
     const newMembership = await this.translationDBService.create(data);
     return newMembership;
   }
 
   /* ----------------  PUT  ---------------- */
-  public async update(data: ITranslation_update): Promise<ITranslation_update_RES> {
+  public async update(data: ITranslation_update): Promise<ITranslation> {
     const updateMembership = await this.translationDBService.update(data);
     return updateMembership;
   }
 
   /* ----------------  DELETE  ---------------- */
-  public async delete(data: ITranslation_delete): Promise<ITranslation_delete_RES> {
+  public async delete(data: ITranslation_delete): Promise<ITranslation> {
     // checking if the member exists
     const membership = await this.translationDBService.findById({ id: data.id });
     if (!membership) throw new BadRequestException('cadence is not exist');

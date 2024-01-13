@@ -1,10 +1,9 @@
 import { Body, Controller, Get, Post, Query, Delete, Put } from '@nestjs/common';
 import { MemberService } from './member.service';
-import { MemberCreateDto } from './dto/memberCreate.dto';
-import { MemberGetByIdDto } from './dto/memberGetById.dto';
-import { MemberUpdateDto } from './dto/memberUpdate.dto';
-import { MemberDeleteByIdDto } from './dto/memberDeleteById.dto';
-import { MemberDeleteArrayByIdDto } from './dto/memberDeleteArrayById.dto';
+import { MemberCreateDto } from './dto/create.dto';
+import { MemberGetByIdDto } from './dto/getById.dto';
+import { MemberUpdateDto } from './dto/update.dto';
+import { MemberDeleteByIdDto } from './dto/deleteById.dto';
 import { ApiCreatedResponse, ApiTags, ApiSecurity } from '@nestjs/swagger';
 
 @ApiSecurity('basic')
@@ -47,11 +46,5 @@ export class MemberController {
   @ApiCreatedResponse()
   async deleteById(@Query() data: MemberDeleteByIdDto) {
     return await this.memberService.deleteById(data);
-  }
-
-  @Delete('array-by-id')
-  @ApiCreatedResponse()
-  async deleteArrayById(@Body() data: MemberDeleteArrayByIdDto) {
-    return await this.memberService.deleteArrayById(data);
   }
 }

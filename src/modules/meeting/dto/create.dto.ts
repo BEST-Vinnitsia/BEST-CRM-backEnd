@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsEnum, IsBoolean, IsDateString, IsUUID } from 'class-validator';
+import { IsNotEmpty, IsString, IsEnum, IsDateString, IsUUID } from 'class-validator';
 import { MeetingEnum } from 'src/constants/enums';
 import { ApiProperty } from '@nestjs/swagger';
 

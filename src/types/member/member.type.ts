@@ -48,11 +48,9 @@ export interface IMember_get_id_RES extends IMember {
 
 // check by id
 export interface IMember_check_id extends Pick<IMember, 'id'> {}
-export interface IMember_check_id_RES extends IMember {}
 
 // check by email
 export interface IMember_check_email extends Pick<IMember, 'email'> {}
-export interface IMember_check_email_RES extends IMember {}
 
 /* ----------------  POST  ---------------- */
 export interface IMember_create extends Omit<IMember, 'id' | 'createdAt' | 'updatedAt'> {}
@@ -62,18 +60,6 @@ export interface IMember_create_RES extends IMember {
 
 /* ----------------  PUT  ---------------- */
 export interface IMember_update extends Omit<IMember, 'createdAt' | 'updatedAt'> {}
-export interface IMember_update_RES extends IMember {}
 
 /* ----------------  DELETE  ---------------- */
 export interface IMember_delete_id extends Pick<IMember, 'id'> {}
-export interface IMember_delete_id_RES {
-  id: string[];
-}
-
-// delete array by id
-export interface IMember_delete_array {
-  id: string[];
-}
-export interface IMember_delete_array_RES {
-  id: string[];
-}

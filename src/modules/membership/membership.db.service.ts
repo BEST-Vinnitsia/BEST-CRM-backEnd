@@ -2,17 +2,12 @@ import { Injectable } from '@nestjs/common';
 import { DatabaseService } from '../database/database.service';
 import { handlerError } from 'src/utils/handlerError';
 import {
+  IMembership,
   IMembership_create,
-  IMembership_create_RES,
   IMembership_check_name,
-  IMembership_check_name_RES,
   IMembership_get_id,
-  IMembership_get_id_RES,
-  IMembership_get_list_RES,
   IMembership_delete,
-  IMembership_delete_RES,
   IMembership_update,
-  IMembership_update_RES,
 } from 'src/types/member/membership.type';
 
 @Injectable()
@@ -20,7 +15,7 @@ export class MembershipDbService {
   constructor(private readonly database: DatabaseService) {}
 
   /* ----------------  CREATE  ---------------- */
-  public async create(data: IMembership_create): Promise<IMembership_create_RES> {
+  public async create(data: IMembership_create): Promise<IMembership> {
     const membership = await handlerError(
       this.database.membership.create({
         data: { name: data.name.toLocaleLowerCase() },
@@ -32,19 +27,19 @@ export class MembershipDbService {
   /* ----------------  READ  ---------------- */
 
   // find many
-  public async findMany(): Promise<IMembership_get_list_RES[]> {
+  public async findMany(): Promise<IMembership[]> {
     const membership = await handlerError(this.database.membership.findMany());
     return membership;
   }
 
   // find by id
-  public async findById({ id }: IMembership_get_id): Promise<IMembership_get_id_RES> {
+  public async findById({ id }: IMembership_get_id): Promise<IMembership> {
     const membership = await handlerError(this.database.membership.findUnique({ where: { id } }));
     return membership;
   }
 
   // check by name
-  public async checkByName({ name }: IMembership_check_name): Promise<IMembership_check_name_RES> {
+  public async checkByName({ name }: IMembership_check_name): Promise<IMembership> {
     const membership = await handlerError(
       this.database.membership.findUnique({
         where: { name: name.toLocaleLowerCase() },
@@ -54,7 +49,7 @@ export class MembershipDbService {
   }
 
   /* ----------------  UPDATE  ---------------- */
-  public async update(data: IMembership_update): Promise<IMembership_update_RES> {
+  public async update(data: IMembership_update): Promise<IMembership> {
     const membership = await handlerError(
       this.database.membership.update({
         where: { id: data.id },
@@ -65,8 +60,8 @@ export class MembershipDbService {
   }
 
   /* ----------------  DELETE  ---------------- */
-  public async delete(data: IMembership_delete): Promise<IMembership_delete_RES> {
+  public async delete(data: IMembership_delete): Promise<IMembership> {
     const membership = await handlerError(this.database.membership.delete({ where: { id: data.id } }));
-    return { id: [membership ? membership.id : null] };
+    return membership;
   }
 }

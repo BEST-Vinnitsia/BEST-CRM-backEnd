@@ -1,24 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { DatabaseService } from '../database/database.service';
 import { handlerError } from 'src/utils/handlerError';
-import {
-  ITranslation_create,
-  ITranslation_create_RES,
-  ITranslation_get_id,
-  ITranslation_get_id_RES,
-  ITranslation_get_list_RES,
-  ITranslation_update,
-  ITranslation_update_RES,
-  ITranslation_delete,
-  ITranslation_delete_RES,
-} from 'src/types/translation.type';
+import { ITranslation, ITranslation_create, ITranslation_get_id, ITranslation_update, ITranslation_delete } from 'src/types/translation.type';
 
 @Injectable()
 export class TranslationDbService {
   constructor(private readonly database: DatabaseService) {}
 
   /* ----------------  CREATE  ---------------- */
-  public async create(data: ITranslation_create): Promise<ITranslation_create_RES> {
+  public async create(data: ITranslation_create): Promise<ITranslation> {
     const board = await handlerError(
       this.database.translation.create({
         data: {
@@ -34,19 +24,19 @@ export class TranslationDbService {
   /* ----------------  READ  ---------------- */
 
   // find many
-  public async findMany(): Promise<ITranslation_get_list_RES[]> {
+  public async findMany(): Promise<ITranslation[]> {
     const board = await handlerError(this.database.translation.findMany());
     return board;
   }
 
   // find by id
-  public async findById({ id }: ITranslation_get_id): Promise<ITranslation_get_id_RES> {
+  public async findById({ id }: ITranslation_get_id): Promise<ITranslation> {
     const board = await handlerError(this.database.translation.findUnique({ where: { id } }));
     return board;
   }
 
   /* ----------------  UPDATE  ---------------- */
-  public async update(data: ITranslation_update): Promise<ITranslation_update_RES> {
+  public async update(data: ITranslation_update): Promise<ITranslation> {
     const board = await handlerError(
       this.database.translation.update({
         where: { id: data.id },
@@ -61,7 +51,7 @@ export class TranslationDbService {
   }
 
   /* ----------------  DELETE  ---------------- */
-  public async delete(data: ITranslation_delete): Promise<ITranslation_delete_RES> {
+  public async delete(data: ITranslation_delete): Promise<ITranslation> {
     const board = await handlerError(this.database.translation.delete({ where: { id: data.id } }));
     return board;
   }

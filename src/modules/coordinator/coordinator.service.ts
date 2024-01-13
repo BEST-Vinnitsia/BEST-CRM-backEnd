@@ -1,35 +1,21 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CoordinatorDbService } from './coordinator.db.service';
-import {
-  ICoordinator_create,
-  ICoordinator_create_RES,
-  ICoordinator_delete,
-  ICoordinator_delete_RES,
-  ICoordinator_get_id,
-  ICoordinator_get_id_RES,
-  ICoordinator_get_list_RES,
-  ICoordinator_update,
-  ICoordinator_update_RES,
-} from 'src/types/coordinator.type';
-import { AppDbService } from '../app/app.db.service';
+import { ICoordinator, ICoordinator_create, ICoordinator_delete, ICoordinator_get_id, ICoordinator_update } from 'src/types/coordinator.type';
 
 @Injectable()
 export class CoordinatorService {
-  constructor(
-    private readonly coordinatorDBService: CoordinatorDbService,
-    private readonly appDBService: AppDbService,
-  ) {}
+  constructor(private readonly coordinatorDBService: CoordinatorDbService) {}
 
   /* ----------------  GET  ---------------- */
 
   // get list
-  public async getList(): Promise<ICoordinator_get_list_RES[]> {
+  public async getList(): Promise<ICoordinator[]> {
     const membershipList = await this.coordinatorDBService.findMany();
     return membershipList;
   }
 
   // get by id
-  public async getById(data: ICoordinator_get_id): Promise<ICoordinator_get_id_RES> {
+  public async getById(data: ICoordinator_get_id): Promise<ICoordinator> {
     // checking if the member exists
     const membership = await this.coordinatorDBService.findById({ id: data.id });
     if (!membership) throw new NotFoundException('cadence not found');
@@ -38,7 +24,7 @@ export class CoordinatorService {
   }
 
   /* ----------------  POST  ---------------- */
-  public async create(data: ICoordinator_create): Promise<ICoordinator_create_RES> {
+  public async create(data: ICoordinator_create): Promise<ICoordinator> {
     // checking if the member exists
     const membership = await this.coordinatorDBService.checkByName({ name: data.name });
     if (membership) throw new BadRequestException('cadence is exist');
@@ -48,13 +34,13 @@ export class CoordinatorService {
   }
 
   /* ----------------  PUT  ---------------- */
-  public async update(data: ICoordinator_update): Promise<ICoordinator_update_RES> {
+  public async update(data: ICoordinator_update): Promise<ICoordinator> {
     const updateMembership = await this.coordinatorDBService.update(data);
     return updateMembership;
   }
 
   /* ----------------  DELETE  ---------------- */
-  public async delete(data: ICoordinator_delete): Promise<ICoordinator_delete_RES> {
+  public async delete(data: ICoordinator_delete): Promise<ICoordinator> {
     // checking if the member exists
     const membership = await this.coordinatorDBService.findById({ id: data.id });
     if (!membership) throw new BadRequestException('cadence is not exist');

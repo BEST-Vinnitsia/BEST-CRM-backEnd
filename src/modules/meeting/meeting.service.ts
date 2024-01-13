@@ -1,35 +1,21 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { MeetingDbService } from './meeting.db.service';
-import {
-  IMeeting_create,
-  IMeeting_create_RES,
-  IMeeting_delete,
-  IMeeting_delete_RES,
-  IMeeting_get_id,
-  IMeeting_get_id_RES,
-  IMeeting_get_list_RES,
-  IMeeting_update,
-  IMeeting_update_RES,
-} from 'src/types/meeting.type';
-import { AppDbService } from '../app/app.db.service';
+import { IMeeting, IMeeting_create, IMeeting_delete, IMeeting_get_id, IMeeting_update } from 'src/types/meeting.type';
 
 @Injectable()
 export class MeetingService {
-  constructor(
-    private readonly meetingDBService: MeetingDbService,
-    private readonly appDBService: AppDbService,
-  ) {}
+  constructor(private readonly meetingDBService: MeetingDbService) {}
 
   /* ----------------  GET  ---------------- */
 
   // get list
-  public async getList(): Promise<IMeeting_get_list_RES[]> {
+  public async getList(): Promise<IMeeting[]> {
     const membershipList = await this.meetingDBService.findMany();
     return membershipList;
   }
 
   // get by id
-  public async getById(data: IMeeting_get_id): Promise<IMeeting_get_id_RES> {
+  public async getById(data: IMeeting_get_id): Promise<IMeeting> {
     // checking if the member exists
     const membership = await this.meetingDBService.findById({ id: data.id });
     if (!membership) throw new NotFoundException('cadence not found');
@@ -38,19 +24,19 @@ export class MeetingService {
   }
 
   /* ----------------  POST  ---------------- */
-  public async create(data: IMeeting_create): Promise<IMeeting_create_RES> {
+  public async create(data: IMeeting_create): Promise<IMeeting> {
     const newMembership = await this.meetingDBService.create(data);
     return newMembership;
   }
 
   /* ----------------  PUT  ---------------- */
-  public async update(data: IMeeting_update): Promise<IMeeting_update_RES> {
+  public async update(data: IMeeting_update): Promise<IMeeting> {
     const updateMembership = await this.meetingDBService.update(data);
     return updateMembership;
   }
 
   /* ----------------  DELETE  ---------------- */
-  public async delete(data: IMeeting_delete): Promise<IMeeting_delete_RES> {
+  public async delete(data: IMeeting_delete): Promise<IMeeting> {
     // checking if the member exists
     const membership = await this.meetingDBService.findById({ id: data.id });
     if (!membership) throw new BadRequestException('cadence is not exist');

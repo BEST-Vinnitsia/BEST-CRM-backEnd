@@ -4,7 +4,6 @@ import { DatabaseModule } from '../database/database.module';
 /* ----------------  APP  ---------------- */
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { AppDbService } from './app.db.service';
 
 /* ----------------  MEMBER  ---------------- */
 import { MemberModule } from '../member/member.module';
@@ -37,6 +36,6 @@ import { TranslationModule } from '../translation/translation.module';
     TranslationModule,
   ],
   controllers: [AppController],
-  providers: [AppService, AppDbService],
+  providers: [AppService],
 })
 export class AppModule {}
