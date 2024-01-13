@@ -12,17 +12,14 @@ export interface IPhone {
 
 /* ----------------  GET  ---------------- */
 
-// get list
-export interface IPhone_get_list extends Pick<IPhone, 'memberId'> {}
-
 // get by id
-export interface IPhone_get_id extends Pick<IPhone, 'id'> {}
+export interface IPhoneGetById extends Pick<IPhone, 'id'> {}
 
 /* ----------------  POST  ---------------- */
 export interface IPhone_create extends Omit<IPhone, 'id' | 'createdAt' | 'updatedAt'> {}
 
 /* ----------------  PUT  ---------------- */
-export interface IPhone_update extends Omit<IPhone, 'createdAt' | 'updatedAt'> {}
+export interface IPhoneUpdate extends Omit<IPhone, 'createdAt' | 'updatedAt'> {}
 
 /* ----------------  DELETE  ---------------- */
-export interface IPhone_update extends Pick<IPhone, 'id'> {}
+export interface IPhoneDelete extends Pick<IPhone, 'id'> {}

@@ -1,7 +1,8 @@
 import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { ITranslationUpdate } from 'src/interfaces/translation.interface';
 
-export class TranslationUpdateDto {
+export class TranslationUpdateDto implements ITranslationUpdate {
   @ApiProperty()
   @IsNotEmpty()
   @IsString()

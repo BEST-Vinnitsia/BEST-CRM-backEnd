@@ -3,11 +3,11 @@ import { DatabaseService } from '../database/database.service';
 import { handlerError } from 'src/utils/handlerError';
 import {
   IMembership,
-  IMembership_create,
-  IMembership_check_name,
-  IMembership_get_id,
-  IMembership_delete,
-  IMembership_update,
+  IMembershipCreate,
+  IMembershipCheckName,
+  IMembershipGetById,
+  IMembershipDelete,
+  IMembershipUpdate,
 } from 'src/interfaces/member/membership.type';
 
 @Injectable()
@@ -15,7 +15,7 @@ export class MembershipDbService {
   constructor(private readonly database: DatabaseService) {}
 
   /* ----------------  CREATE  ---------------- */
-  public async create(data: IMembership_create): Promise<IMembership> {
+  public async create(data: IMembershipCreate): Promise<IMembership> {
     const membership = await handlerError(
       this.database.membership.create({
         data: { name: data.name.toLocaleLowerCase() },
@@ -33,13 +33,13 @@ export class MembershipDbService {
   }
 
   // find by id
-  public async findById({ id }: IMembership_get_id): Promise<IMembership> {
+  public async findById({ id }: IMembershipGetById): Promise<IMembership> {
     const membership = await handlerError(this.database.membership.findUnique({ where: { id } }));
     return membership;
   }
 
   // check by name
-  public async checkByName({ name }: IMembership_check_name): Promise<IMembership> {
+  public async checkByName({ name }: IMembershipCheckName): Promise<IMembership> {
     const membership = await handlerError(
       this.database.membership.findUnique({
         where: { name: name.toLocaleLowerCase() },
@@ -49,7 +49,7 @@ export class MembershipDbService {
   }
 
   /* ----------------  UPDATE  ---------------- */
-  public async update(data: IMembership_update): Promise<IMembership> {
+  public async update(data: IMembershipUpdate): Promise<IMembership> {
     const membership = await handlerError(
       this.database.membership.update({
         where: { id: data.id },
@@ -60,7 +60,7 @@ export class MembershipDbService {
   }
 
   /* ----------------  DELETE  ---------------- */
-  public async delete(data: IMembership_delete): Promise<IMembership> {
+  public async delete(data: IMembershipDelete): Promise<IMembership> {
     const membership = await handlerError(this.database.membership.delete({ where: { id: data.id } }));
     return membership;
   }

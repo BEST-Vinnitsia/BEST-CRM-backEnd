@@ -3,10 +3,10 @@ import { DatabaseService } from '../database/database.service';
 import { handlerError } from 'src/utils/handlerError';
 import {
   ICoordinatorToMember,
-  ICoordinatorToMember_create,
-  ICoordinatorToMember_get_id,
-  ICoordinatorToMember_update,
-  ICoordinatorToMember_delete,
+  ICoordinatorToMemberCreate,
+  ICoordinatorToMemberGetById,
+  ICoordinatorToMemberUpdate,
+  ICoordinatorToMemberDelete,
 } from 'src/interfaces/coordinator-to-member.interface';
 
 @Injectable()
@@ -14,7 +14,7 @@ export class CoordinatorToMemberDbService {
   constructor(private readonly database: DatabaseService) {}
 
   /* ----------------  CREATE  ---------------- */
-  public async create(data: ICoordinatorToMember_create): Promise<ICoordinatorToMember> {
+  public async create(data: ICoordinatorToMemberCreate): Promise<ICoordinatorToMember> {
     const board = await handlerError(
       this.database.coordinatorToMember.create({
         data: {
@@ -37,13 +37,13 @@ export class CoordinatorToMemberDbService {
   }
 
   // find by id
-  public async findById({ id }: ICoordinatorToMember_get_id): Promise<ICoordinatorToMember> {
+  public async findById({ id }: ICoordinatorToMemberGetById): Promise<ICoordinatorToMember> {
     const board = await handlerError(this.database.coordinatorToMember.findUnique({ where: { id } }));
     return board;
   }
 
   /* ----------------  UPDATE  ---------------- */
-  public async update(data: ICoordinatorToMember_update): Promise<ICoordinatorToMember> {
+  public async update(data: ICoordinatorToMemberUpdate): Promise<ICoordinatorToMember> {
     const board = await handlerError(
       this.database.coordinatorToMember.update({
         where: { id: data.id },
@@ -59,7 +59,7 @@ export class CoordinatorToMemberDbService {
   }
 
   /* ----------------  DELETE  ---------------- */
-  public async delete(data: ICoordinatorToMember_delete): Promise<ICoordinatorToMember> {
+  public async delete(data: ICoordinatorToMemberDelete): Promise<ICoordinatorToMember> {
     const board = await handlerError(this.database.coordinatorToMember.delete({ where: { id: data.id } }));
     return board;
   }

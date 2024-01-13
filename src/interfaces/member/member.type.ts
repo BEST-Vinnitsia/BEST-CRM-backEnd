@@ -33,13 +33,13 @@ export interface IMember {
 /* ----------------  GET  ---------------- */
 
 // get list
-export interface IMember_get_list_RES extends IMember {
+export interface IMemberGetListRes extends IMember {
   membership: IMembership;
 }
 
 // get by id
-export interface IMember_get_id extends Pick<IMember, 'id'> {}
-export interface IMember_get_id_RES extends IMember {
+export interface IMemberGetId extends Pick<IMember, 'id'> {}
+export interface IMemberGetIdRes extends IMember {
   membership: IMembership;
   memberEmail: IEmail[];
   memberPhone: IPhone[];
@@ -47,19 +47,19 @@ export interface IMember_get_id_RES extends IMember {
 }
 
 // check by id
-export interface IMember_check_id extends Pick<IMember, 'id'> {}
+export interface IMemberCheckById extends Pick<IMember, 'id'> {}
 
 // check by email
-export interface IMember_check_email extends Pick<IMember, 'email'> {}
+export interface IMemberCheckEmail extends Pick<IMember, 'email'> {}
 
 /* ----------------  POST  ---------------- */
-export interface IMember_create extends Omit<IMember, 'id' | 'createdAt' | 'updatedAt'> {}
-export interface IMember_create_RES extends IMember {
+export interface IMemberCreate extends Omit<IMember, 'id' | 'createdAt' | 'updatedAt'> {}
+export interface IMemberCreateRes extends IMember {
   membership: IMembership;
 }
 
 /* ----------------  PUT  ---------------- */
-export interface IMember_update extends Omit<IMember, 'createdAt' | 'updatedAt'> {}
+export interface IMemberUpdate extends Omit<IMember, 'createdAt' | 'updatedAt'> {}
 
 /* ----------------  DELETE  ---------------- */
-export interface IMember_delete_id extends Pick<IMember, 'id'> {}
+export interface IMemberDelete extends Pick<IMember, 'id'> {}

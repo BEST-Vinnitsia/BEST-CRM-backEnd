@@ -1,8 +1,9 @@
 import { IsDateString, IsEnum, IsNotEmpty, IsString, IsUUID } from 'class-validator';
 import { MeetingEnum } from 'src/constants/enums';
 import { ApiProperty } from '@nestjs/swagger';
+import { IMeetingUpdate } from 'src/interfaces/meeting.interface';
 
-export class MeetingUpdateDto {
+export class MeetingUpdateDto implements IMeetingUpdate {
   @ApiProperty()
   @IsNotEmpty()
   @IsString()

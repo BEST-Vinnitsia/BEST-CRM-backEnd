@@ -5,6 +5,7 @@ import { CoordinatorToMemberCreateDto } from './dto/create.dto';
 import { CoordinatorToMemberUpdateDto } from './dto/update.dto';
 import { CoordinatorToMemberDeleteDto } from './dto/delete.dto';
 import { ApiCreatedResponse, ApiTags, ApiSecurity } from '@nestjs/swagger';
+import { CoordinatorToMemberDto } from './dto/coordinator-to-member.dto';
 
 @ApiSecurity('basic')
 @ApiTags('Coordinator to member')
@@ -15,34 +16,34 @@ export class CoordinatorToMemberController {
   /* ----------------  GET  ---------------- */
 
   @Get('list')
-  @ApiCreatedResponse()
+  @ApiCreatedResponse({type: CoordinatorToMemberDto})
   async list() {
     return await this.coordinatorToMemberService.getList();
   }
 
   @Get('by-id')
-  @ApiCreatedResponse()
+  @ApiCreatedResponse({type: CoordinatorToMemberDto})
   async byId(@Query() data: CoordinatorToMemberGetByIdDto) {
     return await this.coordinatorToMemberService.getById(data);
   }
 
   /* ----------------  POST  ---------------- */
   @Post('create')
-  @ApiCreatedResponse()
+  @ApiCreatedResponse({type: CoordinatorToMemberDto})
   async create(@Body() data: CoordinatorToMemberCreateDto) {
     return await this.coordinatorToMemberService.create(data);
   }
 
   /* ----------------  PUT  ---------------- */
   @Put('by-id')
-  @ApiCreatedResponse()
+  @ApiCreatedResponse({type: CoordinatorToMemberDto})
   async update(@Body() data: CoordinatorToMemberUpdateDto) {
     return await this.coordinatorToMemberService.update(data);
   }
 
   /* ----------------  DELETE  ---------------- */
   @Delete('by-id')
-  @ApiCreatedResponse()
+  @ApiCreatedResponse({type: CoordinatorToMemberDto})
   async delete(@Query() data: CoordinatorToMemberDeleteDto) {
     return await this.coordinatorToMemberService.delete(data);
   }

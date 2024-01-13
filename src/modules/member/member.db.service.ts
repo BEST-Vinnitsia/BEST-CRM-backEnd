@@ -3,15 +3,15 @@ import { DatabaseService } from '../database/database.service';
 import { handlerError } from 'src/utils/handlerError';
 import {
   IMember,
-  IMember_create,
-  IMember_create_RES,
-  IMember_check_email,
-  IMember_get_id,
-  IMember_get_id_RES,
-  IMember_get_list_RES,
-  IMember_check_id,
-  IMember_delete_id,
-  IMember_update,
+  IMemberCreate,
+  IMemberCreateRes,
+  IMemberCheckEmail,
+  IMemberGetId,
+  IMemberGetIdRes,
+  IMemberGetListRes,
+  IMemberCheckById,
+  IMemberDelete,
+  IMemberUpdate,
 } from 'src/interfaces/member/member.type';
 
 @Injectable()
@@ -19,7 +19,7 @@ export class MemberDbService {
   constructor(private readonly database: DatabaseService) {}
 
   /* ----------------  CREATE  ---------------- */
-  public async create(data: IMember_create): Promise<IMember_create_RES> {
+  public async create(data: IMemberCreate): Promise<IMemberCreateRes> {
     const member = await handlerError(
       this.database.member.create({
         data: {
@@ -49,7 +49,7 @@ export class MemberDbService {
   /* ----------------  READ  ---------------- */
 
   // find many
-  public async findMany(): Promise<IMember_get_list_RES[]> {
+  public async findMany(): Promise<IMemberGetListRes[]> {
     const member = await handlerError(
       this.database.member.findMany({
         include: { membership: true },
@@ -59,7 +59,7 @@ export class MemberDbService {
   }
 
   // find by id
-  public async findById({ id }: IMember_get_id): Promise<IMember_get_id_RES> {
+  public async findById({ id }: IMemberGetId): Promise<IMemberGetIdRes> {
     const member = await handlerError(
       this.database.member.findUnique({
         where: { id },
@@ -70,20 +70,20 @@ export class MemberDbService {
   }
 
   // check by id
-  public async checkById({ id }: IMember_check_id): Promise<IMember> {
+  public async checkById({ id }: IMemberCheckById): Promise<IMember> {
     const member = await handlerError(this.database.member.findUnique({ where: { id } }));
     return member;
   }
 
   // check by email
-  public async checkByEmail({ email }: IMember_check_email): Promise<IMember> {
+  public async checkByEmail({ email }: IMemberCheckEmail): Promise<IMember> {
     const member = await handlerError(this.database.member.findUnique({ where: { email } }));
     return member;
   }
 
   /* ----------------  UPDATE  ---------------- */
 
-  public async update(data: IMember_update): Promise<IMember> {
+  public async update(data: IMemberUpdate): Promise<IMember> {
     const member = await handlerError(
       this.database.member.update({
         where: { id: data.id },
@@ -114,7 +114,7 @@ export class MemberDbService {
   /* ----------------  DELETE  ---------------- */
 
   // delete by id
-  public async deleteById({ id }: IMember_delete_id): Promise<IMember> {
+  public async deleteById({ id }: IMemberDelete): Promise<IMember> {
     const member = await handlerError(this.database.member.delete({ where: { id } }));
     return member;
   }

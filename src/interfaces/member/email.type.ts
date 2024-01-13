@@ -12,17 +12,14 @@ export interface IEmail {
 
 /* ----------------  GET  ---------------- */
 
-// get list
-export interface IEmail_get_list extends Pick<IEmail, 'memberId'> {}
-
 // get by id
-export interface IEmail_get_id extends Pick<IEmail, 'id' | 'memberId'> {}
+export interface IEmailGetById extends Pick<IEmail, 'id' | 'memberId'> {}
 
 /* ----------------  POST  ---------------- */
-export interface IEmail_create extends Omit<IEmail, 'id' | 'createdAt' | 'updatedAt'> {}
+export interface IEmailCreate extends Omit<IEmail, 'id' | 'createdAt' | 'updatedAt'> {}
 
 /* ----------------  PUT  ---------------- */
-export interface IEmail_update extends Omit<IEmail, 'createdAt' | 'updatedAt'> {}
+export interface IEmailUpdate extends Omit<IEmail, 'createdAt' | 'updatedAt'> {}
 
 /* ----------------  DELETE  ---------------- */
-export interface IEmail_update extends Pick<IEmail, 'id'> {}
+export interface IEmailDelete extends Pick<IEmail, 'id'> {}

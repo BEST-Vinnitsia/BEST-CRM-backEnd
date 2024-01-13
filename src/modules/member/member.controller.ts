@@ -3,8 +3,9 @@ import { MemberService } from './member.service';
 import { MemberCreateDto } from './dto/create.dto';
 import { MemberGetByIdDto } from './dto/getById.dto';
 import { MemberUpdateDto } from './dto/update.dto';
-import { MemberDeleteByIdDto } from './dto/deleteById.dto';
+import { MemberDeleteDto } from './dto/deleteById.dto';
 import { ApiCreatedResponse, ApiTags, ApiSecurity } from '@nestjs/swagger';
+import { MemberDto } from './dto/member.dto';
 
 @ApiSecurity('basic')
 @ApiTags('Member')
@@ -15,27 +16,27 @@ export class MemberController {
   /* ----------------  GET  ---------------- */
 
   @Get('list')
-  @ApiCreatedResponse()
+  @ApiCreatedResponse({ type: MemberDto })
   async list() {
     return await this.memberService.getList();
   }
 
   @Get('by-id')
-  @ApiCreatedResponse()
+  @ApiCreatedResponse({ type: MemberDto })
   async getById(@Query() data: MemberGetByIdDto) {
     return await this.memberService.getById(data);
   }
 
   /* ----------------  POST  ---------------- */
   @Post('create')
-  @ApiCreatedResponse()
+  @ApiCreatedResponse({ type: MemberDto })
   async create(@Body() data: MemberCreateDto) {
     return await this.memberService.create(data);
   }
 
   /* ----------------  PUT  ---------------- */
   @Put('update')
-  @ApiCreatedResponse()
+  @ApiCreatedResponse({ type: MemberDto })
   async update(@Body() data: MemberUpdateDto) {
     return await this.memberService.update(data);
   }
@@ -43,8 +44,8 @@ export class MemberController {
   /* ----------------  DELETE  ---------------- */
 
   @Delete('by-id')
-  @ApiCreatedResponse()
-  async deleteById(@Query() data: MemberDeleteByIdDto) {
+  @ApiCreatedResponse({ type: MemberDto })
+  async deleteById(@Query() data: MemberDeleteDto) {
     return await this.memberService.deleteById(data);
   }
 }

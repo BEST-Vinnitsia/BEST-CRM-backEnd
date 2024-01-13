@@ -15,13 +15,13 @@ export interface ICoordinatorToMember {
 /* ----------------  GET  ---------------- */
 
 // get by id
-export interface ICoordinatorToMember_get_id extends Pick<ICoordinatorToMember, 'id'> {}
+export interface ICoordinatorToMemberGetById extends Pick<ICoordinatorToMember, 'id'> {}
 
 /* ----------------  POST  ---------------- */
-export interface ICoordinatorToMember_create extends Omit<ICoordinatorToMember, 'id' | 'createdAt' | 'updatedAt'> {}
+export interface ICoordinatorToMemberCreate extends Omit<ICoordinatorToMember, 'id' | 'createdAt' | 'updatedAt'> {}
 
 /* ----------------  PUT  ---------------- */
-export interface ICoordinatorToMember_update extends Omit<ICoordinatorToMember, 'createdAt' | 'updatedAt'> {}
+export interface ICoordinatorToMemberUpdate extends Omit<ICoordinatorToMember, 'createdAt' | 'updatedAt'> {}
 
 /* ----------------  DELETE  ---------------- */
-export interface ICoordinatorToMember_delete extends Pick<ICoordinatorToMember, 'id'> {}
+export interface ICoordinatorToMemberDelete extends Pick<ICoordinatorToMember, 'id'> {}

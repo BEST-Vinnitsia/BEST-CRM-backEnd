@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { MembershipDbService } from './membership.db.service';
-import { IMembership, IMembership_create, IMembership_delete, IMembership_get_id, IMembership_update } from 'src/interfaces/member/membership.type';
+import { IMembership, IMembershipCreate, IMembershipDelete, IMembershipGetById, IMembershipUpdate } from 'src/interfaces/member/membership.type';
 
 @Injectable()
 export class MembershipService {
@@ -15,7 +15,7 @@ export class MembershipService {
   }
 
   // get by id
-  public async getById(data: IMembership_get_id): Promise<IMembership> {
+  public async getById(data: IMembershipGetById): Promise<IMembership> {
     // checking if the member exists
     const membership = await this.membershipDBService.findById({ id: data.id });
     if (!membership) throw new NotFoundException('membership not found');
@@ -24,7 +24,7 @@ export class MembershipService {
   }
 
   /* ----------------  POST  ---------------- */
-  public async create(data: IMembership_create): Promise<IMembership> {
+  public async create(data: IMembershipCreate): Promise<IMembership> {
     // checking if the member exists
     const membership = await this.membershipDBService.checkByName({ name: data.name });
     if (membership) throw new BadRequestException('membership is exist');
@@ -34,7 +34,7 @@ export class MembershipService {
   }
 
   /* ----------------  PUT  ---------------- */
-  public async update(data: IMembership_update): Promise<IMembership> {
+  public async update(data: IMembershipUpdate): Promise<IMembership> {
     // checking if the member exists
     const membership = await this.membershipDBService.checkByName({ name: data.name });
     if (membership) throw new BadRequestException('membership is exist');
@@ -44,7 +44,7 @@ export class MembershipService {
   }
 
   /* ----------------  DELETE  ---------------- */
-  public async delete(data: IMembership_delete): Promise<IMembership> {
+  public async delete(data: IMembershipDelete): Promise<IMembership> {
     // checking if the member exists
     const membership = await this.membershipDBService.findById({ id: data.id });
     if (!membership) throw new BadRequestException('membership is not exist');

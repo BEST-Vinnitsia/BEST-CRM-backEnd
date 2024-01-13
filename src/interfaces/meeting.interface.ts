@@ -14,13 +14,13 @@ export interface IMeeting {
 /* ----------------  GET  ---------------- */
 
 // get by id
-export interface IMeeting_get_id extends Pick<IMeeting, 'id'> {}
+export interface IMeetingGetById extends Pick<IMeeting, 'id'> {}
 
 /* ----------------  POST  ---------------- */
-export interface IMeeting_create extends Omit<IMeeting, 'id' | 'createdAt' | 'updatedAt'> {}
+export interface IMeetingCreate extends Omit<IMeeting, 'id' | 'createdAt' | 'updatedAt'> {}
 
 /* ----------------  PUT  ---------------- */
-export interface IMeeting_update extends Omit<IMeeting, 'createdAt' | 'updatedAt'> {}
+export interface IMeetingUpdate extends Omit<IMeeting, 'createdAt' | 'updatedAt'> {}
 
 /* ----------------  DELETE  ---------------- */
-export interface IMeeting_delete extends Pick<IMeeting, 'id'> {}
+export interface IMeetingDelete extends Pick<IMeeting, 'id'> {}

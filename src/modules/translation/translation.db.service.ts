@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { DatabaseService } from '../database/database.service';
 import { handlerError } from 'src/utils/handlerError';
-import { ITranslation, ITranslation_create, ITranslation_get_id, ITranslation_update, ITranslation_delete } from 'src/interfaces/translation.interface';
+import { ITranslation, ITranslationCreate, ITranslationGetById, ITranslationUpdate, ITranslationDelete } from 'src/interfaces/translation.interface';
 
 @Injectable()
 export class TranslationDbService {
   constructor(private readonly database: DatabaseService) {}
 
   /* ----------------  CREATE  ---------------- */
-  public async create(data: ITranslation_create): Promise<ITranslation> {
+  public async create(data: ITranslationCreate): Promise<ITranslation> {
     const board = await handlerError(
       this.database.translation.create({
         data: {
@@ -30,13 +30,13 @@ export class TranslationDbService {
   }
 
   // find by id
-  public async findById({ id }: ITranslation_get_id): Promise<ITranslation> {
+  public async findById({ id }: ITranslationGetById): Promise<ITranslation> {
     const board = await handlerError(this.database.translation.findUnique({ where: { id } }));
     return board;
   }
 
   /* ----------------  UPDATE  ---------------- */
-  public async update(data: ITranslation_update): Promise<ITranslation> {
+  public async update(data: ITranslationUpdate): Promise<ITranslation> {
     const board = await handlerError(
       this.database.translation.update({
         where: { id: data.id },
@@ -51,7 +51,7 @@ export class TranslationDbService {
   }
 
   /* ----------------  DELETE  ---------------- */
-  public async delete(data: ITranslation_delete): Promise<ITranslation> {
+  public async delete(data: ITranslationDelete): Promise<ITranslation> {
     const board = await handlerError(this.database.translation.delete({ where: { id: data.id } }));
     return board;
   }

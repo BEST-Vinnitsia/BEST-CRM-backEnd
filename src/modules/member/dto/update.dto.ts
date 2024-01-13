@@ -3,8 +3,9 @@ import { ClothingSizeEnum } from 'src/constants/enums';
 import { Regex } from 'src/constants/regex';
 import { IsDateWithinRange } from 'src/pipes/isDateWithinRange.pipe';
 import { ApiProperty } from '@nestjs/swagger';
+import { IMemberUpdate } from 'src/interfaces/member/member.type';
 
-export class MemberUpdateDto {
+export class MemberUpdateDto implements IMemberUpdate {
   @ApiProperty()
   @IsNotEmpty()
   @IsString()

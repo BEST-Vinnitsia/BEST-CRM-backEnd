@@ -2,13 +2,13 @@ import { BadRequestException, Injectable, NotFoundException } from '@nestjs/comm
 import { MemberDbService } from './member.db.service';
 import {
   IMember,
-  IMember_create,
-  IMember_create_RES,
-  IMember_delete_id,
-  IMember_get_id,
-  IMember_get_id_RES,
-  IMember_get_list_RES,
-  IMember_update,
+  IMemberCreate,
+  IMemberCreateRes,
+  IMemberDelete,
+  IMemberGetId,
+  IMemberGetIdRes,
+  IMemberGetListRes,
+  IMemberUpdate,
 } from 'src/interfaces/member/member.type';
 
 @Injectable()
@@ -18,13 +18,13 @@ export class MemberService {
   /* ----------------  GET  ---------------- */
 
   // get list
-  public async getList(): Promise<IMember_get_list_RES[]> {
+  public async getList(): Promise<IMemberGetListRes[]> {
     const memberList = await this.memberDBService.findMany();
     return memberList;
   }
 
   // get by id
-  public async getById(data: IMember_get_id): Promise<IMember_get_id_RES> {
+  public async getById(data: IMemberGetId): Promise<IMemberGetIdRes> {
     // checking if the member exists
     const member = await this.memberDBService.findById({ id: data.id });
     if (!member) throw new NotFoundException('member not found');
@@ -33,7 +33,7 @@ export class MemberService {
   }
 
   /* ----------------  POST  ---------------- */
-  public async create(data: IMember_create): Promise<IMember_create_RES> {
+  public async create(data: IMemberCreate): Promise<IMemberCreateRes> {
     // checking if the member exists
     const member = await this.memberDBService.checkByEmail({ email: data.email });
     if (member) throw new BadRequestException('member is exist');
@@ -43,7 +43,7 @@ export class MemberService {
   }
 
   /* ----------------  PUT  ---------------- */
-  public async update(data: IMember_update): Promise<IMember> {
+  public async update(data: IMemberUpdate): Promise<IMember> {
     // checking if the member exists
     const member = await this.memberDBService.checkById({ id: data.id });
     if (!member) throw new BadRequestException('member is not exist');
@@ -55,7 +55,7 @@ export class MemberService {
   /* ----------------  DELETE  ---------------- */
 
   // delete by id
-  public async deleteById(data: IMember_delete_id): Promise<IMember> {
+  public async deleteById(data: IMemberDelete): Promise<IMember> {
     // checking if the member exists
     const member = await this.memberDBService.checkById({ id: data.id });
     if (!member) throw new NotFoundException('member not found');

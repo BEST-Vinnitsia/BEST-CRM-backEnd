@@ -2,10 +2,10 @@ import { BadRequestException, Injectable, NotFoundException } from '@nestjs/comm
 import { CoordinatorToMemberDbService } from './coordinator-to-member.db.service';
 import {
   ICoordinatorToMember,
-  ICoordinatorToMember_create,
-  ICoordinatorToMember_delete,
-  ICoordinatorToMember_get_id,
-  ICoordinatorToMember_update,
+  ICoordinatorToMemberCreate,
+  ICoordinatorToMemberDelete,
+  ICoordinatorToMemberGetById,
+  ICoordinatorToMemberUpdate,
 } from 'src/interfaces/coordinator-to-member.interface';
 
 @Injectable()
@@ -21,7 +21,7 @@ export class CoordinatorToMemberService {
   }
 
   // get by id
-  public async getById(data: ICoordinatorToMember_get_id): Promise<ICoordinatorToMember> {
+  public async getById(data: ICoordinatorToMemberGetById): Promise<ICoordinatorToMember> {
     // checking if the member exists
     const membership = await this.coordinatorToMemberDBService.findById({ id: data.id });
     if (!membership) throw new NotFoundException('cadence not found');
@@ -30,19 +30,19 @@ export class CoordinatorToMemberService {
   }
 
   /* ----------------  POST  ---------------- */
-  public async create(data: ICoordinatorToMember_create): Promise<ICoordinatorToMember> {
+  public async create(data: ICoordinatorToMemberCreate): Promise<ICoordinatorToMember> {
     const newMembership = await this.coordinatorToMemberDBService.create(data);
     return newMembership;
   }
 
   /* ----------------  PUT  ---------------- */
-  public async update(data: ICoordinatorToMember_update): Promise<ICoordinatorToMember> {
+  public async update(data: ICoordinatorToMemberUpdate): Promise<ICoordinatorToMember> {
     const updateMembership = await this.coordinatorToMemberDBService.update(data);
     return updateMembership;
   }
 
   /* ----------------  DELETE  ---------------- */
-  public async delete(data: ICoordinatorToMember_delete): Promise<ICoordinatorToMember> {
+  public async delete(data: ICoordinatorToMemberDelete): Promise<ICoordinatorToMember> {
     // checking if the member exists
     const membership = await this.coordinatorToMemberDBService.findById({ id: data.id });
     if (!membership) throw new BadRequestException('cadence is not exist');

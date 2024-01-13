@@ -1,7 +1,8 @@
 import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { IMeetingDelete } from 'src/interfaces/meeting.interface';
 
-export class MeetingDeleteDto {
+export class MeetingDeleteDto implements IMeetingDelete {
   @ApiProperty()
   @IsNotEmpty()
   @IsString()

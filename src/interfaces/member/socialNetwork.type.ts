@@ -13,17 +13,14 @@ export interface ISocialNetwork {
 
 /* ----------------  GET  ---------------- */
 
-// get list
-export interface ISocialNetwork_get_list extends Pick<ISocialNetwork, 'memberId'> {}
-
 // get by id
-export interface ISocialNetwork_get_id extends Pick<ISocialNetwork, 'id'> {}
+export interface ISocialNetworkGetById extends Pick<ISocialNetwork, 'id'> {}
 
 /* ----------------  POST  ---------------- */
-export interface ISocialNetwork_create extends Omit<ISocialNetwork, 'id' | 'createdAt' | 'updatedAt'> {}
+export interface ISocialNetworkCreate extends Omit<ISocialNetwork, 'id' | 'createdAt' | 'updatedAt'> {}
 
 /* ----------------  PUT  ---------------- */
-export interface ISocialNetwork_update extends Omit<ISocialNetwork, 'createdAt' | 'updatedAt'> {}
+export interface ISocialNetworkUpdate extends Omit<ISocialNetwork, 'createdAt' | 'updatedAt'> {}
 
 /* ----------------  DELETE  ---------------- */
-export interface ISocialNetwork_update extends Pick<ISocialNetwork, 'id'> {}
+export interface ISocialNetworkDelete extends Pick<ISocialNetwork, 'id'> {}
