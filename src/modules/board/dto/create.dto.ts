@@ -4,7 +4,7 @@ import { BoardEnum } from 'src/constants/enums';
 import { IBoardCreate } from 'src/interfaces/board.interface';
 
 export class BoardCreateDto implements IBoardCreate {
-  @ApiProperty()
+  @ApiProperty({ enum: BoardEnum })
   @IsNotEmpty()
   @IsString()
   @IsEnum(BoardEnum)

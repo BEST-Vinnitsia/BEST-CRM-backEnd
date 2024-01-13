@@ -4,7 +4,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { ICoordinatorCreate } from 'src/interfaces/coordinator.interface';
 
 export class CoordinatorCreateDto implements ICoordinatorCreate {
-  @ApiProperty()
+  @ApiProperty({ enum: CoordinatorEnum })
   @IsNotEmpty()
   @IsString()
   @IsEnum(CoordinatorEnum)

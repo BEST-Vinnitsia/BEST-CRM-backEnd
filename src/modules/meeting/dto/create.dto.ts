@@ -4,7 +4,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IMeetingCreate } from 'src/interfaces/meeting.interface';
 
 export class MeetingCreateDto implements IMeetingCreate {
-  @ApiProperty()
+  @ApiProperty({ enum: MeetingEnum })
   @IsNotEmpty()
   @IsString()
   @IsEnum(MeetingEnum)

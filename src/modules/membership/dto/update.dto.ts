@@ -11,7 +11,7 @@ export class MembershipUpdateDto implements IMembershipUpdate {
   @IsUUID('4')
   id: string;
 
-  @ApiProperty()
+  @ApiProperty({ enum: MembershipEnum })
   @IsNotEmpty()
   @IsString()
   @IsEnum(MembershipEnum)

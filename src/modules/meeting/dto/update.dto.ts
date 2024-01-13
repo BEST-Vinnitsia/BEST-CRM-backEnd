@@ -11,7 +11,7 @@ export class MeetingUpdateDto implements IMeetingUpdate {
   @IsUUID('4')
   id: string;
 
-  @ApiProperty()
+  @ApiProperty({ enum: MeetingEnum })
   @IsNotEmpty()
   @IsString()
   @IsEnum(MeetingEnum)

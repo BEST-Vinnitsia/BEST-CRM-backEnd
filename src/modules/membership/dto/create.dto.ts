@@ -4,7 +4,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IMembershipCreate } from 'src/interfaces/member/membership.type';
 
 export class MembershipCreateDto implements IMembershipCreate {
-  @ApiProperty()
+  @ApiProperty({ enum: MembershipEnum })
   @IsNotEmpty()
   @IsString()
   @IsEnum(MembershipEnum)
