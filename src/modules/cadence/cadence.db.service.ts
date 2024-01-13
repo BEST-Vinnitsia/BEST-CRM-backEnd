@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { DatabaseService } from '../database/database.service';
 import { handlerError } from 'src/utils/handlerError';
-import { ICadence, ICadence_create, ICadence_get_id, ICadence_update, ICadence_delete, ICadence_check_number } from 'src/types/cadence.interface';
+import { ICadence, ICadenceCreate, ICadenceGetById, ICadenceUpdate, ICadenceDelete, ICadenceCheckNumber } from 'src/interfaces/cadence.interface';
 
 @Injectable()
 export class CadenceDbService {
   constructor(private readonly database: DatabaseService) {}
 
   /* ----------------  CREATE  ---------------- */
-  public async create(data: ICadence_create): Promise<ICadence> {
+  public async create(data: ICadenceCreate): Promise<ICadence> {
     const cadence = await handlerError(
       this.database.cadence.create({
         data: {
@@ -30,19 +30,19 @@ export class CadenceDbService {
   }
 
   // find by id
-  public async findById({ id }: ICadence_get_id): Promise<ICadence> {
+  public async findById({ id }: ICadenceGetById): Promise<ICadence> {
     const cadence = await handlerError(this.database.cadence.findUnique({ where: { id } }));
     return cadence;
   }
 
   // check by number
-  public async checkByNumber({ number }: ICadence_check_number): Promise<ICadence> {
+  public async checkByNumber({ number }: ICadenceCheckNumber): Promise<ICadence> {
     const cadence = await handlerError(this.database.cadence.findUnique({ where: { number } }));
     return cadence;
   }
 
   /* ----------------  UPDATE  ---------------- */
-  public async update(data: ICadence_update): Promise<ICadence> {
+  public async update(data: ICadenceUpdate): Promise<ICadence> {
     const cadence = await handlerError(
       this.database.cadence.update({
         where: { id: data.id },
@@ -57,7 +57,7 @@ export class CadenceDbService {
   }
 
   /* ----------------  DELETE  ---------------- */
-  public async delete(data: ICadence_delete): Promise<ICadence> {
+  public async delete(data: ICadenceDelete): Promise<ICadence> {
     const cadence = await handlerError(this.database.cadence.delete({ where: { id: data.id } }));
     return cadence;
   }

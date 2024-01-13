@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
-import { IBoardToMember } from 'src/types/board-to-member.interface';
+import { IBoardToMember } from 'src/interfaces/board-to-member.interface';
 
 export class BoardToMemberDto implements IBoardToMember {
   @ApiProperty({ example: randomUUID() })

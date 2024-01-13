@@ -5,6 +5,7 @@ import { CadenceCreateDto } from './dto/create.dto';
 import { CadenceUpdateDto } from './dto/update.dto';
 import { CadenceDeleteDto } from './dto/delete.dto';
 import { ApiCreatedResponse, ApiTags, ApiSecurity } from '@nestjs/swagger';
+import { CadenceDto } from './dto/cadence.dto';
 
 @ApiSecurity('basic')
 @ApiTags('Cadence')
@@ -15,34 +16,34 @@ export class CadenceController {
   /* ----------------  GET  ---------------- */
 
   @Get('list')
-  @ApiCreatedResponse()
+  @ApiCreatedResponse({ type: CadenceDto })
   async list() {
     return await this.cadenceService.getList();
   }
 
   @Get('by-id')
-  @ApiCreatedResponse()
+  @ApiCreatedResponse({ type: CadenceDto })
   async byId(@Query() data: CadenceGetByIdDto) {
     return await this.cadenceService.getById(data);
   }
 
   /* ----------------  POST  ---------------- */
   @Post('create')
-  @ApiCreatedResponse()
+  @ApiCreatedResponse({ type: CadenceDto })
   async create(@Body() data: CadenceCreateDto) {
     return await this.cadenceService.create(data);
   }
 
   /* ----------------  PUT  ---------------- */
   @Put('by-id')
-  @ApiCreatedResponse()
+  @ApiCreatedResponse({ type: CadenceDto })
   async update(@Body() data: CadenceUpdateDto) {
     return await this.cadenceService.update(data);
   }
 
   /* ----------------  DELETE  ---------------- */
   @Delete('by-id')
-  @ApiCreatedResponse()
+  @ApiCreatedResponse({ type: CadenceDto })
   async delete(@Query() data: CadenceDeleteDto) {
     return await this.cadenceService.delete(data);
   }

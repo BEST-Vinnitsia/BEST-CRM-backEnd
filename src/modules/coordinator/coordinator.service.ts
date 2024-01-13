@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CoordinatorDbService } from './coordinator.db.service';
-import { ICoordinator, ICoordinator_create, ICoordinator_delete, ICoordinator_get_id, ICoordinator_update } from 'src/types/coordinator.interface';
+import { ICoordinator, ICoordinatorCreate, ICoordinatorDelete, ICoordinatorGetById, ICoordinatorUpdate } from 'src/interfaces/coordinator.interface';
 
 @Injectable()
 export class CoordinatorService {
@@ -15,7 +15,7 @@ export class CoordinatorService {
   }
 
   // get by id
-  public async getById(data: ICoordinator_get_id): Promise<ICoordinator> {
+  public async getById(data: ICoordinatorGetById): Promise<ICoordinator> {
     // checking if the member exists
     const membership = await this.coordinatorDBService.findById({ id: data.id });
     if (!membership) throw new NotFoundException('cadence not found');
@@ -24,7 +24,7 @@ export class CoordinatorService {
   }
 
   /* ----------------  POST  ---------------- */
-  public async create(data: ICoordinator_create): Promise<ICoordinator> {
+  public async create(data: ICoordinatorCreate): Promise<ICoordinator> {
     // checking if the member exists
     const membership = await this.coordinatorDBService.checkByName({ name: data.name });
     if (membership) throw new BadRequestException('cadence is exist');
@@ -34,13 +34,13 @@ export class CoordinatorService {
   }
 
   /* ----------------  PUT  ---------------- */
-  public async update(data: ICoordinator_update): Promise<ICoordinator> {
+  public async update(data: ICoordinatorUpdate): Promise<ICoordinator> {
     const updateMembership = await this.coordinatorDBService.update(data);
     return updateMembership;
   }
 
   /* ----------------  DELETE  ---------------- */
-  public async delete(data: ICoordinator_delete): Promise<ICoordinator> {
+  public async delete(data: ICoordinatorDelete): Promise<ICoordinator> {
     // checking if the member exists
     const membership = await this.coordinatorDBService.findById({ id: data.id });
     if (!membership) throw new BadRequestException('cadence is not exist');

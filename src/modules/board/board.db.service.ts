@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { DatabaseService } from '../database/database.service';
 import { handlerError } from 'src/utils/handlerError';
-import { IBoard, IBoardCreate, IBoardGetById, IBoardUpdate, IBoardDelete, IBoardCheckName } from 'src/types/board.interface';
+import { IBoard, IBoardCreate, IBoardGetById, IBoardUpdate, IBoardDelete, IBoardCheckName } from 'src/interfaces/board.interface';
 
 @Injectable()
 export class BoardDbService {

@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { MembershipDbService } from './membership.db.service';
-import { IMembership, IMembership_create, IMembership_delete, IMembership_get_id, IMembership_update } from 'src/types/member/membership.type';
+import { IMembership, IMembership_create, IMembership_delete, IMembership_get_id, IMembership_update } from 'src/interfaces/member/membership.type';
 
 @Injectable()
 export class MembershipService {

@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { MeetingDbService } from './meeting.db.service';
-import { IMeeting, IMeeting_create, IMeeting_delete, IMeeting_get_id, IMeeting_update } from 'src/types/meeting.interface';
+import { IMeeting, IMeeting_create, IMeeting_delete, IMeeting_get_id, IMeeting_update } from 'src/interfaces/meeting.interface';
 
 @Injectable()
 export class MeetingService {

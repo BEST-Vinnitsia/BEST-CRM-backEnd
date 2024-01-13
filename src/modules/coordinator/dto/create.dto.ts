@@ -1,8 +1,9 @@
 import { IsNotEmpty, IsString, IsEnum, IsBoolean } from 'class-validator';
 import { CoordinatorEnum } from 'src/constants/enums';
 import { ApiProperty } from '@nestjs/swagger';
+import { ICoordinatorCreate } from 'src/interfaces/coordinator.interface';
 
-export class CoordinatorCreateDto {
+export class CoordinatorCreateDto implements ICoordinatorCreate {
   @ApiProperty()
   @IsNotEmpty()
   @IsString()

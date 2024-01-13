@@ -1,6 +1,6 @@
 import { IsBoolean, IsNotEmpty, IsString, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { IBoardToMemberUpdate } from 'src/types/board-to-member.interface';
+import { IBoardToMemberUpdate } from 'src/interfaces/board-to-member.interface';
 
 export class BoardToMemberUpdateDto implements IBoardToMemberUpdate {
   @ApiProperty()

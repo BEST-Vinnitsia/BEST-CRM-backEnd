@@ -9,7 +9,7 @@ import {
   IMember_get_id_RES,
   IMember_get_list_RES,
   IMember_update,
-} from 'src/types/member/member.type';
+} from 'src/interfaces/member/member.type';
 
 @Injectable()
 export class MemberService {

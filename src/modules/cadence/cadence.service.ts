@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CadenceDbService } from './cadence.db.service';
-import { ICadence, ICadence_create, ICadence_delete, ICadence_get_id, ICadence_update } from 'src/types/cadence.interface';
+import { ICadence, ICadenceCreate, ICadenceDelete, ICadenceGetById, ICadenceUpdate } from 'src/interfaces/cadence.interface';
 
 @Injectable()
 export class CadenceService {
@@ -15,7 +15,7 @@ export class CadenceService {
   }
 
   // get by id
-  public async getById(data: ICadence_get_id): Promise<ICadence> {
+  public async getById(data: ICadenceGetById): Promise<ICadence> {
     // checking if the member exists
     const membership = await this.cadenceDBService.findById({ id: data.id });
     if (!membership) throw new NotFoundException('cadence not found');
@@ -24,7 +24,7 @@ export class CadenceService {
   }
 
   /* ----------------  POST  ---------------- */
-  public async create(data: ICadence_create): Promise<ICadence> {
+  public async create(data: ICadenceCreate): Promise<ICadence> {
     // checking if the member exists
     const membership = await this.cadenceDBService.checkByNumber({ number: data.number });
     if (membership) throw new BadRequestException('cadence is exist');
@@ -34,7 +34,7 @@ export class CadenceService {
   }
 
   /* ----------------  PUT  ---------------- */
-  public async update(data: ICadence_update): Promise<ICadence> {
+  public async update(data: ICadenceUpdate): Promise<ICadence> {
     // checking if the member exists
     const membership = await this.cadenceDBService.checkByNumber({ number: data.number });
     if (membership) throw new BadRequestException('cadence is exist');
@@ -44,7 +44,7 @@ export class CadenceService {
   }
 
   /* ----------------  DELETE  ---------------- */
-  public async delete(data: ICadence_delete): Promise<ICadence> {
+  public async delete(data: ICadenceDelete): Promise<ICadence> {
     // checking if the member exists
     const membership = await this.cadenceDBService.findById({ id: data.id });
     if (!membership) throw new BadRequestException('cadence is not exist');

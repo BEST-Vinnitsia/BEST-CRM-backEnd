@@ -1,20 +1,19 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
-import { BoardEnum } from 'src/constants/enums';
-import { IBoard } from 'src/interfaces/board.interface';
+import { ICadence } from 'src/interfaces/cadence.interface';
 
-export class BoardDto implements IBoard {
+export class CadenceDto implements ICadence {
   @ApiProperty({ example: randomUUID() })
   id: string;
 
-  @ApiProperty({ enum: BoardEnum })
-  name: string;
+  @ApiProperty()
+  number: number;
 
   @ApiProperty()
-  isActive: boolean;
+  startDate: Date;
 
   @ApiProperty()
-  committeeIsActive: boolean;
+  endDate: Date;
 
   @ApiProperty()
   createdAt: Date;

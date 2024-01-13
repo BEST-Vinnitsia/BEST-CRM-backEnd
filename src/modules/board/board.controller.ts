@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query, Delete, Put, HttpCode, HttpStatus } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Delete, Put } from '@nestjs/common';
 import { BoardService } from './board.service';
 import { BoardGetByIdDto } from './dto/getById.dto';
 import { BoardCreateDto } from './dto/create.dto';
@@ -29,7 +29,6 @@ export class BoardController {
 
   /* ----------------  POST  ---------------- */
   @Post('create')
-  @HttpCode(HttpStatus.CREATED)
   @ApiCreatedResponse({ type: BoardDto })
   async create(@Body() data: BoardCreateDto) {
     return await this.boardService.create(data);

@@ -1,7 +1,8 @@
 import { IsDateString, IsNotEmpty, IsNumber, IsString, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { ICadenceUpdate } from 'src/interfaces/cadence.interface';
 
-export class CadenceUpdateDto {
+export class CadenceUpdateDto implements ICadenceUpdate {
   @ApiProperty()
   @IsNotEmpty()
   @IsString()

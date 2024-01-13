@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { IServerInfo } from '../../types/server-info.interface';
+import { IServerInfo } from '../../interfaces/server-info.interface';
 
 @Injectable()
 export class AppService {

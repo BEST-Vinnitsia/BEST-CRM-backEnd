@@ -8,7 +8,7 @@ import {
   IMembership_get_id,
   IMembership_delete,
   IMembership_update,
-} from 'src/types/member/membership.type';
+} from 'src/interfaces/member/membership.type';
 
 @Injectable()
 export class MembershipDbService {

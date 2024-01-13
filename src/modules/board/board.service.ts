@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { BoardDbService } from './board.db.service';
-import { IBoard, IBoardCreate, IBoardDelete, IBoardGetById, IBoardUpdate } from 'src/types/board.interface';
+import { IBoard, IBoardCreate, IBoardDelete, IBoardGetById, IBoardUpdate } from 'src/interfaces/board.interface';
 
 @Injectable()
 export class BoardService {

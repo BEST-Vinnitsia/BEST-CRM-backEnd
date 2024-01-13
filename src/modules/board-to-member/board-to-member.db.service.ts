@@ -7,7 +7,7 @@ import {
   IBoardToMemberGetById,
   IBoardToMemberUpdate,
   IBoardToMemberDelete,
-} from 'src/types/board-to-member.interface';
+} from 'src/interfaces/board-to-member.interface';
 
 @Injectable()
 export class BoardToMemberDbService {

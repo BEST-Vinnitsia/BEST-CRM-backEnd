@@ -12,7 +12,7 @@ import {
   IMember_check_id,
   IMember_delete_id,
   IMember_update,
-} from 'src/types/member/member.type';
+} from 'src/interfaces/member/member.type';
 
 @Injectable()
 export class MemberDbService {

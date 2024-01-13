@@ -1,7 +1,8 @@
 import { IsBoolean, IsNotEmpty, IsString, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { ICoordinatorUpdate } from 'src/interfaces/coordinator.interface';
 
-export class CoordinatorUpdateDto {
+export class CoordinatorUpdateDto implements ICoordinatorUpdate {
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
