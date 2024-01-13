@@ -1,12 +1,12 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-import { BoardToMemberDbService } from './boardToMember.db.service';
+import { BoardToMemberDbService } from './board-to-member.db.service';
 import {
   IBoardToMember,
-  IBoardToMember_create,
-  IBoardToMember_delete,
-  IBoardToMember_get_id,
-  IBoardToMember_update,
-} from 'src/types/boardToMember.type';
+  IBoardToMemberCreate,
+  IBoardToMemberDelete,
+  IBoardToMemberGetById,
+  IBoardToMemberUpdate,
+} from 'src/types/board-to-member.interface';
 
 @Injectable()
 export class BoardToMemberService {
@@ -21,7 +21,7 @@ export class BoardToMemberService {
   }
 
   // get by id
-  public async getById(data: IBoardToMember_get_id): Promise<IBoardToMember> {
+  public async getById(data: IBoardToMemberGetById): Promise<IBoardToMember> {
     // checking if the member exists
     const membership = await this.boardToMemberDBService.findById({ id: data.id });
     if (!membership) throw new NotFoundException('cadence not found');
@@ -30,19 +30,19 @@ export class BoardToMemberService {
   }
 
   /* ----------------  POST  ---------------- */
-  public async create(data: IBoardToMember_create): Promise<IBoardToMember> {
+  public async create(data: IBoardToMemberCreate): Promise<IBoardToMember> {
     const newMembership = await this.boardToMemberDBService.create(data);
     return newMembership;
   }
 
   /* ----------------  PUT  ---------------- */
-  public async update(data: IBoardToMember_update): Promise<IBoardToMember> {
+  public async update(data: IBoardToMemberUpdate): Promise<IBoardToMember> {
     const updateMembership = await this.boardToMemberDBService.update(data);
     return updateMembership;
   }
 
   /* ----------------  DELETE  ---------------- */
-  public async delete(data: IBoardToMember_delete): Promise<IBoardToMember> {
+  public async delete(data: IBoardToMemberDelete): Promise<IBoardToMember> {
     // checking if the member exists
     const membership = await this.boardToMemberDBService.findById({ id: data.id });
     if (!membership) throw new BadRequestException('cadence is not exist');

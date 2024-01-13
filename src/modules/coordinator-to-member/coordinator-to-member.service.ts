@@ -1,12 +1,12 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-import { CoordinatorToMemberDbService } from './coordinatorToMember.db.service';
+import { CoordinatorToMemberDbService } from './coordinator-to-member.db.service';
 import {
   ICoordinatorToMember,
   ICoordinatorToMember_create,
   ICoordinatorToMember_delete,
   ICoordinatorToMember_get_id,
   ICoordinatorToMember_update,
-} from 'src/types/coordinatorToMember.type';
+} from 'src/types/coordinator-to-member.interface';
 
 @Injectable()
 export class CoordinatorToMemberService {

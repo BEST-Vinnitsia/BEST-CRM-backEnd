@@ -15,13 +15,13 @@ export interface IBoardToMember {
 /* ----------------  GET  ---------------- */
 
 // get by id
-export interface IBoardToMember_get_id extends Pick<IBoardToMember, 'id'> {}
+export interface IBoardToMemberGetById extends Pick<IBoardToMember, 'id'> {}
 
 /* ----------------  POST  ---------------- */
-export interface IBoardToMember_create extends Omit<IBoardToMember, 'id' | 'createdAt' | 'updatedAt'> {}
+export interface IBoardToMemberCreate extends Omit<IBoardToMember, 'id' | 'createdAt' | 'updatedAt'> {}
 
 /* ----------------  PUT  ---------------- */
-export interface IBoardToMember_update extends Omit<IBoardToMember, 'createdAt' | 'updatedAt'> {}
+export interface IBoardToMemberUpdate extends Omit<IBoardToMember, 'createdAt' | 'updatedAt'> {}
 
 /* ----------------  DELETE  ---------------- */
-export interface IBoardToMember_delete extends Pick<IBoardToMember, 'id'> {}
+export interface IBoardToMemberDelete extends Pick<IBoardToMember, 'id'> {}

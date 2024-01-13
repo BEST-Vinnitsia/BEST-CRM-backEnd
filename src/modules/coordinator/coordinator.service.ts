@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CoordinatorDbService } from './coordinator.db.service';
-import { ICoordinator, ICoordinator_create, ICoordinator_delete, ICoordinator_get_id, ICoordinator_update } from 'src/types/coordinator.type';
+import { ICoordinator, ICoordinator_create, ICoordinator_delete, ICoordinator_get_id, ICoordinator_update } from 'src/types/coordinator.interface';
 
 @Injectable()
 export class CoordinatorService {

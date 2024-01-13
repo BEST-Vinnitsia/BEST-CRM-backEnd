@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { DatabaseService } from '../database/database.service';
 import { handlerError } from 'src/utils/handlerError';
-import { IBoard, IBoard_create, IBoard_get_id, IBoard_get_list_RES, IBoard_update, IBoard_delete, IBoard_check_name } from 'src/types/board.type';
+import { IBoard, IBoardCreate, IBoardGetById, IBoardUpdate, IBoardDelete, IBoardCheckName } from 'src/types/board.interface';
 
 @Injectable()
 export class BoardDbService {
   constructor(private readonly database: DatabaseService) {}
 
   /* ----------------  CREATE  ---------------- */
-  public async create(data: IBoard_create): Promise<IBoard> {
+  public async create(data: IBoardCreate): Promise<IBoard> {
     const board = await handlerError(
       this.database.board.create({
         data: {
@@ -24,25 +24,25 @@ export class BoardDbService {
   /* ----------------  READ  ---------------- */
 
   // find many
-  public async findMany(): Promise<IBoard_get_list_RES[]> {
+  public async findMany(): Promise<IBoard[]> {
     const board = await handlerError(this.database.board.findMany());
     return board;
   }
 
   // find by id
-  public async findById({ id }: IBoard_get_id): Promise<IBoard> {
+  public async findById({ id }: IBoardGetById): Promise<IBoard> {
     const board = await handlerError(this.database.board.findUnique({ where: { id } }));
     return board;
   }
 
   // check by number
-  public async checkByName({ name }: IBoard_check_name): Promise<IBoard> {
+  public async checkByName({ name }: IBoardCheckName): Promise<IBoard> {
     const board = await handlerError(this.database.board.findUnique({ where: { name } }));
     return board;
   }
 
   /* ----------------  UPDATE  ---------------- */
-  public async update(data: IBoard_update): Promise<IBoard> {
+  public async update(data: IBoardUpdate): Promise<IBoard> {
     const board = await handlerError(
       this.database.board.update({
         where: { id: data.id },
@@ -56,7 +56,7 @@ export class BoardDbService {
   }
 
   /* ----------------  DELETE  ---------------- */
-  public async delete(data: IBoard_delete): Promise<IBoard> {
+  public async delete(data: IBoardDelete): Promise<IBoard> {
     const board = await handlerError(this.database.board.delete({ where: { id: data.id } }));
     return board;
   }

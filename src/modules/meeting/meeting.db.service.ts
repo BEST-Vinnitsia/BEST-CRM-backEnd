@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { DatabaseService } from '../database/database.service';
 import { handlerError } from 'src/utils/handlerError';
-import { IMeeting, IMeeting_create, IMeeting_get_id, IMeeting_update, IMeeting_delete } from 'src/types/meeting.type';
+import { IMeeting, IMeeting_create, IMeeting_get_id, IMeeting_update, IMeeting_delete } from 'src/types/meeting.interface';
 
 @Injectable()
 export class MeetingDbService {

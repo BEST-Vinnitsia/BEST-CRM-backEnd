@@ -7,7 +7,7 @@ import {
   ICoordinatorToMember_get_id,
   ICoordinatorToMember_update,
   ICoordinatorToMember_delete,
-} from 'src/types/coordinatorToMember.type';
+} from 'src/types/coordinator-to-member.interface';
 
 @Injectable()
 export class CoordinatorToMemberDbService {

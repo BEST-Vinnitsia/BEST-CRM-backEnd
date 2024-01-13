@@ -8,7 +8,7 @@ import {
   ICoordinator_update,
   ICoordinator_delete,
   ICoordinator_check_name,
-} from 'src/types/coordinator.type';
+} from 'src/types/coordinator.interface';
 
 @Injectable()
 export class CoordinatorDbService {

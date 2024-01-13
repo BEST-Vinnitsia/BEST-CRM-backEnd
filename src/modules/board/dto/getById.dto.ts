@@ -1,7 +1,8 @@
 import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { IBoardGetById } from 'src/types/board.interface';
 
-export class BoardGetByIdDto {
+export class BoardGetByIdDto implements IBoardGetById {
   @ApiProperty()
   @IsNotEmpty()
   @IsString()

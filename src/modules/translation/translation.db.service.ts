@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { DatabaseService } from '../database/database.service';
 import { handlerError } from 'src/utils/handlerError';
-import { ITranslation, ITranslation_create, ITranslation_get_id, ITranslation_update, ITranslation_delete } from 'src/types/translation.type';
+import { ITranslation, ITranslation_create, ITranslation_get_id, ITranslation_update, ITranslation_delete } from 'src/types/translation.interface';
 
 @Injectable()
 export class TranslationDbService {

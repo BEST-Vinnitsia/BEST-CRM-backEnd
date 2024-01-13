@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CadenceDbService } from './cadence.db.service';
-import { ICadence, ICadence_create, ICadence_delete, ICadence_get_id, ICadence_update } from 'src/types/cadence.type';
+import { ICadence, ICadence_create, ICadence_delete, ICadence_get_id, ICadence_update } from 'src/types/cadence.interface';
 
 @Injectable()
 export class CadenceService {

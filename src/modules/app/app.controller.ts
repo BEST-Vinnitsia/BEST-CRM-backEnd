@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
-import { IServerInfo } from '../../types/serverInfo.type';
+import { IServerInfo } from '../../types/server-info.interface';
 import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Info')

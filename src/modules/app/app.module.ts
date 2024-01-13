@@ -11,8 +11,8 @@ import { MembershipModule } from '../membership/membership.module';
 import { CadenceModule } from '../cadence/cadence.module';
 import { BoardModule } from '../board/board.module';
 import { CoordinatorModule } from '../coordinator/coordinator.module';
-import { BoardToMemberModule } from '../boardToMember/boardToMember.module';
-import { CoordinatorToMemberModule } from '../coordinatorToMember/coordinatorToMember.module';
+import { BoardToMemberModule } from '../board-to-member/board-to-member.module';
+import { CoordinatorToMemberModule } from '../coordinator-to-member/coordinator-to-member.module';
 import { MeetingModule } from '../meeting/meeting.module';
 import { TranslationModule } from '../translation/translation.module';
 

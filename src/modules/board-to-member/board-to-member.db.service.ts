@@ -3,18 +3,18 @@ import { DatabaseService } from '../database/database.service';
 import { handlerError } from 'src/utils/handlerError';
 import {
   IBoardToMember,
-  IBoardToMember_create,
-  IBoardToMember_get_id,
-  IBoardToMember_update,
-  IBoardToMember_delete,
-} from 'src/types/boardToMember.type';
+  IBoardToMemberCreate,
+  IBoardToMemberGetById,
+  IBoardToMemberUpdate,
+  IBoardToMemberDelete,
+} from 'src/types/board-to-member.interface';
 
 @Injectable()
 export class BoardToMemberDbService {
   constructor(private readonly database: DatabaseService) {}
 
   /* ----------------  CREATE  ---------------- */
-  public async create(data: IBoardToMember_create): Promise<IBoardToMember> {
+  public async create(data: IBoardToMemberCreate): Promise<IBoardToMember> {
     const board = await handlerError(
       this.database.boardToMember.create({
         data: {
@@ -37,13 +37,13 @@ export class BoardToMemberDbService {
   }
 
   // find by id
-  public async findById({ id }: IBoardToMember_get_id): Promise<IBoardToMember> {
+  public async findById({ id }: IBoardToMemberGetById): Promise<IBoardToMember> {
     const board = await handlerError(this.database.boardToMember.findUnique({ where: { id } }));
     return board;
   }
 
   /* ----------------  UPDATE  ---------------- */
-  public async update(data: IBoardToMember_update): Promise<IBoardToMember> {
+  public async update(data: IBoardToMemberUpdate): Promise<IBoardToMember> {
     const board = await handlerError(
       this.database.boardToMember.update({
         where: { id: data.id },
@@ -59,7 +59,7 @@ export class BoardToMemberDbService {
   }
 
   /* ----------------  DELETE  ---------------- */
-  public async delete(data: IBoardToMember_delete): Promise<IBoardToMember> {
+  public async delete(data: IBoardToMemberDelete): Promise<IBoardToMember> {
     const board = await handlerError(this.database.boardToMember.delete({ where: { id: data.id } }));
     return board;
   }

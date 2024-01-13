@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { TranslationDbService } from './translation.db.service';
-import { ITranslation, ITranslation_create, ITranslation_delete, ITranslation_get_id, ITranslation_update } from 'src/types/translation.type';
+import { ITranslation, ITranslation_create, ITranslation_delete, ITranslation_get_id, ITranslation_update } from 'src/types/translation.interface';
 
 @Injectable()
 export class TranslationService {

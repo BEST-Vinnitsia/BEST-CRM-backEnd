@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post, Query, Delete, Put } from '@nestjs/common';
-import { CoordinatorToMemberService } from './coordinatorToMember.service';
+import { CoordinatorToMemberService } from './coordinator-to-member.service';
 import { CoordinatorToMemberGetByIdDto } from './dto/getById.dto';
 import { CoordinatorToMemberCreateDto } from './dto/create.dto';
 import { CoordinatorToMemberUpdateDto } from './dto/update.dto';

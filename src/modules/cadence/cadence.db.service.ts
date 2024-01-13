@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { DatabaseService } from '../database/database.service';
 import { handlerError } from 'src/utils/handlerError';
-import { ICadence, ICadence_create, ICadence_get_id, ICadence_update, ICadence_delete, ICadence_check_number } from 'src/types/cadence.type';
+import { ICadence, ICadence_create, ICadence_get_id, ICadence_update, ICadence_delete, ICadence_check_number } from 'src/types/cadence.interface';
 
 @Injectable()
 export class CadenceDbService {

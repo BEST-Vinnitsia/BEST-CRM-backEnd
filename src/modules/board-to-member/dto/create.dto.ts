@@ -1,7 +1,8 @@
 import { IsNotEmpty, IsString, IsBoolean, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { IBoardToMemberCreate } from 'src/types/board-to-member.interface';
 
-export class BoardToMemberCreateDto {
+export class BoardToMemberCreateDto implements IBoardToMemberCreate {
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
