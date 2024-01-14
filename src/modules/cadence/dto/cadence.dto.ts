@@ -16,6 +16,9 @@ export class CadenceDto implements ICadence {
   endDate: Date;
 
   @ApiProperty()
+  ended: boolean;
+
+  @ApiProperty()
   createdAt: Date;
 
   @ApiProperty()

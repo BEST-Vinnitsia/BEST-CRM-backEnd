@@ -43,3 +43,6 @@ yarn.lock
 dev.db
 dev.db-journal
 migrations
+
+# env
+.env

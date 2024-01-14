@@ -43,6 +43,9 @@ model Member {
   translation         Translation[]
   boardToMember       BoardToMember[]
   coordinatorToMember CoordinatorToMember[]
+
+  // auth
+  refreshToken RefreshToken[]
 }
 
 //* ----------------  info about member  ---------------- *//
@@ -99,6 +102,7 @@ model Cadence {
   number    Int      @unique
   startDate DateTime
   endDate   DateTime
+  ended     Boolean
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -115,8 +119,9 @@ model Membership {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  translation Translation[]
-  member      Member[]
+  translation          Translation[]
+  member               Member[]
+  membershipPermission MembershipPermission[]
 }
 
 model Translation {
@@ -142,7 +147,8 @@ model Board {
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 
-  boardToMember BoardToMember[]
+  boardToMember   BoardToMember[]
+  boardPermission BoardPermission[]
 }
 
 model BoardToMember {
@@ -169,7 +175,8 @@ model Coordinator {
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 
-  coordinatorToMember CoordinatorToMember[]
+  coordinatorToMember   CoordinatorToMember[]
+  coordinatorPermission CoordinatorPermission[]
 }
 
 model CoordinatorToMember {
@@ -184,6 +191,65 @@ model CoordinatorToMember {
   coordinator Coordinator @relation(fields: [coordinatorId], references: [id])
   member      Member      @relation(fields: [memberId], references: [id])
   cadence     Cadence     @relation(fields: [cadenceId], references: [id])
+}
+
+//* ----------------  permissions  ---------------- *//
+
+model MembershipPermission {
+  id            String   @id @default(uuid())
+  membershipId  String
+  claim         String
+  nameEN        String
+  nameUA        String
+  descriptionEN String
+  descriptionUA String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  membership Membership @relation(fields: [membershipId], references: [id])
+}
+
+model BoardPermission {
+  id            String   @id @default(uuid())
+  boardId       String
+  claim         String
+  forleader     Boolean
+  nameEN        String
+  nameUA        String
+  descriptionEN String
+  descriptionUA String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  board Board @relation(fields: [boardId], references: [id])
+}
+
+model CoordinatorPermission {
+  id            String   @id @default(uuid())
+  coordinatorId String
+  claim         String
+  forleader     Boolean
+  nameEN        String
+  nameUA        String
+  descriptionEN String
+  descriptionUA String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  coordinator Coordinator @relation(fields: [coordinatorId], references: [id])
+}
+
+//* ----------------  auth  ---------------- *//
+
+model RefreshToken {
+  id         String   @id @default(uuid())
+  memberId   String
+  needUpdate Boolean
+  userIp     String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  member Member @relation(fields: [memberId], references: [id])
 }
 
 // 

@@ -15,6 +15,7 @@ export class CadenceDbService {
           number: data.number,
           startDate: data.startDate,
           endDate: data.endDate,
+          ended: data.ended,
         },
       }),
     );
@@ -44,6 +45,7 @@ export class CadenceDbService {
           number: data.number,
           startDate: data.startDate,
           endDate: data.endDate,
+          ended: data.ended,
         },
       }),
     );

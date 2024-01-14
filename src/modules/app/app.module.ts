@@ -15,11 +15,18 @@ import { BoardToMemberModule } from '../board-to-member/board-to-member.module';
 import { CoordinatorToMemberModule } from '../coordinator-to-member/coordinator-to-member.module';
 import { MeetingModule } from '../meeting/meeting.module';
 import { TranslationModule } from '../translation/translation.module';
+import { AuthModule } from '../auth/auth.module';
+import { APP_GUARD } from '@nestjs/core';
+import { AtGuard } from 'src/common/guards';
 
 @Module({
   imports: [
-    DatabaseModule,
     //
+
+    DatabaseModule,
+
+    AuthModule,
+
     MemberModule,
     MembershipModule,
 
@@ -36,6 +43,13 @@ import { TranslationModule } from '../translation/translation.module';
     TranslationModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+
+    {
+      provide: APP_GUARD,
+      useClass: AtGuard,
+    },
+  ],
 })
 export class AppModule {}

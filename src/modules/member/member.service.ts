@@ -33,6 +33,8 @@ export class MemberService {
 
   /* ----------------  POST  ---------------- */
   public async create(data: IMemberCreate): Promise<IMemberCreateRes> {
+    // add check membership
+    
     const memberByEmail = await this.memberDBService.checkByEmail({ email: data.email });
     if (memberByEmail) throw new BadRequestException('member is exist');
 
