@@ -122,12 +122,12 @@ export class AuthService {
   // }
 
   /* ----------------  REFRESH  ---------------- */
-  public async refresh(dto: IAuthRefresh): Promise<{ access: string; refresh: string }> {
+  public async refresh(): Promise<{ access: string; refresh: string }> {
     return { access: '', refresh: '' };
   }
 
   /* ----------------  LOGOUT  ---------------- */
-  public async logout(dto: IAuthLogout): Promise<{ message: string }> {
+  public async logout(): Promise<{ message: string }> {
     return { message: '' };
   }
 }
