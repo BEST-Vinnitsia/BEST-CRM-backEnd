@@ -1,16 +1,16 @@
-import { BadRequestException, Injectable, NotFoundException, Logger } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException, UseFilters } from '@nestjs/common';
 import { DatabaseService } from '../database/database.service';
 import { IAuthLogin, IAuthLogout, IAuthRefresh, IAuthRegistration } from 'src/interfaces/auth.interface';
 import { IAccessTokenPayload, IRefreshTokenPayload } from 'src/interfaces/token.interface';
 import { JwtService } from '@nestjs/jwt';
+import { ErrorLoggingFilter } from 'src/common/filters';
 
 type TokenType = 'access' | 'refresh';
 type PositionType = 'board' | 'coordinator';
 
+@UseFilters(ErrorLoggingFilter)
 @Injectable()
 export class AuthService {
-  private logger = new Logger(AuthService.name);
-
   constructor(
     private readonly database: DatabaseService,
     private readonly jwtService: JwtService,
@@ -74,46 +74,42 @@ export class AuthService {
 
   /* ----------------  LOGIN  ---------------- */
   public async login(dto: IAuthLogin, ip: string): Promise<{ access: string; refresh: string }> {
-    try {
-      const findMember = await this.getMemberFullInfo({ email: dto.email });
-      if (!findMember) throw new BadRequestException('incorrect email or password');
+    const findMember = await this.getMemberFullInfo({ email: dto.email });
+    if (!findMember) throw new BadRequestException('incorrect email or password');
 
-      // check password
+    // check password
 
-      // split in method
-      findMember.boardToMember = findMember.boardToMember.filter((item) => !item.cadence.ended);
-      findMember.coordinatorToMember = findMember.coordinatorToMember.filter((item) => !item.cadence.ended);
+    // split in method
+    findMember.boardToMember = findMember.boardToMember.filter((item) => !item.cadence.ended);
+    findMember.coordinatorToMember = findMember.coordinatorToMember.filter((item) => !item.cadence.ended);
 
-      const membershipPermissions = findMember.membership.membershipPermission.map((item) => item.claim);
-      const boardPermissions = this.getPermissions('board', findMember);
-      const coordinatorPermissions = this.getPermissions('coordinator', findMember);
+    const membershipPermissions = findMember.membership.membershipPermission.map((item) => item.claim);
+    const boardPermissions = this.getPermissions('board', findMember);
+    const coordinatorPermissions = this.getPermissions('coordinator', findMember);
 
-      const newRefresh = await this.createRefreshInDb({ memberId: findMember.id, userIp: ip ? ip : null });
+    const newRefresh = await this.createRefreshInDb({ memberId: findMember.id, userIp: ip ? ip : null });
 
-      const refreshPayload: IRefreshTokenPayload = {
-        memberId: findMember.id,
-        refreshTokenId: newRefresh.id,
-      };
+    const refreshPayload: IRefreshTokenPayload = {
+      memberId: findMember.id,
+      refreshTokenId: newRefresh.id,
+    };
 
-      const accessPayload: IAccessTokenPayload = {
-        refreshTokenId: newRefresh.id,
-        membershipName: findMember.membership.name,
-        fullName: findMember.fullName,
-        surname: findMember.surname,
-        permission: {
-          board: boardPermissions as string[],
-          coordinator: coordinatorPermissions as string[],
-          membership: membershipPermissions,
-        },
-      };
+    const accessPayload: IAccessTokenPayload = {
+      refreshTokenId: newRefresh.id,
+      membershipName: findMember.membership.name,
+      fullName: findMember.fullName,
+      surname: findMember.surname,
+      permission: {
+        board: boardPermissions as string[],
+        coordinator: coordinatorPermissions as string[],
+        membership: membershipPermissions,
+      },
+    };
 
-      const refresh = await this.generateToken('refresh', refreshPayload);
-      const access = await this.generateToken('access', accessPayload);
+    const refresh = await this.generateToken('refresh', refreshPayload);
+    const access = await this.generateToken('access', accessPayload);
 
-      return { access, refresh };
-    } catch (error) {
-      this.logger.error(error);
-    }
+    return { access, refresh };
   }
 
   /* ----------------  REGISTRATION  ---------------- */

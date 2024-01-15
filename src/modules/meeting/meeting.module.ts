@@ -4,11 +4,10 @@ import { DatabaseModule } from '../database/database.module';
 // Meeting
 import { MeetingController } from './meeting.controller';
 import { MeetingService } from './meeting.service';
-import { MeetingDbService } from './meeting.db.service';
 
 @Module({
   imports: [DatabaseModule],
   controllers: [MeetingController],
-  providers: [MeetingService, MeetingDbService],
+  providers: [MeetingService],
 })
 export class MeetingModule {}
