@@ -11,7 +11,7 @@ type PositionType = 'board' | 'coordinator';
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly database: DatabaseService,
+    private readonly prisma: DatabaseService,
     private readonly jwtService: JwtService,
   ) {}
 
@@ -89,7 +89,7 @@ export class AuthService {
     const coordinatorPermissions = this.getPermissions('coordinator', findMember);
 
     const newRefresh = await this.createRefreshInDb({ memberId: findMember.id, userIp: ip ? ip : null });
-    const deleteOndToken = await this.database.refreshToken.delete({ where: { id: refresh.refreshTokenId } });
+    const deleteOndToken = await this.prisma.refreshToken.delete({ where: { id: refresh.refreshTokenId } });
 
     const tokenPayload: ITokenPayload = {
       refreshTokenId: newRefresh.id,
@@ -112,7 +112,7 @@ export class AuthService {
 
   /* ----------------  LOGOUT  ---------------- */
   public async logout(access: IAccessToken): Promise<{ message: string }> {
-    const deleteOndToken = await this.database.refreshToken.delete({ where: { id: access.refreshTokenId } });
+    const deleteOndToken = await this.prisma.refreshToken.delete({ where: { id: access.refreshTokenId } });
     if (!deleteOndToken) throw new InternalServerErrorException('failed delete session');
 
     return { message: 'session is closed' };
@@ -157,13 +157,13 @@ export class AuthService {
     };
 
     if (id) {
-      return await this.database.member.findUnique({ where: { id }, include });
+      return await this.prisma.member.findUnique({ where: { id }, include });
     }
-    return await this.database.member.findUnique({ where: { email }, include });
+    return await this.prisma.member.findUnique({ where: { email }, include });
   }
 
   private async createRefreshInDb({ memberId, userIp }: { memberId: string; userIp: string | null }) {
-    return await this.database.refreshToken.create({
+    return await this.prisma.refreshToken.create({
       data: { memberId, needUpdate: false, userIp },
     });
   }

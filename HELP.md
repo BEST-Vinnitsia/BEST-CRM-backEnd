@@ -14,6 +14,10 @@ nest g service modules/<serviceName>
 
 npx prisma migrate dev --name <migrateName>
 
+##### Prisma studio
+
+npx prisma studio
+
 #### Exceptions
 
 ```
