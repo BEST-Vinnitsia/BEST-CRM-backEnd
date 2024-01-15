@@ -15,62 +15,6 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  private async generateToken(tokenType: TokenType, payload: ITokenPayload) {
-    const token = await this.jwtService.signAsync(
-      {
-        ...payload,
-        aud: 'BEST CRM System',
-        iss: 'BEST CRM System',
-      },
-      {
-        secret: process.env[tokenType === 'access' ? 'SECRET_ACCESS_TOKEN' : 'SECRET_REFRESH_TOKEN'],
-        expiresIn: tokenType === 'access' ? 60 * 15 : 60 * 60 * 24 * 7,
-      },
-    );
-    return token;
-  }
-
-  private async getMemberFullInfo({ id, email }: { id?: string; email?: string }) {
-    if (!id && !email) return;
-
-    const include = {
-      membership: { include: { membershipPermission: { select: { claim: true } } } },
-      boardToMember: {
-        include: {
-          board: { include: { boardPermission: { select: { claim: true } } } },
-          cadence: true,
-        },
-      },
-      coordinatorToMember: {
-        include: {
-          coordinator: { include: { coordinatorPermission: { select: { claim: true } } } },
-          cadence: true,
-        },
-      },
-    };
-
-    if (id) {
-      return await this.database.member.findUnique({ where: { id }, include });
-    }
-    return await this.database.member.findUnique({ where: { email }, include });
-  }
-
-  private async createRefreshInDb({ memberId, userIp }: { memberId: string; userIp: string | null }) {
-    return await this.database.refreshToken.create({
-      data: { memberId, needUpdate: false, userIp },
-    });
-  }
-
-  private getPermissions(positionType: PositionType, member: any) {
-    const set = member[`${positionType}ToMember`].reduce((accumulator, item) => {
-      item[positionType][`${positionType}Permission`].forEach((permission) => {
-        accumulator.add(permission.claim);
-      });
-      return accumulator;
-    }, new Set());
-    return Array.from(set);
-  }
-
   /* ----------------  LOGIN  ---------------- */
   public async login(dto: IAuthLogin, ip: string): Promise<{ access: string; refresh: string }> {
     const findMember = await this.getMemberFullInfo({ email: dto.email });
@@ -172,5 +116,65 @@ export class AuthService {
     if (!deleteOndToken) throw new InternalServerErrorException('failed delete session');
 
     return { message: 'session is closed' };
+  }
+
+  //
+  //
+  //
+
+  private async generateToken(tokenType: TokenType, payload: ITokenPayload) {
+    const token = await this.jwtService.signAsync(
+      {
+        ...payload,
+        aud: 'BEST CRM System',
+        iss: 'BEST CRM System',
+      },
+      {
+        secret: process.env[tokenType === 'access' ? 'SECRET_ACCESS_TOKEN' : 'SECRET_REFRESH_TOKEN'],
+        expiresIn: tokenType === 'access' ? 60 * 15 : 60 * 60 * 24 * 7,
+      },
+    );
+    return token;
+  }
+
+  private async getMemberFullInfo({ id, email }: { id?: string; email?: string }) {
+    if (!id && !email) return;
+
+    const include = {
+      membership: { include: { membershipPermission: { select: { claim: true } } } },
+      boardToMember: {
+        include: {
+          board: { include: { boardPermission: { select: { claim: true } } } },
+          cadence: true,
+        },
+      },
+      coordinatorToMember: {
+        include: {
+          coordinator: { include: { coordinatorPermission: { select: { claim: true } } } },
+          cadence: true,
+        },
+      },
+    };
+
+    if (id) {
+      return await this.database.member.findUnique({ where: { id }, include });
+    }
+    return await this.database.member.findUnique({ where: { email }, include });
+  }
+
+  private async createRefreshInDb({ memberId, userIp }: { memberId: string; userIp: string | null }) {
+    return await this.database.refreshToken.create({
+      data: { memberId, needUpdate: false, userIp },
+    });
+  }
+
+  private getPermissions(positionType: PositionType, member: any) {
+    const set = member[`${positionType}ToMember`].reduce((accumulator, item) => {
+      item[positionType][`${positionType}Permission`].forEach((permission) => {
+        accumulator.add(permission.claim);
+      });
+      return accumulator;
+    }, new Set());
+    return Array.from(set);
   }
 }

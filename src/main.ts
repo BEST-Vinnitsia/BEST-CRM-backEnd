@@ -5,6 +5,12 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const logger = new Logger('bootstrap');
+
+  if (!process.env.SECRET_ACCESS_TOKEN || !process.env.SECRET_REFRESH_TOKEN) {
+    logger.error('!!! Set token keys in env file');
+    process.exit(1);
+  }
+
   const port = Number(process.env.PORT) | 3000;
 
   // Create app
