@@ -5,8 +5,6 @@ export class SettingGuard implements CanActivate {
   canActivate(context: ExecutionContext) {
     const status = process.env.RUN_MODE;
 
-    console.log(status);
-
     if (!status) {
       return false;
     } else if (status === 'setting' || status === 'dev') {

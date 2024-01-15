@@ -1,4 +1,5 @@
 import { BadRequestException, Injectable, NotFoundException, UseFilters } from '@nestjs/common';
+import * as bcrypt from 'bcrypt';
 import {
   IMember,
   IMemberCheckById,
@@ -45,6 +46,8 @@ export class MemberService {
   public async create(data: IMemberCreate): Promise<IMemberCreateRes> {
     // add check membership
 
+    const hash = await bcrypt.hash(data.password, 10);
+
     const memberByEmail = await this.checkByEmail({ email: data.email });
     if (memberByEmail) throw new BadRequestException('member is exist');
 
@@ -53,7 +56,7 @@ export class MemberService {
         membershipId: data.membershipId,
         //
         email: data.email.toLocaleLowerCase(),
-        password: data.password,
+        password: hash,
         bestEmail: data.bestEmail ? data.bestEmail.toLocaleLowerCase() : null,
         //
         fullName: data.fullName.toLocaleLowerCase(),

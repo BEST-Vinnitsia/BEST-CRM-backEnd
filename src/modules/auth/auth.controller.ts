@@ -32,7 +32,10 @@ export class AuthController {
   @UseGuards(RtGuard, UpdateTokenGuard)
   @Post('refresh')
   @ApiCreatedResponse()
-  async refresh(@GetTokenPayload() refresh: IRefreshToken) {
+  async refresh(
+    @GetTokenPayload() refresh: IRefreshToken, //
+    @Ip() ip: string,
+  ) {
     console.log(refresh);
     // return await this.authService.refresh(dto);
   }

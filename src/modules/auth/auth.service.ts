@@ -3,6 +3,7 @@ import { DatabaseService } from '../database/database.service';
 import { IAuthLogin, IAuthLogout, IAuthRefresh, IAuthRegistration } from 'src/interfaces/auth.interface';
 import { IAccessTokenPayload, IRefreshTokenPayload } from 'src/interfaces/token.interface';
 import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcrypt';
 import { ErrorLoggingFilter } from 'src/common/filters';
 
 type TokenType = 'access' | 'refresh';
@@ -77,7 +78,8 @@ export class AuthService {
     const findMember = await this.getMemberFullInfo({ email: dto.email });
     if (!findMember) throw new BadRequestException('incorrect email or password');
 
-    // check password
+    const isMatch = await bcrypt.compare(dto.password, findMember.password);
+    if (!isMatch) throw new BadRequestException('incorrect email or password');
 
     // split in method
     findMember.boardToMember = findMember.boardToMember.filter((item) => !item.cadence.ended);
@@ -119,6 +121,7 @@ export class AuthService {
 
   /* ----------------  REFRESH  ---------------- */
   public async refresh(): Promise<{ access: string; refresh: string }> {
+    // add delete old refresh
     return { access: '', refresh: '' };
   }
 
