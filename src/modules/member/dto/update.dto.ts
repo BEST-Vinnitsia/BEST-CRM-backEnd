@@ -1,6 +1,6 @@
 import { IsDateString, IsNotEmpty, IsOptional, IsString, IsUUID, IsEmail, Matches, IsEnum } from 'class-validator';
-import { ClothingSizeEnum } from 'src/constants/enums';
-import { Regex } from 'src/constants/regex';
+import { ClothingSizeEnum } from 'src/constants/enums.constant';
+import { Regex } from 'src/constants/regex.constant';
 import { IsDateWithinRange } from 'src/pipes/isDateWithinRange.pipe';
 import { ApiProperty } from '@nestjs/swagger';
 import { IMemberUpdate } from 'src/interfaces/member/member.type';

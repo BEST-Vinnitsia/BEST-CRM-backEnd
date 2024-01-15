@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query, Delete, Put } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Delete, Put, UseGuards } from '@nestjs/common';
 import { BoardService } from './board.service';
 import { BoardGetByIdDto } from './dto/getById.dto';
 import { BoardCreateDto } from './dto/create.dto';
@@ -6,6 +6,8 @@ import { BoardUpdateDto } from './dto/update.dto';
 import { BoardDeleteDto } from './dto/delete.dto';
 import { ApiCreatedResponse, ApiTags, ApiSecurity } from '@nestjs/swagger';
 import { BoardDto } from './dto/board.dto';
+import { Claim } from 'src/common/decorators';
+import { BoardGuard } from 'src/common/guards';
 
 @ApiSecurity('basic')
 @ApiTags('Board')
@@ -28,6 +30,8 @@ export class BoardController {
   }
 
   /* ----------------  POST  ---------------- */
+  @Claim(['demo'])
+  @UseGuards(BoardGuard)
   @Post('create')
   @ApiCreatedResponse({ type: BoardDto })
   async create(@Body() data: BoardCreateDto) {

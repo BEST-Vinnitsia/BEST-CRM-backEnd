@@ -1,7 +1,7 @@
 import { IsEmail, IsNotEmpty, IsString, Matches } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { IAuthRegistration } from 'src/interfaces/auth.interface';
-import { Regex } from 'src/constants/regex';
+import { Regex } from 'src/constants/regex.constant';
 
 export class RegistrationDto implements IAuthRegistration {
   @ApiProperty()

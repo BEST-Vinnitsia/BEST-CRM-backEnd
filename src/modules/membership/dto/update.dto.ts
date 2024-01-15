@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsString, IsEnum, IsUUID } from 'class-validator';
-import { MembershipEnum } from 'src/constants/enums';
+import { MembershipEnum } from 'src/constants/enums.constant';
 import { ApiProperty } from '@nestjs/swagger';
 import { IMembershipUpdate } from 'src/interfaces/member/membership.type';
 import { randomUUID } from 'crypto';

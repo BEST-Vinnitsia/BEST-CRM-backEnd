@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsString, IsEnum, IsDateString, IsUUID } from 'class-validator';
-import { MeetingEnum } from 'src/constants/enums';
+import { MeetingEnum } from 'src/constants/enums.constant';
 import { ApiProperty } from '@nestjs/swagger';
 import { IMeetingCreate } from 'src/interfaces/meeting.interface';
 

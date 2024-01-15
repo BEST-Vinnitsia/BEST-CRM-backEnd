@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
-import { CoordinatorEnum } from 'src/constants/enums';
+import { CoordinatorEnum } from 'src/constants/enums.constant';
 import { ICoordinator } from 'src/interfaces/coordinator.interface';
 
 export class CoordinatorDto implements ICoordinator {

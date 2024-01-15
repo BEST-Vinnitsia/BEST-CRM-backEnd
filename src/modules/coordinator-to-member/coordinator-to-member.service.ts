@@ -7,7 +7,7 @@ import {
   ICoordinatorToMemberGetById,
   ICoordinatorToMemberUpdate,
 } from 'src/interfaces/coordinator-to-member.interface';
-import { MembershipEnum } from 'src/constants/enums';
+import { MembershipEnum } from 'src/constants/enums.constant';
 
 @Injectable()
 export class CoordinatorToMemberService {

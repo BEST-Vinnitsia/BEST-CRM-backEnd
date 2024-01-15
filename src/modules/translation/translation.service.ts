@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { TranslationDbService } from './translation.db.service';
 import { ITranslation, ITranslationCreate, ITranslationDelete, ITranslationGetById, ITranslationUpdate } from 'src/interfaces/translation.interface';
-import { MeetingEnum } from 'src/constants/enums';
+import { MeetingEnum } from 'src/constants/enums.constant';
 
 @Injectable()
 export class TranslationService {

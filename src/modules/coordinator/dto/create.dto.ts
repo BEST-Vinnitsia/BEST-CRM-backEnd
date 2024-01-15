@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsString, IsEnum, IsBoolean } from 'class-validator';
-import { CoordinatorEnum } from 'src/constants/enums';
+import { CoordinatorEnum } from 'src/constants/enums.constant';
 import { ApiProperty } from '@nestjs/swagger';
 import { ICoordinatorCreate } from 'src/interfaces/coordinator.interface';
 

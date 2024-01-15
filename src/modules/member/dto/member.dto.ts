@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
-import { ClothingSizeEnum } from 'src/constants/enums';
+import { ClothingSizeEnum } from 'src/constants/enums.constant';
 import { IMember } from 'src/interfaces/member/member.type';
 
 export class MemberDto implements IMember {

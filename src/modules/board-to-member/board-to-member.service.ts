@@ -7,7 +7,7 @@ import {
   IBoardToMemberGetById,
   IBoardToMemberUpdate,
 } from 'src/interfaces/board-to-member.interface';
-import { MembershipEnum } from 'src/constants/enums';
+import { MembershipEnum } from 'src/constants/enums.constant';
 
 @Injectable()
 export class BoardToMemberService {

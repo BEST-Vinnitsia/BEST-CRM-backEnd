@@ -17,9 +17,9 @@ export interface IAccessTokenPayload {
   surname: string;
   membershipName: string;
   permission: {
-    membership: any;
-    board: any;
-    coordinator: any;
+    membership: string[];
+    board: string[];
+    coordinator: string[];
   };
 }
 

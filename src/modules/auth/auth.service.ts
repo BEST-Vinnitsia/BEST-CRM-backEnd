@@ -101,8 +101,8 @@ export class AuthService {
         fullName: findMember.fullName,
         surname: findMember.surname,
         permission: {
-          board: boardPermissions,
-          coordinator: coordinatorPermissions,
+          board: boardPermissions as string[],
+          coordinator: coordinatorPermissions as string[],
           membership: membershipPermissions,
         },
       };
