@@ -1,18 +1,19 @@
-export interface IAccessToken extends IAccessTokenPayload {
+export interface IAccessToken extends ITokenPayload {
   exp: number;
   iat: number;
   aud: string;
   iss: string;
 }
-export interface IRefreshToken extends IRefreshTokenPayload {
+export interface IRefreshToken extends ITokenPayload {
   exp: number;
   iat: number;
   aud: string;
   iss: string;
 }
 
-export interface IAccessTokenPayload {
+export interface ITokenPayload {
   refreshTokenId: string;
+  memberId: string;
   fullName: string;
   surname: string;
   membershipName: string;
@@ -21,9 +22,4 @@ export interface IAccessTokenPayload {
     board: string[];
     coordinator: string[];
   };
-}
-
-export interface IRefreshTokenPayload {
-  refreshTokenId: string;
-  memberId: string;
 }

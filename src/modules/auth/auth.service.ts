@@ -1,15 +1,13 @@
-import { BadRequestException, Injectable, NotFoundException, UseFilters } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { DatabaseService } from '../database/database.service';
-import { IAuthLogin, IAuthLogout, IAuthRefresh, IAuthRegistration } from 'src/interfaces/auth.interface';
-import { IAccessTokenPayload, IRefreshTokenPayload } from 'src/interfaces/token.interface';
+import { IAuthLogin } from 'src/interfaces/auth.interface';
+import { IAccessToken, IRefreshToken, ITokenPayload } from 'src/interfaces/token.interface';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
-import { ErrorLoggingFilter } from 'src/common/filters';
 
 type TokenType = 'access' | 'refresh';
 type PositionType = 'board' | 'coordinator';
 
-@UseFilters(ErrorLoggingFilter)
 @Injectable()
 export class AuthService {
   constructor(
@@ -17,7 +15,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  private async generateToken(tokenType: TokenType, payload: IAccessTokenPayload | IRefreshTokenPayload) {
+  private async generateToken(tokenType: TokenType, payload: ITokenPayload) {
     const token = await this.jwtService.signAsync(
       {
         ...payload,
@@ -91,13 +89,9 @@ export class AuthService {
 
     const newRefresh = await this.createRefreshInDb({ memberId: findMember.id, userIp: ip ? ip : null });
 
-    const refreshPayload: IRefreshTokenPayload = {
+    const tokenPayload: ITokenPayload = {
+      refreshTokenId: newRefresh.id,
       memberId: findMember.id,
-      refreshTokenId: newRefresh.id,
-    };
-
-    const accessPayload: IAccessTokenPayload = {
-      refreshTokenId: newRefresh.id,
       membershipName: findMember.membership.name,
       fullName: findMember.fullName,
       surname: findMember.surname,
@@ -108,8 +102,8 @@ export class AuthService {
       },
     };
 
-    const refresh = await this.generateToken('refresh', refreshPayload);
-    const access = await this.generateToken('access', accessPayload);
+    const refresh = await this.generateToken('refresh', tokenPayload);
+    const access = await this.generateToken('access', tokenPayload);
 
     return { access, refresh };
   }
@@ -120,13 +114,63 @@ export class AuthService {
   // }
 
   /* ----------------  REFRESH  ---------------- */
-  public async refresh(): Promise<{ access: string; refresh: string }> {
-    // add delete old refresh
-    return { access: '', refresh: '' };
+  public async refresh(refresh: IRefreshToken): Promise<{ access: string }> {
+    const newAccessToken = await this.generateToken('access', {
+      refreshTokenId: refresh.refreshTokenId,
+      memberId: refresh.memberId,
+      membershipName: refresh.membershipName,
+      fullName: refresh.fullName,
+      surname: refresh.surname,
+      permission: {
+        board: refresh.permission.board,
+        coordinator: refresh.permission.coordinator,
+        membership: refresh.permission.membership,
+      },
+    });
+
+    return { access: newAccessToken };
+  }
+
+  /* ----------------  UPDATE  ---------------- */
+  public async update(refresh: IRefreshToken, ip: string): Promise<{ access: string; refresh: string }> {
+    const findMember = await this.getMemberFullInfo({ id: refresh.memberId });
+    if (!findMember) throw new BadRequestException('incorrect email or password');
+
+    // split in method
+    findMember.boardToMember = findMember.boardToMember.filter((item) => !item.cadence.ended);
+    findMember.coordinatorToMember = findMember.coordinatorToMember.filter((item) => !item.cadence.ended);
+
+    const membershipPermissions = findMember.membership.membershipPermission.map((item) => item.claim);
+    const boardPermissions = this.getPermissions('board', findMember);
+    const coordinatorPermissions = this.getPermissions('coordinator', findMember);
+
+    const newRefresh = await this.createRefreshInDb({ memberId: findMember.id, userIp: ip ? ip : null });
+    const deleteOndToken = await this.database.refreshToken.delete({ where: { id: refresh.refreshTokenId } });
+
+    const tokenPayload: ITokenPayload = {
+      refreshTokenId: newRefresh.id,
+      memberId: findMember.id,
+      membershipName: findMember.membership.name,
+      fullName: findMember.fullName,
+      surname: findMember.surname,
+      permission: {
+        board: boardPermissions as string[],
+        coordinator: coordinatorPermissions as string[],
+        membership: membershipPermissions,
+      },
+    };
+
+    const generatedRefresh = await this.generateToken('refresh', tokenPayload);
+    const access = await this.generateToken('access', tokenPayload);
+
+    return { access, refresh: generatedRefresh };
   }
 
   /* ----------------  LOGOUT  ---------------- */
-  public async logout(): Promise<{ message: string }> {
-    return { message: '' };
+  public async logout(access: IAccessToken): Promise<{ message: string }> {
+    const deleteOndToken = await this.database.refreshToken.delete({ where: { id: access.refreshTokenId } });
+    if (!deleteOndToken) throw new InternalServerErrorException('failed delete session');
+
+    return { message: 'session is closed' };
   }
 }

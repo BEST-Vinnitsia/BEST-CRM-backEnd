@@ -16,34 +16,34 @@ export class CoordinatorToMemberController {
   /* ----------------  GET  ---------------- */
 
   @Get('list')
-  @ApiCreatedResponse({type: [CoordinatorToMemberDto]})
+  @ApiCreatedResponse({ type: [CoordinatorToMemberDto] })
   async list() {
     return await this.coordinatorToMemberService.getList();
   }
 
   @Get('by-id')
-  @ApiCreatedResponse({type: CoordinatorToMemberDto})
+  @ApiCreatedResponse({ type: CoordinatorToMemberDto })
   async byId(@Query() data: CoordinatorToMemberGetByIdDto) {
     return await this.coordinatorToMemberService.getById(data);
   }
 
   /* ----------------  POST  ---------------- */
   @Post('create')
-  @ApiCreatedResponse({type: CoordinatorToMemberDto})
+  @ApiCreatedResponse({ type: CoordinatorToMemberDto })
   async create(@Body() data: CoordinatorToMemberCreateDto) {
     return await this.coordinatorToMemberService.create(data);
   }
 
   /* ----------------  PUT  ---------------- */
   @Put('by-id')
-  @ApiCreatedResponse({type: CoordinatorToMemberDto})
+  @ApiCreatedResponse({ type: CoordinatorToMemberDto })
   async update(@Body() data: CoordinatorToMemberUpdateDto) {
     return await this.coordinatorToMemberService.update(data);
   }
 
   /* ----------------  DELETE  ---------------- */
   @Delete('by-id')
-  @ApiCreatedResponse({type: CoordinatorToMemberDto})
+  @ApiCreatedResponse({ type: CoordinatorToMemberDto })
   async delete(@Query() data: CoordinatorToMemberDeleteDto) {
     return await this.coordinatorToMemberService.delete(data);
   }

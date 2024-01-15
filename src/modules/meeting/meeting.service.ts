@@ -1,10 +1,8 @@
-import { BadRequestException, Injectable, NotFoundException, UseFilters } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { IMeeting, IMeetingCreate, IMeetingDelete, IMeetingGetById, IMeetingUpdate } from 'src/interfaces/meeting.interface';
-import { ErrorLoggingFilter } from 'src/common/filters';
 import { DatabaseService } from '../database/database.service';
 import { ICadence } from 'src/interfaces/cadence.interface';
 
-@UseFilters(ErrorLoggingFilter)
 @Injectable()
 export class MeetingService {
   constructor(private readonly prisma: DatabaseService) {}

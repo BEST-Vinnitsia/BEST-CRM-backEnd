@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, NotFoundException, UseFilters } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import {
   IBoardToMember,
   IBoardToMemberCreate,
@@ -12,9 +12,7 @@ import { IMember } from 'src/interfaces/member/member.type';
 import { IMembership } from 'src/interfaces/member/membership.type';
 import { IBoard } from 'src/interfaces/board.interface';
 import { ICadence } from 'src/interfaces/cadence.interface';
-import { ErrorLoggingFilter } from 'src/common/filters';
 
-@UseFilters(ErrorLoggingFilter)
 @Injectable()
 export class BoardToMemberService {
   constructor(private readonly prisma: DatabaseService) {}

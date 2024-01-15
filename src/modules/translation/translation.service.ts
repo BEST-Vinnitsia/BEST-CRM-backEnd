@@ -1,13 +1,11 @@
-import { BadRequestException, Injectable, NotFoundException, UseFilters } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { ITranslation, ITranslationCreate, ITranslationDelete, ITranslationGetById, ITranslationUpdate } from 'src/interfaces/translation.interface';
 import { MeetingEnum } from 'src/constants/enums.constant';
-import { ErrorLoggingFilter } from 'src/common/filters';
 import { DatabaseService } from '../database/database.service';
 import { IMeeting } from 'src/interfaces/meeting.interface';
 import { IMember } from 'src/interfaces/member/member.type';
 import { IMembership } from 'src/interfaces/member/membership.type';
 
-@UseFilters(ErrorLoggingFilter)
 @Injectable()
 export class TranslationService {
   constructor(private readonly prisma: DatabaseService) {}

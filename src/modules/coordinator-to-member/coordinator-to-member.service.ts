@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, NotFoundException, UseFilters } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import {
   ICoordinatorToMember,
   ICoordinatorToMemberCreate,
@@ -7,14 +7,12 @@ import {
   ICoordinatorToMemberUpdate,
 } from 'src/interfaces/coordinator-to-member.interface';
 import { MembershipEnum } from 'src/constants/enums.constant';
-import { ErrorLoggingFilter } from 'src/common/filters';
 import { IMember } from 'src/interfaces/member/member.type';
 import { IMembership } from 'src/interfaces/member/membership.type';
 import { ICoordinator } from 'src/interfaces/coordinator.interface';
 import { ICadence } from 'src/interfaces/cadence.interface';
 import { DatabaseService } from '../database/database.service';
 
-@UseFilters(ErrorLoggingFilter)
 @Injectable()
 export class CoordinatorToMemberService {
   constructor(private readonly prisma: DatabaseService) {}

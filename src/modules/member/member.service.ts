@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, NotFoundException, UseFilters } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import {
   IMember,
@@ -12,10 +12,8 @@ import {
   IMemberGetListRes,
   IMemberUpdate,
 } from 'src/interfaces/member/member.type';
-import { ErrorLoggingFilter } from 'src/common/filters';
 import { DatabaseService } from '../database/database.service';
 
-@UseFilters(ErrorLoggingFilter)
 @Injectable()
 export class MemberService {
   constructor(private readonly prisma: DatabaseService) {}

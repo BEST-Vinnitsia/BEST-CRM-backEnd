@@ -16,34 +16,34 @@ export class CoordinatorController {
   /* ----------------  GET  ---------------- */
 
   @Get('list')
-  @ApiCreatedResponse({type: [CoordinatorDto]})
+  @ApiCreatedResponse({ type: [CoordinatorDto] })
   async list() {
     return await this.coordinatorService.getList();
   }
 
   @Get('by-id')
-  @ApiCreatedResponse({type: CoordinatorDto})
+  @ApiCreatedResponse({ type: CoordinatorDto })
   async byId(@Query() data: CoordinatorGetByIdDto) {
     return await this.coordinatorService.getById(data);
   }
 
   /* ----------------  POST  ---------------- */
   @Post('create')
-  @ApiCreatedResponse({type: CoordinatorDto})
+  @ApiCreatedResponse({ type: CoordinatorDto })
   async create(@Body() data: CoordinatorCreateDto) {
     return await this.coordinatorService.create(data);
   }
 
   /* ----------------  PUT  ---------------- */
   @Put('by-id')
-  @ApiCreatedResponse({type: CoordinatorDto})
+  @ApiCreatedResponse({ type: CoordinatorDto })
   async update(@Body() data: CoordinatorUpdateDto) {
     return await this.coordinatorService.update(data);
   }
 
   /* ----------------  DELETE  ---------------- */
   @Delete('by-id')
-  @ApiCreatedResponse({type: CoordinatorDto})
+  @ApiCreatedResponse({ type: CoordinatorDto })
   async delete(@Query() data: CoordinatorDeleteDto) {
     return await this.coordinatorService.delete(data);
   }

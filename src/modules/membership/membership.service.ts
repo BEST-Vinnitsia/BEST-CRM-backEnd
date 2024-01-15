@@ -1,9 +1,7 @@
-import { BadRequestException, Injectable, NotFoundException, UseFilters } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { IMembership, IMembershipCreate, IMembershipDelete, IMembershipGetById, IMembershipUpdate } from 'src/interfaces/member/membership.type';
-import { ErrorLoggingFilter } from 'src/common/filters';
 import { DatabaseService } from '../database/database.service';
 
-@UseFilters(ErrorLoggingFilter)
 @Injectable()
 export class MembershipService {
   constructor(private readonly prisma: DatabaseService) {}

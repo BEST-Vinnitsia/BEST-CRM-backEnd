@@ -1,9 +1,7 @@
-import { BadRequestException, Injectable, NotFoundException, UseFilters } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { ICoordinator, ICoordinatorCreate, ICoordinatorDelete, ICoordinatorGetById, ICoordinatorUpdate } from 'src/interfaces/coordinator.interface';
-import { ErrorLoggingFilter } from 'src/common/filters';
 import { DatabaseService } from '../database/database.service';
 
-@UseFilters(ErrorLoggingFilter)
 @Injectable()
 export class CoordinatorService {
   constructor(private readonly prisma: DatabaseService) {}

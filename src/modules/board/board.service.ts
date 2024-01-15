@@ -1,9 +1,7 @@
-import { BadRequestException, Injectable, NotFoundException, InternalServerErrorException, UseFilters } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { IBoard, IBoardCreate, IBoardDelete, IBoardGetById, IBoardUpdate } from 'src/interfaces/board.interface';
 import { DatabaseService } from '../database/database.service';
-import { ErrorLoggingFilter } from 'src/common/filters';
 
-@UseFilters(ErrorLoggingFilter)
 @Injectable()
 export class BoardService {
   constructor(private readonly prisma: DatabaseService) {}

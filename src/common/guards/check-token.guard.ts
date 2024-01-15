@@ -3,8 +3,9 @@ import { IAccessToken, IRefreshToken } from 'src/interfaces/token.interface';
 import { DatabaseService } from 'src/modules/database/database.service';
 
 @Injectable()
-export class UpdateTokenGuard implements CanActivate {
-  logger = new Logger(UpdateTokenGuard.name);
+export class CheckTokenGuard implements CanActivate {
+  logger = new Logger(CheckTokenGuard.name);
+  
   constructor(private readonly prisma: DatabaseService) {}
 
   async canActivate(context: ExecutionContext) {
