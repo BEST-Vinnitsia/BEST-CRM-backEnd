@@ -4,12 +4,7 @@ import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 export class SettingGuard implements CanActivate {
   canActivate(context: ExecutionContext) {
     const status = process.env.RUN_MODE;
-
-    if (!status) {
-      return false;
-    } else if (status === 'setting' || status === 'dev') {
-      return true;
-    }
+    if (status === 'setting') return true;
 
     return false;
   }

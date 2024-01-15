@@ -2,7 +2,7 @@ import { Body, Controller, Post, UseGuards, Ip } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
-import { SettingGuard, RtGuard, CheckTokenForUpdateGuard, CheckTokenGuard } from 'src/common/guards';
+import { RtGuard, CheckTokenForUpdateGuard, CheckTokenGuard } from 'src/common/guards';
 import { GetTokenPayload, Public } from 'src/common/decorators';
 import { IAccessToken, IRefreshToken } from 'src/interfaces/token.interface';
 
@@ -12,7 +12,6 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Public()
-  @UseGuards(SettingGuard)
   @Post('login')
   @ApiCreatedResponse()
   async login(

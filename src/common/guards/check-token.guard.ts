@@ -5,11 +5,14 @@ import { DatabaseService } from 'src/modules/database/database.service';
 @Injectable()
 export class CheckTokenGuard implements CanActivate {
   logger = new Logger(CheckTokenGuard.name);
-  
+
   constructor(private readonly prisma: DatabaseService) {}
 
   async canActivate(context: ExecutionContext) {
     try {
+      const disableStatus = process.env.CHECK_TOKEN_GUARD_DISABLE;
+      if (disableStatus === 'true') return true;
+
       const request = context.switchToHttp().getRequest();
       const accessToken = request.user as IAccessToken | IRefreshToken;
       const refreshTokenId = accessToken.refreshTokenId;
