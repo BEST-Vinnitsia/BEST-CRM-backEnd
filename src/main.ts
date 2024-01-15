@@ -5,7 +5,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const logger = new Logger('bootstrap');
-  const port = 3000;
+  const port = Number(process.env.PORT) | 3000;
 
   // Create app
   const app = await NestFactory.create(AppModule);
@@ -30,5 +30,9 @@ async function bootstrap() {
   await app.listen(port);
 
   logger.log(`Server start in port: ${port}`);
+
+  if (process.env.RUN_MODE === 'setting') {
+    logger.warn(`Server started in setting mode`);
+  }
 }
 bootstrap();
