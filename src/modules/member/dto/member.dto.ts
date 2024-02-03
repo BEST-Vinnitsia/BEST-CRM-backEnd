@@ -4,58 +4,58 @@ import { ClothingSizeEnum } from 'src/constants/enums.constant';
 import { IMember } from 'src/interfaces/member/member.type';
 
 export class MemberDto implements IMember {
-  @ApiProperty({ example: randomUUID() })
-  id: string;
+    @ApiProperty({ example: randomUUID() })
+    id: string;
 
-  @ApiProperty({ example: randomUUID() })
-  membershipId: string;
+    @ApiProperty({ example: randomUUID() })
+    membershipId: string;
 
-  //
+    //
 
-  @ApiProperty()
-  email: string;
+    @ApiProperty()
+    login: string;
 
-  @ApiProperty()
-  password: string;
+    @ApiProperty()
+    password: string;
 
-  @ApiProperty()
-  bestEmail: string;
+    @ApiProperty()
+    bestEmail: string;
 
-  //
+    //
 
-  @ApiProperty()
-  surname: string;
+    @ApiProperty()
+    surname: string;
 
-  @ApiProperty()
-  fullName: string;
+    @ApiProperty()
+    fullName: string;
 
-  @ApiProperty()
-  middleName: string;
+    @ApiProperty()
+    middleName: string;
 
-  @ApiProperty()
-  birthday: Date;
+    @ApiProperty()
+    birthday: Date;
 
-  //
+    //
 
-  @ApiProperty()
-  group: string;
+    @ApiProperty()
+    group: string;
 
-  @ApiProperty()
-  faculty: string;
+    @ApiProperty()
+    faculty: string;
 
-  //
+    //
 
-  @ApiProperty({ required: false, enum: ClothingSizeEnum })
-  clothingSize: string;
+    @ApiProperty({ required: false, enum: ClothingSizeEnum })
+    clothingSize: string;
 
-  @ApiProperty({ required: false })
-  homeAddress: string;
+    @ApiProperty({ required: false })
+    homeAddress: string;
 
-  //
+    //
 
-  @ApiProperty()
-  createdAt: Date;
+    @ApiProperty()
+    createdAt: Date;
 
-  @ApiProperty()
-  updatedAt: Date;
+    @ApiProperty()
+    updatedAt: Date;
 }

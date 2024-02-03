@@ -1,9 +1,10 @@
 export interface IEmail {
-  id: string;
-  memberId: string;
-  email: string;
-  createdAt: Date;
-  updatedAt: Date;
+    id: string;
+    memberId: string;
+    isMain: boolean;
+    email: string;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 //
@@ -13,7 +14,9 @@ export interface IEmail {
 /* ----------------  GET  ---------------- */
 
 // get by id
-export interface IEmailGetById extends Pick<IEmail, 'id' | 'memberId'> {}
+export interface IEmailListByMemberId extends Pick<IEmail, 'memberId'> {}
+
+export interface IEmailMainByMemberId extends Pick<IEmail, 'memberId'> {}
 
 /* ----------------  POST  ---------------- */
 export interface IEmailCreate extends Omit<IEmail, 'id' | 'createdAt' | 'updatedAt'> {}

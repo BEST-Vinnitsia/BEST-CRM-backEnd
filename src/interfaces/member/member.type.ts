@@ -4,26 +4,27 @@ import { IMembership } from './membership.type';
 import { ISocialNetwork } from './socialNetwork.type';
 
 export interface IMember {
-  id: string;
-  membershipId: string;
-  // recruitment_id: string
-  email: string;
-  password: string;
-  bestEmail: string | null;
-  //
-  surname: string;
-  fullName: string;
-  middleName: string;
-  birthday: Date;
-  //
-  group: string;
-  faculty: string;
-  //
-  clothingSize: string | null;
-  homeAddress: string | null;
-  //
-  createdAt: Date;
-  updatedAt: Date;
+    id: string;
+    membershipId: string;
+    //
+    login: string;
+    password: string;
+    //
+    bestEmail: string | null;
+    //
+    surname: string;
+    fullName: string;
+    middleName: string;
+    birthday: Date;
+    //
+    group: string;
+    faculty: string;
+    //
+    clothingSize: string | null;
+    homeAddress: string | null;
+    //
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 //
@@ -34,28 +35,30 @@ export interface IMember {
 
 // get list
 export interface IMemberGetListRes extends IMember {
-  membership: IMembership;
+    membership: IMembership;
 }
 
 // get by id
 export interface IMemberGetId extends Pick<IMember, 'id'> {}
+
 export interface IMemberGetIdRes extends IMember {
-  membership: IMembership;
-  memberEmail: IEmail[];
-  memberPhone: IPhone[];
-  memberSocialNetwork: ISocialNetwork[];
+    membership: IMembership;
+    email: IEmail[];
+    phone: IPhone[];
+    socialNetwork: ISocialNetwork[];
 }
 
 // check by id
 export interface IMemberCheckById extends Pick<IMember, 'id'> {}
 
 // check by email
-export interface IMemberCheckEmail extends Pick<IMember, 'email'> {}
+export interface IMemberCheckEmail extends Pick<IMember, 'login'> {}
 
 /* ----------------  POST  ---------------- */
 export interface IMemberCreate extends Omit<IMember, 'id' | 'createdAt' | 'updatedAt'> {}
+
 export interface IMemberCreateRes extends IMember {
-  membership: IMembership;
+    membership: IMembership;
 }
 
 /* ----------------  PUT  ---------------- */

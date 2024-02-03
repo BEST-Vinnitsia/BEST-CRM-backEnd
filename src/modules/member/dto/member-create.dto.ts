@@ -3,16 +3,10 @@ import { ClothingSizeEnum } from 'src/constants/enums.constant';
 import { Regex } from 'src/constants/regex.constant';
 import { IsDateWithinRange } from 'src/pipes/isDateWithinRange.pipe';
 import { ApiProperty } from '@nestjs/swagger';
-import { IMemberUpdate } from 'src/interfaces/member/member.type';
+import { IMemberCreate } from 'src/interfaces/member/member.type';
 import { randomUUID } from 'crypto';
 
-export class MemberUpdateDto implements IMemberUpdate {
-  @ApiProperty({ example: randomUUID() })
-  @IsNotEmpty()
-  @IsString()
-  @IsUUID('4')
-  id: string;
-
+export class MemberCreateDto implements IMemberCreate {
   @ApiProperty({ example: randomUUID() })
   @IsNotEmpty()
   @IsString()
@@ -25,7 +19,7 @@ export class MemberUpdateDto implements IMemberUpdate {
   @IsNotEmpty()
   @IsString()
   @IsEmail()
-  email: string;
+  login: string;
 
   @ApiProperty()
   @IsNotEmpty()
@@ -33,7 +27,7 @@ export class MemberUpdateDto implements IMemberUpdate {
   @Matches(Regex.member.password, { message: 'Incorrect password' })
   password: string;
 
-  @ApiProperty()
+  @ApiProperty({ required: false })
   @IsNotEmpty()
   @IsString()
   @IsEmail()

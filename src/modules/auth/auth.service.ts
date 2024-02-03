@@ -17,7 +17,7 @@ export class AuthService {
 
   /* ----------------  LOGIN  ---------------- */
   public async login(dto: IAuthLogin, ip: string): Promise<{ access: string; refresh: string }> {
-    const findMember = await this.getMemberFullInfo({ email: dto.email });
+    const findMember = await this.getMemberFullInfo({ login: dto.email });
     if (!findMember) throw new BadRequestException('incorrect email or password');
 
     const isMatch = await bcrypt.compare(dto.password, findMember.password);
@@ -89,7 +89,7 @@ export class AuthService {
     const coordinatorPermissions = this.getPermissions('coordinator', findMember);
 
     const newRefresh = await this.createRefreshInDb({ memberId: findMember.id, userIp: ip ? ip : null });
-    const deleteOndToken = await this.prisma.refreshToken.delete({ where: { id: refresh.refreshTokenId } });
+    await this.prisma.refreshToken.delete({ where: { id: refresh.refreshTokenId } });
 
     const tokenPayload: ITokenPayload = {
       refreshTokenId: newRefresh.id,
@@ -137,8 +137,8 @@ export class AuthService {
     return token;
   }
 
-  private async getMemberFullInfo({ id, email }: { id?: string; email?: string }) {
-    if (!id && !email) return;
+  private async getMemberFullInfo({ id, login }: { id?: string; login?: string }) {
+    if (!id && !login) return;
 
     const include = {
       membership: { include: { membershipPermission: { select: { claim: true } } } },
@@ -159,7 +159,7 @@ export class AuthService {
     if (id) {
       return await this.prisma.member.findUnique({ where: { id }, include });
     }
-    return await this.prisma.member.findUnique({ where: { email }, include });
+    return await this.prisma.member.findUnique({ where: { login }, include });
   }
 
   private async createRefreshInDb({ memberId, userIp }: { memberId: string; userIp: string | null }) {
