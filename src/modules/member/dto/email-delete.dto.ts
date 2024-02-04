@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
+import { IsArray, IsNotEmpty, IsString, IsUUID, ValidateNested } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
 import { IEmailDelete } from '../../../interfaces/member/email.type';
@@ -6,7 +6,8 @@ import { IEmailDelete } from '../../../interfaces/member/email.type';
 export class EmailDeleteDto implements IEmailDelete {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
-    @IsString()
-    @IsUUID('4')
-    id: string;
+    @IsString({each: true})
+    @IsArray()
+    @IsUUID('4', {each: true})
+    emailsId: string[];
 }

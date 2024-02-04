@@ -1,10 +1,11 @@
 export interface ISocialNetwork {
-  id: string;
-  memberId: string;
-  name: string;
-  url: string;
-  createdAt: Date;
-  updatedAt: Date;
+    id: string;
+    memberId: string;
+    name: string;
+    url: string;
+    isMain: string;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 //
@@ -12,9 +13,9 @@ export interface ISocialNetwork {
 //
 
 /* ----------------  GET  ---------------- */
+export interface ISocialNetworkListByMemberId extends Pick<ISocialNetwork, 'memberId'> {}
 
-// get by id
-export interface ISocialNetworkGetById extends Pick<ISocialNetwork, 'id'> {}
+export interface ISocialNetworkMainByMemberId extends Pick<ISocialNetwork, 'memberId'> {}
 
 /* ----------------  POST  ---------------- */
 export interface ISocialNetworkCreate extends Omit<ISocialNetwork, 'id' | 'createdAt' | 'updatedAt'> {}

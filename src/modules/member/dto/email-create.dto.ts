@@ -1,7 +1,8 @@
-import { IsNotEmpty, IsString, IsUUID, IsEmail, IsBoolean } from 'class-validator';
+import { IsNotEmpty, IsString, IsUUID, IsEmail, IsBoolean, IsArray, ValidateNested } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
 import { IEmailCreate } from '../../../interfaces/member/email.type';
+import { Type } from 'class-transformer';
 
 export class EmailCreateDto implements IEmailCreate {
     @ApiProperty({ example: randomUUID() })
@@ -20,4 +21,13 @@ export class EmailCreateDto implements IEmailCreate {
     @IsNotEmpty()
     @IsBoolean()
     isMain: boolean;
+}
+
+export class EmailCreateDtoArray {
+    @ApiProperty({ type: [EmailCreateDto] })
+    @ValidateNested({ each: true })
+    @IsArray()
+    @IsNotEmpty()
+    @Type(() => EmailCreateDto)
+    emails: EmailCreateDto[];
 }

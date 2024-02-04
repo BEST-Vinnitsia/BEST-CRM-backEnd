@@ -10,8 +10,8 @@ import { EmailDto } from './dto/email.dto';
 import { EmailService } from './email.service';
 import { EmailGetListDto } from './dto/email-get-list.dto';
 import { EmailGetMainDto } from './dto/email-get-main.dto';
-import { EmailCreateDto } from './dto/email-create.dto';
-import { EmailUpdateDto } from './dto/email-update.dto';
+import { EmailCreateDto, EmailCreateDtoArray } from './dto/email-create.dto';
+import { EmailUpdateDto, EmailUpdateDtoArray } from './dto/email-update.dto';
 import { EmailDeleteDto } from './dto/email-delete.dto';
 
 @ApiSecurity('basic')
@@ -31,11 +31,11 @@ export class MemberController {
         return await this.memberService.getList();
     }
 
-    @Get('by-id')
-    @ApiCreatedResponse({ type: MemberDto })
-    async getById(@Query() data: MemberGetByIdDto) {
-        return await this.memberService.getById(data);
-    }
+    // @Get('by-id')
+    // @ApiCreatedResponse({ type: MemberDto })
+    // async getById(@Query() data: MemberGetByIdDto) {
+    //     return await this.memberService.getById(data);
+    // }
 
     /* ----------------  POST  ---------------- */
     @Post('create')
@@ -80,21 +80,21 @@ export class MemberController {
     /* ----------------  POST  ---------------- */
     @Post('email/create')
     @ApiCreatedResponse({ type: EmailDto })
-    async emailCreate(@Body() data: EmailCreateDto) {
-        return await this.emailService.create(data);
+    async emailCreate(@Body() dto: EmailCreateDtoArray) {
+        return await this.emailService.create(dto.emails);
     }
 
     /* ----------------  PUT  ---------------- */
     @Put('email/update')
     @ApiCreatedResponse({ type: EmailDto })
-    async emailUpdate(@Body() data: EmailUpdateDto) {
-        return await this.emailService.update(data);
+    async emailUpdate(@Body() dto: EmailUpdateDtoArray) {
+        return await this.emailService.update(dto.emails);
     }
 
     /* ----------------  DELETE  ---------------- */
     @Delete('email/delete')
     @ApiCreatedResponse({ type: EmailDto })
-    async emailDelete(@Query() data: EmailDeleteDto) {
-        return await this.emailService.delete(data);
+    async emailDelete(@Body() dto: EmailDeleteDto) {
+        return await this.emailService.delete(dto.emailsId);
     }
 }

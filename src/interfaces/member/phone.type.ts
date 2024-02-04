@@ -1,9 +1,10 @@
 export interface IPhone {
-  id: string;
-  memberId: string;
-  phone: string;
-  createdAt: Date;
-  updatedAt: Date;
+    id: string;
+    memberId: string;
+    phone: string;
+    isMain: boolean;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 //
@@ -11,12 +12,12 @@ export interface IPhone {
 //
 
 /* ----------------  GET  ---------------- */
+export interface IPhoneListByMemberId extends Pick<IPhone, 'memberId'> {}
 
-// get by id
-export interface IPhoneGetById extends Pick<IPhone, 'id'> {}
+export interface IPhoneMainByMemberId extends Pick<IPhone, 'memberId'> {}
 
 /* ----------------  POST  ---------------- */
-export interface IPhone_create extends Omit<IPhone, 'id' | 'createdAt' | 'updatedAt'> {}
+export interface IPhoneCreate extends Omit<IPhone, 'id' | 'createdAt' | 'updatedAt'> {}
 
 /* ----------------  PUT  ---------------- */
 export interface IPhoneUpdate extends Omit<IPhone, 'createdAt' | 'updatedAt'> {}

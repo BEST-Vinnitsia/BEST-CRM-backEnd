@@ -12,8 +12,6 @@ export interface IEmail {
 //
 
 /* ----------------  GET  ---------------- */
-
-// get by id
 export interface IEmailListByMemberId extends Pick<IEmail, 'memberId'> {}
 
 export interface IEmailMainByMemberId extends Pick<IEmail, 'memberId'> {}
@@ -25,4 +23,6 @@ export interface IEmailCreate extends Omit<IEmail, 'id' | 'createdAt' | 'updated
 export interface IEmailUpdate extends Omit<IEmail, 'createdAt' | 'updatedAt'> {}
 
 /* ----------------  DELETE  ---------------- */
-export interface IEmailDelete extends Pick<IEmail, 'id'> {}
+export interface IEmailDelete {
+    emailsId: string[];
+}

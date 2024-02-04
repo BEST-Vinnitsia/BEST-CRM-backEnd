@@ -30,15 +30,15 @@ export class MemberService {
     }
 
     // get by id
-    public async getById(data: IMemberGetId): Promise<IMemberGetIdRes> {
-        const member = await this.prisma.member.findUnique({
-            where: { id: data.id },
-            include: { membership: true, email: true, phone: true, socialNetwork: true },
-        });
-        if (!member) throw new NotFoundException('member not found');
-
-        return member;
-    }
+    // public async getById(data: IMemberGetId): Promise<IMemberGetIdRes> {
+    //     const member = await this.prisma.member.findUnique({
+    //         where: { id: data.id },
+    //         include: { membership: true, email: true, phone: true, socialNetwork: true },
+    //     });
+    //     if (!member) throw new NotFoundException('member not found');
+    //
+    //     return member;
+    // }
 
     /* ----------------  POST  ---------------- */
     public async create(data: IMemberCreate): Promise<IMemberCreateRes> {
