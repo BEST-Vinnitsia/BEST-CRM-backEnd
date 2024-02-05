@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
 import { IEmail } from '../../../interfaces/member/email.type';
 
-export class EmailDto implements IEmail {
+export class Email implements IEmail {
     @ApiProperty({ example: randomUUID() })
     id: string;
 

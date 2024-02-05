@@ -18,38 +18,41 @@ import { TranslationModule } from '../translation/translation.module';
 import { AuthModule } from '../auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AtGuard } from 'src/common/guards';
+import { EmailModule } from '../email/email.module';
 
 @Module({
-  imports: [
-    //
+    imports: [
+        //
 
-    DatabaseModule,
+        DatabaseModule,
 
-    AuthModule,
+        AuthModule,
 
-    MemberModule,
-    MembershipModule,
+        MemberModule,
+        MembershipModule,
+        EmailModule,
 
-    CadenceModule,
+        CadenceModule,
 
-    BoardModule,
-    BoardToMemberModule,
+        BoardModule,
+        BoardToMemberModule,
 
-    CoordinatorModule,
-    CoordinatorToMemberModule,
+        CoordinatorModule,
+        CoordinatorToMemberModule,
 
-    MeetingModule,
+        MeetingModule,
 
-    TranslationModule,
-  ],
-  controllers: [AppController],
-  providers: [
-    AppService,
+        TranslationModule,
+    ],
+    controllers: [AppController],
+    providers: [
+        AppService,
 
-    {
-      provide: APP_GUARD,
-      useClass: AtGuard,
-    },
-  ],
+        {
+            provide: APP_GUARD,
+            useClass: AtGuard,
+        },
+    ],
 })
-export class AppModule {}
+export class AppModule {
+}

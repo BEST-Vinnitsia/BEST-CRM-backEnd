@@ -8,13 +8,17 @@ export class EmailService {
 
     /* ----------------  GET  ---------------- */
     public async getListByMemberId({ memberId }: IEmailListByMemberId) {
-        const findMember = await this.prisma.member.findUnique({
-            where: { id: memberId },
-            include: { email: true },
-        });
-        if (!findMember) throw new NotFoundException('Member is not found');
+        // const findMember = await this.prisma.member.findUnique({
+        //     where: { id: memberId },
+        //     include: { email: true },
+        // });
+        // if (!findMember) throw new NotFoundException('Member is not found');
 
-        return findMember.email;
+        const emails = await this.prisma.memberEmail.findMany({
+            where: { memberId },
+        });
+
+        return emails;
     }
 
     public async getMainByMemberId({ memberId }: IEmailMainByMemberId) {
@@ -75,6 +79,10 @@ export class EmailService {
 
             //
             const createEmailPromises = emails.map(async (emailObj) => {
+                /**
+                 * change this when use postgres on createMany
+                 * ONLY SQLite
+                 */
                 const { memberId, isMain, email } = emailObj;
                 return this.prisma.memberEmail.create({
                     data: { memberId, isMain, email: email.toLocaleLowerCase() },
