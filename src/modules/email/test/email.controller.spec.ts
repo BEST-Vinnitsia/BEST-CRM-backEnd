@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 import { EmailController } from '../email.controller';
 import { EmailService } from '../email.service';
-import { emailCreateStub, emailStub, emailUpdateStub } from './stubs/email.stub';
+import { emailCreateStub, emailUpdateStub } from './stubs/email.stub';
 
 describe('EmailController', () => {
     let controller: EmailController;

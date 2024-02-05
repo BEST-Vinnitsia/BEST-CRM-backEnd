@@ -1,8 +1,9 @@
 export interface IEmail {
     id: string;
     memberId: string;
-    isMain: boolean;
     email: string;
+    isMain: boolean;
+
     createdAt: Date;
     updatedAt: Date;
 }

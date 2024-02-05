@@ -1,11 +1,10 @@
 import { IEmail } from './email.type';
 import { IPhone } from './phone.type';
-import { IMembership } from './membership.type';
 import { ISocialNetwork } from './socialNetwork.type';
 
 export interface IMember {
     id: string;
-    membershipId: string;
+    membership: string;
     //
     login: string;
     password: string;
@@ -34,15 +33,12 @@ export interface IMember {
 /* ----------------  GET  ---------------- */
 
 // get list
-export interface IMemberGetListRes extends IMember {
-    membership: IMembership;
-}
+export interface IMemberGetListRes extends IMember {}
 
 // get by id
 export interface IMemberGetId extends Pick<IMember, 'id'> {}
 
 export interface IMemberGetIdRes extends IMember {
-    membership: IMembership;
     email: IEmail[];
     phone: IPhone[];
     socialNetwork: ISocialNetwork[];
@@ -57,9 +53,7 @@ export interface IMemberCheckEmail extends Pick<IMember, 'login'> {}
 /* ----------------  POST  ---------------- */
 export interface IMemberCreate extends Omit<IMember, 'id' | 'createdAt' | 'updatedAt'> {}
 
-export interface IMemberCreateRes extends IMember {
-    membership: IMembership;
-}
+export interface IMemberCreateRes extends IMember {}
 
 /* ----------------  PUT  ---------------- */
 export interface IMemberUpdate extends Omit<IMember, 'createdAt' | 'updatedAt'> {}

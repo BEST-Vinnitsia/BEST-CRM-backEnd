@@ -1,26 +1,26 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
-import { ICadence } from 'src/interfaces/cadence.interface';
+import { ICadence } from 'src/interfaces/meeting/cadence.interface';
 
 export class CadenceDto implements ICadence {
-  @ApiProperty({ example: randomUUID() })
-  id: string;
+    @ApiProperty({ example: randomUUID() })
+    id: string;
 
-  @ApiProperty()
-  number: number;
+    @ApiProperty()
+    number: number;
 
-  @ApiProperty()
-  startDate: Date;
+    @ApiProperty()
+    startDate: Date;
 
-  @ApiProperty()
-  endDate: Date;
+    @ApiProperty()
+    endDate: Date;
 
-  @ApiProperty()
-  ended: boolean;
+    @ApiProperty()
+    isEnd: boolean;
 
-  @ApiProperty()
-  createdAt: Date;
+    @ApiProperty()
+    createdAt: Date;
 
-  @ApiProperty()
-  updatedAt: Date;
+    @ApiProperty()
+    updatedAt: Date;
 }

@@ -1,22 +1,9 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-import * as bcrypt from 'bcrypt';
-import {
-    IMember,
-    IMemberCheckById,
-    IMemberCheckEmail,
-    IMemberCreate,
-    IMemberCreateRes,
-    IMemberDelete,
-    IMemberGetId,
-    IMemberGetIdRes,
-    IMemberGetListRes,
-    IMemberUpdate,
-} from 'src/interfaces/member/member.type';
-import { DatabaseService } from '../database/database.service';
+import { Injectable } from '@nestjs/common';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class SocialNetworkService {
-    constructor(private readonly prisma: DatabaseService) {}
+    constructor(private readonly prisma: PrismaService) {}
 
     /* ----------------  GET  ---------------- */
     public async getListByMemberId() {}

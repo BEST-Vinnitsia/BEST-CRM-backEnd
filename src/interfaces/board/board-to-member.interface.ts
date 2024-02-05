@@ -3,7 +3,7 @@ export interface IBoardToMember {
   cadenceId: string;
   boardId: string;
   memberId: string;
-  isLeader: boolean;
+
   createdAt: Date;
   updatedAt: Date;
 }

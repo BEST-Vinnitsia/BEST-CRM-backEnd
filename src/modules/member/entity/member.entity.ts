@@ -3,12 +3,12 @@ import { randomUUID } from 'crypto';
 import { ClothingSizeEnum } from 'src/constants/enums.constant';
 import { IMember } from 'src/interfaces/member/member.type';
 
-export class MemberDto implements IMember {
+export class Member implements IMember {
     @ApiProperty({ example: randomUUID() })
     id: string;
 
     @ApiProperty({ example: randomUUID() })
-    membershipId: string;
+    membership: string;
 
     //
 

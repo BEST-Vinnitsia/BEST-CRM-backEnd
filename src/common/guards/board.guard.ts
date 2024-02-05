@@ -1,6 +1,6 @@
 import { Injectable, CanActivate, ExecutionContext, BadRequestException } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { IAccessToken } from 'src/interfaces/token.interface';
+import { IAccessToken } from 'src/interfaces/secure/token.interface';
 import { Claim } from '../decorators';
 
 @Injectable()
@@ -20,7 +20,7 @@ export class BoardGuard implements CanActivate {
     const accessToken = request.user as IAccessToken;
     if (!accessToken) throw new BadRequestException('incorrect token');
 
-    const boardClaims = accessToken.permission.board;
+    const boardClaims = accessToken.permissions;
 
     let haveAccess = true;
 

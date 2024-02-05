@@ -12,33 +12,30 @@ import {
     IMemberGetListRes,
     IMemberUpdate,
 } from 'src/interfaces/member/member.type';
-import { DatabaseService } from '../database/database.service';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class MemberService {
-    constructor(private readonly prisma: DatabaseService) {}
+    constructor(private readonly prisma: PrismaService) {}
 
     /* ----------------  GET  ---------------- */
 
     // get list
     public async getList(): Promise<IMemberGetListRes[]> {
-        const memberList = await this.prisma.member.findMany({
-            include: { membership: true },
-        });
-
+        const memberList = await this.prisma.member.findMany();
         return memberList;
     }
 
     // get by id
-    // public async getById(data: IMemberGetId): Promise<IMemberGetIdRes> {
-    //     const member = await this.prisma.member.findUnique({
-    //         where: { id: data.id },
-    //         include: { membership: true, email: true, phone: true, socialNetwork: true },
-    //     });
-    //     if (!member) throw new NotFoundException('member not found');
-    //
-    //     return member;
-    // }
+    public async getById(data: IMemberGetId): Promise<IMemberGetIdRes> {
+        const member = await this.prisma.member.findUnique({
+            where: { id: data.id },
+            include: { email: true, phone: true, socialNetwork: true },
+        });
+        if (!member) throw new NotFoundException('member not found');
+
+        return member;
+    }
 
     /* ----------------  POST  ---------------- */
     public async create(data: IMemberCreate): Promise<IMemberCreateRes> {
@@ -51,7 +48,7 @@ export class MemberService {
 
         const memberNew = await this.prisma.member.create({
             data: {
-                membershipId: data.membershipId,
+                membership: data.membership,
                 //
                 login: data.login.toLocaleLowerCase(),
                 password: hash,
@@ -68,7 +65,6 @@ export class MemberService {
                 clothingSize: data.clothingSize ? data.clothingSize.toLocaleUpperCase() : null,
                 homeAddress: data.homeAddress ? data.homeAddress.toLocaleLowerCase() : null,
             },
-            include: { membership: true },
         });
 
         return memberNew;
@@ -82,7 +78,7 @@ export class MemberService {
         const memberUpdate = await this.prisma.member.update({
             where: { id: data.id },
             data: {
-                membershipId: data.membershipId,
+                membership: data.membership,
                 //
                 login: data.login.toLocaleLowerCase(),
                 password: data.password,
@@ -99,7 +95,6 @@ export class MemberService {
                 clothingSize: data.clothingSize ? data.clothingSize.toLocaleUpperCase() : null,
                 homeAddress: data.homeAddress ? data.homeAddress.toLocaleLowerCase() : null,
             },
-            include: { membership: true },
         });
 
         return memberUpdate;
@@ -111,7 +106,6 @@ export class MemberService {
         if (!memberById) throw new NotFoundException('member not found');
 
         const memberDelete = await this.prisma.member.delete({ where: { id: data.id } });
-
         return memberDelete;
     }
 

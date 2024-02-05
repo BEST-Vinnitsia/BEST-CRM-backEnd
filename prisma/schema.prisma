@@ -16,8 +16,8 @@ datasource db {
 
 model Member {
   id           String   @id @default(uuid())
-  membershipId String
-  // 
+  membership   String
+  //
   login        String   @unique
   password     String
   //
@@ -37,50 +37,52 @@ model Member {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  // info about member
-  phone         MemberPhone[]
-  socialNetwork MemberSocialNetwork[]
-  email         MemberEmail[]
-
-  // LGA
-  membership          Membership            @relation(fields: [membershipId], references: [id])
-  translation         Translation[]
+  //
+  refreshToken        RefreshToken[]
+  phone               MemberPhone[]
+  email               MemberEmail[]
+  socialNetwork       MemberSocialNetwork[]
+  increase            Increase[]
   boardToMember       BoardToMember[]
   coordinatorToMember CoordinatorToMember[]
-
-  // auth
-  refreshToken RefreshToken[]
+  committeeToMember   CommitteeToMember[]
 }
 
 model MemberPhone {
-  id        String   @id @default(uuid())
-  memberId  String
-  phone     String
-  isMain    Boolean
+  id       String  @id @default(uuid())
+  memberId String
+  phone    String
+  isMain   Boolean
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  member    Member   @relation(fields: [memberId], references: [id])
+
+  member Member @relation(fields: [memberId], references: [id])
 }
 
 model MemberEmail {
-  id        String   @id @default(uuid())
-  memberId  String
-  email     String
-  isMain    Boolean
+  id       String  @id @default(uuid())
+  memberId String
+  email    String
+  isMain   Boolean
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  member    Member   @relation(fields: [memberId], references: [id])
+
+  member Member @relation(fields: [memberId], references: [id])
 }
 
 model MemberSocialNetwork {
-  id        String   @id @default(uuid())
-  memberId  String
-  name      String
-  url       String
-  isMain    Boolean
+  id       String  @id @default(uuid())
+  memberId String
+  name     String
+  url      String
+  isMain   Boolean
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  member    Member   @relation(fields: [memberId], references: [id])
+
+  member Member @relation(fields: [memberId], references: [id])
 }
 
 //
@@ -90,15 +92,17 @@ model MemberSocialNetwork {
 model Cadence {
   id        String   @id @default(uuid())
   number    Int      @unique
+  isEnd     Boolean
   startDate DateTime
   endDate   DateTime
-  ended     Boolean
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   meeting             Meeting[]
   boardToMember       BoardToMember[]
   coordinatorToMember CoordinatorToMember[]
+  committeeToMember   CommitteeToMember[]
 }
 
 //
@@ -110,59 +114,48 @@ model Meeting {
   cadenceId String
   name      String
   date      DateTime
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  translation Translation[]
-  cadence     Cadence       @relation(fields: [cadenceId], references: [id])
+  increase Increase[]
+  cadence  Cadence    @relation(fields: [cadenceId], references: [id])
 }
 
-//* ----------------  translation  ---------------- *//
-
-model Membership {
+model Increase {
   id        String   @id @default(uuid())
-  name      String   @unique
+  meetingId String
+  memberId  String
+  date      DateTime
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  translation          Translation[]
-  member               Member[]
-  membershipPermission MembershipPermission[]
-}
-
-model Translation {
-  id           String   @id @default(uuid())
-  meetingId    String
-  membershipId String
-  memberId     String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-
-  meeting    Meeting    @relation(fields: [meetingId], references: [id])
-  membership Membership @relation(fields: [membershipId], references: [id])
-  member     Member     @relation(fields: [memberId], references: [id])
+  meeting Meeting @relation(fields: [meetingId], references: [id])
+  member  Member  @relation(fields: [memberId], references: [id])
 }
 
 //* ----------------  board  ---------------- *//
 
 model Board {
-  id                String   @id @default(uuid())
-  name              String   @unique
-  isActive          Boolean
-  committeeIsActive Boolean
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  id       String  @id @default(uuid())
+  name     String  @unique
+  isActive Boolean
 
-  boardToMember   BoardToMember[]
-  boardPermission BoardPermission[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  boardToMember BoardToMember[]
 }
 
 model BoardToMember {
-  id        String   @id @default(uuid())
-  cadenceId String
-  boardId   String
-  memberId  String
-  isLeader  Boolean
+  id          String    @id @default(uuid())
+  memberId    String
+  boardId     String
+  cadenceId   String
+  exclure     Boolean   @default(false)
+  exclureDate DateTime?
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -174,93 +167,77 @@ model BoardToMember {
 //* ----------------  coordinator  ---------------- *//
 
 model Coordinator {
-  id                String   @id @default(uuid())
-  name              String   @unique
-  isActive          Boolean
-  committeeIsActive Boolean
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  id       String  @id @default(uuid())
+  name     String  @unique
+  isActive Boolean
 
-  coordinatorToMember   CoordinatorToMember[]
-  coordinatorPermission CoordinatorPermission[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  coordinatorToMember CoordinatorToMember[]
 }
 
 model CoordinatorToMember {
-  id            String   @id @default(uuid())
-  cadenceId     String
-  coordinatorId String
+  id            String    @id @default(uuid())
   memberId      String
-  isLeader      Boolean
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  coordinatorId String
+  cadenceId     String
+  exclure       Boolean   @default(false)
+  exclureDate   DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   coordinator Coordinator @relation(fields: [coordinatorId], references: [id])
   member      Member      @relation(fields: [memberId], references: [id])
   cadence     Cadence     @relation(fields: [cadenceId], references: [id])
 }
 
-//* ----------------  permissions  ---------------- *//
+//* ----------------  committee  ---------------- *//
 
-model MembershipPermission {
-  id            String   @id @default(uuid())
-  membershipId  String
-  claim         String
-  nameEN        String
-  nameUA        String
-  descriptionEN String
-  descriptionUA String
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+model Committee {
+  id       String  @id @default(uuid())
+  name     String  @unique
+  isActive Boolean
 
-  membership Membership @relation(fields: [membershipId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  committeeToMember CommitteeToMember[]
 }
 
-model BoardPermission {
-  id            String   @id @default(uuid())
-  boardId       String
-  claim         String
-  forleader     Boolean
-  nameEN        String
-  nameUA        String
-  descriptionEN String
-  descriptionUA String
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+model CommitteeToMember {
+  id          String    @id @default(uuid())
+  memberId    String
+  committeeId String
+  cadenceId   String
+  isLeader    Boolean   @default(false)
+  exclure     Boolean   @default(false)
+  exclureDate DateTime?
 
-  board Board @relation(fields: [boardId], references: [id])
-}
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-model CoordinatorPermission {
-  id            String   @id @default(uuid())
-  coordinatorId String
-  claim         String
-  forleader     Boolean
-  nameEN        String
-  nameUA        String
-  descriptionEN String
-  descriptionUA String
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-
-  coordinator Coordinator @relation(fields: [coordinatorId], references: [id])
+  committee Committee @relation(fields: [committeeId], references: [id])
+  member    Member    @relation(fields: [memberId], references: [id])
+  cadence   Cadence   @relation(fields: [cadenceId], references: [id])
 }
 
 //* ----------------  auth  ---------------- *//
 
 model RefreshToken {
-  id         String   @id @default(uuid())
+  id         String  @id @default(uuid())
   memberId   String
-  needUpdate Boolean
-  userIp     String?
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  needUpdate Boolean @default(false)
+  userData   String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   member Member @relation(fields: [memberId], references: [id])
 }
 
-// 
-// EVENT
-// 
+//* ----------------  other  ---------------- *//
 
 model Panish {
   id          String   @id @default(uuid())
@@ -269,8 +246,9 @@ model Panish {
   event       String
   special     Boolean
   eventDate   DateTime
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model PhotoAlbum {
@@ -278,6 +256,7 @@ model PhotoAlbum {
   name      String
   url       String
   eventDate DateTime
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

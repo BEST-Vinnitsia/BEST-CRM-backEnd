@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { DatabaseModule } from '../database/database.module';
+import { PrismaModule } from '../prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
 
 // jwt
@@ -11,16 +11,16 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 
 @Module({
-  imports: [
-    ConfigModule.forRoot({
-      envFilePath: '.env',
-    }),
+    imports: [
+        ConfigModule.forRoot({
+            envFilePath: '.env',
+        }),
 
-    JwtModule.register({}),
+        JwtModule.register({}),
 
-    DatabaseModule,
-  ],
-  controllers: [AuthController],
-  providers: [AuthService, AtStrategy, RtStrategy],
+        PrismaModule,
+    ],
+    controllers: [AuthController],
+    providers: [AuthService, AtStrategy, RtStrategy],
 })
 export class AuthModule {}

@@ -2,7 +2,7 @@ export interface IBoard {
   id: string;
   name: string;
   isActive: boolean;
-  committeeIsActive: boolean;
+
   createdAt: Date;
   updatedAt: Date;
 }

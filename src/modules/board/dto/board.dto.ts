@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
 import { BoardEnum } from 'src/constants/enums.constant';
-import { IBoard } from 'src/interfaces/board.interface';
+import { IBoard } from 'src/interfaces/board/board.interface';
 
 export class BoardDto implements IBoard {
   @ApiProperty({ example: randomUUID() })

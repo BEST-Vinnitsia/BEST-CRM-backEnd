@@ -1,10 +1,10 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-import { DatabaseService } from '../database/database.service';
+import { PrismaService } from '../prisma/prisma.service';
 import { IEmailCreate, IEmailListByMemberId, IEmailMainByMemberId, IEmailUpdate } from '../../interfaces/member/email.type';
 
 @Injectable()
 export class EmailService {
-    constructor(private readonly prisma: DatabaseService) {}
+    constructor(private readonly prisma: PrismaService) {}
 
     /* ----------------  GET  ---------------- */
     public async getListByMemberId({ memberId }: IEmailListByMemberId) {

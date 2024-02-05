@@ -3,6 +3,7 @@ export interface IPhone {
     memberId: string;
     phone: string;
     isMain: boolean;
+
     createdAt: Date;
     updatedAt: Date;
 }

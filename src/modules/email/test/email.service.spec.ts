@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { EmailService } from '../email.service';
-import { DatabaseService } from '../../database/database.service';
+import { PrismaService } from '../../prisma/prisma.service';
 import { emailStub } from './stubs/email.stub';
 
 jest.mock('@prisma/client', () => {
@@ -33,21 +33,21 @@ const db = {
 
 describe('EmailService', () => {
     let service: EmailService;
-    let prisma: DatabaseService;
+    let prisma: PrismaService;
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
             providers: [
                 EmailService,
                 {
-                    provide: DatabaseService,
+                    provide: PrismaService,
                     useValue: db,
                 },
             ],
         }).compile();
 
         service = module.get<EmailService>(EmailService);
-        prisma = module.get<DatabaseService>(DatabaseService);
+        prisma = module.get<PrismaService>(PrismaService);
     });
 
     it('should be different', () => {

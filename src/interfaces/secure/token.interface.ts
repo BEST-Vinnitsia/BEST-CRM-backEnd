@@ -17,9 +17,5 @@ export interface ITokenPayload {
   fullName: string;
   surname: string;
   membershipName: string;
-  permission: {
-    membership: string[];
-    board: string[];
-    coordinator: string[];
-  };
+  permissions: string[];
 }

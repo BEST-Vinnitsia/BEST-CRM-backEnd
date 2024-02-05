@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { DatabaseService } from '../database/database.service';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class PhoneService {
-    constructor(private readonly prisma: DatabaseService) {}
+    constructor(private readonly prisma: PrismaService) {}
 
     /* ----------------  GET  ---------------- */
     public async getListByMemberId() {}

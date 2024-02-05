@@ -3,7 +3,8 @@ export interface ISocialNetwork {
     memberId: string;
     name: string;
     url: string;
-    isMain: string;
+    isMain: boolean;
+
     createdAt: Date;
     updatedAt: Date;
 }

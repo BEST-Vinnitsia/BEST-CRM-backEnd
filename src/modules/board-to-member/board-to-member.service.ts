@@ -1,123 +1,121 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import {
-  IBoardToMember,
-  IBoardToMemberCreate,
-  IBoardToMemberDelete,
-  IBoardToMemberGetById,
-  IBoardToMemberUpdate,
-} from 'src/interfaces/board-to-member.interface';
+    IBoardToMember,
+    IBoardToMemberCreate,
+    IBoardToMemberDelete,
+    IBoardToMemberGetById,
+    IBoardToMemberUpdate,
+} from 'src/interfaces/board/board-to-member.interface';
 import { MembershipEnum } from 'src/constants/enums.constant';
-import { DatabaseService } from '../database/database.service';
+import { PrismaService } from '../prisma/prisma.service';
 import { IMember } from 'src/interfaces/member/member.type';
-import { IMembership } from 'src/interfaces/member/membership.type';
-import { IBoard } from 'src/interfaces/board.interface';
-import { ICadence } from 'src/interfaces/cadence.interface';
+import { IBoard } from 'src/interfaces/board/board.interface';
+import { ICadence } from 'src/interfaces/meeting/cadence.interface';
 
 @Injectable()
 export class BoardToMemberService {
-  constructor(private readonly prisma: DatabaseService) {}
+    constructor(private readonly prisma: PrismaService) {}
 
-  /* ----------------  GET  ---------------- */
+    /* ----------------  GET  ---------------- */
 
-  // get list
-  public async getList(): Promise<IBoardToMember[]> {
-    const boardToMemberList = await this.prisma.boardToMember.findMany();
+    // get list
+    public async getList(): Promise<IBoardToMember[]> {
+        const boardToMemberList = await this.prisma.boardToMember.findMany();
 
-    return boardToMemberList;
-  }
+        return boardToMemberList;
+    }
 
-  // get by id
-  public async getById(data: IBoardToMemberGetById): Promise<IBoardToMember> {
-    const boardToMember = await this.prisma.boardToMember.findUnique({ where: { id: data.id } });
-    if (!boardToMember) throw new NotFoundException('board to member not found');
-    return boardToMember;
-  }
+    // get by id
+    public async getById(data: IBoardToMemberGetById): Promise<IBoardToMember> {
+        const boardToMember = await this.prisma.boardToMember.findUnique({ where: { id: data.id } });
+        if (!boardToMember) throw new NotFoundException('board to member not found');
+        return boardToMember;
+    }
 
-  /* ----------------  POST  ---------------- */
-  public async create(data: IBoardToMemberCreate): Promise<IBoardToMember> {
-    const memberById = await this.checkMemberAndMembership({ memberId: data.memberId });
-    if (!memberById) throw new NotFoundException('member is not found');
-    if (
-      (memberById.membership.name !== MembershipEnum.FULL && data.isLeader === true) ||
-      (memberById.membership.name !== MembershipEnum.ALUMNI && data.isLeader === true)
-    )
-      throw new BadRequestException('member is not have Full membership');
+    /* ----------------  POST  ---------------- */
+    public async create(data: IBoardToMemberCreate): Promise<IBoardToMember> {
+        const memberById = await this.checkMemberAndMembership({ memberId: data.memberId });
+        if (!memberById) throw new NotFoundException('member is not found');
+        // if (
+        //     (memberById.membership.name !== MembershipEnum.FULL && data.isLeader === true) ||
+        //     (memberById.membership.name !== MembershipEnum.ALUMNI && data.isLeader === true)
+        // )
+        //     throw new BadRequestException('member is not have Full membership');
 
-    const cadenceById = await this.checkCadenceById({ cadenceId: data.cadenceId });
-    if (!cadenceById) throw new NotFoundException('cadence is not found');
+        const cadenceById = await this.checkCadenceById({ cadenceId: data.cadenceId });
+        if (!cadenceById) throw new NotFoundException('cadence is not found');
 
-    const boardById = await this.checkBoardById({ boardId: data.boardId });
-    if (!boardById) throw new NotFoundException('board is not found');
+        const boardById = await this.checkBoardById({ boardId: data.boardId });
+        if (!boardById) throw new NotFoundException('board is not found');
 
-    const boardToMember = await this.prisma.boardToMember.create({
-      data: {
-        cadenceId: data.cadenceId,
-        boardId: data.boardId,
-        memberId: data.memberId,
-        isLeader: data.isLeader,
-      },
-    });
+        const boardToMember = await this.prisma.boardToMember.create({
+            data: {
+                cadenceId: data.cadenceId,
+                boardId: data.boardId,
+                memberId: data.memberId,
+            },
+        });
 
-    return boardToMember;
-  }
+        return boardToMember;
+    }
 
-  /* ----------------  PUT  ---------------- */
-  public async update(data: IBoardToMemberUpdate): Promise<IBoardToMember> {
-    const boardToMember = await this.checkById({ id: data.id });
-    if (!boardToMember) throw new NotFoundException('board to member not found');
+    /* ----------------  PUT  ---------------- */
+    public async update(data: IBoardToMemberUpdate): Promise<IBoardToMember> {
+        const boardToMember = await this.checkById({ id: data.id });
+        if (!boardToMember) throw new NotFoundException('board to member not found');
 
-    const boardToMemberUpdate = this.prisma.boardToMember.update({
-      where: { id: data.id },
-      data: {
-        cadenceId: data.cadenceId,
-        boardId: data.boardId,
-        memberId: data.memberId,
-        isLeader: data.isLeader,
-      },
-    });
+        const boardToMemberUpdate = this.prisma.boardToMember.update({
+            where: { id: data.id },
+            data: {
+                cadenceId: data.cadenceId,
+                boardId: data.boardId,
+                memberId: data.memberId,
+            },
+        });
 
-    return boardToMemberUpdate;
-  }
+        return boardToMemberUpdate;
+    }
 
-  /* ----------------  DELETE  ---------------- */
-  public async delete(data: IBoardToMemberDelete): Promise<IBoardToMember> {
-    const boardToMember = await this.checkById({ id: data.id });
-    if (!boardToMember) throw new NotFoundException('board to member is not exist');
+    /* ----------------  DELETE  ---------------- */
+    public async delete(data: IBoardToMemberDelete): Promise<IBoardToMember> {
+        const boardToMember = await this.checkById({ id: data.id });
+        if (!boardToMember) throw new NotFoundException('board to member is not exist');
 
-    const boardToMemberDelete = await this.prisma.boardToMember.delete({ where: { id: data.id } });
+        const boardToMemberDelete = await this.prisma.boardToMember.delete({ where: { id: data.id } });
 
-    return boardToMemberDelete;
-  }
+        return boardToMemberDelete;
+    }
 
-  //
-  //
-  //
+    //
+    //
+    //
 
-  // check by id
-  private async checkById({ id }: { id: string }): Promise<IBoardToMember> {
-    const board = await this.prisma.boardToMember.findUnique({ where: { id } });
-    return board;
-  }
+    // check by id
+    private async checkById({ id }: { id: string }): Promise<IBoardToMember> {
+        const board = await this.prisma.boardToMember.findUnique({ where: { id } });
+        return board;
+    }
 
-  // check by cadence
-  private async checkCadenceById({ cadenceId }: { cadenceId: string }): Promise<ICadence> {
-    const cadence = await this.prisma.cadence.findUnique({ where: { id: cadenceId } });
-    return cadence;
-  }
+    // check by cadence
+    private async checkCadenceById({ cadenceId }: { cadenceId: string }): Promise<ICadence> {
+        const cadence = await this.prisma.cadence.findUnique({
+            where: { id: cadenceId },
+        });
+        return cadence;
+    }
 
-  // check Board by id
-  private async checkBoardById({ boardId }: { boardId: string }): Promise<IBoard> {
-    const board = await this.prisma.board.findUnique({ where: { id: boardId } });
-    return board;
-  }
+    // check Board by id
+    private async checkBoardById({ boardId }: { boardId: string }): Promise<IBoard> {
+        const board = await this.prisma.board.findUnique({ where: { id: boardId } });
+        return board;
+    }
 
-  // check member and membership
-  private async checkMemberAndMembership({ memberId }: { memberId: string }): Promise<IMember & { membership: IMembership }> {
-    const member = await this.prisma.member.findFirst({
-      where: { id: memberId },
-      include: { membership: true },
-    });
+    // check member and membership
+    private async checkMemberAndMembership({ memberId }: { memberId: string }): Promise<IMember> {
+        const member = await this.prisma.member.findFirst({
+            where: { id: memberId },
+        });
 
-    return member;
-  }
+        return member;
+    }
 }

@@ -1,6 +1,6 @@
 import { IsBoolean, IsNotEmpty, IsString, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { IBoardUpdate } from 'src/interfaces/board.interface';
+import { IBoardUpdate } from 'src/interfaces/board/board.interface';
 import { randomUUID } from 'crypto';
 
 export class BoardUpdateDto implements IBoardUpdate {

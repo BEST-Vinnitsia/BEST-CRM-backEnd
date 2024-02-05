@@ -1,11 +1,12 @@
 export interface ICadence {
-  id: string;
-  number: number;
-  startDate: Date;
-  endDate: Date;
-  ended: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+    id: string;
+    number: number;
+    isEnd: boolean;
+    startDate: Date;
+    endDate: Date;
+
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 //
