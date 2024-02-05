@@ -25,10 +25,10 @@ import { EmailModule } from '../email/email.module';
         MemberModule,
         EmailModule,
 
-        CadenceModule,
-
-        BoardModule,
-        BoardToMemberModule,
+        // CadenceModule,
+        //
+        // BoardModule,
+        // BoardToMemberModule,
     ],
     controllers: [AppController],
     providers: [

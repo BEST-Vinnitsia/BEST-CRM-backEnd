@@ -2,11 +2,8 @@ import { BadRequestException, Injectable, NotFoundException } from '@nestjs/comm
 import * as bcrypt from 'bcrypt';
 import {
     IMember,
-    IMemberCheckById,
-    IMemberCheckEmail,
     IMemberCreate,
     IMemberCreateRes,
-    IMemberDelete,
     IMemberGetId,
     IMemberGetIdRes,
     IMemberGetListRes,
@@ -38,32 +35,32 @@ export class MemberService {
     }
 
     /* ----------------  POST  ---------------- */
-    public async create(data: IMemberCreate): Promise<IMemberCreateRes> {
+    public async create(dto: IMemberCreate): Promise<IMemberCreateRes> {
         // add check membership
 
-        const hash = await bcrypt.hash(data.password, 10);
+        const hash = await bcrypt.hash(dto.password, 10);
 
-        const memberByEmail = await this.checkByEmail({ login: data.login });
+        const memberByEmail = await this.prisma.member.findUnique({ where: { login: dto.login } });
         if (memberByEmail) throw new BadRequestException('member is exist');
 
         const memberNew = await this.prisma.member.create({
             data: {
-                membership: data.membership,
+                membership: dto.membership,
                 //
-                login: data.login.toLocaleLowerCase(),
+                login: dto.login.toLocaleLowerCase(),
                 password: hash,
-                bestEmail: data.bestEmail ? data.bestEmail.toLocaleLowerCase() : null,
+                bestEmail: dto.bestEmail ? dto.bestEmail.toLocaleLowerCase() : null,
                 //
-                fullName: data.fullName.toLocaleLowerCase(),
-                middleName: data.middleName.toLocaleLowerCase(),
-                surname: data.surname.toLocaleLowerCase(),
-                birthday: data.birthday,
+                fullName: dto.fullName.toLocaleLowerCase(),
+                middleName: dto.middleName.toLocaleLowerCase(),
+                surname: dto.surname.toLocaleLowerCase(),
+                birthday: dto.birthday,
                 //
-                faculty: data.faculty.toLocaleLowerCase(),
-                group: data.group.toLocaleLowerCase(),
+                faculty: dto.faculty.toLocaleLowerCase(),
+                group: dto.group.toLocaleLowerCase(),
                 //
-                clothingSize: data.clothingSize ? data.clothingSize.toLocaleUpperCase() : null,
-                homeAddress: data.homeAddress ? data.homeAddress.toLocaleLowerCase() : null,
+                clothingSize: dto.clothingSize ? dto.clothingSize.toLocaleUpperCase() : null,
+                homeAddress: dto.homeAddress ? dto.homeAddress.toLocaleLowerCase() : null,
             },
         });
 
@@ -71,29 +68,29 @@ export class MemberService {
     }
 
     /* ----------------  PUT  ---------------- */
-    public async update(data: IMemberUpdate): Promise<IMember> {
-        const memberById = await this.checkById({ id: data.id });
+    public async update(dto: IMemberUpdate): Promise<IMember> {
+        const memberById = await this.prisma.member.findUnique({ where: { id: dto.id } });
         if (!memberById) throw new NotFoundException('member not found');
 
         const memberUpdate = await this.prisma.member.update({
-            where: { id: data.id },
+            where: { id: dto.id },
             data: {
-                membership: data.membership,
+                membership: dto.membership,
                 //
-                login: data.login.toLocaleLowerCase(),
-                password: data.password,
-                bestEmail: data.bestEmail ? data.bestEmail.toLocaleLowerCase() : null,
+                login: dto.login.toLocaleLowerCase(),
+                password: dto.password,
+                bestEmail: dto.bestEmail ? dto.bestEmail.toLocaleLowerCase() : null,
                 //
-                fullName: data.fullName.toLocaleLowerCase(),
-                middleName: data.middleName.toLocaleLowerCase(),
-                surname: data.surname.toLocaleLowerCase(),
-                birthday: data.birthday,
+                fullName: dto.fullName.toLocaleLowerCase(),
+                middleName: dto.middleName.toLocaleLowerCase(),
+                surname: dto.surname.toLocaleLowerCase(),
+                birthday: dto.birthday,
                 //
-                faculty: data.faculty.toLocaleLowerCase(),
-                group: data.group.toLocaleLowerCase(),
+                faculty: dto.faculty.toLocaleLowerCase(),
+                group: dto.group.toLocaleLowerCase(),
                 //
-                clothingSize: data.clothingSize ? data.clothingSize.toLocaleUpperCase() : null,
-                homeAddress: data.homeAddress ? data.homeAddress.toLocaleLowerCase() : null,
+                clothingSize: dto.clothingSize ? dto.clothingSize.toLocaleUpperCase() : null,
+                homeAddress: dto.homeAddress ? dto.homeAddress.toLocaleLowerCase() : null,
             },
         });
 
@@ -101,27 +98,11 @@ export class MemberService {
     }
 
     /* ----------------  DELETE  ---------------- */
-    public async deleteById(data: IMemberDelete): Promise<IMember> {
-        const memberById = await this.checkById({ id: data.id });
-        if (!memberById) throw new NotFoundException('member not found');
+    public async deleteArray(dto: string[]) {
+        const deleteRes = await this.prisma.member.deleteMany({
+            where: { id: { in: dto } },
+        });
 
-        const memberDelete = await this.prisma.member.delete({ where: { id: data.id } });
-        return memberDelete;
-    }
-
-    //
-    //
-    //
-
-    // check by id
-    private async checkById({ id }: IMemberCheckById): Promise<IMember> {
-        const member = await this.prisma.member.findUnique({ where: { id } });
-        return member;
-    }
-
-    // check by email
-    private async checkByEmail({ login }: IMemberCheckEmail): Promise<IMember> {
-        const member = await this.prisma.member.findUnique({ where: { login } });
-        return member;
+        return deleteRes;
     }
 }

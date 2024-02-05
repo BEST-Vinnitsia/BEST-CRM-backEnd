@@ -44,12 +44,6 @@ export interface IMemberGetIdRes extends IMember {
     socialNetwork: ISocialNetwork[];
 }
 
-// check by id
-export interface IMemberCheckById extends Pick<IMember, 'id'> {}
-
-// check by email
-export interface IMemberCheckEmail extends Pick<IMember, 'login'> {}
-
 /* ----------------  POST  ---------------- */
 export interface IMemberCreate extends Omit<IMember, 'id' | 'createdAt' | 'updatedAt'> {}
 
@@ -59,4 +53,6 @@ export interface IMemberCreateRes extends IMember {}
 export interface IMemberUpdate extends Omit<IMember, 'createdAt' | 'updatedAt'> {}
 
 /* ----------------  DELETE  ---------------- */
-export interface IMemberDelete extends Pick<IMember, 'id'> {}
+export interface IMemberDeleteArray {
+    membersId: string[];
+}
