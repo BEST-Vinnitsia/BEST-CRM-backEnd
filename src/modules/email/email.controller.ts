@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post, Query, Delete, Put } from '@nestjs/common';
 import { ApiCreatedResponse, ApiTags, ApiSecurity } from '@nestjs/swagger';
-import { EmailEntity } from './entity/email.entity';
+import { Email } from './entity/email.entity';
 import { EmailService } from './email.service';
 import { EmailGetListDto } from './dto/email-get-list.dto';
 import { EmailGetMainDto } from './dto/email-get-main.dto';
@@ -17,34 +17,34 @@ export class EmailController {
     /* ----------------  GET  ---------------- */
 
     @Get('list')
-    @ApiCreatedResponse({ type: [EmailEntity] })
+    @ApiCreatedResponse({ type: [Email] })
     async getEmailList(@Query() data: EmailGetListDto) {
         return await this.emailService.getListByMemberId(data);
     }
 
     @Get('main')
-    @ApiCreatedResponse({ type: EmailEntity })
+    @ApiCreatedResponse({ type: Email })
     async getMainEmail(@Query() data: EmailGetMainDto) {
         return await this.emailService.getMainByMemberId(data);
     }
 
     /* ----------------  POST  ---------------- */
     @Post('create')
-    @ApiCreatedResponse({ type: EmailEntity })
+    @ApiCreatedResponse({ type: Email })
     async create(@Body() dto: EmailCreateDtoArray) {
         return await this.emailService.create(dto.emails);
     }
 
     /* ----------------  PUT  ---------------- */
     @Put('update')
-    @ApiCreatedResponse({ type: EmailEntity })
+    @ApiCreatedResponse({ type: Email })
     async update(@Body() dto: EmailUpdateDtoArray) {
         return await this.emailService.update(dto.emails);
     }
 
     /* ----------------  DELETE  ---------------- */
     @Delete('delete')
-    @ApiCreatedResponse({ type: EmailEntity })
+    @ApiCreatedResponse({ type: Email })
     async delete(@Body() dto: EmailDeleteDto) {
         return await this.emailService.delete(dto.emailsId);
     }
