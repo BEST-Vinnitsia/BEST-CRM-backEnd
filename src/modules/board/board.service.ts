@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-import { IBoard, IBoardCreate, IBoardDelete, IBoardGetById, IBoardUpdate } from 'src/interfaces/board/board.interface';
+import { IBoard, IBoardCreate, IBoardDeleteArray, IBoardGetById, IBoardUpdate } from 'src/interfaces/board/board.interface';
 import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
@@ -57,15 +57,12 @@ export class BoardService {
     }
 
     /* ----------------  DELETE  ---------------- */
-    public async delete(data: IBoardDelete): Promise<IBoard> {
-        const board = await this.checkById({ id: data.id });
-        if (!board) throw new NotFoundException('board is not exist');
-
-        const boardDelete = this.prisma.board.delete({
-            where: { id: data.id },
+    public async delete(dto: string[]) {
+        const deleteRes = this.prisma.board.deleteMany({
+            where: { id: { in: dto } },
         });
 
-        return boardDelete;
+        return deleteRes;
     }
 
     //

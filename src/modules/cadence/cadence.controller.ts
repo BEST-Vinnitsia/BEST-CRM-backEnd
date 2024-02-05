@@ -3,42 +3,48 @@ import { CadenceService } from './cadence.service';
 import { CadenceGetByIdDto } from './dto/getById.dto';
 import { CadenceCreateDto } from './dto/create.dto';
 import { CadenceUpdateDto } from './dto/update.dto';
-import { CadenceDeleteDto } from './dto/delete.dto';
+import { CadenceDeleteArrayDto } from './dto/delete.dto';
 import { ApiCreatedResponse, ApiTags, ApiSecurity } from '@nestjs/swagger';
-import { CadenceDto } from './dto/cadence.dto';
+import { Cadence } from './entity/cadence.entity';
 
 @ApiSecurity('basic')
 @ApiTags('Cadence')
 @Controller('api/v/1/cadence')
 export class CadenceController {
-  constructor(private readonly cadenceService: CadenceService) {}
+    constructor(private readonly cadenceService: CadenceService) {}
 
-  /* ----------------  GET  ---------------- */
+    /* ----------------  GET  ---------------- */
 
-  @Get('by-id')
-  @ApiCreatedResponse({ type: CadenceDto })
-  async byId(@Query() data: CadenceGetByIdDto) {
-    return await this.cadenceService.getById(data);
-  }
+    @Get('list')
+    @ApiCreatedResponse({ type: [Cadence] })
+    async getList() {
+        return await this.cadenceService.list();
+    }
 
-  /* ----------------  POST  ---------------- */
-  @Post('create')
-  @ApiCreatedResponse({ type: CadenceDto })
-  async create(@Body() data: CadenceCreateDto) {
-    return await this.cadenceService.create(data);
-  }
+    @Get('by-id')
+    @ApiCreatedResponse({ type: Cadence })
+    async getById(@Query() dto: CadenceGetByIdDto) {
+        return await this.cadenceService.getById(dto);
+    }
 
-  /* ----------------  PUT  ---------------- */
-  @Put('by-id')
-  @ApiCreatedResponse({ type: CadenceDto })
-  async update(@Body() data: CadenceUpdateDto) {
-    return await this.cadenceService.update(data);
-  }
+    /* ----------------  POST  ---------------- */
+    @Post('create')
+    @ApiCreatedResponse({ type: Cadence })
+    async create(@Body() dto: CadenceCreateDto) {
+        return await this.cadenceService.create(dto);
+    }
 
-  /* ----------------  DELETE  ---------------- */
-  @Delete('by-id')
-  @ApiCreatedResponse({ type: CadenceDto })
-  async delete(@Query() data: CadenceDeleteDto) {
-    return await this.cadenceService.delete(data);
-  }
+    /* ----------------  PUT  ---------------- */
+    @Put('update')
+    @ApiCreatedResponse({ type: Cadence })
+    async update(@Body() dto: CadenceUpdateDto) {
+        return await this.cadenceService.update(dto);
+    }
+
+    /* ----------------  DELETE  ---------------- */
+    @Delete('delete')
+    @ApiCreatedResponse({ type: Cadence })
+    async delete(@Body() dto: CadenceDeleteArrayDto) {
+        return await this.cadenceService.delete(dto.cadencesId);
+    }
 }

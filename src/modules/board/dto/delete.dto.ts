@@ -1,12 +1,13 @@
-import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
+import { IsArray, IsNotEmpty, IsString, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { IBoardDelete } from 'src/interfaces/board/board.interface';
+import { IBoardDeleteArray } from 'src/interfaces/board/board.interface';
 import { randomUUID } from 'crypto';
 
-export class BoardDeleteDto implements IBoardDelete {
-  @ApiProperty({ example: randomUUID() })
-  @IsNotEmpty()
-  @IsString()
-  @IsUUID('4')
-  id: string;
+export class BoardDeleteArrayDto implements IBoardDeleteArray {
+    @ApiProperty({ example: [randomUUID()] })
+    @IsNotEmpty()
+    @IsString({ each: true })
+    @IsArray()
+    @IsUUID('4', { each: true })
+    boardsId: string[];
 }

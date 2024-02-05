@@ -3,9 +3,9 @@ import { BoardService } from './board.service';
 import { BoardGetByIdDto } from './dto/getById.dto';
 import { BoardCreateDto } from './dto/create.dto';
 import { BoardUpdateDto } from './dto/update.dto';
-import { BoardDeleteDto } from './dto/delete.dto';
+import { BoardDeleteArrayDto } from './dto/delete.dto';
 import { ApiCreatedResponse, ApiTags, ApiSecurity } from '@nestjs/swagger';
-import { BoardDto } from './dto/board.dto';
+import { Board } from './entity/board.entity';
 import { Claim } from 'src/common/decorators';
 import { BoardGuard } from 'src/common/guards';
 
@@ -13,42 +13,42 @@ import { BoardGuard } from 'src/common/guards';
 @ApiTags('Board')
 @Controller('api/v/1/board')
 export class BoardController {
-  constructor(private readonly boardService: BoardService) {}
+    constructor(private readonly boardService: BoardService) {}
 
-  /* ----------------  GET  ---------------- */
+    /* ----------------  GET  ---------------- */
 
-  @Get('list')
-  @ApiCreatedResponse({ type: [BoardDto] })
-  async list() {
-    return await this.boardService.getList();
-  }
+    @Get('list')
+    @ApiCreatedResponse({ type: [Board] })
+    async list() {
+        return await this.boardService.getList();
+    }
 
-  @Get('by-id')
-  @ApiCreatedResponse({ type: BoardDto })
-  async byId(@Query() data: BoardGetByIdDto) {
-    return await this.boardService.getById(data);
-  }
+    @Get('by-id')
+    @ApiCreatedResponse({ type: Board })
+    async byId(@Query() dto: BoardGetByIdDto) {
+        return await this.boardService.getById(dto);
+    }
 
-  /* ----------------  POST  ---------------- */
-  @Claim(['demo'])
-  @UseGuards(BoardGuard)
-  @Post('create')
-  @ApiCreatedResponse({ type: BoardDto })
-  async create(@Body() data: BoardCreateDto) {
-    return await this.boardService.create(data);
-  }
+    /* ----------------  POST  ---------------- */
+    @Claim(['demo'])
+    @UseGuards(BoardGuard)
+    @Post('create')
+    @ApiCreatedResponse({ type: Board })
+    async create(@Body() dto: BoardCreateDto) {
+        return await this.boardService.create(dto);
+    }
 
-  /* ----------------  PUT  ---------------- */
-  @Put('by-id')
-  @ApiCreatedResponse({ type: BoardDto })
-  async update(@Body() data: BoardUpdateDto) {
-    return await this.boardService.update(data);
-  }
+    /* ----------------  PUT  ---------------- */
+    @Put('update')
+    @ApiCreatedResponse({ type: Board })
+    async update(@Body() dto: BoardUpdateDto) {
+        return await this.boardService.update(dto);
+    }
 
-  /* ----------------  DELETE  ---------------- */
-  @Delete('by-id')
-  @ApiCreatedResponse({ type: BoardDto })
-  async delete(@Query() data: BoardDeleteDto) {
-    return await this.boardService.delete(data);
-  }
+    /* ----------------  DELETE  ---------------- */
+    @Delete('delete')
+    @ApiCreatedResponse({ type: Board })
+    async delete(@Body() dto: BoardDeleteArrayDto) {
+        return await this.boardService.delete(dto.boardsId);
+    }
 }

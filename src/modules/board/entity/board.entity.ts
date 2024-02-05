@@ -3,7 +3,7 @@ import { randomUUID } from 'crypto';
 import { BoardEnum } from 'src/constants/enums.constant';
 import { IBoard } from 'src/interfaces/board/board.interface';
 
-export class BoardDto implements IBoard {
+export class Board implements IBoard {
   @ApiProperty({ example: randomUUID() })
   id: string;
 

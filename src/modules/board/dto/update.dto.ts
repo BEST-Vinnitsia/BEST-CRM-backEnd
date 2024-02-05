@@ -14,9 +14,4 @@ export class BoardUpdateDto implements IBoardUpdate {
   @IsNotEmpty()
   @IsBoolean()
   isActive: boolean;
-
-  @ApiProperty()
-  @IsNotEmpty()
-  @IsBoolean()
-  committeeIsActive: boolean;
 }

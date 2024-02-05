@@ -14,8 +14,6 @@ export interface ICadence {
 //
 
 /* ----------------  GET  ---------------- */
-
-// get by id
 export interface ICadenceGetById extends Pick<ICadence, 'id'> {}
 
 /* ----------------  POST  ---------------- */
@@ -25,4 +23,6 @@ export interface ICadenceCreate extends Omit<ICadence, 'id' | 'createdAt' | 'upd
 export interface ICadenceUpdate extends Omit<ICadence, 'createdAt' | 'updatedAt'> {}
 
 /* ----------------  DELETE  ---------------- */
-export interface ICadenceDelete extends Pick<ICadence, 'id'> {}
+export interface ICadenceDeleteArray {
+    cadencesId: string[];
+}

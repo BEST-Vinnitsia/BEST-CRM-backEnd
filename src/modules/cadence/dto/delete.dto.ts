@@ -1,12 +1,13 @@
-import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
+import { IsArray, IsNotEmpty, IsString, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { ICadenceDelete } from 'src/interfaces/meeting/cadence.interface';
+import { ICadenceDeleteArray } from 'src/interfaces/meeting/cadence.interface';
 import { randomUUID } from 'crypto';
 
-export class CadenceDeleteDto implements ICadenceDelete {
-    @ApiProperty({ example: randomUUID() })
+export class CadenceDeleteArrayDto implements ICadenceDeleteArray {
+    @ApiProperty({ example: [randomUUID()] })
     @IsNotEmpty()
-    @IsString()
-    @IsUUID('4')
-    id: string;
+    @IsString({ each: true })
+    @IsArray()
+    @IsUUID('4', { each: true })
+    cadencesId: string[];
 }

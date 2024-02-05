@@ -14,9 +14,4 @@ export class BoardCreateDto implements IBoardCreate {
   @IsNotEmpty()
   @IsBoolean()
   isActive: boolean;
-
-  @ApiProperty()
-  @IsNotEmpty()
-  @IsBoolean()
-  committeeIsActive: boolean;
 }

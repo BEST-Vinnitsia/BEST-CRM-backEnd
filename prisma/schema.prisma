@@ -57,7 +57,7 @@ model MemberPhone {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  member Member @relation(fields: [memberId], references: [id])
+  member Member @relation(fields: [memberId], references: [id], onDelete: Restrict, onUpdate: Restrict)
 }
 
 model MemberEmail {
@@ -69,7 +69,7 @@ model MemberEmail {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  member Member @relation(fields: [memberId], references: [id])
+  member Member @relation(fields: [memberId], references: [id], onDelete: Restrict, onUpdate: Restrict)
 }
 
 model MemberSocialNetwork {
@@ -82,7 +82,7 @@ model MemberSocialNetwork {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  member Member @relation(fields: [memberId], references: [id])
+  member Member @relation(fields: [memberId], references: [id], onDelete: Restrict, onUpdate: Restrict)
 }
 
 //
@@ -119,7 +119,7 @@ model Meeting {
   updatedAt DateTime @updatedAt
 
   increase Increase[]
-  cadence  Cadence    @relation(fields: [cadenceId], references: [id])
+  cadence  Cadence    @relation(fields: [cadenceId], references: [id], onDelete: Restrict, onUpdate: Restrict)
 }
 
 model Increase {
@@ -131,8 +131,8 @@ model Increase {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  meeting Meeting @relation(fields: [meetingId], references: [id])
-  member  Member  @relation(fields: [memberId], references: [id])
+  meeting Meeting @relation(fields: [meetingId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  member  Member  @relation(fields: [memberId], references: [id], onDelete: Restrict, onUpdate: Restrict)
 }
 
 //* ----------------  board  ---------------- *//
@@ -159,9 +159,9 @@ model BoardToMember {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  board   Board   @relation(fields: [boardId], references: [id])
-  member  Member  @relation(fields: [memberId], references: [id])
-  cadence Cadence @relation(fields: [cadenceId], references: [id])
+  board   Board   @relation(fields: [boardId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  member  Member  @relation(fields: [memberId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  cadence Cadence @relation(fields: [cadenceId], references: [id], onDelete: Restrict, onUpdate: Restrict)
 }
 
 //* ----------------  coordinator  ---------------- *//
@@ -188,9 +188,9 @@ model CoordinatorToMember {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  coordinator Coordinator @relation(fields: [coordinatorId], references: [id])
-  member      Member      @relation(fields: [memberId], references: [id])
-  cadence     Cadence     @relation(fields: [cadenceId], references: [id])
+  coordinator Coordinator @relation(fields: [coordinatorId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  member      Member      @relation(fields: [memberId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  cadence     Cadence     @relation(fields: [cadenceId], references: [id], onDelete: Restrict, onUpdate: Restrict)
 }
 
 //* ----------------  committee  ---------------- *//
@@ -218,9 +218,9 @@ model CommitteeToMember {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  committee Committee @relation(fields: [committeeId], references: [id])
-  member    Member    @relation(fields: [memberId], references: [id])
-  cadence   Cadence   @relation(fields: [cadenceId], references: [id])
+  committee Committee @relation(fields: [committeeId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  member    Member    @relation(fields: [memberId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  cadence   Cadence   @relation(fields: [cadenceId], references: [id], onDelete: Restrict, onUpdate: Restrict)
 }
 
 //* ----------------  auth  ---------------- *//
@@ -234,7 +234,7 @@ model RefreshToken {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  member Member @relation(fields: [memberId], references: [id])
+  member Member @relation(fields: [memberId], references: [id], onDelete: Restrict, onUpdate: Restrict)
 }
 
 //* ----------------  other  ---------------- *//

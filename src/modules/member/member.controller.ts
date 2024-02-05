@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query, Delete, Put } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Delete, Put, InternalServerErrorException, Catch, HttpException, UseFilters } from '@nestjs/common';
 import { MemberService } from './member.service';
 import { MemberCreateDto } from './dto/member-create.dto';
 import { MemberUpdateDto } from './dto/member-update.dto';
@@ -6,6 +6,7 @@ import { MemberDeleteArrayDto } from './dto/member-delete-array.dto';
 import { ApiCreatedResponse, ApiTags, ApiSecurity } from '@nestjs/swagger';
 import { Member } from './entity/member.entity';
 import { MemberGetByIdDto } from './dto/member-get-by-id.dto';
+import { HttpErrorFilter } from '../../common/filters/http-exception.filter';
 
 @ApiSecurity('basic')
 @ApiTags('Member')
@@ -46,6 +47,6 @@ export class MemberController {
     @Delete('delete')
     @ApiCreatedResponse()
     async deleteArray(@Body() dto: MemberDeleteArrayDto) {
-        return await this.memberService.deleteArray(dto.membersId);
+        return this.memberService.deleteArray(dto.membersId);
     }
 }

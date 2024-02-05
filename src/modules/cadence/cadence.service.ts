@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-import { ICadence, ICadenceCreate, ICadenceDelete, ICadenceGetById, ICadenceUpdate } from 'src/interfaces/meeting/cadence.interface';
+import { ICadence, ICadenceCreate, ICadenceGetById, ICadenceUpdate } from 'src/interfaces/meeting/cadence.interface';
 import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
@@ -8,10 +8,14 @@ export class CadenceService {
 
     /* ----------------  GET  ---------------- */
 
-    // get by id
-    public async getById(data: ICadenceGetById): Promise<ICadence> {
+    public async list(): Promise<ICadence[]> {
+        const cadence = await this.prisma.cadence.findMany();
+        return cadence;
+    }
+
+    public async getById(dto: ICadenceGetById): Promise<ICadence> {
         const cadence = await this.prisma.cadence.findUnique({
-            where: { id: data.id },
+            where: { id: dto.id },
         });
         if (!cadence) throw new NotFoundException('cadence not found');
 
@@ -19,16 +23,16 @@ export class CadenceService {
     }
 
     /* ----------------  POST  ---------------- */
-    public async create(data: ICadenceCreate): Promise<ICadence> {
-        const cadence = await this.checkByNumber({ number: data.number });
+    public async create(dto: ICadenceCreate): Promise<ICadence> {
+        const cadence = await this.prisma.cadence.findUnique({ where: { number: dto.number } });
         if (cadence) throw new BadRequestException('cadence is exist');
 
         const cadenceNew = await this.prisma.cadence.create({
             data: {
-                number: data.number,
-                startDate: data.startDate,
-                endDate: data.endDate,
-                isEnd: data.isEnd,
+                number: dto.number,
+                startDate: dto.startDate,
+                endDate: dto.endDate,
+                isEnd: dto.isEnd,
             },
         });
 
@@ -36,20 +40,20 @@ export class CadenceService {
     }
 
     /* ----------------  PUT  ---------------- */
-    public async update(data: ICadenceUpdate): Promise<ICadence> {
-        const cadenceById = await this.checkById({ id: data.id });
+    public async update(dto: ICadenceUpdate): Promise<ICadence> {
+        const cadenceById = await this.prisma.cadence.findUnique({ where: { id: dto.id } });
         if (!cadenceById) throw new NotFoundException('cadence not found');
 
-        const cadenceByName = await this.checkByNumber({ number: data.number });
+        const cadenceByName = await this.prisma.cadence.findUnique({ where: { number: dto.number } });
         if (cadenceByName) throw new BadRequestException('cadence is exist');
 
         const cadenceUpdate = await this.prisma.cadence.update({
-            where: { id: data.id },
+            where: { id: dto.id },
             data: {
-                number: data.number,
-                startDate: data.startDate,
-                endDate: data.endDate,
-                isEnd: data.isEnd,
+                number: dto.number,
+                startDate: dto.startDate,
+                endDate: dto.endDate,
+                isEnd: dto.isEnd,
             },
         });
 
@@ -57,34 +61,11 @@ export class CadenceService {
     }
 
     /* ----------------  DELETE  ---------------- */
-    public async delete(data: ICadenceDelete): Promise<ICadence> {
-        const cadence = await this.checkById({ id: data.id });
-        if (!cadence) throw new NotFoundException('cadence not found');
+    public async delete(dto: string[]) {
+        const deleteRes = await this.prisma.cadence.deleteMany({
+            where: { id: { in: dto } },
+        });
 
-        const cadenceDelete = await this.prisma.cadence.delete({ where: { id: data.id } });
-
-        return cadenceDelete;
-    }
-
-    //
-    //
-    //
-
-    // check by number
-    private async checkById({ id }: { id: string }): Promise<ICadence> {
-        const cadence = await this.prisma.cadence.findUnique({ where: { id } });
-        return cadence;
-    }
-
-    // check by number
-    private async checkByNumber({ number }: { number: number }): Promise<ICadence> {
-        const cadence = await this.prisma.cadence.findUnique({ where: { number } });
-        return cadence;
-    }
-
-    // check mux number
-    private async checkMaxNumber(): Promise<any> {
-        const cadence = await this.prisma.cadence.aggregate({ _max: { number: true } });
-        return cadence._max.number;
+        return deleteRes;
     }
 }

@@ -1,11 +1,11 @@
 export interface IBoardToMember {
-  id: string;
-  cadenceId: string;
-  boardId: string;
-  memberId: string;
+    id: string;
+    cadenceId: string;
+    boardId: string;
+    memberId: string;
 
-  createdAt: Date;
-  updatedAt: Date;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 //
@@ -24,4 +24,6 @@ export interface IBoardToMemberCreate extends Omit<IBoardToMember, 'id' | 'creat
 export interface IBoardToMemberUpdate extends Omit<IBoardToMember, 'createdAt' | 'updatedAt'> {}
 
 /* ----------------  DELETE  ---------------- */
-export interface IBoardToMemberDelete extends Pick<IBoardToMember, 'id'> {}
+export interface IBoardToMemberDeleteArray {
+    boardToMemberId: string[];
+}

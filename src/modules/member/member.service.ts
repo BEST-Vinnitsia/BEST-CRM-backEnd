@@ -13,96 +13,116 @@ import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class MemberService {
+    errorMessages = {
+        NOT_FOUND: 'Member is not found',
+        IS_EXIST: 'Member is exist',
+    };
+
     constructor(private readonly prisma: PrismaService) {}
 
     /* ----------------  GET  ---------------- */
 
-    // get list
     public async getList(): Promise<IMemberGetListRes[]> {
-        const memberList = await this.prisma.member.findMany();
-        return memberList;
+        return this.prisma.member.findMany();
     }
 
-    // get by id
-    public async getById(data: IMemberGetId): Promise<IMemberGetIdRes> {
+    public async getById(dto: IMemberGetId): Promise<IMemberGetIdRes> {
         const member = await this.prisma.member.findUnique({
-            where: { id: data.id },
-            include: { email: true, phone: true, socialNetwork: true },
+            where: { id: dto.id },
         });
-        if (!member) throw new NotFoundException('member not found');
+        if (!member) throw new NotFoundException(this.errorMessages.NOT_FOUND);
+
+        return member;
+    }
+
+    public async getByLogin({ login }: { login: string }): Promise<IMemberGetIdRes> {
+        const member = await this.prisma.member.findUnique({
+            where: { login: login },
+        });
+        if (!member) throw new NotFoundException(this.errorMessages.NOT_FOUND);
 
         return member;
     }
 
     /* ----------------  POST  ---------------- */
     public async create(dto: IMemberCreate): Promise<IMemberCreateRes> {
-        // add check membership
-
-        const hash = await bcrypt.hash(dto.password, 10);
-
-        const memberByEmail = await this.prisma.member.findUnique({ where: { login: dto.login } });
-        if (memberByEmail) throw new BadRequestException('member is exist');
-
-        const memberNew = await this.prisma.member.create({
-            data: {
-                membership: dto.membership,
-                //
-                login: dto.login.toLocaleLowerCase(),
-                password: hash,
-                bestEmail: dto.bestEmail ? dto.bestEmail.toLocaleLowerCase() : null,
-                //
-                fullName: dto.fullName.toLocaleLowerCase(),
-                middleName: dto.middleName.toLocaleLowerCase(),
-                surname: dto.surname.toLocaleLowerCase(),
-                birthday: dto.birthday,
-                //
-                faculty: dto.faculty.toLocaleLowerCase(),
-                group: dto.group.toLocaleLowerCase(),
-                //
-                clothingSize: dto.clothingSize ? dto.clothingSize.toLocaleUpperCase() : null,
-                homeAddress: dto.homeAddress ? dto.homeAddress.toLocaleLowerCase() : null,
-            },
+        const member = await this.prisma.member.findUnique({
+            where: { login: dto.login },
         });
+        if (member) throw new BadRequestException(this.errorMessages.IS_EXIST);
 
-        return memberNew;
+        console.log(12);
+        const hash = await bcrypt.hash(dto.password, 12);
+
+        return this.prisma.member.create(this.memberQuery(dto, hash));
     }
 
     /* ----------------  PUT  ---------------- */
     public async update(dto: IMemberUpdate): Promise<IMember> {
-        const memberById = await this.prisma.member.findUnique({ where: { id: dto.id } });
-        if (!memberById) throw new NotFoundException('member not found');
-
-        const memberUpdate = await this.prisma.member.update({
+        const member = await this.prisma.member.findUnique({
             where: { id: dto.id },
-            data: {
-                membership: dto.membership,
-                //
-                login: dto.login.toLocaleLowerCase(),
-                password: dto.password,
-                bestEmail: dto.bestEmail ? dto.bestEmail.toLocaleLowerCase() : null,
-                //
-                fullName: dto.fullName.toLocaleLowerCase(),
-                middleName: dto.middleName.toLocaleLowerCase(),
-                surname: dto.surname.toLocaleLowerCase(),
-                birthday: dto.birthday,
-                //
-                faculty: dto.faculty.toLocaleLowerCase(),
-                group: dto.group.toLocaleLowerCase(),
-                //
-                clothingSize: dto.clothingSize ? dto.clothingSize.toLocaleUpperCase() : null,
-                homeAddress: dto.homeAddress ? dto.homeAddress.toLocaleLowerCase() : null,
-            },
         });
+        if (!member) throw new NotFoundException(this.errorMessages.NOT_FOUND);
 
-        return memberUpdate;
+        return this.prisma.member.update(this.memberQuery(dto));
     }
 
     /* ----------------  DELETE  ---------------- */
     public async deleteArray(dto: string[]) {
-        const deleteRes = await this.prisma.member.deleteMany({
+        return this.prisma.member.deleteMany({
             where: { id: { in: dto } },
         });
+    }
 
-        return deleteRes;
+    //
+    //
+    //
+
+    private memberQuery(dto: IMemberCreate | IMemberUpdate, passwordHash?: string) {
+        if ('id' in dto) {
+            const query: any = {
+                where: { id: dto.id },
+                data: {
+                    membership: dto.membership,
+
+                    login: dto.login.toLocaleLowerCase(),
+                    // password: passwordHash,
+                    bestEmail: dto.bestEmail ? dto.bestEmail.toLocaleLowerCase() : null,
+
+                    fullName: dto.fullName.toLocaleLowerCase(),
+                    middleName: dto.middleName.toLocaleLowerCase(),
+                    surname: dto.surname.toLocaleLowerCase(),
+                    birthday: dto.birthday,
+
+                    faculty: dto.faculty.toLocaleLowerCase(),
+                    group: dto.group.toLocaleLowerCase(),
+
+                    clothingSize: dto.clothingSize ? dto.clothingSize.toLocaleUpperCase() : null,
+                    homeAddress: dto.homeAddress ? dto.homeAddress.toLocaleLowerCase() : null,
+                },
+            };
+            return query;
+        }
+
+        return {
+            data: {
+                membership: dto.membership,
+
+                login: dto.login.toLocaleLowerCase(),
+                password: passwordHash,
+                bestEmail: dto.bestEmail ? dto.bestEmail.toLocaleLowerCase() : null,
+
+                fullName: dto.fullName.toLocaleLowerCase(),
+                middleName: dto.middleName.toLocaleLowerCase(),
+                surname: dto.surname.toLocaleLowerCase(),
+                birthday: dto.birthday,
+
+                faculty: dto.faculty.toLocaleLowerCase(),
+                group: dto.group.toLocaleLowerCase(),
+
+                clothingSize: dto.clothingSize ? dto.clothingSize.toLocaleUpperCase() : null,
+                homeAddress: dto.homeAddress ? dto.homeAddress.toLocaleLowerCase() : null,
+            },
+        };
     }
 }

@@ -1,10 +1,10 @@
 export interface IBoard {
-  id: string;
-  name: string;
-  isActive: boolean;
+    id: string;
+    name: string;
+    isActive: boolean;
 
-  createdAt: Date;
-  updatedAt: Date;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 //
@@ -23,4 +23,6 @@ export interface IBoardCreate extends Omit<IBoard, 'id' | 'createdAt' | 'updated
 export interface IBoardUpdate extends Omit<IBoard, 'name' | 'createdAt' | 'updatedAt'> {}
 
 /* ----------------  DELETE  ---------------- */
-export interface IBoardDelete extends Pick<IBoard, 'id'> {}
+export interface IBoardDeleteArray {
+    boardsId: string[];
+}

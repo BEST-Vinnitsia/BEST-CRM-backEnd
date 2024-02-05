@@ -1,12 +1,5 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-import {
-    IBoardToMember,
-    IBoardToMemberCreate,
-    IBoardToMemberDelete,
-    IBoardToMemberGetById,
-    IBoardToMemberUpdate,
-} from 'src/interfaces/board/board-to-member.interface';
-import { MembershipEnum } from 'src/constants/enums.constant';
+import { IBoardToMember, IBoardToMemberCreate, IBoardToMemberGetById, IBoardToMemberUpdate } from 'src/interfaces/board/board-to-member.interface';
 import { PrismaService } from '../prisma/prisma.service';
 import { IMember } from 'src/interfaces/member/member.type';
 import { IBoard } from 'src/interfaces/board/board.interface';
@@ -77,13 +70,12 @@ export class BoardToMemberService {
     }
 
     /* ----------------  DELETE  ---------------- */
-    public async delete(data: IBoardToMemberDelete): Promise<IBoardToMember> {
-        const boardToMember = await this.checkById({ id: data.id });
-        if (!boardToMember) throw new NotFoundException('board to member is not exist');
+    public async delete(dto: string[]) {
+        const deleteRes = await this.prisma.boardToMember.deleteMany({
+            where: { id: { in: dto } },
+        });
 
-        const boardToMemberDelete = await this.prisma.boardToMember.delete({ where: { id: data.id } });
-
-        return boardToMemberDelete;
+        return deleteRes;
     }
 
     //

@@ -177,11 +177,7 @@ export class EmailService {
     /* ----------------  DELETE  ---------------- */
     public async delete(dto: string[]) {
         const deleteRes = this.prisma.memberEmail.deleteMany({
-            where: {
-                id: {
-                    in: dto,
-                },
-            },
+            where: { id: { in: dto } },
         });
 
         return deleteRes;

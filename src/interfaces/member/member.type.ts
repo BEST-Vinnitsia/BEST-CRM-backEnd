@@ -1,7 +1,3 @@
-import { IEmail } from './email.type';
-import { IPhone } from './phone.type';
-import { ISocialNetwork } from './socialNetwork.type';
-
 export interface IMember {
     id: string;
     membership: string;
@@ -38,11 +34,7 @@ export interface IMemberGetListRes extends IMember {}
 // get by id
 export interface IMemberGetId extends Pick<IMember, 'id'> {}
 
-export interface IMemberGetIdRes extends IMember {
-    email: IEmail[];
-    phone: IPhone[];
-    socialNetwork: ISocialNetwork[];
-}
+export interface IMemberGetIdRes extends IMember {}
 
 /* ----------------  POST  ---------------- */
 export interface IMemberCreate extends Omit<IMember, 'id' | 'createdAt' | 'updatedAt'> {}

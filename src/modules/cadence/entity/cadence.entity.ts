@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
 import { ICadence } from 'src/interfaces/meeting/cadence.interface';
 
-export class CadenceDto implements ICadence {
+export class Cadence implements ICadence {
     @ApiProperty({ example: randomUUID() })
     id: string;
 

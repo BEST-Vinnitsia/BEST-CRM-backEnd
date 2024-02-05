@@ -4,32 +4,27 @@ import { IBoardToMemberUpdate } from 'src/interfaces/board/board-to-member.inter
 import { randomUUID } from 'crypto';
 
 export class BoardToMemberUpdateDto implements IBoardToMemberUpdate {
-  @ApiProperty({ example: randomUUID() })
-  @IsNotEmpty()
-  @IsString()
-  @IsUUID('4')
-  id: string;
+    @ApiProperty({ example: randomUUID() })
+    @IsNotEmpty()
+    @IsString()
+    @IsUUID('4')
+    id: string;
 
-  @ApiProperty({ example: randomUUID() })
-  @IsNotEmpty()
-  @IsString()
-  @IsUUID('4')
-  cadenceId: string;
+    @ApiProperty({ example: randomUUID() })
+    @IsNotEmpty()
+    @IsString()
+    @IsUUID('4')
+    cadenceId: string;
 
-  @ApiProperty({ example: randomUUID() })
-  @IsNotEmpty()
-  @IsString()
-  @IsUUID('4')
-  boardId: string;
+    @ApiProperty({ example: randomUUID() })
+    @IsNotEmpty()
+    @IsString()
+    @IsUUID('4')
+    boardId: string;
 
-  @ApiProperty({ example: randomUUID() })
-  @IsNotEmpty()
-  @IsString()
-  @IsUUID('4')
-  memberId: string;
-
-  @ApiProperty()
-  @IsNotEmpty()
-  @IsBoolean()
-  isLeader: boolean;
+    @ApiProperty({ example: randomUUID() })
+    @IsNotEmpty()
+    @IsString()
+    @IsUUID('4')
+    memberId: string;
 }
