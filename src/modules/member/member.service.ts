@@ -35,6 +35,12 @@ export class MemberService {
         return member;
     }
 
+    public async getByIdNoHaveError(dto: IMemberGetId): Promise<IMemberGetIdRes> {
+        return this.prisma.member.findUnique({
+            where: { id: dto.id },
+        });
+    }
+
     public async getByLogin({ login }: { login: string }): Promise<IMemberGetIdRes> {
         const member = await this.prisma.member.findUnique({
             where: { login: login },

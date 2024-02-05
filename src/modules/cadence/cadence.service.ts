@@ -9,8 +9,7 @@ export class CadenceService {
     /* ----------------  GET  ---------------- */
 
     public async list(): Promise<ICadence[]> {
-        const cadence = await this.prisma.cadence.findMany();
-        return cadence;
+        return this.prisma.cadence.findMany();
     }
 
     public async getById(dto: ICadenceGetById): Promise<ICadence> {
@@ -24,10 +23,12 @@ export class CadenceService {
 
     /* ----------------  POST  ---------------- */
     public async create(dto: ICadenceCreate): Promise<ICadence> {
-        const cadence = await this.prisma.cadence.findUnique({ where: { number: dto.number } });
+        const cadence = await this.prisma.cadence.findUnique({
+            where: { number: dto.number },
+        });
         if (cadence) throw new BadRequestException('cadence is exist');
 
-        const cadenceNew = await this.prisma.cadence.create({
+        return this.prisma.cadence.create({
             data: {
                 number: dto.number,
                 startDate: dto.startDate,
@@ -35,8 +36,6 @@ export class CadenceService {
                 isEnd: dto.isEnd,
             },
         });
-
-        return cadenceNew;
     }
 
     /* ----------------  PUT  ---------------- */
@@ -47,7 +46,7 @@ export class CadenceService {
         const cadenceByName = await this.prisma.cadence.findUnique({ where: { number: dto.number } });
         if (cadenceByName) throw new BadRequestException('cadence is exist');
 
-        const cadenceUpdate = await this.prisma.cadence.update({
+        return this.prisma.cadence.update({
             where: { id: dto.id },
             data: {
                 number: dto.number,
@@ -56,16 +55,12 @@ export class CadenceService {
                 isEnd: dto.isEnd,
             },
         });
-
-        return cadenceUpdate;
     }
 
     /* ----------------  DELETE  ---------------- */
     public async delete(dto: string[]) {
-        const deleteRes = await this.prisma.cadence.deleteMany({
+        return this.prisma.cadence.deleteMany({
             where: { id: { in: dto } },
         });
-
-        return deleteRes;
     }
 }

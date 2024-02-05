@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
 import { PrismaModule } from '../prisma/prisma.module';
-
-// Member
 import { EmailController } from './email.controller';
 import { EmailService } from './email.service';
+import { MemberModule } from '../member/member.module';
 
 @Module({
-    imports: [PrismaModule],
+    imports: [PrismaModule, MemberModule],
     controllers: [EmailController],
     providers: [EmailService],
 })

@@ -5,7 +5,7 @@ import { IsDateWithinRange } from '../../../pipes/isDateWithinRange.pipe';
 import { ApiProperty } from '@nestjs/swagger';
 import { IMemberCreate } from '../../../interfaces/member/member.type';
 
-export class MemberCreateDto implements IMemberCreate {
+export class CreateDto implements IMemberCreate {
     @ApiProperty({ required: false, enum: MembershipEnum })
     @IsNotEmpty()
     @IsString()

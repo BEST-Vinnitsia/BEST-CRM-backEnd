@@ -7,5 +7,6 @@ import { CadenceService } from './cadence.service';
     imports: [PrismaModule],
     controllers: [CadenceController],
     providers: [CadenceService],
+    exports: [CadenceService]
 })
 export class CadenceModule {}

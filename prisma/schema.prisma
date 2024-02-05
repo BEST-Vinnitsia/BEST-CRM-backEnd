@@ -153,8 +153,8 @@ model BoardToMember {
   memberId    String
   boardId     String
   cadenceId   String
-  exclure     Boolean   @default(false)
-  exclureDate DateTime?
+  excluded     Boolean   @default(false)
+  excludedDate DateTime?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -182,8 +182,8 @@ model CoordinatorToMember {
   memberId      String
   coordinatorId String
   cadenceId     String
-  exclure       Boolean   @default(false)
-  exclureDate   DateTime?
+  excluded       Boolean   @default(false)
+  excludedDate   DateTime?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -212,8 +212,8 @@ model CommitteeToMember {
   committeeId String
   cadenceId   String
   isLeader    Boolean   @default(false)
-  exclure     Boolean   @default(false)
-  exclureDate DateTime?
+  excluded     Boolean   @default(false)
+  excludedDate DateTime?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

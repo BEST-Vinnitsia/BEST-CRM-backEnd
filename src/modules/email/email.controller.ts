@@ -2,11 +2,11 @@ import { Body, Controller, Get, Post, Query, Delete, Put, UseFilters } from '@ne
 import { ApiCreatedResponse, ApiTags, ApiSecurity } from '@nestjs/swagger';
 import { Email } from './entity/email.entity';
 import { EmailService } from './email.service';
-import { EmailGetListDto } from './dto/email-get-list.dto';
-import { EmailGetMainDto } from './dto/email-get-main.dto';
-import { EmailCreateDtoArray } from './dto/email-create.dto';
-import { EmailUpdateDtoArray } from './dto/email-update.dto';
-import { EmailDeleteDto } from './dto/email-delete.dto';
+import { GetListDto } from './dto/get-list.dto';
+import { GetMainDto } from './dto/get-main.dto';
+import { EmailCreateDtoArray } from './dto/create.dto';
+import { EmailUpdateDtoArray } from './dto/update.dto';
+import { DeleteDto } from './dto/delete.dto';
 import { HttpErrorFilter } from '../../common/filters/http-exception.filter';
 
 @ApiSecurity('basic')
@@ -19,14 +19,14 @@ export class EmailController {
 
     @Get('list')
     @ApiCreatedResponse({ type: [Email] })
-    async getEmailList(@Query() data: EmailGetListDto) {
-        return await this.emailService.getListByMemberId(data);
+    async getEmailList(@Query() data: GetListDto) {
+        return this.emailService.getListByMemberId(data);
     }
 
     @Get('main')
     @ApiCreatedResponse({ type: Email })
-    async getMainEmail(@Query() data: EmailGetMainDto) {
-        return await this.emailService.getMainByMemberId(data);
+    async getMainEmail(@Query() data: GetMainDto) {
+        return this.emailService.getMainByMemberId(data);
     }
 
     /* ----------------  POST  ---------------- */
@@ -47,7 +47,7 @@ export class EmailController {
     @Delete('delete')
     @ApiCreatedResponse({ type: Email })
     @UseFilters(HttpErrorFilter)
-    async delete(@Body() dto: EmailDeleteDto) {
-        return await this.emailService.delete(dto.emailsId);
+    async delete(@Body() dto: DeleteDto) {
+        return this.emailService.delete(dto.emailsId);
     }
 }

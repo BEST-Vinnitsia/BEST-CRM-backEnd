@@ -1,11 +1,11 @@
-import { Body, Controller, Get, Post, Query, Delete, Put, InternalServerErrorException, Catch, HttpException, UseFilters } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Delete, Put, UseFilters } from '@nestjs/common';
 import { MemberService } from './member.service';
-import { MemberCreateDto } from './dto/member-create.dto';
-import { MemberUpdateDto } from './dto/member-update.dto';
-import { MemberDeleteArrayDto } from './dto/member-delete-array.dto';
+import { CreateDto } from './dto/create.dto';
+import { UpdateDto } from './dto/update.dto';
+import { DeleteArrayDto } from './dto/delete-array.dto';
 import { ApiCreatedResponse, ApiTags, ApiSecurity } from '@nestjs/swagger';
 import { Member } from './entity/member.entity';
-import { MemberGetByIdDto } from './dto/member-get-by-id.dto';
+import { GetByIdDto } from './dto/get-by-id.dto';
 import { HttpErrorFilter } from '../../common/filters/http-exception.filter';
 
 @ApiSecurity('basic')
@@ -24,21 +24,21 @@ export class MemberController {
 
     @Get('by-id')
     @ApiCreatedResponse({ type: Member })
-    async getById(@Query() data: MemberGetByIdDto) {
+    async getById(@Query() data: GetByIdDto) {
         return await this.memberService.getById(data);
     }
 
     /* ----------------  POST  ---------------- */
     @Post('create')
     @ApiCreatedResponse({ type: Member })
-    async create(@Body() data: MemberCreateDto) {
+    async create(@Body() data: CreateDto) {
         return await this.memberService.create(data);
     }
 
     /* ----------------  PUT  ---------------- */
     @Put('update')
     @ApiCreatedResponse({ type: Member })
-    async update(@Body() data: MemberUpdateDto) {
+    async update(@Body() data: UpdateDto) {
         return await this.memberService.update(data);
     }
 
@@ -47,7 +47,7 @@ export class MemberController {
     @Delete('delete')
     @ApiCreatedResponse()
     @UseFilters(HttpErrorFilter)
-    async deleteArray(@Body() dto: MemberDeleteArrayDto) {
+    async deleteArray(@Body() dto: DeleteArrayDto) {
         return this.memberService.deleteArray(dto.membersId);
     }
 }

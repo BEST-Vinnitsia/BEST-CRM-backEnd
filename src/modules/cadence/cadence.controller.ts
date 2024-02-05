@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post, Query, Delete, Put, UseFilters } from '@nestjs/common';
 import { CadenceService } from './cadence.service';
-import { CadenceGetByIdDto } from './dto/getById.dto';
+import { CadenceGetByIdDto } from './dto/get-by-id.dto';
 import { CadenceCreateDto } from './dto/create.dto';
 import { CadenceUpdateDto } from './dto/update.dto';
 import { CadenceDeleteArrayDto } from './dto/delete.dto';

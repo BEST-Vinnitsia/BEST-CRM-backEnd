@@ -6,7 +6,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IMemberUpdate } from '../../../interfaces/member/member.type';
 import { randomUUID } from 'crypto';
 
-export class MemberUpdateDto implements IMemberUpdate {
+export class UpdateDto implements IMemberUpdate {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()

@@ -16,6 +16,9 @@ export interface IBoardToMember {
 
 // get by id
 export interface IBoardToMemberGetById extends Pick<IBoardToMember, 'id'> {}
+export interface IBoardToMemberGetByMemberId extends Pick<IBoardToMember, 'memberId'> {}
+export interface IBoardToMemberGetByCadenceId extends Pick<IBoardToMember, 'cadenceId'> {}
+export interface IBoardToMemberGetByBoardId extends Pick<IBoardToMember, 'boardId'> {}
 
 /* ----------------  POST  ---------------- */
 export interface IBoardToMemberCreate extends Omit<IBoardToMember, 'id' | 'createdAt' | 'updatedAt'> {}

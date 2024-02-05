@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post, Query, Delete, Put, UseGuards, UseFilters } from '@nestjs/common';
 import { BoardService } from './board.service';
-import { BoardGetByIdDto } from './dto/getById.dto';
+import { BoardGetByIdDto } from './dto/get-by-id.dto';
 import { BoardCreateDto } from './dto/create.dto';
 import { BoardUpdateDto } from './dto/update.dto';
 import { BoardDeleteArrayDto } from './dto/delete.dto';

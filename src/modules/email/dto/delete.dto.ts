@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
 import { IEmailDelete } from '../../../interfaces/member/email.type';
 
-export class EmailDeleteDto implements IEmailDelete {
+export class DeleteDto implements IEmailDelete {
     @ApiProperty({ example: [randomUUID()] })
     @IsNotEmpty()
     @IsString({ each: true })
