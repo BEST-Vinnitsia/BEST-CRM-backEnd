@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query, Delete, Put } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Delete, Put, UseFilters } from '@nestjs/common';
 import { CadenceService } from './cadence.service';
 import { CadenceGetByIdDto } from './dto/getById.dto';
 import { CadenceCreateDto } from './dto/create.dto';
@@ -6,6 +6,7 @@ import { CadenceUpdateDto } from './dto/update.dto';
 import { CadenceDeleteArrayDto } from './dto/delete.dto';
 import { ApiCreatedResponse, ApiTags, ApiSecurity } from '@nestjs/swagger';
 import { Cadence } from './entity/cadence.entity';
+import { HttpErrorFilter } from '../../common/filters/http-exception.filter';
 
 @ApiSecurity('basic')
 @ApiTags('Cadence')
@@ -44,6 +45,7 @@ export class CadenceController {
     /* ----------------  DELETE  ---------------- */
     @Delete('delete')
     @ApiCreatedResponse({ type: Cadence })
+    @UseFilters(HttpErrorFilter)
     async delete(@Body() dto: CadenceDeleteArrayDto) {
         return await this.cadenceService.delete(dto.cadencesId);
     }

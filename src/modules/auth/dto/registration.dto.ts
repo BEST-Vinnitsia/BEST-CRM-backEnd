@@ -8,7 +8,7 @@ export class RegistrationDto implements IAuthRegistration {
   @IsNotEmpty()
   @IsString()
   @IsEmail()
-  email: string;
+  login: string;
 
   @ApiProperty()
   @IsNotEmpty()

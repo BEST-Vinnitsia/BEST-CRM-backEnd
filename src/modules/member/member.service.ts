@@ -51,7 +51,6 @@ export class MemberService {
         });
         if (member) throw new BadRequestException(this.errorMessages.IS_EXIST);
 
-        console.log(12);
         const hash = await bcrypt.hash(dto.password, 12);
 
         return this.prisma.member.create(this.memberQuery(dto, hash));

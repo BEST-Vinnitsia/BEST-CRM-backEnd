@@ -22,7 +22,7 @@ async function bootstrap() {
 
     // Global validation (class validator)
     app.useGlobalPipes(new ValidationPipe());
-    app.useGlobalFilters(new HttpErrorFilter());
+    // app.useGlobalFilters(new HttpErrorFilter());
 
     // Swagger
     const config = new DocumentBuilder() //

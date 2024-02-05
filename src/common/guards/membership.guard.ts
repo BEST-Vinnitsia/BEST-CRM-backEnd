@@ -20,7 +20,7 @@ export class MembershipGuard implements CanActivate {
         const accessToken = request.user as IAccessToken;
         if (!accessToken) throw new BadRequestException('incorrect token');
 
-        const membershipClaims = accessToken.permissions;
+        const membershipClaims = accessToken.claims;
 
         let haveAccess = true;
 

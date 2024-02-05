@@ -20,7 +20,7 @@ export class CoordinatorGuard implements CanActivate {
         const accessToken = request.user as IAccessToken;
         if (!accessToken) throw new BadRequestException('incorrect token');
 
-        const coordinatorClaims = accessToken.permissions;
+        const coordinatorClaims = accessToken.claims;
 
         let haveAccess = true;
 

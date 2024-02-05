@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query, Delete, Put } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Delete, Put, UseFilters } from '@nestjs/common';
 import { BoardToMemberService } from './board-to-member.service';
 import { BoardToMemberGetByIdDto } from './dto/getById.dto';
 import { BoardToMemberCreateDto } from './dto/create.dto';
@@ -6,6 +6,7 @@ import { BoardToMemberUpdateDto } from './dto/update.dto';
 import { BoardToMemberDeleteArrayDto } from './dto/delete.dto';
 import { ApiCreatedResponse, ApiTags, ApiSecurity } from '@nestjs/swagger';
 import { BoardToMember } from './entity/board-to-member.entity';
+import { HttpErrorFilter } from '../../common/filters/http-exception.filter';
 
 @ApiSecurity('basic')
 @ApiTags('Board to member')
@@ -27,6 +28,10 @@ export class BoardToMemberController {
         return await this.boardToMemberService.getById(dto);
     }
 
+    // @Get('by-member-id')
+    // @Get('by-cadence-id')
+    // @Get('by-board-id')
+
     /* ----------------  POST  ---------------- */
     @Post('create')
     @ApiCreatedResponse({ type: BoardToMember })
@@ -44,6 +49,7 @@ export class BoardToMemberController {
     /* ----------------  DELETE  ---------------- */
     @Delete('delete')
     @ApiCreatedResponse({ type: BoardToMember })
+    @UseFilters(HttpErrorFilter)
     async delete(@Body() dto: BoardToMemberDeleteArrayDto) {
         return await this.boardToMemberService.delete(dto.boardToMemberId);
     }

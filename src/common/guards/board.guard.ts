@@ -20,7 +20,7 @@ export class BoardGuard implements CanActivate {
     const accessToken = request.user as IAccessToken;
     if (!accessToken) throw new BadRequestException('incorrect token');
 
-    const boardClaims = accessToken.permissions;
+    const boardClaims = accessToken.claims;
 
     let haveAccess = true;
 

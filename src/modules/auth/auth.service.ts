@@ -6,7 +6,6 @@ import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 
 type TokenType = 'access' | 'refresh';
-type PositionType = 'board' | 'coordinator';
 
 @Injectable()
 export class AuthService {
@@ -17,15 +16,11 @@ export class AuthService {
 
     /* ----------------  LOGIN  ---------------- */
     public async login(dto: IAuthLogin): Promise<{ access: string; refresh: string }> {
-        const findMember = await this.getMemberFullInfo({ login: dto.email });
+        const findMember = await this.getMemberFullInfo({ login: dto.login });
         if (!findMember) throw new BadRequestException('incorrect email or password');
 
         const isMatch = await bcrypt.compare(dto.password, findMember.password);
         if (!isMatch) throw new BadRequestException('incorrect email or password');
-
-        // split in method
-        findMember.boardToMember = findMember.boardToMember.filter((item) => !item.cadence.isEnd);
-        findMember.coordinatorToMember = findMember.coordinatorToMember.filter((item) => !item.cadence.isEnd);
 
         const newRefresh = await this.createRefreshInDb({ memberId: findMember.id });
 
@@ -35,7 +30,7 @@ export class AuthService {
             membershipName: findMember.membership,
             fullName: findMember.fullName,
             surname: findMember.surname,
-            permissions: [],
+            claims: [],
         };
 
         const refresh = await this.generateToken('refresh', tokenPayload);
@@ -57,7 +52,7 @@ export class AuthService {
             membershipName: refresh.membershipName,
             fullName: refresh.fullName,
             surname: refresh.surname,
-            permissions: [],
+            claims: [],
         });
 
         return { access: newAccessToken };
@@ -68,10 +63,6 @@ export class AuthService {
         const findMember = await this.getMemberFullInfo({ id: refresh.memberId });
         if (!findMember) throw new BadRequestException('incorrect email or password');
 
-        // split in method
-        findMember.boardToMember = findMember.boardToMember.filter((item) => !item.cadence.isEnd);
-        findMember.coordinatorToMember = findMember.coordinatorToMember.filter((item) => !item.cadence.isEnd);
-
         const newRefresh = await this.createRefreshInDb({ memberId: findMember.id });
         await this.prisma.refreshToken.delete({ where: { id: refresh.refreshTokenId } });
 
@@ -81,7 +72,7 @@ export class AuthService {
             membershipName: findMember.membership,
             fullName: findMember.fullName,
             surname: findMember.surname,
-            permissions: [],
+            claims: [],
         };
 
         const generatedRefresh = await this.generateToken('refresh', tokenPayload);
@@ -103,7 +94,7 @@ export class AuthService {
     //
 
     private async generateToken(tokenType: TokenType, payload: ITokenPayload) {
-        const token = await this.jwtService.signAsync(
+        return this.jwtService.signAsync(
             {
                 ...payload,
                 aud: 'BEST CRM System',
@@ -114,36 +105,54 @@ export class AuthService {
                 expiresIn: tokenType === 'access' ? 60 * 15 : 60 * 60 * 24 * 7,
             },
         );
-        return token;
     }
 
     private async getMemberFullInfo({ id, login }: { id?: string; login?: string }) {
         if (!id && !login) return;
 
-        const include = {
-            boardToMember: { include: { board: true, cadence: true } },
-            coordinatorToMember: { include: { coordinator: true, cadence: true } },
-        };
+        // const some = {
+        //     boardToMember: {
+        //         some: {
+        //             exclure: false,
+        //             board: { isActive: true },
+        //             cadence: { isEnd: false },
+        //         },
+        //     },
+        //     coordinatorToMember: {
+        //         some: {
+        //             exclure: false,
+        //             coordinator: { isActive: true },
+        //             cadence: { isEnd: false },
+        //         },
+        //     },
+        //     committeeToMember: {
+        //         some: {
+        //             exclure: false,
+        //             committee: { isActive: true },
+        //             cadence: { isEnd: false },
+        //         },
+        //     },
+        // };
+        //
+        // const include = {
+        //     boardToMember: { include: { board: true, cadence: true } },
+        //     coordinatorToMember: { include: { coordinator: true, cadence: true } },
+        //     committeeToMember: { include: { committee: true, cadence: true } },
+        // };
 
         if (id) {
-            return await this.prisma.member.findUnique({ where: { id }, include });
+            return this.prisma.member.findUnique({
+                where: { id },
+            });
         }
-        return await this.prisma.member.findUnique({ where: { login }, include });
-    }
-
-    private async createRefreshInDb({ memberId }: { memberId: string }) {
-        return await this.prisma.refreshToken.create({
-            data: { memberId, needUpdate: false },
+        return this.prisma.member.findUnique({
+            where: { login },
         });
     }
 
-    private getPermissions(positionType: PositionType, member: any) {
-        const set = member[`${positionType}ToMember`].reduce((accumulator, item) => {
-            item[positionType][`${positionType}Permission`].forEach((permission) => {
-                accumulator.add(permission.claim);
-            });
-            return accumulator;
-        }, new Set());
-        return Array.from(set);
+    private async createRefreshInDb({ memberId }: { memberId: string }) {
+        return this.prisma.refreshToken.create({
+            data: { memberId, needUpdate: false },
+        });
     }
 }

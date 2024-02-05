@@ -8,7 +8,7 @@ export class LoginDto implements IAuthLogin {
   @IsNotEmpty()
   @IsString()
   @IsEmail()
-  email: string;
+  login: string;
 
   @ApiProperty()
   @IsNotEmpty()

@@ -46,6 +46,7 @@ export class MemberController {
 
     @Delete('delete')
     @ApiCreatedResponse()
+    @UseFilters(HttpErrorFilter)
     async deleteArray(@Body() dto: MemberDeleteArrayDto) {
         return this.memberService.deleteArray(dto.membersId);
     }

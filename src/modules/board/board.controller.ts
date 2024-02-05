@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query, Delete, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Delete, Put, UseGuards, UseFilters } from '@nestjs/common';
 import { BoardService } from './board.service';
 import { BoardGetByIdDto } from './dto/getById.dto';
 import { BoardCreateDto } from './dto/create.dto';
@@ -8,6 +8,7 @@ import { ApiCreatedResponse, ApiTags, ApiSecurity } from '@nestjs/swagger';
 import { Board } from './entity/board.entity';
 import { Claim } from 'src/common/decorators';
 import { BoardGuard } from 'src/common/guards';
+import { HttpErrorFilter } from '../../common/filters/http-exception.filter';
 
 @ApiSecurity('basic')
 @ApiTags('Board')
@@ -48,6 +49,7 @@ export class BoardController {
     /* ----------------  DELETE  ---------------- */
     @Delete('delete')
     @ApiCreatedResponse({ type: Board })
+    @UseFilters(HttpErrorFilter)
     async delete(@Body() dto: BoardDeleteArrayDto) {
         return await this.boardService.delete(dto.boardsId);
     }

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query, Delete, Put } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Delete, Put, UseFilters } from '@nestjs/common';
 import { ApiCreatedResponse, ApiTags, ApiSecurity } from '@nestjs/swagger';
 import { Email } from './entity/email.entity';
 import { EmailService } from './email.service';
@@ -7,6 +7,7 @@ import { EmailGetMainDto } from './dto/email-get-main.dto';
 import { EmailCreateDtoArray } from './dto/email-create.dto';
 import { EmailUpdateDtoArray } from './dto/email-update.dto';
 import { EmailDeleteDto } from './dto/email-delete.dto';
+import { HttpErrorFilter } from '../../common/filters/http-exception.filter';
 
 @ApiSecurity('basic')
 @ApiTags('Email')
@@ -45,6 +46,7 @@ export class EmailController {
     /* ----------------  DELETE  ---------------- */
     @Delete('delete')
     @ApiCreatedResponse({ type: Email })
+    @UseFilters(HttpErrorFilter)
     async delete(@Body() dto: EmailDeleteDto) {
         return await this.emailService.delete(dto.emailsId);
     }
