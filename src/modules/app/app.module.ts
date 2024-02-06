@@ -14,6 +14,7 @@ import { EventModule } from '../event/event.module';
 import { NewEventModule } from '../new-event/new-event.module';
 import { ResponsibleModule } from '../responsible/responsible.module';
 import { MemberToEventModule } from '../member-to-event/member-to-event.module';
+import { PhoneModule } from '../phone/phone.module';
 
 @Module({
     imports: [
@@ -24,6 +25,7 @@ import { MemberToEventModule } from '../member-to-event/member-to-event.module';
 
         MemberModule,
         EmailModule,
+        PhoneModule,
 
         CadenceModule,
 

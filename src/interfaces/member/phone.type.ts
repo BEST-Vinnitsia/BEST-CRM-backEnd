@@ -18,4 +18,6 @@ export interface IPhoneCreate extends Omit<IPhone, 'id' | 'createdAt' | 'updated
 
 export interface IPhoneUpdate extends Omit<IPhone, 'createdAt' | 'updatedAt'> {}
 
-export interface IPhoneDelete extends Pick<IPhone, 'id'> {}
+export interface IPhoneDelete {
+    phonesId: string[];
+}
