@@ -1,3 +1,14 @@
+export interface ITokenPayload {
+  refreshTokenId: string;
+  memberId: string;
+  fullName: string;
+  surname: string;
+  membershipName: string;
+  claims: string[];
+}
+
+/* ----------------  extends  ---------------- */
+
 export interface IAccessToken extends ITokenPayload {
   exp: number;
   iat: number;
@@ -11,11 +22,3 @@ export interface IRefreshToken extends ITokenPayload {
   iss: string;
 }
 
-export interface ITokenPayload {
-  refreshTokenId: string;
-  memberId: string;
-  fullName: string;
-  surname: string;
-  membershipName: string;
-  claims: string[];
-}

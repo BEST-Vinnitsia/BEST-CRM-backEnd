@@ -16,7 +16,10 @@ export class BoardToMember implements IBoardToMember {
     memberId: string;
 
     @ApiProperty()
-    isLeader: boolean;
+    excluded: boolean;
+
+    @ApiProperty()
+    excludedDate?: Date;
 
     @ApiProperty()
     createdAt: Date;

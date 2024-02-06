@@ -3,30 +3,27 @@ export interface IBoardToMember {
     cadenceId: string;
     boardId: string;
     memberId: string;
+    excluded: boolean;
+    excludedDate?: Date;
 
     createdAt: Date;
     updatedAt: Date;
 }
 
-//
-// extends
-//
+/* ----------------  extends  ---------------- */
 
-/* ----------------  GET  ---------------- */
-
-// get by id
 export interface IBoardToMemberGetById extends Pick<IBoardToMember, 'id'> {}
+
 export interface IBoardToMemberGetByMemberId extends Pick<IBoardToMember, 'memberId'> {}
+
 export interface IBoardToMemberGetByCadenceId extends Pick<IBoardToMember, 'cadenceId'> {}
+
 export interface IBoardToMemberGetByBoardId extends Pick<IBoardToMember, 'boardId'> {}
 
-/* ----------------  POST  ---------------- */
-export interface IBoardToMemberCreate extends Omit<IBoardToMember, 'id' | 'createdAt' | 'updatedAt'> {}
+export interface IBoardToMemberCreate extends Omit<IBoardToMember, 'id' | 'excluded' | 'excludedDate' | 'createdAt' | 'updatedAt'> {}
 
-/* ----------------  PUT  ---------------- */
-export interface IBoardToMemberUpdate extends Omit<IBoardToMember, 'createdAt' | 'updatedAt'> {}
+export interface IBoardToMemberUpdate extends Omit<IBoardToMember, 'createdAt' | 'excluded' | 'excludedDate' | 'updatedAt'> {}
 
-/* ----------------  DELETE  ---------------- */
 export interface IBoardToMemberDeleteArray {
     boardToMemberId: string[];
 }

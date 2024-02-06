@@ -46,6 +46,7 @@ model Member {
   boardToMember       BoardToMember[]
   coordinatorToMember CoordinatorToMember[]
   committeeToMember   CommitteeToMember[]
+  memberToEvent       MemberToEvent[]
 }
 
 model MemberPhone {
@@ -103,6 +104,7 @@ model Cadence {
   boardToMember       BoardToMember[]
   coordinatorToMember CoordinatorToMember[]
   committeeToMember   CommitteeToMember[]
+  newEvent            NewEvent[]
 }
 
 //
@@ -149,10 +151,10 @@ model Board {
 }
 
 model BoardToMember {
-  id          String    @id @default(uuid())
-  memberId    String
-  boardId     String
-  cadenceId   String
+  id           String    @id @default(uuid())
+  memberId     String
+  boardId      String
+  cadenceId    String
   excluded     Boolean   @default(false)
   excludedDate DateTime?
 
@@ -182,8 +184,8 @@ model CoordinatorToMember {
   memberId      String
   coordinatorId String
   cadenceId     String
-  excluded       Boolean   @default(false)
-  excludedDate   DateTime?
+  excluded      Boolean   @default(false)
+  excludedDate  DateTime?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -207,11 +209,11 @@ model Committee {
 }
 
 model CommitteeToMember {
-  id          String    @id @default(uuid())
-  memberId    String
-  committeeId String
-  cadenceId   String
-  isLeader    Boolean   @default(false)
+  id           String    @id @default(uuid())
+  memberId     String
+  committeeId  String
+  cadenceId    String
+  isLeader     Boolean   @default(false)
   excluded     Boolean   @default(false)
   excludedDate DateTime?
 
@@ -221,6 +223,64 @@ model CommitteeToMember {
   committee Committee @relation(fields: [committeeId], references: [id], onDelete: Restrict, onUpdate: Restrict)
   member    Member    @relation(fields: [memberId], references: [id], onDelete: Restrict, onUpdate: Restrict)
   cadence   Cadence   @relation(fields: [cadenceId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+}
+
+//* ----------------  event  ---------------- *//
+
+model Event {
+  id       String  @id @default(uuid())
+  name     String
+  isActive Boolean
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  responsible Responsible[]
+  newEvent    NewEvent[]
+}
+
+model NewEvent {
+  id        String @id @default(uuid())
+  eventId   String
+  cadenceId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  memberToEvent MemberToEvent[]
+  event         Event           @relation(fields: [eventId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  cadence       Cadence         @relation(fields: [cadenceId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+}
+
+model Responsible {
+  id          String  @id @default(uuid())
+  eventId     String
+  name        String
+  isActive    Boolean
+  role        String
+  description String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  memberToEvent MemberToEvent[]
+  event         Event           @relation(fields: [eventId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+}
+
+model MemberToEvent {
+  id            String    @id @default(uuid())
+  newEventId    String
+  responsibleId String
+  memberId      String
+  excluded      Boolean
+  excludedDate  DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  newEvent    NewEvent    @relation(fields: [newEventId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  responsible Responsible @relation(fields: [responsibleId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  member      Member      @relation(fields: [memberId], references: [id], onDelete: Restrict, onUpdate: Restrict)
 }
 
 //* ----------------  auth  ---------------- *//

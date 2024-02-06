@@ -14,9 +14,6 @@ export class Board implements IBoard {
   isActive: boolean;
 
   @ApiProperty()
-  committeeIsActive: boolean;
-
-  @ApiProperty()
   createdAt: Date;
 
   @ApiProperty()
