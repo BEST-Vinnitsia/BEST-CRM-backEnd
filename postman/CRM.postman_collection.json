@@ -1,0 +1,2602 @@
+{
+	"info": {
+		"_postman_id": "0f5b47ab-1c1a-4885-845b-b0b635437bc3",
+		"name": "CRM",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Tests\" tab**\n\nTests help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/b5f280a7-4b09-48ec-857f-0a7ed99d7ef8/U2NyZWVuc2hvdCAyMDIzLTAzLTI3IGF0IDkuNDcuMjggUE0ucG5n\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) in \"Tests\" to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29146163"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"login\": \"lfogisdnd@email.com\",\n    \"password\": \"P@ssword1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v/1/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v",
+								"1",
+								"auth",
+								"login"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6IjQzNWYwNTRmLTNhYTEtNDY1ZC1iOTE1LTVjMTY0MzI4NjcxNSIsInJlZnJlc2hUb2tlbklkIjoiOWJkNzY0YzMtZDdlOS00ZGY5LThhODItOTQyY2YxZmRlZTlhIiwiYXVkIjoiQkVTVCBDUk0gU3lzdGVtIiwiaXNzIjoiQkVTVCBDUk0gU3lzdGVtIiwiaWF0IjoxNzA1MzE3MDU1LCJleHAiOjE3MDU5MjE4NTV9.LBG6qkKIXzg3CergIGMzFoGhasBN37QsxgPkDpcgTP8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/v/1/auth/refresh",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v",
+								"1",
+								"auth",
+								"refresh"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6IjQzNWYwNTRmLTNhYTEtNDY1ZC1iOTE1LTVjMTY0MzI4NjcxNSIsInJlZnJlc2hUb2tlbklkIjoiOWJkNzY0YzMtZDdlOS00ZGY5LThhODItOTQyY2YxZmRlZTlhIiwiYXVkIjoiQkVTVCBDUk0gU3lzdGVtIiwiaXNzIjoiQkVTVCBDUk0gU3lzdGVtIiwiaWF0IjoxNzA1MzE3MDU1LCJleHAiOjE3MDU5MjE4NTV9.LBG6qkKIXzg3CergIGMzFoGhasBN37QsxgPkDpcgTP8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/v/1/auth/ipdate",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v",
+								"1",
+								"auth",
+								"ipdate"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6IjQzNWYwNTRmLTNhYTEtNDY1ZC1iOTE1LTVjMTY0MzI4NjcxNSIsInJlZnJlc2hUb2tlbklkIjoiOWJkNzY0YzMtZDdlOS00ZGY5LThhODItOTQyY2YxZmRlZTlhIiwiYXVkIjoiQkVTVCBDUk0gU3lzdGVtIiwiaXNzIjoiQkVTVCBDUk0gU3lzdGVtIiwiaWF0IjoxNzA1MzE3MDU1LCJleHAiOjE3MDU5MjE4NTV9.LBG6qkKIXzg3CergIGMzFoGhasBN37QsxgPkDpcgTP8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"login\": \"lfogisdnd@email.com\",\n    \"password\": \"P@ssword1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v/1/auth/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v",
+								"1",
+								"auth",
+								"logout"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Member",
+			"item": [
+				{
+					"name": "Main",
+					"item": [
+						{
+							"name": "List",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/member/list",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"member",
+										"list"
+									]
+								},
+								"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+							},
+							"response": []
+						},
+						{
+							"name": "By id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/member/by-id?id=cf13790c-e9d8-4cd5-988f-f9ab0ba02085",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"member",
+										"by-id"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "cf13790c-e9d8-4cd5-988f-f9ab0ba02085"
+										}
+									]
+								},
+								"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful POST request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"membership\": \"baby\",\n    \"login\": \"lfogisdnd@email.com\",\n    \"password\": \"P@ssword1234\",\n    \"bestEmail\": \"name.surname@best-eu.org\",\n    \"surname\": \"Name\",\n    \"fullName\": \"Name\",\n    \"middleName\": \"Name\",\n    \"birthday\": \"1900-01-01T00:00:00.000Z\",\n    \"group\": \"УБ-21б\",\n    \"faculty\": \"ФМІБ\",\n    \"clothingSize\": \"S\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/member/create",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"member",
+										"create"
+									]
+								},
+								"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful PUT request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"377da3ac-0f04-4dc8-aa9c-d373eb1343e3\",\n    \"membership\": \"baby\",\n    \"login\": \"login@email.com\",\n    \"password\": \"P@ssword1234\",\n    \"bestEmail\": \"name.surname@best-eu.org\",\n    \"surname\": \"Name\",\n    \"fullName\": \"Name\",\n    \"middleName\": \"Name\",\n    \"birthday\": \"1900-01-01T00:00:00.000Z\",\n    \"group\": \"УБ-21б\",\n    \"faculty\": \"ФМІБ\",\n    \"clothingSize\": \"S\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/member/update",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"member",
+										"update"
+									]
+								},
+								"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful DELETE request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"membersId\": [\r\n        \"cf13790c-e9d8-4cd5-988f-f9ab0ba02085\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/member/delete",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"member",
+										"delete"
+									]
+								},
+								"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Email",
+					"item": [
+						{
+							"name": "List",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/email/list?memberId=cf13790c-e9d8-4cd5-988f-f9ab0ba02085",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"email",
+										"list"
+									],
+									"query": [
+										{
+											"key": "memberId",
+											"value": "cf13790c-e9d8-4cd5-988f-f9ab0ba02085"
+										}
+									]
+								},
+								"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+							},
+							"response": []
+						},
+						{
+							"name": "Main",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/email/main?memberId=cf13790c-e9d8-4cd5-988f-f9ab0ba02085",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"email",
+										"main"
+									],
+									"query": [
+										{
+											"key": "memberId",
+											"value": "cf13790c-e9d8-4cd5-988f-f9ab0ba02085"
+										}
+									]
+								},
+								"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful POST request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"emails\": [\n        {\n            \"memberId\": \"cf13790c-e9d8-4cd5-988f-f9ab0ba02085\",\n            \"email\": \"test1dddsd@gmail.com\",\n            \"isMain\": true\n        },\n        {\n            \"memberId\": \"cf13790c-e9d8-4cd5-988f-f9ab0ba02085\",\n            \"email\": \"tesasdt1dddsd@gmail.com\",\n            \"isMain\": false\n        },\n        {\n            \"memberId\": \"cf13790c-e9d8-4cd5-988f-f9ab0ba02085\",\n            \"email\": \"tesasdt1dddsd@gmail.com\",\n            \"isMain\": false\n        },\n        {\n            \"memberId\": \"cf13790c-e9d8-4cd5-988f-f9ab0ba02085\",\n            \"email\": \"te1dddsd@gmail.com\",\n            \"isMain\": false\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/email/create",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"email",
+										"create"
+									]
+								},
+								"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful PUT request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"emails\": [\n        {\n            \"id\": \"7494917c-84a1-425b-92f0-c2c0b306086d\",\n            \"memberId\": \"cf13790c-e9d8-4cd5-988f-f9ab0ba02085\",\n            \"email\": \"1test1dddsd@gmail.com\",\n            \"isMain\": true\n        },\n        {\n            \"id\": \"3f7478f4-2e39-4616-b3ec-61ac30fd0669\",\n            \"memberId\": \"cf13790c-e9d8-4cd5-988f-f9ab0ba02085\",\n            \"email\": \"1tesasdt1dddsd@gmail.com\",\n            \"isMain\": false\n        },\n        {\n            \"id\": \"7583a12b-741a-4a8e-98e4-584b1b176405\",\n            \"memberId\": \"cf13790c-e9d8-4cd5-988f-f9ab0ba02085\",\n            \"email\": \"1tesasdt1dddsd@gmail.com\",\n            \"isMain\": false\n        },\n        {\n            \"id\": \"02824420-13ae-450a-a2c9-a9d7db785cb4\",\n            \"memberId\": \"cf13790c-e9d8-4cd5-988f-f9ab0ba02085\",\n            \"email\": \"1tesasdt1dddsd@gmail.com\",\n            \"isMain\": false\n        },\n        {\n            \"id\": \"e726d49c-50f7-4fdb-ab5a-dfc7cd864ed4\",\n            \"memberId\": \"cf13790c-e9d8-4cd5-988f-f9ab0ba02085\",\n            \"email\": \"1te1dddsd@gmail.com\",\n            \"isMain\": false\n        },\n        {\n            \"id\": \"f69ac7a7-0b8c-42f3-970d-240b84fa4f45\",\n            \"memberId\": \"cf13790c-e9d8-4cd5-988f-f9ab0ba02085\",\n            \"email\": \"1test1dddsd@gmail.com\",\n            \"isMain\": true\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/email/update",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"email",
+										"update"
+									]
+								},
+								"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful DELETE request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"emailsId\": [\r\n        \"9acbc833-0398-459a-9930-63bc5154e019\",\r\n        \"7af16d3d-057c-4e55-9f50-bea30f29152e\",\r\n        \"900742b4-2efc-4dff-a491-03c5fa965fed\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/email/delete",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"email",
+										"delete"
+									]
+								},
+								"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Phone",
+					"item": []
+				},
+				{
+					"name": "Social network",
+					"item": []
+				}
+			]
+		},
+		{
+			"name": "Cadence",
+			"item": [
+				{
+					"name": "List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v/1/cadence/list",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v",
+								"1",
+								"cadence",
+								"list"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "By id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v/1/cadence/by-id?id=73a2c610-f505-4e3d-aef3-1873b48a4f1f",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v",
+								"1",
+								"cadence",
+								"by-id"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "73a2c610-f505-4e3d-aef3-1873b48a4f1f"
+								}
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"number\": 1,\n    \"startDate\": \"1900-01-01T00:00:00.000Z\",\n    \"isEnd\": false,\n    \"endDate\": \"1900-01-01T00:00:00.000Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v/1/cadence/create",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v",
+								"1",
+								"cadence",
+								"create"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"377da3ac-0f04-4dc8-aa9c-d373eb1343e3\",\n    \"membership\": \"baby\",\n    \"login\": \"login@email.com\",\n    \"password\": \"P@ssword1234\",\n    \"bestEmail\": \"name.surname@best-eu.org\",\n    \"surname\": \"Name\",\n    \"fullName\": \"Name\",\n    \"middleName\": \"Name\",\n    \"birthday\": \"1900-01-01T00:00:00.000Z\",\n    \"group\": \"УБ-21б\",\n    \"faculty\": \"ФМІБ\",\n    \"clothingSize\": \"S\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v/1/cadence/update",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v",
+								"1",
+								"cadence",
+								"update"
+							]
+						},
+						"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful DELETE request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"membersId\": [\r\n        \"88c2bc9e-2160-4e9b-8e78-de1d4dc85d31\",\r\n        \"377da3ac-0f04-4dc8-aa9c-d373eb1343e3\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v/1/cadence/delete",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v",
+								"1",
+								"cadence",
+								"delete"
+							]
+						},
+						"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Meeting",
+			"item": [
+				{
+					"name": "Increase",
+					"item": []
+				}
+			]
+		},
+		{
+			"name": "Committee",
+			"item": []
+		},
+		{
+			"name": "Coordinator",
+			"item": []
+		},
+		{
+			"name": "Board",
+			"item": [
+				{
+					"name": "Main",
+					"item": [
+						{
+							"name": "List",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/board/list",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"board",
+										"list"
+									]
+								},
+								"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+							},
+							"response": []
+						},
+						{
+							"name": "By id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/board/by-id?id=020ef135-36d9-41d2-804a-8d57e258d943",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"board",
+										"by-id"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "020ef135-36d9-41d2-804a-8d57e258d943"
+										}
+									]
+								},
+								"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful POST request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"president\",\n    \"isActive\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/board/create",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"board",
+										"create"
+									]
+								},
+								"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful PUT request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"020ef135-36d9-41d2-804a-8d57e258d943\",\n    \"name\": \"president\",\n    \"isActive\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/board/update",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"board",
+										"update"
+									]
+								},
+								"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful DELETE request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"boardsId\": [\r\n        \"54c1ceb1-5759-49fe-a76e-1c6f8438f970\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/board/delete",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"board",
+										"delete"
+									]
+								},
+								"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Board to member",
+					"item": [
+						{
+							"name": "List",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/board-to-member/list",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"board-to-member",
+										"list"
+									]
+								},
+								"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+							},
+							"response": []
+						},
+						{
+							"name": "By id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/board-to-member/by-id?id=377da3ac-0f04-4dc8-aa9c-d373eb1343e3",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"board-to-member",
+										"by-id"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "377da3ac-0f04-4dc8-aa9c-d373eb1343e3"
+										}
+									]
+								},
+								"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+							},
+							"response": []
+						},
+						{
+							"name": "By member id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/board-to-member/by-member-id?memberId=cf13790c-e9d8-4cd5-988f-f9ab0ba02085",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"board-to-member",
+										"by-member-id"
+									],
+									"query": [
+										{
+											"key": "memberId",
+											"value": "cf13790c-e9d8-4cd5-988f-f9ab0ba02085"
+										}
+									]
+								},
+								"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+							},
+							"response": []
+						},
+						{
+							"name": "By cadence id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/board-to-member/by-cadence-id?cadenceId=73a2c610-f505-4e3d-aef3-1873b48a4f1f",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"board-to-member",
+										"by-cadence-id"
+									],
+									"query": [
+										{
+											"key": "cadenceId",
+											"value": "73a2c610-f505-4e3d-aef3-1873b48a4f1f"
+										}
+									]
+								},
+								"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+							},
+							"response": []
+						},
+						{
+							"name": "By board id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/board-to-member/by-board-id?boardId=c2b47f90-8a57-4e10-8bf0-9a6549b87b06",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"board-to-member",
+										"by-board-id"
+									],
+									"query": [
+										{
+											"key": "boardId",
+											"value": "c2b47f90-8a57-4e10-8bf0-9a6549b87b06"
+										}
+									]
+								},
+								"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful POST request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"cadenceId\": \"73a2c610-f505-4e3d-aef3-1873b48a4f1f\",\n    \"boardId\": \"c2b47f90-8a57-4e10-8bf0-9a6549b87b06\",\n    \"memberId\": \"cf13790c-e9d8-4cd5-988f-f9ab0ba02085\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/board-to-member/create",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"board-to-member",
+										"create"
+									]
+								},
+								"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful PUT request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"377da3ac-0f04-4dc8-aa9c-d373eb1343e3\",\n    \"membership\": \"baby\",\n    \"login\": \"login@email.com\",\n    \"password\": \"P@ssword1234\",\n    \"bestEmail\": \"name.surname@best-eu.org\",\n    \"surname\": \"Name\",\n    \"fullName\": \"Name\",\n    \"middleName\": \"Name\",\n    \"birthday\": \"1900-01-01T00:00:00.000Z\",\n    \"group\": \"УБ-21б\",\n    \"faculty\": \"ФМІБ\",\n    \"clothingSize\": \"S\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/board-to-member/update",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"board-to-member",
+										"update"
+									]
+								},
+								"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful DELETE request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"boardToMemberId\": [\r\n        \"69f765d5-3256-41cc-9eac-c068d5a4e294\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/board-to-member/delete",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"board-to-member",
+										"delete"
+									]
+								},
+								"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Event",
+			"item": [
+				{
+					"name": "Main",
+					"item": [
+						{
+							"name": "List",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/event/list",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"event",
+										"list"
+									]
+								},
+								"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+							},
+							"response": []
+						},
+						{
+							"name": "By id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/event/by-id?id=503960f6-d214-48ab-a5b5-e57e3931b44e",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"event",
+										"by-id"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "503960f6-d214-48ab-a5b5-e57e3931b44e"
+										}
+									]
+								},
+								"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful POST request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"anniversary\",\n    \"isActive\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/event/create",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"event",
+										"create"
+									]
+								},
+								"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful PUT request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"503960f6-d214-48ab-a5b5-e57e3931b44e\",\n    \"isActive\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/event/update",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"event",
+										"update"
+									]
+								},
+								"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful DELETE request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"eventsId\": [\r\n        \"316ee2c7-0313-4f6e-b88b-d0f361d404cb\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/event/delete",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"event",
+										"delete"
+									]
+								},
+								"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "New event",
+					"item": [
+						{
+							"name": "List",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/new-event/list",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"new-event",
+										"list"
+									]
+								},
+								"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+							},
+							"response": []
+						},
+						{
+							"name": "By id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/new-event/by-id?id=5d543247-a665-4a82-aa95-9fc37e96e63e",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"new-event",
+										"by-id"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "5d543247-a665-4a82-aa95-9fc37e96e63e"
+										}
+									]
+								},
+								"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+							},
+							"response": []
+						},
+						{
+							"name": "By cadence id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/new-event/by-cadence-id?cadenceId=73a2c610-f505-4e3d-aef3-1873b48a4f1f",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"new-event",
+										"by-cadence-id"
+									],
+									"query": [
+										{
+											"key": "cadenceId",
+											"value": "73a2c610-f505-4e3d-aef3-1873b48a4f1f"
+										}
+									]
+								},
+								"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+							},
+							"response": []
+						},
+						{
+							"name": "By event id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/new-event/by-event-id?eventId=503960f6-d214-48ab-a5b5-e57e3931b44e",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"new-event",
+										"by-event-id"
+									],
+									"query": [
+										{
+											"key": "eventId",
+											"value": "503960f6-d214-48ab-a5b5-e57e3931b44e"
+										}
+									]
+								},
+								"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful POST request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"eventId\": \"503960f6-d214-48ab-a5b5-e57e3931b44e\",\n    \"cadenceId\": \"73a2c610-f505-4e3d-aef3-1873b48a4f1f\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/new-event/create",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"new-event",
+										"create"
+									]
+								},
+								"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful PUT request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"5d543247-a665-4a82-aa95-9fc37e96e63e\",\n    \"eventId\": \"503960f6-d214-48ab-a5b5-e57e3931b44e\",\n    \"cadenceId\": \"73a2c610-f505-4e3d-aef3-1873b48a4f1f\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/new-event/update",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"new-event",
+										"update"
+									]
+								},
+								"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful DELETE request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"newEventsId\": [\r\n        \"5d543247-a665-4a82-aa95-9fc37e96e63e\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/new-event/delete",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"new-event",
+										"delete"
+									]
+								},
+								"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Responsible",
+					"item": [
+						{
+							"name": "List",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/responsible/list",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"responsible",
+										"list"
+									]
+								},
+								"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+							},
+							"response": []
+						},
+						{
+							"name": "By id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/responsible/by-id?id=5ced7361-d814-41ff-bf09-719015d5aad7",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"responsible",
+										"by-id"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "5ced7361-d814-41ff-bf09-719015d5aad7"
+										}
+									]
+								},
+								"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+							},
+							"response": []
+						},
+						{
+							"name": "By event id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/responsible/by-event-id?eventId=503960f6-d214-48ab-a5b5-e57e3931b44e",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"responsible",
+										"by-event-id"
+									],
+									"query": [
+										{
+											"key": "eventId",
+											"value": "503960f6-d214-48ab-a5b5-e57e3931b44e"
+										}
+									]
+								},
+								"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful POST request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"eventId\": \"503960f6-d214-48ab-a5b5-e57e3931b44e\",\n    \"name\": \"string\",\n    \"isActive\": true,\n    \"role\": \"MO\",\n    \"description\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/responsible/create",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"responsible",
+										"create"
+									]
+								},
+								"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful PUT request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"5ced7361-d814-41ff-bf09-719015d5aad7\",\n    \"eventId\": \"503960f6-d214-48ab-a5b5-e57e3931b44e\",\n    \"name\": \"string\",\n    \"isActive\": true,\n    \"role\": \"resp\",\n    \"description\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/responsible/update",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"responsible",
+										"update"
+									]
+								},
+								"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful DELETE request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"responsibleId\": [\r\n        \"5ced7361-d814-41ff-bf09-719015d5aad7\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/responsible/delete",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"responsible",
+										"delete"
+									]
+								},
+								"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Member to event",
+					"item": [
+						{
+							"name": "List",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/member-to-event/list",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"member-to-event",
+										"list"
+									]
+								},
+								"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+							},
+							"response": []
+						},
+						{
+							"name": "By id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/member-to-event/by-id?id=1cc670f4-3567-4ef1-b5b7-9d52266b3db8",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"member-to-event",
+										"by-id"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "1cc670f4-3567-4ef1-b5b7-9d52266b3db8"
+										}
+									]
+								},
+								"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+							},
+							"response": []
+						},
+						{
+							"name": "By new event id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/member-to-event/by-new-event-id?newEventId=9ffbc2f5-9a85-4f1b-8e5f-bcc3085b12ba",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"member-to-event",
+										"by-new-event-id"
+									],
+									"query": [
+										{
+											"key": "newEventId",
+											"value": "9ffbc2f5-9a85-4f1b-8e5f-bcc3085b12ba"
+										}
+									]
+								},
+								"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+							},
+							"response": []
+						},
+						{
+							"name": "By responsible id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/member-to-event/by-responsible-id?responsibleId=9e737fcd-fbaa-41f5-9da1-1e20cbbb0c7d",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"member-to-event",
+										"by-responsible-id"
+									],
+									"query": [
+										{
+											"key": "responsibleId",
+											"value": "9e737fcd-fbaa-41f5-9da1-1e20cbbb0c7d"
+										}
+									]
+								},
+								"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+							},
+							"response": []
+						},
+						{
+							"name": "By member id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v/1/member-to-event/by-member-id?memberId=cf13790c-e9d8-4cd5-988f-f9ab0ba02085",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"member-to-event",
+										"by-member-id"
+									],
+									"query": [
+										{
+											"key": "memberId",
+											"value": "cf13790c-e9d8-4cd5-988f-f9ab0ba02085"
+										}
+									]
+								},
+								"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful POST request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"newEventId\": \"9ffbc2f5-9a85-4f1b-8e5f-bcc3085b12ba\",\n    \"responsibleId\": \"9e737fcd-fbaa-41f5-9da1-1e20cbbb0c7d\",\n    \"memberId\": \"cf13790c-e9d8-4cd5-988f-f9ab0ba02085\",\n    \"excluded\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/member-to-event/create",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"member-to-event",
+										"create"
+									]
+								},
+								"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful PUT request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"5ced7361-d814-41ff-bf09-719015d5aad7\",\n    \"eventId\": \"503960f6-d214-48ab-a5b5-e57e3931b44e\",\n    \"name\": \"string\",\n    \"isActive\": true,\n    \"role\": \"resp\",\n    \"description\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/member-to-event/update",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"member-to-event",
+										"update"
+									]
+								},
+								"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Successful DELETE request\", function () {",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"responsibleId\": [\r\n        \"5ced7361-d814-41ff-bf09-719015d5aad7\"\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v/1/member-to-event/delete",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v",
+										"1",
+										"member-to-event",
+										"delete"
+									]
+								},
+								"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Other",
+			"item": [
+				{
+					"name": "Punish",
+					"item": []
+				},
+				{
+					"name": "Photo album",
+					"item": []
+				},
+				{
+					"name": "Tradition",
+					"item": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}
