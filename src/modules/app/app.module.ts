@@ -11,6 +11,9 @@ import { APP_GUARD } from '@nestjs/core';
 import { AtGuard } from 'src/common/guards';
 import { EmailModule } from '../email/email.module';
 import { EventModule } from '../event/event.module';
+import { NewEventModule } from '../new-event/new-event.module';
+import { ResponsibleModule } from '../responsible/responsible.module';
+import { MemberToEventModule } from '../member-to-event/member-to-event.module';
 
 @Module({
     imports: [
@@ -28,6 +31,9 @@ import { EventModule } from '../event/event.module';
         BoardToMemberModule,
 
         EventModule,
+        NewEventModule,
+        ResponsibleModule,
+        MemberToEventModule,
     ],
     controllers: [AppController],
     providers: [

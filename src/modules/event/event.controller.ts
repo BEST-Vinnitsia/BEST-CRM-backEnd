@@ -14,20 +14,20 @@ import { HttpErrorFilter } from '../../common/filters/http-exception.filter';
 @ApiTags('Event')
 @Controller('api/v/1/event')
 export class EventController {
-    constructor(private readonly boardService: EventService) {}
+    constructor(private readonly eventService: EventService) {}
 
     /* ----------------  GET  ---------------- */
 
     @Get('list')
     @ApiCreatedResponse({ type: [Event] })
     async list() {
-        return await this.boardService.getList();
+        return await this.eventService.getList();
     }
 
     @Get('by-id')
     @ApiCreatedResponse({ type: Event })
     async byId(@Query() dto: EventGetByIdDto) {
-        return await this.boardService.getById(dto);
+        return await this.eventService.getById(dto);
     }
 
     /* ----------------  POST  ---------------- */
@@ -36,14 +36,14 @@ export class EventController {
     @Post('create')
     @ApiCreatedResponse({ type: Event })
     async create(@Body() dto: EventCreateDto) {
-        return await this.boardService.create(dto);
+        return await this.eventService.create(dto);
     }
 
     /* ----------------  PUT  ---------------- */
     @Put('update')
     @ApiCreatedResponse({ type: Event })
     async update(@Body() dto: EventUpdateDto) {
-        return await this.boardService.update(dto);
+        return await this.eventService.update(dto);
     }
 
     /* ----------------  DELETE  ---------------- */
@@ -51,6 +51,6 @@ export class EventController {
     @ApiCreatedResponse({ type: Event })
     @UseFilters(HttpErrorFilter)
     async delete(@Body() dto: EventDeleteArrayDto) {
-        return this.boardService.delete(dto.eventsId);
+        return this.eventService.delete(dto.eventsId);
     }
 }
