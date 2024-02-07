@@ -19,4 +19,6 @@ export interface ISocialNetworkCreate extends Omit<ISocialNetwork, 'id' | 'creat
 
 export interface ISocialNetworkUpdate extends Omit<ISocialNetwork, 'createdAt' | 'updatedAt'> {}
 
-export interface ISocialNetworkDelete extends Pick<ISocialNetwork, 'id'> {}
+export interface ISocialNetworkDelete {
+    socialNetworksId: string[];
+}
