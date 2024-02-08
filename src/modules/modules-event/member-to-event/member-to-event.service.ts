@@ -8,10 +8,10 @@ import {
     IMemberToEventGetById,
     IMemberToEventUpdate,
 } from 'src/interfaces/event/member-to-event.interface';
-import { PrismaService } from '../prisma/prisma.service';
-import { NewEventService } from '../new-event/new-event.service';
-import { MemberService } from '../member/member.service';
-import { ResponsibleService } from '../responsible/responsible.service';
+import { PrismaService } from '../../prisma/prisma.service';
+import { NewEventService } from '../../new-event/new-event.service';
+import { MemberService } from '../../member/member.service';
+import { ResponsibleService } from '../../responsible/responsible.service';
 
 @Injectable()
 export class MemberToEventService {

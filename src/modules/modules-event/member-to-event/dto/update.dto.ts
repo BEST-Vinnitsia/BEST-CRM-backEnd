@@ -1,7 +1,7 @@
 import { IsBoolean, IsDateString, IsNotEmpty, IsOptional, IsString, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
-import { IMemberToEventUpdate } from '../../../interfaces/event/member-to-event.interface';
+import { IMemberToEventUpdate } from '../../../../interfaces/event/member-to-event.interface';
 
 export class MemberToEventUpdateDto implements IMemberToEventUpdate {
     @ApiProperty({ example: randomUUID() })

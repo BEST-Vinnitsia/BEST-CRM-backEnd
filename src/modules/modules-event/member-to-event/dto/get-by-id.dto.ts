@@ -1,12 +1,12 @@
 import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
-import { IMemberToEventGetByMemberId } from '../../../interfaces/event/member-to-event.interface';
+import {  IMemberToEventGetById } from '../../../../interfaces/event/member-to-event.interface';
 
-export class MemberToEventGetByMemberIdDto implements IMemberToEventGetByMemberId {
+export class MemberToEventGetByIdDto implements IMemberToEventGetById {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()
     @IsUUID('4')
-    memberId: string;
+    id: string;
 }

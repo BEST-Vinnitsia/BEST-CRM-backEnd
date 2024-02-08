@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsBoolean, IsDateString, IsNotEmpty, IsOptional, IsString, IsUUID } from 'class-validator';
 import { randomUUID } from 'crypto';
-import { IMemberToEventCreate } from '../../../interfaces/event/member-to-event.interface';
+import { IMemberToEventCreate } from '../../../../interfaces/event/member-to-event.interface';
 
 export class MemberToEventCreateDto implements IMemberToEventCreate {
     @ApiProperty({ example: randomUUID() })

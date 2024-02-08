@@ -8,7 +8,7 @@ import { ApiCreatedResponse, ApiTags, ApiSecurity } from '@nestjs/swagger';
 import { MemberToEvent } from './entity/member-to-event.entity';
 import { Claim } from 'src/common/decorators';
 import { BoardGuard } from 'src/common/guards';
-import { HttpErrorFilter } from '../../common/filters/http-exception.filter';
+import { HttpErrorFilter } from '../../../common/filters/http-exception.filter';
 import { MemberToEventGetByNewEventIdDto } from './dto/get-by-new-event-id.dto';
 import { MemberToEventGetByMemberIdDto } from './dto/get-by-member-id.dto';
 import { MemberToEventGetByResponsibleIdDto } from './dto/get-by-responsible-id.dto';

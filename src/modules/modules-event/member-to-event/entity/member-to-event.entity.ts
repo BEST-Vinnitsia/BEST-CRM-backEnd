@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
-import { IMemberToEvent } from '../../../interfaces/event/member-to-event.interface';
+import { IMemberToEvent } from '../../../../interfaces/event/member-to-event.interface';
 
 export class MemberToEvent implements IMemberToEvent {
     @ApiProperty({ example: randomUUID() })

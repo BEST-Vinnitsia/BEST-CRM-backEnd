@@ -12,7 +12,7 @@ import { EmailModule } from '../email/email.module';
 import { EventModule } from '../event/event.module';
 import { NewEventModule } from '../new-event/new-event.module';
 import { ResponsibleModule } from '../responsible/responsible.module';
-import { MemberToEventModule } from '../member-to-event/member-to-event.module';
+import { MemberToEventModule } from '../modules-event/member-to-event/member-to-event.module';
 import { PhoneModule } from '../phone/phone.module';
 import { SocialNetworkModule } from '../social-network/social-network.module';
 import { CoordinatorModule } from '../coordinator/coordinator.module';
