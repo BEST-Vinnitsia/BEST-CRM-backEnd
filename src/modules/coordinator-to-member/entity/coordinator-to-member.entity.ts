@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
-import { IBoardToMember } from 'src/interfaces/board/board-to-member.interface';
+import { ICoordinatorToMember } from '../../../interfaces/coordinator/coordinator-to-member.interface';
 
-export class BoardToMember implements IBoardToMember {
+export class CoordinatorToMember implements ICoordinatorToMember {
     @ApiProperty({ example: randomUUID() })
     id: string;
 
@@ -10,7 +10,7 @@ export class BoardToMember implements IBoardToMember {
     cadenceId: string;
 
     @ApiProperty({ example: randomUUID() })
-    boardId: string;
+    coordinatorId: string;
 
     @ApiProperty({ example: randomUUID() })
     memberId: string;

@@ -1,3 +1,7 @@
+import {
+    CoordinatorToMemberGetByCoordinatorIdDto
+} from '../../modules/coordinator-to-member/dto/get-by-coordinator-id.dto';
+
 export interface ICoordinatorToMember {
     id: string;
     cadenceId: string;
@@ -14,8 +18,16 @@ export interface ICoordinatorToMember {
 
 export interface ICoordinatorToMemberGetById extends Pick<ICoordinatorToMember, 'id'> {}
 
-export interface ICoordinatorToMemberCreate extends Omit<ICoordinatorToMember, 'id' | 'createdAt' | 'updatedAt'> {}
+export interface ICoordinatorToMemberGetByMemberId extends Pick<ICoordinatorToMember, 'memberId'> {}
 
-export interface ICoordinatorToMemberUpdate extends Omit<ICoordinatorToMember, 'createdAt' | 'updatedAt'> {}
+export interface ICoordinatorToMemberGetByCadenceId extends Pick<ICoordinatorToMember, 'cadenceId'> {}
 
-export interface ICoordinatorToMemberDelete extends Pick<ICoordinatorToMember, 'id'> {}
+export interface ICoordinatorToMemberGetByCoordinatorId extends Pick<ICoordinatorToMember, 'coordinatorId'> {}
+
+export interface ICoordinatorToMemberCreate extends Omit<ICoordinatorToMember, 'id' | 'excluded' | 'excludedDate' | 'createdAt' | 'updatedAt'> {}
+
+export interface ICoordinatorToMemberUpdate extends Omit<ICoordinatorToMember, 'createdAt' | 'excluded' | 'excludedDate' | 'updatedAt'> {}
+
+export interface ICoordinatorToMemberDeleteArray {
+    coordinatorToMemberId: string[];
+}
