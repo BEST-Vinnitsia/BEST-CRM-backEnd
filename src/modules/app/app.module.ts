@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { PrismaModule } from '../prisma/prisma.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MemberModule } from '../member/member.module';
@@ -20,7 +19,6 @@ import { SocialNetworkModule } from '../social-network/social-network.module';
 @Module({
     imports: [
         //
-        PrismaModule,
 
         AuthModule,
 
