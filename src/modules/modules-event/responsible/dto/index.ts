@@ -3,4 +3,4 @@ export { GetByEventIdDto } from './get-by-event-id.dto';
 
 export { CreateDto } from './create.dto';
 export { UpdateDto } from './update.dto';
-export { DeleteArrayDto } from './delete.dto';
+export { DeleteArrayDto } from './delete-array.dto';
