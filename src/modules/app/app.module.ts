@@ -17,6 +17,8 @@ import { PhoneModule } from '../phone/phone.module';
 import { SocialNetworkModule } from '../social-network/social-network.module';
 import { CoordinatorModule } from '../coordinator/coordinator.module';
 import { CommitteeModule } from '../committee/committee.module';
+import { CoordinatorToMemberModule } from '../coordinator-to-member/coordinator-to-member.module';
+import { CommitteeToMemberModule } from '../committee-to-member/committee-to-member.module';
 
 @Module({
     imports: [
@@ -35,6 +37,8 @@ import { CommitteeModule } from '../committee/committee.module';
         CoordinatorModule,
         CommitteeModule,
         BoardToMemberModule,
+        CommitteeToMemberModule,
+        CoordinatorToMemberModule,
 
         EventModule,
         NewEventModule,
