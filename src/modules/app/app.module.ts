@@ -15,6 +15,8 @@ import { ResponsibleModule } from '../responsible/responsible.module';
 import { MemberToEventModule } from '../member-to-event/member-to-event.module';
 import { PhoneModule } from '../phone/phone.module';
 import { SocialNetworkModule } from '../social-network/social-network.module';
+import { CoordinatorModule } from '../coordinator/coordinator.module';
+import { CommitteeModule } from '../committee/committee.module';
 
 @Module({
     imports: [
@@ -30,6 +32,8 @@ import { SocialNetworkModule } from '../social-network/social-network.module';
         CadenceModule,
 
         BoardModule,
+        CoordinatorModule,
+        CommitteeModule,
         BoardToMemberModule,
 
         EventModule,

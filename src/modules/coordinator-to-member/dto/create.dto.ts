@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
+import { IsNotEmpty, IsString, IsBoolean, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { IBoardToMemberCreate } from 'src/interfaces/board/board-to-member.interface';
 import { randomUUID } from 'crypto';

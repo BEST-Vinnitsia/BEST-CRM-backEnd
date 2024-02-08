@@ -1,9 +1,15 @@
-import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsString, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { IBoardToMemberCreate } from 'src/interfaces/board/board-to-member.interface';
 import { randomUUID } from 'crypto';
+import { ICommitteeToMemberUpdate } from '../../../interfaces/committee/committee-to-member.interface';
 
-export class BoardToMemberCreateDto implements IBoardToMemberCreate {
+export class CommitteeToMemberUpdateDto implements ICommitteeToMemberUpdate {
+    @ApiProperty({ example: randomUUID() })
+    @IsNotEmpty()
+    @IsString()
+    @IsUUID('4')
+    id: string;
+
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()
@@ -14,7 +20,7 @@ export class BoardToMemberCreateDto implements IBoardToMemberCreate {
     @IsNotEmpty()
     @IsString()
     @IsUUID('4')
-    boardId: string;
+    committeeId: string;
 
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
