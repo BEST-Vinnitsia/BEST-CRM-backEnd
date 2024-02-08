@@ -1,9 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
-import { INewEventCreate } from '../../../interfaces/event/new-event.interface';
+import { INewEventCreate } from '../../../../interfaces/event/new-event.interface';
 import { randomUUID } from 'crypto';
 
-export class NewEventCreateDto implements INewEventCreate {
+export class CreateDto implements INewEventCreate {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()

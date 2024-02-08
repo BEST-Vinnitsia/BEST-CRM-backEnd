@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { ICoordinator, ICoordinatorCreate, ICoordinatorGetById, ICoordinatorUpdate } from 'src/interfaces/coordinator/coordinator.interface';
-import { PrismaService } from '../prisma/prisma.service';
+import { PrismaService } from '../../prisma/prisma.service';
 
 @Injectable()
 export class CoordinatorService {

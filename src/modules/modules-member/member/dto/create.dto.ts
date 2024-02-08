@@ -1,9 +1,9 @@
-import { IsDateString, IsNotEmpty, IsOptional, IsString, IsEmail, Matches, IsEnum } from 'class-validator';
-import { ClothingSizeEnum, MembershipEnum } from '../../../constants/enums.constant';
-import { Regex } from '../../../constants/regex.constant';
-import { IsDateWithinRange } from '../../../pipes/isDateWithinRange.pipe';
+import { IsDateString, IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, Matches } from 'class-validator';
+import { ClothingSizeEnum, MembershipEnum } from '../../../../constants/enums.constant';
+import { Regex } from '../../../../constants/regex.constant';
+import { IsDateWithinRange } from '../../../../pipes/isDateWithinRange.pipe';
 import { ApiProperty } from '@nestjs/swagger';
-import { IMemberCreate } from '../../../interfaces/member/member.type';
+import { IMemberCreate } from '../../../../interfaces/member/member.type';
 
 export class CreateDto implements IMemberCreate {
     @ApiProperty({ required: false, enum: MembershipEnum })

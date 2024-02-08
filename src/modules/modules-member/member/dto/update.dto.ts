@@ -1,9 +1,9 @@
 import { IsDateString, IsNotEmpty, IsOptional, IsString, IsUUID, IsEmail, Matches, IsEnum } from 'class-validator';
-import { ClothingSizeEnum, MembershipEnum } from '../../../constants/enums.constant';
-import { Regex } from '../../../constants/regex.constant';
-import { IsDateWithinRange } from '../../../pipes/isDateWithinRange.pipe';
+import { ClothingSizeEnum, MembershipEnum } from '../../../../constants/enums.constant';
+import { Regex } from '../../../../constants/regex.constant';
+import { IsDateWithinRange } from '../../../../pipes/isDateWithinRange.pipe';
 import { ApiProperty } from '@nestjs/swagger';
-import { IMemberUpdate } from '../../../interfaces/member/member.type';
+import { IMemberUpdate } from '../../../../interfaces/member/member.type';
 import { randomUUID } from 'crypto';
 
 export class UpdateDto implements IMemberUpdate {

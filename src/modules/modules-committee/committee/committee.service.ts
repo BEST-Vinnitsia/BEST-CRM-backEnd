@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
-import { ICommittee, ICommitteeCreate, ICommitteeGetById, ICommitteeUpdate } from '../../interfaces/committee/committee.interface';
+import { PrismaService } from '../../prisma/prisma.service';
+import { ICommittee, ICommitteeCreate, ICommitteeGetById, ICommitteeUpdate } from '../../../interfaces/committee/committee.interface';
 
 @Injectable()
 export class CommitteeService {

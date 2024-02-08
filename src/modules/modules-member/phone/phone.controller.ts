@@ -1,53 +1,49 @@
-import { Body, Controller, Get, Post, Query, Delete, Put, UseFilters } from '@nestjs/common';
-import { ApiCreatedResponse, ApiTags, ApiSecurity } from '@nestjs/swagger';
+import { Body, Controller, Delete, Get, Post, Put, Query, UseFilters } from '@nestjs/common';
+import { ApiCreatedResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { Phone } from './entity/phone.entity';
 import { PhoneService } from './phone.service';
-import { PhoneGetListDto } from './dto/get-list.dto';
-import { PhoneGetMainDto } from './dto/get-main.dto';
-import { PhoneCreateDtoArray } from './dto/create.dto';
-import { PhoneUpdateDtoArray } from './dto/update.dto';
-import { PhoneDeleteDto } from './dto/delete.dto';
-import { HttpErrorFilter } from '../../common/filters/http-exception.filter';
+import { CreateArrayDto, DeleteArrayDto, GetListDto, GetMainDto, UpdateArrayDto } from './dto';
+import { HttpErrorFilter } from '../../../common/filters/http-exception.filter';
 
 @ApiSecurity('basic')
 @ApiTags('Phone')
 @Controller('api/v/1/phone')
 export class PhoneController {
-    constructor(private readonly phoneService: PhoneService) {}
+    constructor(private readonly service: PhoneService) {}
 
     /* ----------------  GET  ---------------- */
 
     @Get('list')
     @ApiCreatedResponse({ type: [Phone] })
-    async getEmailList(@Query() data: PhoneGetListDto) {
-        return this.phoneService.getListByMemberId(data);
+    async getEmailList(@Query() dto: GetListDto) {
+        return this.service.getListByMemberId(dto);
     }
 
     @Get('main')
     @ApiCreatedResponse({ type: Phone })
-    async getMainEmail(@Query() data: PhoneGetMainDto) {
-        return this.phoneService.getMainByMemberId(data);
+    async getMainEmail(@Query() dto: GetMainDto) {
+        return this.service.getMainByMemberId(dto);
     }
 
     /* ----------------  POST  ---------------- */
     @Post('create')
     @ApiCreatedResponse({ type: Phone })
-    async create(@Body() dto: PhoneCreateDtoArray) {
-        return await this.phoneService.create(dto.phones);
+    async create(@Body() dto: CreateArrayDto) {
+        return await this.service.create(dto.phones);
     }
 
     /* ----------------  PUT  ---------------- */
     @Put('update')
     @ApiCreatedResponse({ type: Phone })
-    async update(@Body() dto: PhoneUpdateDtoArray) {
-        return await this.phoneService.update(dto.phones);
+    async update(@Body() dto: UpdateArrayDto) {
+        return await this.service.update(dto.phones);
     }
 
     /* ----------------  DELETE  ---------------- */
     @Delete('delete')
     @ApiCreatedResponse({ type: Phone })
     @UseFilters(HttpErrorFilter)
-    async delete(@Body() dto: PhoneDeleteDto) {
-        return this.phoneService.delete(dto.phonesId);
+    async delete(@Body() dto: DeleteArrayDto) {
+        return this.service.delete(dto.phonesId);
     }
 }

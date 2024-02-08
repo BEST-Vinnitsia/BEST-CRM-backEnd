@@ -1,40 +1,36 @@
-import { Body, Controller, Get, Post, Query, Delete, Put, UseGuards, UseFilters } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Put, Query, UseFilters, UseGuards } from '@nestjs/common';
 import { ResponsibleService } from './responsible.service';
-import { ResponsibleGetByIdDto } from './dto/get-by-id.dto';
-import { ResponsibleCreateDto } from './dto/create.dto';
-import { ResponsibleUpdateDto } from './dto/update.dto';
-import { ResponsibleDeleteArrayDto } from './dto/delete.dto';
-import { ApiCreatedResponse, ApiTags, ApiSecurity } from '@nestjs/swagger';
+import { CreateDto, DeleteArrayDto, GetByEventIdDto, GetByIdDto, UpdateDto } from './dto';
+import { ApiCreatedResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { Responsible } from './entity/responsible.entity';
 import { Claim } from 'src/common/decorators';
 import { BoardGuard } from 'src/common/guards';
-import { HttpErrorFilter } from '../../common/filters/http-exception.filter';
-import { ResponsibleGetByEventIdDto } from './dto/get-by-event-id.dto';
+import { HttpErrorFilter } from '../../../common/filters/http-exception.filter';
 
 @ApiSecurity('basic')
 @ApiTags('Responsible')
 @Controller('api/v/1/responsible')
 export class ResponsibleController {
-    constructor(private readonly responsibleService: ResponsibleService) {}
+    constructor(private readonly service: ResponsibleService) {}
 
     /* ----------------  GET  ---------------- */
 
     @Get('list')
     @ApiCreatedResponse({ type: [Responsible] })
     async list() {
-        return await this.responsibleService.getList();
+        return await this.service.getList();
     }
 
     @Get('by-id')
     @ApiCreatedResponse({ type: Responsible })
-    async getById(@Query() dto: ResponsibleGetByIdDto) {
-        return await this.responsibleService.getById(dto);
+    async getById(@Query() dto: GetByIdDto) {
+        return await this.service.getById(dto);
     }
 
     @Get('by-event-id')
     @ApiCreatedResponse({ type: Responsible })
-    async getByEventId(@Query() dto: ResponsibleGetByEventIdDto) {
-        return await this.responsibleService.getByEventId(dto);
+    async getByEventId(@Query() dto: GetByEventIdDto) {
+        return await this.service.getByEventId(dto);
     }
 
     /* ----------------  POST  ---------------- */
@@ -42,22 +38,22 @@ export class ResponsibleController {
     @UseGuards(BoardGuard)
     @Post('create')
     @ApiCreatedResponse({ type: Responsible })
-    async create(@Body() dto: ResponsibleCreateDto) {
-        return await this.responsibleService.create(dto);
+    async create(@Body() dto: CreateDto) {
+        return await this.service.create(dto);
     }
 
     /* ----------------  PUT  ---------------- */
     @Put('update')
     @ApiCreatedResponse({ type: Responsible })
-    async update(@Body() dto: ResponsibleUpdateDto) {
-        return await this.responsibleService.update(dto);
+    async update(@Body() dto: UpdateDto) {
+        return await this.service.update(dto);
     }
 
     /* ----------------  DELETE  ---------------- */
     @Delete('delete')
     @ApiCreatedResponse({ type: Responsible })
     @UseFilters(HttpErrorFilter)
-    async delete(@Body() dto: ResponsibleDeleteArrayDto) {
-        return this.responsibleService.delete(dto.responsibleId);
+    async delete(@Body() dto: DeleteArrayDto) {
+        return this.service.delete(dto.responsibleId);
     }
 }

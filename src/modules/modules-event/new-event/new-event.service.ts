@@ -7,8 +7,8 @@ import {
     INewEventGetById,
     INewEventUpdate,
 } from 'src/interfaces/event/new-event.interface';
-import { PrismaService } from '../prisma/prisma.service';
-import { CadenceService } from '../cadence/cadence.service';
+import { PrismaService } from '../../prisma/prisma.service';
+import { CadenceService } from '../../cadence/cadence.service';
 import { EventService } from '../event/event.service';
 
 @Injectable()

@@ -1,17 +1,15 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString, IsEnum, IsBoolean } from 'class-validator';
-import { BoardEnum } from 'src/constants/enums.constant';
+import { IsBoolean, IsNotEmpty, IsString } from 'class-validator';
 import { IBoardCreate } from 'src/interfaces/board/board.interface';
 
-export class BoardCreateDto implements IBoardCreate {
-  @ApiProperty({ enum: BoardEnum })
-  @IsNotEmpty()
-  @IsString()
-  @IsEnum(BoardEnum)
-  name: string;
+export class CreateDto implements IBoardCreate {
+    @ApiProperty()
+    @IsNotEmpty()
+    @IsString()
+    name: string;
 
-  @ApiProperty()
-  @IsNotEmpty()
-  @IsBoolean()
-  isActive: boolean;
+    @ApiProperty()
+    @IsNotEmpty()
+    @IsBoolean()
+    isActive: boolean;
 }

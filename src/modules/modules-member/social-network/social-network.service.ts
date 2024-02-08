@@ -1,12 +1,12 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
+import { PrismaService } from '../../prisma/prisma.service';
 import { MemberService } from '../member/member.service';
 import {
     ISocialNetworkCreate,
     ISocialNetworkListByMemberId,
     ISocialNetworkMainByMemberId,
     ISocialNetworkUpdate,
-} from '../../interfaces/member/socialNetwork.type';
+} from '../../../interfaces/member/socialNetwork.type';
 
 @Injectable()
 export class SocialNetworkService {

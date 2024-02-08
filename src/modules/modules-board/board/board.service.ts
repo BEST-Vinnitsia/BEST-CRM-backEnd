@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { IBoard, IBoardCreate, IBoardGetById, IBoardUpdate } from 'src/interfaces/board/board.interface';
-import { PrismaService } from '../prisma/prisma.service';
+import { PrismaService } from '../../prisma/prisma.service';
 
 @Injectable()
 export class BoardService {

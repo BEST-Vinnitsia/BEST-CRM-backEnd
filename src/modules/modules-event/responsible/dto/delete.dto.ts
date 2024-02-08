@@ -1,9 +1,9 @@
 import { IsArray, IsNotEmpty, IsString, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
-import { IResponsibleDeleteArray } from '../../../interfaces/event/responsible.interface';
+import { IResponsibleDeleteArray } from '../../../../interfaces/event/responsible.interface';
 
-export class ResponsibleDeleteArrayDto implements IResponsibleDeleteArray {
+export class DeleteArrayDto implements IResponsibleDeleteArray {
     @ApiProperty({ example: [randomUUID()] })
     @IsNotEmpty()
     @IsString({ each: true })

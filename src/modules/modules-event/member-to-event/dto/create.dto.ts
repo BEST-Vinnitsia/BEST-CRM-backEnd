@@ -3,7 +3,7 @@ import { IsBoolean, IsDateString, IsNotEmpty, IsOptional, IsString, IsUUID } fro
 import { randomUUID } from 'crypto';
 import { IMemberToEventCreate } from '../../../../interfaces/event/member-to-event.interface';
 
-export class MemberToEventCreateDto implements IMemberToEventCreate {
+export class CreateDto implements IMemberToEventCreate {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()

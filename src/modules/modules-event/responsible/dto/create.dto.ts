@@ -1,9 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsBoolean, IsNotEmpty, IsOptional, IsString, IsUUID } from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsString, IsUUID } from 'class-validator';
 import { IResponsibleCreate } from '../../../../interfaces/event/responsible.interface';
 import { randomUUID } from 'crypto';
 
-export class ResponsibleCreateDto implements IResponsibleCreate {
+export class CreateDto implements IResponsibleCreate {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()

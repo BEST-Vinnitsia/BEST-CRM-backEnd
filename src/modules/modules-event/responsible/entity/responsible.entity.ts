@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
-import { IResponsible } from '../../../interfaces/event/responsible.interface';
+import { IResponsible } from '../../../../interfaces/event/responsible.interface';
 
 export class Responsible implements IResponsible {
     @ApiProperty({ example: randomUUID() })

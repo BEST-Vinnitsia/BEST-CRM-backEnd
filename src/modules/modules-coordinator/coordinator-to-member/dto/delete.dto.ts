@@ -1,9 +1,9 @@
 import { IsArray, IsNotEmpty, IsString, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
-import { ICoordinatorToMemberDeleteArray } from '../../../interfaces/coordinator/coordinator-to-member.interface';
+import { ICoordinatorToMemberDeleteArray } from '../../../../interfaces/coordinator/coordinator-to-member.interface';
 
-export class CoordinatorToMemberDeleteArrayDto implements ICoordinatorToMemberDeleteArray {
+export class DeleteArrayDto implements ICoordinatorToMemberDeleteArray {
     @ApiProperty({ example: [randomUUID()] })
     @IsNotEmpty()
     @IsString({ each: true })

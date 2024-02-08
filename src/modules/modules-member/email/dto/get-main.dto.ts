@@ -1,7 +1,7 @@
 import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
-import { IEmailListByMemberId } from '../../../interfaces/member/email.type';
+import { IEmailListByMemberId } from '../../../../interfaces/member/email.type';
 
 export class GetMainDto implements IEmailListByMemberId {
     @ApiProperty({ example: randomUUID() })

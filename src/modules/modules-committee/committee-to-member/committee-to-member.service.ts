@@ -2,15 +2,15 @@ import { BadRequestException, Injectable, NotFoundException } from '@nestjs/comm
 import {
     ICommitteeToMember,
     ICommitteeToMemberCreate,
-    ICommitteeToMemberGetById,
-    ICommitteeToMemberGetByCommitteeId,
     ICommitteeToMemberGetByCadenceId,
+    ICommitteeToMemberGetByCommitteeId,
+    ICommitteeToMemberGetById,
     ICommitteeToMemberGetByMemberId,
     ICommitteeToMemberUpdate,
 } from 'src/interfaces/committee/committee-to-member.interface';
-import { PrismaService } from '../prisma/prisma.service';
-import { MemberService } from '../member/member.service';
-import { CadenceService } from '../cadence/cadence.service';
+import { PrismaService } from '../../prisma/prisma.service';
+import { MemberService } from '../../modules-member/member/member.service';
+import { CadenceService } from '../../cadence/cadence.service';
 import { CommitteeService } from '../committee/committee.service';
 
 @Injectable()

@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
-import { IEvent } from '../../../interfaces/event/event.interface';
+import { IEvent } from '../../../../interfaces/event/event.interface';
 
 export class Event implements IEvent {
     @ApiProperty({ example: randomUUID() })

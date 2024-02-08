@@ -6,7 +6,7 @@ import {
     IResponsibleGetById,
     IResponsibleUpdate,
 } from 'src/interfaces/event/responsible.interface';
-import { PrismaService } from '../prisma/prisma.service';
+import { PrismaService } from '../../prisma/prisma.service';
 import { EventService } from '../event/event.service';
 
 @Injectable()

@@ -1,9 +1,9 @@
 import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
-import { IResponsibleGetByEventId } from '../../../interfaces/event/responsible.interface';
+import { IResponsibleGetByEventId } from '../../../../interfaces/event/responsible.interface';
 
-export class ResponsibleGetByEventIdDto implements IResponsibleGetByEventId {
+export class GetByEventIdDto implements IResponsibleGetByEventId {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()

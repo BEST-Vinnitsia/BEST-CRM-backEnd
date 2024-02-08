@@ -1,9 +1,9 @@
 import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
-import { INewEventUpdate } from '../../../interfaces/event/new-event.interface';
+import { INewEventUpdate } from '../../../../interfaces/event/new-event.interface';
 
-export class NewEventUpdateDto implements INewEventUpdate {
+export class UpdateDto implements INewEventUpdate {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()
@@ -21,5 +21,4 @@ export class NewEventUpdateDto implements INewEventUpdate {
     @IsString()
     @IsUUID('4')
     cadenceId: string;
-
 }

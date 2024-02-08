@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
-import { ICoordinatorToMember } from '../../../interfaces/coordinator/coordinator-to-member.interface';
+import { ICoordinatorToMember } from '../../../../interfaces/coordinator/coordinator-to-member.interface';
 
 export class CoordinatorToMember implements ICoordinatorToMember {
     @ApiProperty({ example: randomUUID() })

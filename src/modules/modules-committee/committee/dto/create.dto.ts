@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString, IsBoolean } from 'class-validator';
-import { ICommitteeCreate } from '../../../interfaces/committee/committee.interface';
+import { IsBoolean, IsNotEmpty, IsString } from 'class-validator';
+import { ICommitteeCreate } from '../../../../interfaces/committee/committee.interface';
 
-export class CommitteeCreateDto implements ICommitteeCreate {
+export class CreateDto implements ICommitteeCreate {
     @ApiProperty()
     @IsNotEmpty()
     @IsString()

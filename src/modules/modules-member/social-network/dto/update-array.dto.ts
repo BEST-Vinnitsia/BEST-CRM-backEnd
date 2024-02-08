@@ -1,10 +1,16 @@
-import { IsNotEmpty, IsString, IsUUID, IsBoolean, IsArray, ValidateNested } from 'class-validator';
+import { IsArray, IsBoolean, IsNotEmpty, IsString, IsUUID, ValidateNested } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
 import { Type } from 'class-transformer';
-import { ISocialNetworkCreate } from '../../../interfaces/member/socialNetwork.type';
+import { ISocialNetworkUpdate } from '../../../../interfaces/member/socialNetwork.type';
 
-export class SocialNetworkCreateDto implements ISocialNetworkCreate {
+class UpdateDto implements ISocialNetworkUpdate {
+    @ApiProperty({ example: randomUUID() })
+    @IsNotEmpty()
+    @IsString()
+    @IsUUID('4')
+    id: string;
+
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()
@@ -27,11 +33,11 @@ export class SocialNetworkCreateDto implements ISocialNetworkCreate {
     isMain: boolean;
 }
 
-export class SocialNetworkCreateDtoArray {
-    @ApiProperty({ type: [SocialNetworkCreateDto] })
+export class UpdateArrayDto {
+    @ApiProperty({ type: [UpdateDto] })
     @ValidateNested({ each: true })
     @IsArray()
     @IsNotEmpty()
-    @Type(() => SocialNetworkCreateDto)
-    socialNetworks: SocialNetworkCreateDto[];
+    @Type(() => UpdateDto)
+    socialNetworks: UpdateDto[];
 }

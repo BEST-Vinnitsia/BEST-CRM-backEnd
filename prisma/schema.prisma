@@ -1,18 +1,14 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-//* ----------------  SQLite  ---------------- *//
-
-// datasource db {
-//   provider = "sqlite"
-//   url      = "file:./dev.db"
-// }
-
-//* ----------------  pSQL  ---------------- *//
-
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  // SQLite
+  provider = "sqlite"
+  url      = "file:./dev.db"
+
+  // pSQL
+  // provider = "postgresql"
+  // url      = env("DATABASE_URL")
 }
 
 generator client {

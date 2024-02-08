@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString, IsBoolean } from 'class-validator';
-import { ICoordinatorCreate } from '../../../interfaces/coordinator/coordinator.interface';
+import { IsBoolean, IsNotEmpty, IsString } from 'class-validator';
+import { ICoordinatorCreate } from '../../../../interfaces/coordinator/coordinator.interface';
 
-export class CoordinatorCreateDto implements ICoordinatorCreate {
+export class CreateDto implements ICoordinatorCreate {
     @ApiProperty()
     @IsNotEmpty()
     @IsString()

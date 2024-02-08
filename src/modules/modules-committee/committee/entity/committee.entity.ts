@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
-import { ICommittee } from '../../../interfaces/committee/committee.interface';
+import { ICommittee } from '../../../../interfaces/committee/committee.interface';
 
 export class Committee implements ICommittee {
     @ApiProperty({ example: randomUUID() })

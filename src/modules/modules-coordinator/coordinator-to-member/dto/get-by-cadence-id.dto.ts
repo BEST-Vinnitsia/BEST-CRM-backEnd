@@ -1,9 +1,9 @@
 import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
-import { ICoordinatorToMemberGetByCadenceId } from '../../../interfaces/coordinator/coordinator-to-member.interface';
+import { ICoordinatorToMemberGetByCadenceId } from '../../../../interfaces/coordinator/coordinator-to-member.interface';
 
-export class CoordinatorToMemberGetByCadenceIdDto implements ICoordinatorToMemberGetByCadenceId {
+export class GetByCadenceIdDto implements ICoordinatorToMemberGetByCadenceId {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()

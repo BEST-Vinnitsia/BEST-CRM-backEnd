@@ -1,9 +1,9 @@
 import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { IBoardToMemberCreate } from 'src/interfaces/board/board-to-member.interface';
+import { IBoardToMemberCreate } from '../../../../interfaces/board/board-to-member.interface';
 import { randomUUID } from 'crypto';
 
-export class BoardToMemberCreateDto implements IBoardToMemberCreate {
+export class CreateDto implements IBoardToMemberCreate {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()

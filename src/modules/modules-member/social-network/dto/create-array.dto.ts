@@ -1,10 +1,10 @@
-import { IsNotEmpty, IsString, IsUUID, IsEmail, IsBoolean, IsArray, ValidateNested } from 'class-validator';
+import { IsArray, IsBoolean, IsNotEmpty, IsString, IsUUID, ValidateNested } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
-import { IEmailCreate } from '../../../interfaces/member/email.type';
 import { Type } from 'class-transformer';
+import { ISocialNetworkCreate } from '../../../../interfaces/member/socialNetwork.type';
 
-export class CreateDto implements IEmailCreate {
+class CreateDto implements ISocialNetworkCreate {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()
@@ -14,8 +14,12 @@ export class CreateDto implements IEmailCreate {
     @ApiProperty()
     @IsNotEmpty()
     @IsString()
-    @IsEmail()
-    email: string;
+    name: string;
+
+    @ApiProperty()
+    @IsNotEmpty()
+    @IsString()
+    url: string;
 
     @ApiProperty()
     @IsNotEmpty()
@@ -23,11 +27,11 @@ export class CreateDto implements IEmailCreate {
     isMain: boolean;
 }
 
-export class EmailCreateDtoArray {
+export class CreateArrayDto {
     @ApiProperty({ type: [CreateDto] })
     @ValidateNested({ each: true })
     @IsArray()
     @IsNotEmpty()
     @Type(() => CreateDto)
-    emails: CreateDto[];
+    socialNetworks: CreateDto[];
 }

@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
-import { ISocialNetwork } from '../../../interfaces/member/socialNetwork.type';
+import { ISocialNetwork } from '../../../../interfaces/member/socialNetwork.type';
 
 export class SocialNetwork implements ISocialNetwork {
     @ApiProperty({ example: randomUUID() })

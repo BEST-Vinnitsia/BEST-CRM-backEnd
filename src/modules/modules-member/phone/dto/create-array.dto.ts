@@ -1,10 +1,10 @@
-import { IsNotEmpty, IsString, IsUUID, IsEmail, IsBoolean, IsArray, ValidateNested } from 'class-validator';
+import { IsArray, IsBoolean, IsNotEmpty, IsString, IsUUID, ValidateNested } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
 import { Type } from 'class-transformer';
-import { IPhoneCreate } from '../../../interfaces/member/phone.type';
+import { IPhoneCreate } from '../../../../interfaces/member/phone.type';
 
-export class PhoneCreateDto implements IPhoneCreate {
+class CreateArrayDto implements IPhoneCreate {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()
@@ -22,11 +22,11 @@ export class PhoneCreateDto implements IPhoneCreate {
     isMain: boolean;
 }
 
-export class PhoneCreateDtoArray {
-    @ApiProperty({ type: [PhoneCreateDto] })
+export class CreateArrayDto {
+    @ApiProperty({ type: [CreateArrayDto] })
     @ValidateNested({ each: true })
     @IsArray()
     @IsNotEmpty()
-    @Type(() => PhoneCreateDto)
-    phones: PhoneCreateDto[];
+    @Type(() => CreateArrayDto)
+    phones: CreateArrayDto[];
 }

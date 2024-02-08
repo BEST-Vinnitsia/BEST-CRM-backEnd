@@ -1,15 +1,9 @@
-import { Body, Controller, Get, Post, Query, Delete, Put, UseFilters } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Put, Query, UseFilters } from '@nestjs/common';
 import { CoordinatorToMemberService } from './coordinator-to-member.service';
-import { CoordinatorToMemberGetByIdDto } from './dto/get-by-id.dto';
-import { CoordinatorToMemberCreateDto } from './dto/create.dto';
-import { CoordinatorToMemberUpdateDto } from './dto/update.dto';
-import { CoordinatorToMemberDeleteArrayDto } from './dto/delete.dto';
-import { ApiCreatedResponse, ApiTags, ApiSecurity } from '@nestjs/swagger';
+import { CreateDto, DeleteArrayDto, GetByCadenceIdDto, GetByCoordinatorIdDto, GetByIdDto, GetByMemberIdDto, UpdateDto } from './dto';
+import { ApiCreatedResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { CoordinatorToMember } from './entity/coordinator-to-member.entity';
-import { HttpErrorFilter } from '../../common/filters/http-exception.filter';
-import { CoordinatorToMemberGetByCadenceIdDto } from './dto/get-by-cadence-id.dto';
-import { CoordinatorToMemberGetByCoordinatorIdDto } from './dto/get-by-coordinator-id.dto';
-import { CoordinatorToMemberGetByMemberIdDto } from './dto/get-by-member-id.dto';
+import { HttpErrorFilter } from '../../../common/filters/http-exception.filter';
 
 @ApiSecurity('basic')
 @ApiTags('Coordinator to member')
@@ -27,39 +21,39 @@ export class CoordinatorToMemberController {
 
     @Get('by-id')
     @ApiCreatedResponse({ type: CoordinatorToMember })
-    async getById(@Query() dto: CoordinatorToMemberGetByIdDto) {
+    async getById(@Query() dto: GetByIdDto) {
         return await this.coordinatorToMemberService.getById(dto);
     }
 
     @Get('by-member-id')
     @ApiCreatedResponse({ type: CoordinatorToMember })
-    async getByMemberId(@Query() dto: CoordinatorToMemberGetByMemberIdDto) {
+    async getByMemberId(@Query() dto: GetByMemberIdDto) {
         return await this.coordinatorToMemberService.getByMemberId(dto);
     }
 
     @Get('by-cadence-id')
     @ApiCreatedResponse({ type: CoordinatorToMember })
-    async getByCadenceId(@Query() dto: CoordinatorToMemberGetByCadenceIdDto) {
+    async getByCadenceId(@Query() dto: GetByCadenceIdDto) {
         return await this.coordinatorToMemberService.getByCadenceId(dto);
     }
 
     @Get('by-coordinator-id')
     @ApiCreatedResponse({ type: CoordinatorToMember })
-    async getByCoordinatorId(@Query() dto: CoordinatorToMemberGetByCoordinatorIdDto) {
+    async getByCoordinatorId(@Query() dto: GetByCoordinatorIdDto) {
         return await this.coordinatorToMemberService.getByCoordinatorId(dto);
     }
 
     /* ----------------  POST  ---------------- */
     @Post('create')
     @ApiCreatedResponse({ type: CoordinatorToMember })
-    async create(@Body() dto: CoordinatorToMemberCreateDto) {
+    async create(@Body() dto: CreateDto) {
         return await this.coordinatorToMemberService.create(dto);
     }
 
     /* ----------------  PUT  ---------------- */
     @Put('update')
     @ApiCreatedResponse({ type: CoordinatorToMember })
-    async update(@Body() dto: CoordinatorToMemberUpdateDto) {
+    async update(@Body() dto: UpdateDto) {
         return await this.coordinatorToMemberService.update(dto);
     }
 
@@ -67,7 +61,7 @@ export class CoordinatorToMemberController {
     @Delete('delete')
     @ApiCreatedResponse({ type: CoordinatorToMember })
     @UseFilters(HttpErrorFilter)
-    async delete(@Body() dto: CoordinatorToMemberDeleteArrayDto) {
+    async delete(@Body() dto: DeleteArrayDto) {
         return await this.coordinatorToMemberService.delete(dto.coordinatorToMemberId);
     }
 }

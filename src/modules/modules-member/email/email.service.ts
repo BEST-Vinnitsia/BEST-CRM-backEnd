@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
-import { IEmailCreate, IEmailListByMemberId, IEmailMainByMemberId, IEmailUpdate } from '../../interfaces/member/email.type';
+import { PrismaService } from '../../prisma/prisma.service';
+import { IEmailCreate, IEmailListByMemberId, IEmailMainByMemberId, IEmailUpdate } from '../../../interfaces/member/email.type';
 import { MemberService } from '../member/member.service';
 
 @Injectable()

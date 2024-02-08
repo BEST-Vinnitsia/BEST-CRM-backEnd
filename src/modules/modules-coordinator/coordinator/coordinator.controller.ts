@@ -1,33 +1,30 @@
-import { Body, Controller, Get, Post, Query, Delete, Put, UseGuards, UseFilters } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Put, Query, UseFilters, UseGuards } from '@nestjs/common';
 import { CoordinatorService } from './coordinator.service';
-import { CoordinatorGetByIdDto } from './dto/get-by-id.dto';
-import { CoordinatorCreateDto } from './dto/create.dto';
-import { CoordinatorUpdateDto } from './dto/update.dto';
-import { CoordinatorDeleteArrayDto } from './dto/delete.dto';
-import { ApiCreatedResponse, ApiTags, ApiSecurity } from '@nestjs/swagger';
+import { CreateDto, DeleteArrayDto, GetByIdDto, UpdateDto } from './dto';
+import { ApiCreatedResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { Coordinator } from './entity/coordinator.entity';
 import { Claim } from 'src/common/decorators';
 import { BoardGuard } from 'src/common/guards';
-import { HttpErrorFilter } from '../../common/filters/http-exception.filter';
+import { HttpErrorFilter } from '../../../common/filters/http-exception.filter';
 
 @ApiSecurity('basic')
 @ApiTags('Coordinator')
 @Controller('api/v/1/coordinator')
 export class CoordinatorController {
-    constructor(private readonly coordinatorService: CoordinatorService) {}
+    constructor(private readonly service: CoordinatorService) {}
 
     /* ----------------  GET  ---------------- */
 
     @Get('list')
     @ApiCreatedResponse({ type: [Coordinator] })
     async list() {
-        return await this.coordinatorService.getList();
+        return await this.service.getList();
     }
 
     @Get('by-id')
     @ApiCreatedResponse({ type: Coordinator })
-    async byId(@Query() dto: CoordinatorGetByIdDto) {
-        return await this.coordinatorService.getById(dto);
+    async byId(@Query() dto: GetByIdDto) {
+        return await this.service.getById(dto);
     }
 
     /* ----------------  POST  ---------------- */
@@ -35,22 +32,22 @@ export class CoordinatorController {
     @UseGuards(BoardGuard)
     @Post('create')
     @ApiCreatedResponse({ type: Coordinator })
-    async create(@Body() dto: CoordinatorCreateDto) {
-        return await this.coordinatorService.create(dto);
+    async create(@Body() dto: CreateDto) {
+        return await this.service.create(dto);
     }
 
     /* ----------------  PUT  ---------------- */
     @Put('update')
     @ApiCreatedResponse({ type: Coordinator })
-    async update(@Body() dto: CoordinatorUpdateDto) {
-        return await this.coordinatorService.update(dto);
+    async update(@Body() dto: UpdateDto) {
+        return await this.service.update(dto);
     }
 
     /* ----------------  DELETE  ---------------- */
     @Delete('delete')
     @ApiCreatedResponse({ type: Coordinator })
     @UseFilters(HttpErrorFilter)
-    async delete(@Body() dto: CoordinatorDeleteArrayDto) {
-        return await this.coordinatorService.delete(dto.coordinatorsId);
+    async delete(@Body() dto: DeleteArrayDto) {
+        return await this.service.delete(dto.coordinatorsId);
     }
 }

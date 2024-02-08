@@ -8,9 +8,9 @@ import {
     IBoardToMemberGetByMemberId,
     IBoardToMemberUpdate,
 } from 'src/interfaces/board/board-to-member.interface';
-import { PrismaService } from '../prisma/prisma.service';
-import { MemberService } from '../member/member.service';
-import { CadenceService } from '../cadence/cadence.service';
+import { PrismaService } from '../../prisma/prisma.service';
+import { MemberService } from '../../modules-member/member/member.service';
+import { CadenceService } from '../../cadence/cadence.service';
 import { BoardService } from '../board/board.service';
 
 @Injectable()
