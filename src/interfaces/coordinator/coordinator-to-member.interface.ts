@@ -1,7 +1,3 @@
-import {
-    CoordinatorToMemberGetByCoordinatorIdDto
-} from '../../modules/coordinator-to-member/dto/get-by-coordinator-id.dto';
-
 export interface ICoordinatorToMember {
     id: string;
     cadenceId: string;

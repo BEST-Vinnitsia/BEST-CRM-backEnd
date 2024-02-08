@@ -1,58 +1,62 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { MemberModule } from '../member/member.module';
+// global
 import { CadenceModule } from '../cadence/cadence.module';
-import { BoardModule } from '../board/board.module';
-import { BoardToMemberModule } from '../board-to-member/board-to-member.module';
 import { AuthModule } from '../auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AtGuard } from 'src/common/guards';
-import { EmailModule } from '../email/email.module';
-import { EventModule } from '../event/event.module';
-import { NewEventModule } from '../new-event/new-event.module';
-import { ResponsibleModule } from '../responsible/responsible.module';
+// member
+import { MemberModule } from '../modules-member/member/member.module';
+import { EmailModule } from '../modules-member/email/email.module';
+import { PhoneModule } from '../modules-member/phone/phone.module';
+import { SocialNetworkModule } from '../modules-member/social-network/social-network.module';
+// board
+import { BoardModule } from '../modules-board/board/board.module';
+import { BoardToMemberModule } from '../modules-board/board-to-member/board-to-member.module';
+// coordinator
+import { CoordinatorModule } from '../modules-coordinator/coordinator/coordinator.module';
+import { CoordinatorToMemberModule } from '../modules-coordinator/coordinator-to-member/coordinator-to-member.module';
+// committee
+import { CommitteeModule } from '../modules-committee/committee/committee.module';
+import { CommitteeToMemberModule } from '../modules-committee/committee-to-member/committee-to-member.module';
+// event
+import { EventModule } from '../modules-event/event/event.module';
+import { ResponsibleModule } from '../modules-event/responsible/responsible.module';
+import { NewEventModule } from '../modules-event/new-event/new-event.module';
 import { MemberToEventModule } from '../modules-event/member-to-event/member-to-event.module';
-import { PhoneModule } from '../phone/phone.module';
-import { SocialNetworkModule } from '../social-network/social-network.module';
-import { CoordinatorModule } from '../coordinator/coordinator.module';
-import { CommitteeModule } from '../committee/committee.module';
-import { CoordinatorToMemberModule } from '../coordinator-to-member/coordinator-to-member.module';
-import { CommitteeToMemberModule } from '../committee-to-member/committee-to-member.module';
 
 @Module({
     imports: [
-        //
-
+        // global
         AuthModule,
+        CadenceModule,
 
+        // member
         MemberModule,
         EmailModule,
         PhoneModule,
         SocialNetworkModule,
 
-        CadenceModule,
-
+        // board
         BoardModule,
-        CoordinatorModule,
-        CommitteeModule,
         BoardToMemberModule,
-        CommitteeToMemberModule,
+
+        // coordinator
+        CoordinatorModule,
         CoordinatorToMemberModule,
 
+        // committee
+        CommitteeModule,
+        CommitteeToMemberModule,
+
+        // event
         EventModule,
-        NewEventModule,
         ResponsibleModule,
+        NewEventModule,
         MemberToEventModule,
     ],
     controllers: [AppController],
-    providers: [
-        AppService,
-
-        {
-            provide: APP_GUARD,
-            useClass: AtGuard,
-        },
-    ],
+    providers: [AppService, { provide: APP_GUARD, useClass: AtGuard }],
 })
 export class AppModule {}

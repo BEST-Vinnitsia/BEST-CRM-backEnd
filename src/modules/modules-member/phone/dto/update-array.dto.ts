@@ -4,7 +4,7 @@ import { randomUUID } from 'crypto';
 import { Type } from 'class-transformer';
 import { IPhoneUpdate } from '../../../../interfaces/member/phone.type';
 
-class UpdateArrayDto implements IPhoneUpdate {
+class UpdateDto implements IPhoneUpdate {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()
@@ -29,10 +29,10 @@ class UpdateArrayDto implements IPhoneUpdate {
 }
 
 export class UpdateArrayDto {
-    @ApiProperty({ type: [UpdateArrayDto] })
+    @ApiProperty({ type: [UpdateDto] })
     @ValidateNested({ each: true })
     @IsArray()
     @IsNotEmpty()
-    @Type(() => UpdateArrayDto)
-    phones: UpdateArrayDto[];
+    @Type(() => UpdateDto)
+    phones: UpdateDto[];
 }

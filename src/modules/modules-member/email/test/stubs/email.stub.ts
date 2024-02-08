@@ -1,5 +1,5 @@
 import { randomUUID } from 'crypto';
-import { IEmail, IEmailCreate, IEmailUpdate } from '../../../../interfaces/member/email.type';
+import { IEmail, IEmailCreate, IEmailUpdate } from '../../../../../interfaces/member/email.type';
 
 export const emailStub = (): IEmail => {
     return {

@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto';
-import { IMember, IMemberCreate, IMemberGetIdRes, IMemberUpdate } from '../../../../interfaces/member/member.type';
-import { ClothingSizeEnum, MembershipEnum } from '../../../../constants/enums.constant';
+import { IMember, IMemberCreate, IMemberGetIdRes, IMemberUpdate } from '../../../../../interfaces/member/member.type';
+import { ClothingSizeEnum, MembershipEnum } from '../../../../../constants/enums.constant';
 
 const passwordHash = '$2b$10$EOXpLQwXnm8aBFWLkDjxue9bymqrIANRYuIc/EbvD0OS5UCEEwtb2'; // P@ssword1234
 const birthdayMock = new Date('1900-01-01T00:00:00.000Z');

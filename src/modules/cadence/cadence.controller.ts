@@ -1,10 +1,7 @@
-import { Body, Controller, Get, Post, Query, Delete, Put, UseFilters } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Put, Query, UseFilters } from '@nestjs/common';
 import { CadenceService } from './cadence.service';
-import { CadenceGetByIdDto } from './dto/get-by-id.dto';
-import { CadenceCreateDto } from './dto/create.dto';
-import { CadenceUpdateDto } from './dto/update.dto';
-import { CadenceDeleteArrayDto } from './dto/delete.dto';
-import { ApiCreatedResponse, ApiTags, ApiSecurity } from '@nestjs/swagger';
+import { CreateDto, DeleteArrayDto, GetByIdDto, UpdateDto } from './dto';
+import { ApiCreatedResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { Cadence } from './entity/cadence.entity';
 import { HttpErrorFilter } from '../../common/filters/http-exception.filter';
 
@@ -12,41 +9,41 @@ import { HttpErrorFilter } from '../../common/filters/http-exception.filter';
 @ApiTags('Cadence')
 @Controller('api/v/1/cadence')
 export class CadenceController {
-    constructor(private readonly cadenceService: CadenceService) {}
+    constructor(private readonly service: CadenceService) {}
 
     /* ----------------  GET  ---------------- */
 
     @Get('list')
     @ApiCreatedResponse({ type: [Cadence] })
     async getList() {
-        return await this.cadenceService.list();
+        return await this.service.list();
     }
 
     @Get('by-id')
     @ApiCreatedResponse({ type: Cadence })
-    async getById(@Query() dto: CadenceGetByIdDto) {
-        return await this.cadenceService.getById(dto);
+    async getById(@Query() dto: GetByIdDto) {
+        return await this.service.getById(dto);
     }
 
     /* ----------------  POST  ---------------- */
     @Post('create')
     @ApiCreatedResponse({ type: Cadence })
-    async create(@Body() dto: CadenceCreateDto) {
-        return await this.cadenceService.create(dto);
+    async create(@Body() dto: CreateDto) {
+        return await this.service.create(dto);
     }
 
     /* ----------------  PUT  ---------------- */
     @Put('update')
     @ApiCreatedResponse({ type: Cadence })
-    async update(@Body() dto: CadenceUpdateDto) {
-        return await this.cadenceService.update(dto);
+    async update(@Body() dto: UpdateDto) {
+        return await this.service.update(dto);
     }
 
     /* ----------------  DELETE  ---------------- */
     @Delete('delete')
     @ApiCreatedResponse({ type: Cadence })
     @UseFilters(HttpErrorFilter)
-    async delete(@Body() dto: CadenceDeleteArrayDto) {
-        return await this.cadenceService.delete(dto.cadencesId);
+    async delete(@Body() dto: DeleteArrayDto) {
+        return await this.service.delete(dto.cadencesId);
     }
 }

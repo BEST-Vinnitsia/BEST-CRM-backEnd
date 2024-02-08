@@ -1,8 +1,8 @@
-import { Body, Controller, Post, UseGuards, Ip } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { LoginDto } from './dto/login.dto';
+import { LoginDto } from './dto';
 import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
-import { RtGuard, CheckTokenForUpdateGuard, CheckTokenGuard } from 'src/common/guards';
+import { CheckTokenForUpdateGuard, CheckTokenGuard, RtGuard } from 'src/common/guards';
 import { GetTokenPayload, Public } from 'src/common/decorators';
 import { IAccessToken, IRefreshToken } from 'src/interfaces/secure/token.interface';
 
