@@ -6,7 +6,7 @@ import { CommitteeToMemberUpdateDto } from './dto/update.dto';
 import { CommitteeToMemberDeleteArrayDto } from './dto/delete.dto';
 import { CommitteeToMemberGetByCadenceIdDto } from './dto/get-by-cadence-id.dto';
 import { CommitteeToMemberGetByMemberIdDto } from './dto/get-by-member-id.dto';
-import { CommitteeToMemberGetByBoardIdDto } from './dto/get-by-committee-id.dto';
+import { CommitteeToMemberGetByCommitteeIdDto } from './dto/get-by-committee-id.dto';
 import { ApiCreatedResponse, ApiTags, ApiSecurity } from '@nestjs/swagger';
 import { CommitteeToMember } from './entity/committee-to-member.entity';
 import { HttpErrorFilter } from '../../common/filters/http-exception.filter';
@@ -45,7 +45,7 @@ export class CommitteeToMemberController {
 
     @Get('by-committee-id')
     @ApiCreatedResponse({ type: CommitteeToMember })
-    async getByBoardId(@Query() dto: CommitteeToMemberGetByBoardIdDto) {
+    async getByCommitteeId(@Query() dto: CommitteeToMemberGetByCommitteeIdDto) {
         return await this.committeeToMemberService.getByCommitteeId(dto);
     }
 

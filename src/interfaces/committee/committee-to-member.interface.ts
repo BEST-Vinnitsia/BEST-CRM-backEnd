@@ -18,7 +18,7 @@ export interface ICommitteeToMemberGetByMemberId extends Pick<ICommitteeToMember
 
 export interface ICommitteeToMemberGetByCadenceId extends Pick<ICommitteeToMember, 'cadenceId'> {}
 
-export interface ICommitteeToMemberGetByBoardId extends Pick<ICommitteeToMember, 'committeeId'> {}
+export interface ICommitteeToMemberGetByCommitteeId extends Pick<ICommitteeToMember, 'committeeId'> {}
 
 export interface ICommitteeToMemberCreate extends Omit<ICommitteeToMember, 'id' | 'excluded' | 'excludedDate' | 'createdAt' | 'updatedAt'> {}
 

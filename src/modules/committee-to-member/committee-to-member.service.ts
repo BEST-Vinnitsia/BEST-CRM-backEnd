@@ -3,7 +3,7 @@ import {
     ICommitteeToMember,
     ICommitteeToMemberCreate,
     ICommitteeToMemberGetById,
-    ICommitteeToMemberGetByBoardId,
+    ICommitteeToMemberGetByCommitteeId,
     ICommitteeToMemberGetByCadenceId,
     ICommitteeToMemberGetByMemberId,
     ICommitteeToMemberUpdate,
@@ -48,7 +48,7 @@ export class CommitteeToMemberService {
         });
     }
 
-    public async getByCommitteeId(dto: ICommitteeToMemberGetByBoardId): Promise<ICommitteeToMember[]> {
+    public async getByCommitteeId(dto: ICommitteeToMemberGetByCommitteeId): Promise<ICommitteeToMember[]> {
         return this.prisma.committeeToMember.findMany({
             where: { committeeId: dto.committeeId },
         });
