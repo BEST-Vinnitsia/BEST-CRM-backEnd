@@ -14,20 +14,20 @@ import { HttpErrorFilter } from '../../common/filters/http-exception.filter';
 @ApiTags('Coordinator')
 @Controller('api/v/1/coordinator')
 export class CoordinatorController {
-    constructor(private readonly boardService: CoordinatorService) {}
+    constructor(private readonly coordinatorService: CoordinatorService) {}
 
     /* ----------------  GET  ---------------- */
 
     @Get('list')
     @ApiCreatedResponse({ type: [Coordinator] })
     async list() {
-        return await this.boardService.getList();
+        return await this.coordinatorService.getList();
     }
 
     @Get('by-id')
     @ApiCreatedResponse({ type: Coordinator })
     async byId(@Query() dto: CoordinatorGetByIdDto) {
-        return await this.boardService.getById(dto);
+        return await this.coordinatorService.getById(dto);
     }
 
     /* ----------------  POST  ---------------- */
@@ -36,14 +36,14 @@ export class CoordinatorController {
     @Post('create')
     @ApiCreatedResponse({ type: Coordinator })
     async create(@Body() dto: CoordinatorCreateDto) {
-        return await this.boardService.create(dto);
+        return await this.coordinatorService.create(dto);
     }
 
     /* ----------------  PUT  ---------------- */
     @Put('update')
     @ApiCreatedResponse({ type: Coordinator })
     async update(@Body() dto: CoordinatorUpdateDto) {
-        return await this.boardService.update(dto);
+        return await this.coordinatorService.update(dto);
     }
 
     /* ----------------  DELETE  ---------------- */
@@ -51,6 +51,6 @@ export class CoordinatorController {
     @ApiCreatedResponse({ type: Coordinator })
     @UseFilters(HttpErrorFilter)
     async delete(@Body() dto: CoordinatorDeleteArrayDto) {
-        return await this.boardService.delete(dto.coordinatorsId);
+        return await this.coordinatorService.delete(dto.coordinatorsId);
     }
 }
