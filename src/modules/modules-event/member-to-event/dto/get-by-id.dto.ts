@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
 import { IMemberToEventGetById } from '../../../../interfaces/event/member-to-event.interface';
 
-export class GetByIdDto implements IMemberToEventGetById {
+export class MemberToEventGetByIdDto implements IMemberToEventGetById {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()

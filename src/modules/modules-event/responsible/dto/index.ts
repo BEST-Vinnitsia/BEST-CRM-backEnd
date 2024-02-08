@@ -1,6 +1,5 @@
-export { GetByIdDto } from './get-by-id.dto';
-export { GetByEventIdDto } from './get-by-event-id.dto';
-
-export { CreateDto } from './create.dto';
-export { UpdateDto } from './update.dto';
-export { DeleteArrayDto } from './delete-array.dto';
+export { ResponsibleGetByIdDto as GetByIdDto } from './get-by-id.dto';
+export { ResponsibleGetByEventIdDto as GetByEventIdDto } from './get-by-event-id.dto';
+export { ResponsibleCreateDto as CreateDto } from './create.dto';
+export { ResponsibleUpdateDto as UpdateDto } from './update.dto';
+export { ResponsibleDeleteArrayDto as DeleteArrayDto } from './delete-array.dto';

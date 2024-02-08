@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
 import { ICoordinatorToMemberUpdate } from '../../../../interfaces/coordinator/coordinator-to-member.interface';
 
-export class UpdateDto implements ICoordinatorToMemberUpdate {
+export class CoordinatorToMemberUpdateDto implements ICoordinatorToMemberUpdate {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()

@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsBoolean, IsNotEmpty, IsString } from 'class-validator';
 import { IEventCreate } from '../../../../interfaces/event/event.interface';
 
-export class CreateDto implements IEventCreate {
+export class EventCreateDto implements IEventCreate {
     @ApiProperty()
     @IsNotEmpty()
     @IsString()

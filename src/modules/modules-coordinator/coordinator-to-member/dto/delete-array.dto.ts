@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
 import { ICoordinatorToMemberDeleteArray } from '../../../../interfaces/coordinator/coordinator-to-member.interface';
 
-export class DeleteArrayDto implements ICoordinatorToMemberDeleteArray {
+export class CoordinatorToMemberDeleteArrayDto implements ICoordinatorToMemberDeleteArray {
     @ApiProperty({ example: [randomUUID()] })
     @IsNotEmpty()
     @IsString({ each: true })

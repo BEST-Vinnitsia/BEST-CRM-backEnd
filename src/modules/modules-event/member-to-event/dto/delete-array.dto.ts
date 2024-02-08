@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
 import { IMemberToEventDeleteArray } from '../../../../interfaces/event/member-to-event.interface';
 
-export class DeleteArrayDto implements IMemberToEventDeleteArray {
+export class MemberToEventDeleteArrayDto implements IMemberToEventDeleteArray {
     @ApiProperty({ example: [randomUUID()] })
     @IsNotEmpty()
     @IsString({ each: true })

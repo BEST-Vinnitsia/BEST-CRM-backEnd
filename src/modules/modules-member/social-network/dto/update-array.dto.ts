@@ -4,7 +4,7 @@ import { randomUUID } from 'crypto';
 import { Type } from 'class-transformer';
 import { ISocialNetworkUpdate } from '../../../../interfaces/member/socialNetwork.type';
 
-class UpdateDto implements ISocialNetworkUpdate {
+class SocialNetworkUpdateDto implements ISocialNetworkUpdate {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()
@@ -33,11 +33,11 @@ class UpdateDto implements ISocialNetworkUpdate {
     isMain: boolean;
 }
 
-export class UpdateArrayDto {
-    @ApiProperty({ type: [UpdateDto] })
+export class SocialNetworkUpdateArrayDto {
+    @ApiProperty({ type: [SocialNetworkUpdateDto] })
     @ValidateNested({ each: true })
     @IsArray()
     @IsNotEmpty()
-    @Type(() => UpdateDto)
-    socialNetworks: UpdateDto[];
+    @Type(() => SocialNetworkUpdateDto)
+    socialNetworks: SocialNetworkUpdateDto[];
 }

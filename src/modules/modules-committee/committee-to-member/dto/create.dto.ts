@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
 import { ICommitteeToMemberCreate } from '../../../../interfaces/committee/committee-to-member.interface';
 
-export class CreateDto implements ICommitteeToMemberCreate {
+export class CommitteeToMemberCreateDto implements ICommitteeToMemberCreate {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()

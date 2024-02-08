@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IBoardToMemberDeleteArray } from '../../../../interfaces/board/board-to-member.interface';
 import { randomUUID } from 'crypto';
 
-export class DeleteArrayDto implements IBoardToMemberDeleteArray {
+export class BoardToMemberDeleteArrayDto implements IBoardToMemberDeleteArray {
     @ApiProperty({ example: [randomUUID()] })
     @IsNotEmpty()
     @IsString({ each: true })

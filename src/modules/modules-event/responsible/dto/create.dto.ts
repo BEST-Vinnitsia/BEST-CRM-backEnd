@@ -3,7 +3,7 @@ import { IsBoolean, IsNotEmpty, IsString, IsUUID } from 'class-validator';
 import { IResponsibleCreate } from '../../../../interfaces/event/responsible.interface';
 import { randomUUID } from 'crypto';
 
-export class CreateDto implements IResponsibleCreate {
+export class ResponsibleCreateDto implements IResponsibleCreate {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()

@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
 import { IResponsibleDeleteArray } from '../../../../interfaces/event/responsible.interface';
 
-export class DeleteArrayDto implements IResponsibleDeleteArray {
+export class ResponsibleDeleteArrayDto implements IResponsibleDeleteArray {
     @ApiProperty({ example: [randomUUID()] })
     @IsNotEmpty()
     @IsString({ each: true })

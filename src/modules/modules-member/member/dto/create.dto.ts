@@ -5,7 +5,7 @@ import { IsDateWithinRange } from '../../../../pipes/isDateWithinRange.pipe';
 import { ApiProperty } from '@nestjs/swagger';
 import { IMemberCreate } from '../../../../interfaces/member/member.type';
 
-export class CreateDto implements IMemberCreate {
+export class MemberCreateDto implements IMemberCreate {
     @ApiProperty({ required: false, enum: MembershipEnum })
     @IsNotEmpty()
     @IsString()
@@ -27,7 +27,6 @@ export class CreateDto implements IMemberCreate {
     password: string;
 
     @ApiProperty({ required: false })
-    @IsNotEmpty()
     @IsString()
     @IsEmail()
     @IsOptional()
@@ -74,14 +73,12 @@ export class CreateDto implements IMemberCreate {
     //
 
     @ApiProperty({ required: false, enum: ClothingSizeEnum })
-    @IsNotEmpty()
     @IsString()
     @IsEnum(ClothingSizeEnum)
     @IsOptional()
-    clothingSize: string;
+    clothingSize: string | null;
 
     @ApiProperty({ required: false })
-    @IsNotEmpty()
     @IsString()
     @IsOptional()
     homeAddress: string;

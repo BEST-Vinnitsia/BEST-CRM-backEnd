@@ -4,7 +4,7 @@ import { randomUUID } from 'crypto';
 import { IEmailUpdate } from '../../../../interfaces/member/email.type';
 import { Type } from 'class-transformer';
 
-class UpdateDto implements IEmailUpdate {
+class EmailUpdateDto implements IEmailUpdate {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()
@@ -29,11 +29,11 @@ class UpdateDto implements IEmailUpdate {
     isMain: boolean;
 }
 
-export class UpdateArrayDto {
-    @ApiProperty({ type: [UpdateDto] })
+export class EmailUpdateArrayDto {
+    @ApiProperty({ type: [EmailUpdateDto] })
     @ValidateNested({ each: true })
     @IsArray()
     @IsNotEmpty()
-    @Type(() => UpdateDto)
-    emails: UpdateDto[];
+    @Type(() => EmailUpdateDto)
+    emails: EmailUpdateDto[];
 }

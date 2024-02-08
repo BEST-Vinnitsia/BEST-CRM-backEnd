@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
 import { IPhoneDelete } from '../../../../interfaces/member/phone.type';
 
-export class DeleteArrayDto implements IPhoneDelete {
+export class PhoneDeleteArrayDto implements IPhoneDelete {
     @ApiProperty({ example: [randomUUID()] })
     @IsNotEmpty()
     @IsString({ each: true })

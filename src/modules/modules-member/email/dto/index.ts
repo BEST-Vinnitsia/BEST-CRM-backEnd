@@ -1,6 +1,5 @@
-export { GetListDto } from './get-list.dto';
-export { GetMainDto } from './get-main.dto';
-
-export { CreateArrayDto } from './create-array.dto';
-export { UpdateArrayDto } from './update-array.dto';
-export { DeleteArrayDto } from './delete-array.dto';
+export { EmailGetListDto as GetListDto } from './get-list.dto';
+export { EmailGetMainDto as GetMainDto } from './get-main.dto';
+export { EmailCreateArrayDto as CreateArrayDto } from './create-array.dto';
+export { EmailUpdateArrayDto as UpdateArrayDto } from './update-array.dto';
+export { EmailDeleteArrayDto as DeleteArrayDto } from './delete-array.dto';

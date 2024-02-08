@@ -4,7 +4,7 @@ import { randomUUID } from 'crypto';
 import { Type } from 'class-transformer';
 import { IPhoneCreate } from '../../../../interfaces/member/phone.type';
 
-class CreateDto implements IPhoneCreate {
+class PhoneCreateDto implements IPhoneCreate {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()
@@ -22,11 +22,11 @@ class CreateDto implements IPhoneCreate {
     isMain: boolean;
 }
 
-export class CreateArrayDto {
-    @ApiProperty({ type: [CreateDto] })
+export class PhoneCreateArrayDto {
+    @ApiProperty({ type: [PhoneCreateDto] })
     @ValidateNested({ each: true })
     @IsArray()
     @IsNotEmpty()
-    @Type(() => CreateDto)
-    phones: CreateDto[];
+    @Type(() => PhoneCreateDto)
+    phones: PhoneCreateDto[];
 }

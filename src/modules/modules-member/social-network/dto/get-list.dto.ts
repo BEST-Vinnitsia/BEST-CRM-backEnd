@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
 import { ISocialNetworkListByMemberId } from '../../../../interfaces/member/socialNetwork.type';
 
-export class GetListDto implements ISocialNetworkListByMemberId {
+export class SocialNetworkGetListDto implements ISocialNetworkListByMemberId {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()

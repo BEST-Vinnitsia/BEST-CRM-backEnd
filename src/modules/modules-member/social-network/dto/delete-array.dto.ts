@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
 import { ISocialNetworkDelete } from '../../../../interfaces/member/socialNetwork.type';
 
-export class DeleteArrayDto implements ISocialNetworkDelete {
+export class SocialNetworkDeleteArrayDto implements ISocialNetworkDelete {
     @ApiProperty({ example: [randomUUID()] })
     @IsNotEmpty()
     @IsString({ each: true })

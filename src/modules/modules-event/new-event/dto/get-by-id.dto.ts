@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
 import { INewEventGetById } from '../../../../interfaces/event/new-event.interface';
 
-export class GetByIdDto implements INewEventGetById {
+export class NewEventGetByIdDto implements INewEventGetById {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()

@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IBoardToMemberUpdate } from '../../../../interfaces/board/board-to-member.interface';
 import { randomUUID } from 'crypto';
 
-export class UpdateDto implements IBoardToMemberUpdate {
+export class BoardToMemberUpdateDto implements IBoardToMemberUpdate {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()

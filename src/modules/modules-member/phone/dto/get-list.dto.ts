@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
 import { IPhoneListByMemberId } from '../../../../interfaces/member/phone.type';
 
-export class GetListDto implements IPhoneListByMemberId {
+export class PhoneGetListDto implements IPhoneListByMemberId {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()

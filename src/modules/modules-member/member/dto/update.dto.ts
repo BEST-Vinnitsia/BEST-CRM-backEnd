@@ -1,4 +1,4 @@
-import { IsDateString, IsNotEmpty, IsOptional, IsString, IsUUID, IsEmail, Matches, IsEnum } from 'class-validator';
+import { IsDateString, IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, IsUUID, Matches } from 'class-validator';
 import { ClothingSizeEnum, MembershipEnum } from '../../../../constants/enums.constant';
 import { Regex } from '../../../../constants/regex.constant';
 import { IsDateWithinRange } from '../../../../pipes/isDateWithinRange.pipe';
@@ -6,7 +6,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IMemberUpdate } from '../../../../interfaces/member/member.type';
 import { randomUUID } from 'crypto';
 
-export class UpdateDto implements IMemberUpdate {
+export class MemberUpdateDto implements IMemberUpdate {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()
@@ -34,7 +34,6 @@ export class UpdateDto implements IMemberUpdate {
     password: string;
 
     @ApiProperty()
-    @IsNotEmpty()
     @IsString()
     @IsEmail()
     @IsOptional()
@@ -81,14 +80,12 @@ export class UpdateDto implements IMemberUpdate {
     //
 
     @ApiProperty({ required: false, enum: ClothingSizeEnum })
-    @IsNotEmpty()
     @IsString()
     @IsEnum(ClothingSizeEnum)
     @IsOptional()
-    clothingSize: string;
+    clothingSize: string | null;
 
     @ApiProperty({ required: false })
-    @IsNotEmpty()
     @IsString()
     @IsOptional()
     homeAddress: string;

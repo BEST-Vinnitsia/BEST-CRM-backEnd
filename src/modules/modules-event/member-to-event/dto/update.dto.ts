@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
 import { IMemberToEventUpdate } from '../../../../interfaces/event/member-to-event.interface';
 
-export class UpdateDto implements IMemberToEventUpdate {
+export class MemberToEventUpdateDto implements IMemberToEventUpdate {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()
@@ -36,5 +36,5 @@ export class UpdateDto implements IMemberToEventUpdate {
     @ApiProperty()
     @IsDateString()
     @IsOptional()
-    excludedDate?: Date;
+    excludedDate: Date;
 }

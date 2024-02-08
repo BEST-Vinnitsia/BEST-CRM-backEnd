@@ -1,4 +1,4 @@
-export { GetByIdDto } from './get-by-id.dto';
-export { CreateDto } from './create.dto';
-export { UpdateDto } from './update.dto';
-export { DeleteArrayDto } from './delete-array.dto';
+export { CoordinatorGetByIdDto as GetByIdDto } from './get-by-id.dto';
+export { CoordinatorCreateDto as CreateDto } from './create.dto';
+export { CoordinatorUpdateDto as UpdateDto } from './update.dto';
+export { CoordinatorDeleteArrayDto as DeleteArrayDto } from './delete-array.dto';

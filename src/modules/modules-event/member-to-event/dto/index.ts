@@ -1,8 +1,7 @@
-export { GetByIdDto } from './get-by-id.dto';
-export { GetByMemberIdDto } from './get-by-member-id.dto';
-export { GetByResponsibleIdDto } from './get-by-responsible-id.dto';
-export { GetByNewEventIdDto } from './get-by-new-event-id.dto';
-
-export { CreateDto } from './create.dto';
-export { UpdateDto } from './update.dto';
-export { DeleteArrayDto } from './delete-array.dto';
+export { MemberToEventGetByIdDto as GetByIdDto } from './get-by-id.dto';
+export { MemberToEventGetByMemberIdDto as GetByMemberIdDto } from './get-by-member-id.dto';
+export { MemberToEventGetByResponsibleIdDto as GetByResponsibleIdDto } from './get-by-responsible-id.dto';
+export { MemberToEventGetByNewEventIdDto as GetByNewEventIdDto } from './get-by-new-event-id.dto';
+export { MemberToEventCreateDto as CreateDto } from './create.dto';
+export { MemberToEventUpdateDto as UpdateDto } from './update.dto';
+export { MemberToEventDeleteArrayDto as DeleteArrayDto } from './delete-array.dto';

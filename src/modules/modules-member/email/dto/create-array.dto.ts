@@ -4,7 +4,7 @@ import { randomUUID } from 'crypto';
 import { IEmailCreate } from '../../../../interfaces/member/email.type';
 import { Type } from 'class-transformer';
 
-class CreateDto implements IEmailCreate {
+class EmailCreateDto implements IEmailCreate {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()
@@ -23,11 +23,11 @@ class CreateDto implements IEmailCreate {
     isMain: boolean;
 }
 
-export class CreateArrayDto {
-    @ApiProperty({ type: [CreateDto] })
+export class EmailCreateArrayDto {
+    @ApiProperty({ type: [EmailCreateDto] })
     @ValidateNested({ each: true })
     @IsArray()
     @IsNotEmpty()
-    @Type(() => CreateDto)
-    emails: CreateDto[];
+    @Type(() => EmailCreateDto)
+    emails: EmailCreateDto[];
 }

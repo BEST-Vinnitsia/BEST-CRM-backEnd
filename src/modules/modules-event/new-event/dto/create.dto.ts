@@ -3,7 +3,7 @@ import { IsNotEmpty, IsString, IsUUID } from 'class-validator';
 import { INewEventCreate } from '../../../../interfaces/event/new-event.interface';
 import { randomUUID } from 'crypto';
 
-export class CreateDto implements INewEventCreate {
+export class NewEventCreateDto implements INewEventCreate {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()

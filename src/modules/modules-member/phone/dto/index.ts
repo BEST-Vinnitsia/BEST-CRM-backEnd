@@ -1,6 +1,6 @@
-export { GetListDto } from './get-list.dto';
-export { GetMainDto } from './get-main.dto';
+export { PhoneGetListDto as GetListDto } from './get-list.dto';
+export { PhoneGetMainDto as GetMainDto } from './get-main.dto';
 
-export { CreateArrayDto } from './create-array.dto';
-export { UpdateArrayDto } from './update-array.dto';
-export { DeleteArrayDto } from './delete-array.dto';
+export { PhoneCreateArrayDto as CreateArrayDto } from './create-array.dto';
+export { PhoneUpdateArrayDto as UpdateArrayDto } from './update-array.dto';
+export { PhoneDeleteArrayDto as DeleteArrayDto } from './delete-array.dto';

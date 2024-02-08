@@ -1,4 +1,4 @@
-export { GetByIdDto } from './get-by-id.dto';
-export { CreateDto } from './create.dto';
-export { UpdateDto } from './update.dto';
-export { DeleteArrayDto } from './delete-array.dto';
+export { EventGetByIdDto as GetByIdDto } from './get-by-id.dto';
+export { EventCreateDto as CreateDto } from './create.dto';
+export { EventUpdateDto as UpdateDto } from './update.dto';
+export { EventDeleteArrayDto as DeleteArrayDto } from './delete-array.dto';

@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { ICadenceDeleteArray } from 'src/interfaces/meeting/cadence.interface';
 import { randomUUID } from 'crypto';
 
-export class DeleteArrayDto implements ICadenceDeleteArray {
+export class CadenceDeleteArrayDto implements ICadenceDeleteArray {
     @ApiProperty({ example: [randomUUID()] })
     @IsNotEmpty()
     @IsString({ each: true })

@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
 import { ICoordinatorToMemberGetByCadenceId } from '../../../../interfaces/coordinator/coordinator-to-member.interface';
 
-export class GetByCadenceIdDto implements ICoordinatorToMemberGetByCadenceId {
+export class CoordinatorToMemberGetByCadenceIdDto implements ICoordinatorToMemberGetByCadenceId {
     @ApiProperty({ example: randomUUID() })
     @IsNotEmpty()
     @IsString()
