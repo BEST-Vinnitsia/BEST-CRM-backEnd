@@ -4,7 +4,7 @@ export interface ICommitteeToMember {
     committeeId: string;
     memberId: string;
     excluded: boolean;
-    excludedDate?: Date;
+    excludedDate: Date | null;
 
     createdAt: Date;
     updatedAt: Date;

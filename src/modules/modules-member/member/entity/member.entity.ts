@@ -45,10 +45,10 @@ export class Member implements IMember {
 
     //
 
-    @ApiProperty({ required: false, enum: ClothingSizeEnum })
+    @ApiProperty({ enum: ClothingSizeEnum })
     clothingSize: string;
 
-    @ApiProperty({ required: false })
+    @ApiProperty()
     homeAddress: string;
 
     //

@@ -13,7 +13,7 @@ export class MemberUpdateDto implements IMemberUpdate {
     @IsUUID('4')
     id: string;
 
-    @ApiProperty({ required: false, enum: MembershipEnum })
+    @ApiProperty({ enum: MembershipEnum })
     @IsNotEmpty()
     @IsString()
     @IsEnum(MembershipEnum)
@@ -79,13 +79,13 @@ export class MemberUpdateDto implements IMemberUpdate {
 
     //
 
-    @ApiProperty({ required: false, enum: ClothingSizeEnum })
+    @ApiProperty({ enum: ClothingSizeEnum })
     @IsString()
     @IsEnum(ClothingSizeEnum)
     @IsOptional()
     clothingSize: string | null;
 
-    @ApiProperty({ required: false })
+    @ApiProperty()
     @IsString()
     @IsOptional()
     homeAddress: string;

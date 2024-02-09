@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-import { ICadence, ICadenceCreate, ICadenceGetById, ICadenceUpdate } from 'src/interfaces/meeting/cadence.interface';
+import { ICadence, ICadenceCreate, ICadenceGetById, ICadenceUpdate } from 'src/interfaces/cadence.interface';
 import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()

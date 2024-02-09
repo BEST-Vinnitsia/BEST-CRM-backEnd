@@ -19,7 +19,7 @@ export class BoardToMember implements IBoardToMember {
     excluded: boolean;
 
     @ApiProperty()
-    excludedDate?: Date;
+    excludedDate: Date;
 
     @ApiProperty()
     createdAt: Date;

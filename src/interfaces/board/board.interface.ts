@@ -1,6 +1,8 @@
 export interface IBoard {
     id: string;
     name: string;
+    // fullName: string;
+    // description: string;
     isActive: boolean;
 
     createdAt: Date;

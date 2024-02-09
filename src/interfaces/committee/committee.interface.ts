@@ -1,6 +1,8 @@
 export interface ICommittee {
     id: string;
     name: string;
+    // fullName: string;
+    // description: string;
     isActive: boolean;
 
     createdAt: Date;

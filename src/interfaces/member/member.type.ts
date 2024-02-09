@@ -1,6 +1,6 @@
 export interface IMember {
     id: string;
-    membership: string;
+    membership: string /* Observer, Baby, Full, Alumni, Excluded */;
 
     login: string;
     password: string;

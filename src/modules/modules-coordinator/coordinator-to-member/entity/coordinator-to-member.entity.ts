@@ -18,8 +18,8 @@ export class CoordinatorToMember implements ICoordinatorToMember {
     @ApiProperty()
     excluded: boolean;
 
-    @ApiProperty()
-    excludedDate?: Date;
+    @ApiProperty({ type: 'string | null' })
+    excludedDate: Date;
 
     @ApiProperty()
     createdAt: Date;

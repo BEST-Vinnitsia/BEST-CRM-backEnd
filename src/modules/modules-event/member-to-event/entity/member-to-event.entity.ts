@@ -19,7 +19,7 @@ export class MemberToEvent implements IMemberToEvent {
     excluded: boolean;
 
     @ApiProperty()
-    excludedDate?: Date;
+    excludedDate: Date;
 
     @ApiProperty()
     createdAt: Date;

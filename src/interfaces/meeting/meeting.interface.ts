@@ -1,11 +1,11 @@
 export interface IMeeting {
-  id: string;
-  cadenceId: string;
-  name: string;
-  date: Date;
+    id: string;
+    cadenceId: string;
+    name: string;
+    date: Date;
 
-  createdAt: Date;
-  updatedAt: Date;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 /* ----------------  extends  ---------------- */

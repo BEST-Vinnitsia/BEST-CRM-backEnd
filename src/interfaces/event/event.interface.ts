@@ -1,6 +1,8 @@
 export interface IEvent {
     id: string;
     name: string;
+    // fullName: string;
+    // description: string;
     isActive: boolean;
 
     createdAt: Date;

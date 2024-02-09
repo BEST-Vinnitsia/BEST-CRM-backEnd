@@ -3,7 +3,7 @@ export interface ICadence {
     number: number;
     isEnd: boolean;
     startDate: Date;
-    endDate: Date;
+    endDate: Date | null;
 
     createdAt: Date;
     updatedAt: Date;

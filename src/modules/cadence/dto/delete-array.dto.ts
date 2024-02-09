@@ -1,6 +1,6 @@
 import { IsArray, IsNotEmpty, IsString, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { ICadenceDeleteArray } from 'src/interfaces/meeting/cadence.interface';
+import { ICadenceDeleteArray } from 'src/interfaces/cadence.interface';
 import { randomUUID } from 'crypto';
 
 export class CadenceDeleteArrayDto implements ICadenceDeleteArray {

@@ -6,7 +6,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IMemberCreate } from '../../../../interfaces/member/member.type';
 
 export class MemberCreateDto implements IMemberCreate {
-    @ApiProperty({ required: false, enum: MembershipEnum })
+    @ApiProperty({ enum: MembershipEnum })
     @IsNotEmpty()
     @IsString()
     @IsEnum(MembershipEnum)
@@ -26,11 +26,11 @@ export class MemberCreateDto implements IMemberCreate {
     @Matches(Regex.member.password, { message: 'Incorrect password' })
     password: string;
 
-    @ApiProperty({ required: false })
+    @ApiProperty()
     @IsString()
     @IsEmail()
     @IsOptional()
-    bestEmail: string;
+    bestEmail: string | null;
 
     //
 
@@ -72,13 +72,13 @@ export class MemberCreateDto implements IMemberCreate {
 
     //
 
-    @ApiProperty({ required: false, enum: ClothingSizeEnum })
+    @ApiProperty({ enum: ClothingSizeEnum })
     @IsString()
     @IsEnum(ClothingSizeEnum)
     @IsOptional()
     clothingSize: string | null;
 
-    @ApiProperty({ required: false })
+    @ApiProperty()
     @IsString()
     @IsOptional()
     homeAddress: string;

@@ -2,9 +2,10 @@ export interface IResponsible {
     id: string;
     eventId: string;
     name: string;
+    // fullName: string;
+    role: string /* Resp, WG, Day Resp */;
+    description: string | null;
     isActive: boolean;
-    role: string;
-    description: string;
 
     createdAt: Date;
     updatedAt: Date;
