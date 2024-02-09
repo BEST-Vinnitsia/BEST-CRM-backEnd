@@ -1,4 +1,4 @@
-import { IsBoolean, IsDateString, IsNotEmpty, IsNumber, IsString, IsUUID } from 'class-validator';
+import { IsBoolean, IsDateString, IsNotEmpty, IsNumber, IsOptional, IsString, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { ICadenceUpdate } from 'src/interfaces/cadence.interface';
 import { randomUUID } from 'crypto';
@@ -26,7 +26,7 @@ export class CadenceUpdateDto implements ICadenceUpdate {
     isEnd: boolean;
 
     @ApiProperty()
-    @IsNotEmpty()
     @IsDateString()
-    endDate: Date;
+    @IsOptional()
+    endDate: Date | null;
 }

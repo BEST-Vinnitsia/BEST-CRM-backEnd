@@ -2,6 +2,8 @@ export interface INewEvent {
     id: string;
     eventId: string;
     cadenceId: string;
+    // endDate
+    // isDone
 
     createdAt: Date;
     updatedAt: Date;

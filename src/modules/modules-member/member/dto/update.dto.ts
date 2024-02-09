@@ -37,7 +37,7 @@ export class MemberUpdateDto implements IMemberUpdate {
     @IsString()
     @IsEmail()
     @IsOptional()
-    bestEmail: string;
+    bestEmail: string | null;
 
     //
 
@@ -88,5 +88,5 @@ export class MemberUpdateDto implements IMemberUpdate {
     @ApiProperty()
     @IsString()
     @IsOptional()
-    homeAddress: string;
+    homeAddress: string | null;
 }

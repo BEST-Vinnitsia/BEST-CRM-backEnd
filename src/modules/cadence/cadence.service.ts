@@ -28,11 +28,14 @@ export class CadenceService {
         });
         if (cadence) throw new BadRequestException('cadence is exist');
 
+        const currentDate = new Date();
+        const inISO = currentDate.toISOString();
+
         return this.prisma.cadence.create({
             data: {
                 number: dto.number,
                 startDate: dto.startDate,
-                endDate: dto.endDate,
+                endDate: dto.endDate ? dto.endDate : inISO,
                 isEnd: dto.isEnd,
             },
         });

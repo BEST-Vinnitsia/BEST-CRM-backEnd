@@ -30,5 +30,5 @@ export class MemberToEventCreateDto implements IMemberToEventCreate {
     @ApiProperty()
     @IsDateString()
     @IsOptional()
-    excludedDate: Date;
+    excludedDate: Date | null;
 }

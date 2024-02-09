@@ -19,7 +19,7 @@ export class Responsible implements IResponsible {
     role: string;
 
     @ApiProperty()
-    description: string;
+    description: string | null;
 
     @ApiProperty()
     createdAt: Date;

@@ -81,5 +81,5 @@ export class MemberCreateDto implements IMemberCreate {
     @ApiProperty()
     @IsString()
     @IsOptional()
-    homeAddress: string;
+    homeAddress: string | null;
 }

@@ -1,4 +1,4 @@
-import { IsBoolean, IsNotEmpty, IsString, IsUUID } from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsOptional, IsString, IsUUID } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
 import { IResponsibleUpdate } from '../../../../interfaces/event/responsible.interface';
@@ -33,5 +33,6 @@ export class ResponsibleUpdateDto implements IResponsibleUpdate {
 
     @ApiProperty()
     @IsString()
-    description: string;
+    @IsOptional()
+    description: string | null;
 }

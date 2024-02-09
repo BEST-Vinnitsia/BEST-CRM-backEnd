@@ -36,5 +36,5 @@ export class MemberToEventUpdateDto implements IMemberToEventUpdate {
     @ApiProperty()
     @IsDateString()
     @IsOptional()
-    excludedDate: Date;
+    excludedDate: Date | null;
 }

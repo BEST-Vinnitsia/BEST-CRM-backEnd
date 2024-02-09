@@ -19,7 +19,7 @@ export class Member implements IMember {
     password: string;
 
     @ApiProperty()
-    bestEmail: string;
+    bestEmail: string | null;
 
     //
 
@@ -46,10 +46,10 @@ export class Member implements IMember {
     //
 
     @ApiProperty({ enum: ClothingSizeEnum })
-    clothingSize: string;
+    clothingSize: string | null;
 
     @ApiProperty()
-    homeAddress: string;
+    homeAddress: string | null;
 
     //
 

@@ -19,7 +19,7 @@ export class CommitteeToMember implements ICommitteeToMember {
     excluded: boolean;
 
     @ApiProperty()
-    excludedDate: Date;
+    excludedDate: Date | null;
 
     @ApiProperty()
     createdAt: Date;
