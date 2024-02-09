@@ -126,10 +126,10 @@ model Meeting {
 }
 
 model Increase {
-  id        String   @id @default(uuid())
-  meetingId String
-  memberId  String
-  date      DateTime
+  id         String @id @default(uuid())
+  meetingId  String
+  memberId   String
+  membership String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

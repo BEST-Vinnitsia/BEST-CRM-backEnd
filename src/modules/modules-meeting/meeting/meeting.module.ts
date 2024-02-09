@@ -8,5 +8,6 @@ import { CadenceModule } from '../../cadence/cadence.module';
     imports: [PrismaModule, CadenceModule],
     controllers: [MeetingController],
     providers: [MeetingService],
+    exports: [MeetingService],
 })
 export class MeetingModule {}

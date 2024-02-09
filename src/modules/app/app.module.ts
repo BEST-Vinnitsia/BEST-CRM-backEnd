@@ -27,6 +27,7 @@ import { NewEventModule } from '../modules-event/new-event/new-event.module';
 import { MemberToEventModule } from '../modules-event/member-to-event/member-to-event.module';
 // meeting
 import { MeetingModule } from '../modules-meeting/meeting/meeting.module';
+import { IncreaseModule } from '../modules-meeting/increase/increase.module';
 
 @Module({
     imports: [
@@ -60,6 +61,7 @@ import { MeetingModule } from '../modules-meeting/meeting/meeting.module';
 
         // meeting
         MeetingModule,
+        IncreaseModule,
     ],
     controllers: [AppController],
     providers: [AppService, { provide: APP_GUARD, useClass: AtGuard }],
