@@ -25,6 +25,8 @@ import { EventModule } from '../modules-event/event/event.module';
 import { ResponsibleModule } from '../modules-event/responsible/responsible.module';
 import { NewEventModule } from '../modules-event/new-event/new-event.module';
 import { MemberToEventModule } from '../modules-event/member-to-event/member-to-event.module';
+// meeting
+import { MeetingModule } from '../modules-meeting/meeting/meeting.module';
 
 @Module({
     imports: [
@@ -55,6 +57,9 @@ import { MemberToEventModule } from '../modules-event/member-to-event/member-to-
         ResponsibleModule,
         NewEventModule,
         MemberToEventModule,
+
+        // meeting
+        MeetingModule,
     ],
     controllers: [AppController],
     providers: [AppService, { provide: APP_GUARD, useClass: AtGuard }],
