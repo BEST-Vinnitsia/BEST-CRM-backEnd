@@ -37,7 +37,7 @@ export class MeetingService {
         const newMeeting = await this.prisma.meeting.create({
             data: {
                 cadenceId: dto.cadenceId,
-                name: dto.name.trim().toLocaleLowerCase(),
+                name: dto.name.trim().toLocaleUpperCase(),
                 date: dto.date,
             },
         });
@@ -59,7 +59,7 @@ export class MeetingService {
             where: { id: dto.id },
             data: {
                 cadenceId: dto.cadenceId,
-                name: dto.name,
+                name: dto.name.trim().toLocaleUpperCase(),
                 date: dto.date,
             },
         });

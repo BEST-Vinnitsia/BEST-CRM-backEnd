@@ -65,8 +65,10 @@ export class MemberToEventService {
         });
         if (responsible) throw new BadRequestException('member to event is exist');
 
-        await this.newEventService.getById({ id: dto.newEventId });
-        await this.responsibleService.getById({ id: dto.responsibleId });
+        const newEventInDb = await this.newEventService.getById({ id: dto.newEventId });
+        const respInDb = await this.responsibleService.getById({ id: dto.responsibleId });
+        if (newEventInDb.eventId !== respInDb.eventId) throw new BadRequestException('incorrect event or position');
+
         await this.memberService.getById({ id: dto.memberId });
 
         return this.prisma.memberToEvent.create({

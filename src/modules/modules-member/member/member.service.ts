@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import {
     IMember,
@@ -8,6 +8,7 @@ import {
     IMemberGetIdRes,
     IMemberGetListRes,
     IMemberUpdate,
+    IMemberUpdateMembership,
 } from 'src/interfaces/member/member.type';
 import { PrismaService } from '../../prisma/prisma.service';
 
@@ -70,6 +71,21 @@ export class MemberService {
         if (!member) throw new NotFoundException(this.errorMessages.NOT_FOUND);
 
         return this.prisma.member.update(this.memberQuery(dto));
+    }
+
+    public async updateMembership({ id, membership }: IMemberUpdateMembership): Promise<IMember> {
+        const member = await this.prisma.member.findUnique({
+            where: { id },
+        });
+        if (!member) throw new NotFoundException(this.errorMessages.NOT_FOUND);
+
+        const updateMembership = await this.prisma.member.update({
+            where: { id },
+            data: { membership },
+        });
+        if (!updateMembership) throw new InternalServerErrorException();
+
+        return updateMembership;
     }
 
     /* ----------------  DELETE  ---------------- */

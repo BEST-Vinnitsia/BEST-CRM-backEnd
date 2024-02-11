@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
 import {
     IIncreaseCreate,
@@ -46,7 +46,9 @@ export class IncreaseService {
 
     /* ----------------  POST  ---------------- */
     public async create(dto: IIncreaseCreate) {
-        await this.meetingService.getById({ id: dto.meetingId });
+        const meetingInDb = await this.meetingService.getById({ id: dto.meetingId });
+        if (meetingInDb.name !== 'LGA') throw new BadRequestException('incorrect meeting type');
+
         await this.memberService.getById({ id: dto.memberId });
 
         const newIncrease = await this.prisma.increase.create({
@@ -58,12 +60,16 @@ export class IncreaseService {
         });
         if (!newIncrease) throw new InternalServerErrorException();
 
+        await this.memberService.updateMembership({ id: dto.memberId, membership: dto.membership });
+
         return newIncrease;
     }
 
     /* ----------------  PUT  ---------------- */
     public async update(dto: IIncreaseUpdate) {
-        await this.meetingService.getById({ id: dto.meetingId });
+        const meetingInDb = await this.meetingService.getById({ id: dto.meetingId });
+        if (meetingInDb.name !== 'LGA') throw new BadRequestException('incorrect meeting type');
+
         await this.memberService.getById({ id: dto.memberId });
 
         const checkIncrease = await this.prisma.increase.findUnique({
@@ -80,6 +86,8 @@ export class IncreaseService {
             },
         });
         if (!updateMeeting) throw new InternalServerErrorException();
+
+        await this.memberService.updateMembership({ id: dto.memberId, membership: dto.membership });
 
         return updateMeeting;
     }
