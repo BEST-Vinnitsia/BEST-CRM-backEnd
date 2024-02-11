@@ -24,8 +24,8 @@ model Member {
   //
   bestEmail    String?
   // 
+  name         String
   surname      String
-  fullName     String
   middleName   String
   birthday     DateTime
   // 

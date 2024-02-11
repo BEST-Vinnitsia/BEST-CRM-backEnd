@@ -7,8 +7,8 @@ export interface IMember {
 
     bestEmail: string | null;
 
+    name: string;
     surname: string;
-    fullName: string;
     middleName: string;
     birthday: Date;
 
@@ -34,7 +34,8 @@ export interface IMemberCreate extends Omit<IMember, 'id' | 'createdAt' | 'updat
 
 export interface IMemberCreateRes extends IMember {}
 
-export interface IMemberUpdate extends Omit<IMember, 'createdAt' | 'updatedAt'> {}
+export interface IMemberUpdate extends Omit<IMember, 'login' | 'password' | 'createdAt' | 'updatedAt'> {}
+
 export interface IMemberUpdateMembership extends Pick<IMember, 'id' | 'membership'> {}
 
 export interface IMemberDeleteArray {

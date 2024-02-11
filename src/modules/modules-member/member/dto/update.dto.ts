@@ -22,18 +22,6 @@ export class MemberUpdateDto implements IMemberUpdate {
     //
 
     @ApiProperty()
-    @IsNotEmpty()
-    @IsString()
-    @IsEmail()
-    login: string;
-
-    @ApiProperty()
-    @IsNotEmpty()
-    @IsString()
-    @Matches(Regex.member.password, { message: 'Incorrect password' })
-    password: string;
-
-    @ApiProperty()
     @IsString()
     @IsEmail()
     @IsOptional()
@@ -44,14 +32,14 @@ export class MemberUpdateDto implements IMemberUpdate {
     @ApiProperty()
     @IsNotEmpty()
     @IsString()
-    @Matches(Regex.member.surname)
-    surname: string;
+    @Matches(Regex.member.name)
+    name: string;
 
     @ApiProperty()
     @IsNotEmpty()
     @IsString()
-    @Matches(Regex.member.fullName)
-    fullName: string;
+    @Matches(Regex.member.surname)
+    surname: string;
 
     @ApiProperty()
     @IsNotEmpty()

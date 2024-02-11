@@ -60,7 +60,26 @@ export class MemberService {
 
         const hash = await bcrypt.hash(dto.password, 12);
 
-        return this.prisma.member.create(this.memberQuery(dto, hash));
+        return this.prisma.member.create({
+            data: {
+                membership: dto.membership,
+
+                login: dto.login.toLocaleLowerCase(),
+                password: hash,
+                bestEmail: dto.bestEmail ? dto.bestEmail.toLocaleLowerCase() : null,
+
+                name: dto.name,
+                middleName: dto.middleName,
+                surname: dto.surname,
+                birthday: dto.birthday,
+
+                faculty: dto.faculty,
+                group: dto.group,
+
+                clothingSize: dto.clothingSize ? dto.clothingSize.toLocaleUpperCase() : null,
+                homeAddress: dto.homeAddress ? dto.homeAddress.toLocaleLowerCase() : null,
+            },
+        });
     }
 
     /* ----------------  PUT  ---------------- */
@@ -70,7 +89,24 @@ export class MemberService {
         });
         if (!member) throw new NotFoundException(this.errorMessages.NOT_FOUND);
 
-        return this.prisma.member.update(this.memberQuery(dto));
+        return this.prisma.member.update({
+            where: { id: dto.id },
+            data: {
+                membership: dto.membership,
+                bestEmail: dto.bestEmail ? dto.bestEmail.toLocaleLowerCase() : null,
+
+                name: dto.name,
+                surname: dto.surname,
+                middleName: dto.middleName,
+                birthday: dto.birthday,
+
+                faculty: dto.faculty,
+                group: dto.group,
+
+                clothingSize: dto.clothingSize ? dto.clothingSize.toLocaleUpperCase() : null,
+                homeAddress: dto.homeAddress ? dto.homeAddress.toLocaleLowerCase() : null,
+            },
+        });
     }
 
     public async updateMembership({ id, membership }: IMemberUpdateMembership): Promise<IMember> {
@@ -93,57 +129,5 @@ export class MemberService {
         return this.prisma.member.deleteMany({
             where: { id: { in: dto } },
         });
-    }
-
-    //
-    //
-    //
-
-    private memberQuery(dto: IMemberCreate | IMemberUpdate, passwordHash?: string) {
-        if ('id' in dto) {
-            const query: any = {
-                where: { id: dto.id },
-                data: {
-                    membership: dto.membership,
-
-                    login: dto.login.toLocaleLowerCase(),
-                    // password: passwordHash,
-                    bestEmail: dto.bestEmail ? dto.bestEmail.toLocaleLowerCase() : null,
-
-                    fullName: dto.fullName.toLocaleLowerCase(),
-                    middleName: dto.middleName.toLocaleLowerCase(),
-                    surname: dto.surname.toLocaleLowerCase(),
-                    birthday: dto.birthday,
-
-                    faculty: dto.faculty.toLocaleLowerCase(),
-                    group: dto.group.toLocaleLowerCase(),
-
-                    clothingSize: dto.clothingSize ? dto.clothingSize.toLocaleUpperCase() : null,
-                    homeAddress: dto.homeAddress ? dto.homeAddress.toLocaleLowerCase() : null,
-                },
-            };
-            return query;
-        }
-
-        return {
-            data: {
-                membership: dto.membership,
-
-                login: dto.login.toLocaleLowerCase(),
-                password: passwordHash,
-                bestEmail: dto.bestEmail ? dto.bestEmail.toLocaleLowerCase() : null,
-
-                fullName: dto.fullName.toLocaleLowerCase(),
-                middleName: dto.middleName.toLocaleLowerCase(),
-                surname: dto.surname.toLocaleLowerCase(),
-                birthday: dto.birthday,
-
-                faculty: dto.faculty.toLocaleLowerCase(),
-                group: dto.group.toLocaleLowerCase(),
-
-                clothingSize: dto.clothingSize ? dto.clothingSize.toLocaleUpperCase() : null,
-                homeAddress: dto.homeAddress ? dto.homeAddress.toLocaleLowerCase() : null,
-            },
-        };
     }
 }

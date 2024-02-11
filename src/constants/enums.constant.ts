@@ -1,33 +1,33 @@
 export enum MembershipEnum {
-  EXTENDED = 'extended',
-  OBSERVER = 'observer',
-  BABY = 'baby',
-  FULL = 'full',
-  ALUMNI = 'alumni',
+  EXTENDED = 'Extended',
+  OBSERVER = 'Observer',
+  BABY = 'Baby',
+  FULL = 'Full',
+  ALUMNI = 'Alumni',
 }
 
 export enum BoardEnum {
-  PRESIDENT = 'president',
-  SECRETARY = 'secretary',
-  TREASURER = 'treasurer',
-  HR = 'vp4hr',
-  FR = 'vp4fr',
-  PR = 'vp4pr',
+  PRESIDENT = 'President',
+  SECRETARY = 'Secretary',
+  TREASURER = 'Treasurer',
+  HR = 'VP4HR',
+  FR = 'VP4FR',
+  PR = 'VP4PR',
 }
 
 export enum CoordinatorEnum {
-  IT = 'it',
-  KM = 'km',
-  DESIGN = 'design',
+  IT = 'IT',
+  KM = 'KM',
+  DESIGN = 'Design',
 }
 
 export enum CommitteeEnum {
-  HR = 'hr committee',
-  FR = 'fr committee',
-  PR = 'pr committee',
-  IT = 'it committee',
-  KM = 'km committee',
-  DESIGN = 'design committee',
+  HR = 'HR-Committee',
+  FR = 'FR-Committee',
+  PR = 'PR-Committee',
+  IT = 'IT-Committee',
+  KM = 'KM-Committee',
+  DESIGN = 'Design Committee',
 }
 
 export enum MeetingEnum {
