@@ -1,11 +1,10 @@
 import { randomUUID } from 'crypto';
-import { IMember, IMemberCreate, IMemberGetIdRes, IMemberUpdate } from '../../../../../interfaces/member/member.type';
 import { ClothingSizeEnum, MembershipEnum } from '../../../../../constants/enums.constant';
 
 const passwordHash = '$2b$10$EOXpLQwXnm8aBFWLkDjxue9bymqrIANRYuIc/EbvD0OS5UCEEwtb2'; // P@ssword1234
 const birthdayMock = new Date('1900-01-01T00:00:00.000Z');
 
-export const memberStub = (): IMember => {
+export const memberStub = () => {
     return {
         id: randomUUID(),
         login: 'login@email.com',
@@ -26,7 +25,7 @@ export const memberStub = (): IMember => {
     };
 };
 
-export const memberCreateStub = (): IMemberCreate => {
+export const memberCreateStub = () => {
     return {
         login: 'login@email.com',
         password: passwordHash,
@@ -43,7 +42,7 @@ export const memberCreateStub = (): IMemberCreate => {
     };
 };
 
-export const memberUpdateStub = (): IMemberUpdate => {
+export const memberUpdateStub = () => {
     return {
         id: randomUUID(),
         membership: MembershipEnum.FULL,
@@ -59,7 +58,7 @@ export const memberUpdateStub = (): IMemberUpdate => {
     };
 };
 
-export const memberDetailsStub = (): IMemberGetIdRes => {
+export const memberDetailsStub = () => {
     return {
         id: randomUUID(),
         login: 'login@email.com',

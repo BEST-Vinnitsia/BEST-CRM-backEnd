@@ -21,6 +21,15 @@ export class Member implements IMember {
     @ApiProperty()
     bestEmail: string | null;
 
+    @ApiProperty()
+    email: string;
+
+    @ApiProperty()
+    phone: string;
+
+    @ApiProperty()
+    socialNetwork: string;
+
     //
 
     @ApiProperty()

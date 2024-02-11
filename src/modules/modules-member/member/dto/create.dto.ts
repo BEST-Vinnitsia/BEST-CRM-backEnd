@@ -32,6 +32,22 @@ export class MemberCreateDto implements IMemberCreate {
     @IsOptional()
     bestEmail: string | null;
 
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    @IsEmail()
+    email: string;
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    phone: string;
+
+    @ApiProperty()
+    @IsString()
+    @IsNotEmpty()
+    socialNetwork: string;
+
     //
 
     @ApiProperty()

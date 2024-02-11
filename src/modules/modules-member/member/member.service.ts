@@ -66,7 +66,11 @@ export class MemberService {
 
                 login: dto.login.toLocaleLowerCase(),
                 password: hash,
+
                 bestEmail: dto.bestEmail ? dto.bestEmail.toLocaleLowerCase() : null,
+                phone: dto.phone,
+                email: dto.email,
+                socialNetwork: dto.socialNetwork,
 
                 name: dto.name,
                 middleName: dto.middleName,
@@ -77,7 +81,7 @@ export class MemberService {
                 group: dto.group,
 
                 clothingSize: dto.clothingSize ? dto.clothingSize.toLocaleUpperCase() : null,
-                homeAddress: dto.homeAddress ? dto.homeAddress.toLocaleLowerCase() : null,
+                homeAddress: dto.homeAddress ? dto.homeAddress : null,
             },
         });
     }
@@ -93,8 +97,12 @@ export class MemberService {
             where: { id: dto.id },
             data: {
                 membership: dto.membership,
-                bestEmail: dto.bestEmail ? dto.bestEmail.toLocaleLowerCase() : null,
 
+                bestEmail: dto.bestEmail ? dto.bestEmail.toLocaleLowerCase() : null,
+                phone: dto.phone,
+                email: dto.email,
+                socialNetwork: dto.socialNetwork,
+                
                 name: dto.name,
                 surname: dto.surname,
                 middleName: dto.middleName,
@@ -104,7 +112,7 @@ export class MemberService {
                 group: dto.group,
 
                 clothingSize: dto.clothingSize ? dto.clothingSize.toLocaleUpperCase() : null,
-                homeAddress: dto.homeAddress ? dto.homeAddress.toLocaleLowerCase() : null,
+                homeAddress: dto.homeAddress ? dto.homeAddress : null,
             },
         });
     }

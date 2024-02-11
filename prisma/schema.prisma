@@ -16,75 +16,38 @@ generator client {
 //
 
 model Member {
-  id           String   @id @default(uuid())
-  membership   String
+  id            String   @id @default(uuid())
+  membership    String
   //
-  login        String   @unique
-  password     String
+  login         String   @unique
+  password      String
   //
-  bestEmail    String?
+  bestEmail     String?
+  email         String
+  phone         String
+  socialNetwork String
   // 
-  name         String
-  surname      String
-  middleName   String
-  birthday     DateTime
+  name          String
+  surname       String
+  middleName    String
+  birthday      DateTime
   // 
-  group        String
-  faculty      String
+  group         String
+  faculty       String
   // 
-  clothingSize String?
-  homeAddress  String?
+  clothingSize  String?
+  homeAddress   String?
   // 
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
   //
   refreshToken        RefreshToken[]
-  phone               MemberPhone[]
-  email               MemberEmail[]
-  socialNetwork       MemberSocialNetwork[]
   increase            Increase[]
   boardToMember       BoardToMember[]
   coordinatorToMember CoordinatorToMember[]
   committeeToMember   CommitteeToMember[]
   memberToEvent       MemberToEvent[]
-}
-
-model MemberPhone {
-  id       String  @id @default(uuid())
-  memberId String
-  phone    String
-  isMain   Boolean
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  member Member @relation(fields: [memberId], references: [id], onDelete: Restrict, onUpdate: Restrict)
-}
-
-model MemberEmail {
-  id       String  @id @default(uuid())
-  memberId String
-  email    String
-  isMain   Boolean
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  member Member @relation(fields: [memberId], references: [id], onDelete: Restrict, onUpdate: Restrict)
-}
-
-model MemberSocialNetwork {
-  id       String  @id @default(uuid())
-  memberId String
-  name     String
-  url      String
-  isMain   Boolean
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  member Member @relation(fields: [memberId], references: [id], onDelete: Restrict, onUpdate: Restrict)
 }
 
 //

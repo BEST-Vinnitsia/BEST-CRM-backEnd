@@ -8,9 +8,6 @@ import { APP_GUARD } from '@nestjs/core';
 import { AtGuard } from 'src/common/guards';
 // member
 import { MemberModule } from '../modules-member/member/member.module';
-import { EmailModule } from '../modules-member/email/email.module';
-import { PhoneModule } from '../modules-member/phone/phone.module';
-import { SocialNetworkModule } from '../modules-member/social-network/social-network.module';
 // board
 import { BoardModule } from '../modules-board/board/board.module';
 import { BoardToMemberModule } from '../modules-board/board-to-member/board-to-member.module';
@@ -37,9 +34,9 @@ import { IncreaseModule } from '../modules-meeting/increase/increase.module';
 
         // member
         MemberModule,
-        EmailModule,
-        PhoneModule,
-        SocialNetworkModule,
+        // EmailModule,
+        // PhoneModule,
+        // SocialNetworkModule,
 
         // board
         BoardModule,
