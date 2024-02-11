@@ -1,7 +1,7 @@
 export interface ITokenPayload {
   refreshTokenId: string;
   memberId: string;
-  fullName: string;
+  name: string;
   surname: string;
   membershipName: string;
   claims: string[];

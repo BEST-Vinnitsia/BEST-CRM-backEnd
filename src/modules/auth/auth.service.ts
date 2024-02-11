@@ -28,7 +28,7 @@ export class AuthService {
             refreshTokenId: newRefresh.id,
             memberId: findMember.id,
             membershipName: findMember.membership,
-            fullName: findMember.fullName,
+            name: findMember.name,
             surname: findMember.surname,
             claims: [],
         };
@@ -50,7 +50,7 @@ export class AuthService {
             refreshTokenId: refresh.refreshTokenId,
             memberId: refresh.memberId,
             membershipName: refresh.membershipName,
-            fullName: refresh.fullName,
+            name: refresh.name,
             surname: refresh.surname,
             claims: [],
         });
@@ -70,7 +70,7 @@ export class AuthService {
             refreshTokenId: newRefresh.id,
             memberId: findMember.id,
             membershipName: findMember.membership,
-            fullName: findMember.fullName,
+            name: findMember.name,
             surname: findMember.surname,
             claims: [],
         };

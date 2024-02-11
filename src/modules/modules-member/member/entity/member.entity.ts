@@ -24,10 +24,10 @@ export class Member implements IMember {
     //
 
     @ApiProperty()
-    surname: string;
+    name: string;
 
     @ApiProperty()
-    fullName: string;
+    surname: string;
 
     @ApiProperty()
     middleName: string;
