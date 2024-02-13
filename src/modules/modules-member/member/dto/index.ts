@@ -1,4 +1,4 @@
-export { MemberGetByIdDto as GetByIdDto } from './get-by-id.dto';
-export { MemberCreateDto as CreateDto } from './create.dto';
-export { MemberUpdateDto as UpdateDto } from './update.dto';
-export { MemberDeleteArrayDto as DeleteArrayDto } from './delete-array.dto';
+export { MemberGetByIdDto as GetByIdDto } from './member.dto';
+export { MemberCreateDto as CreateDto } from './member.dto';
+export { MemberUpdateDto as UpdateDto } from './member.dto';
+export { MemberDeleteArrayDto as DeleteArrayDto } from './member.dto';

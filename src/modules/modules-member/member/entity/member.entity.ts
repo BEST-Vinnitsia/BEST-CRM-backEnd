@@ -1,70 +1,27 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { randomUUID } from 'crypto';
-import { ClothingSizeEnum } from '../../../../constants/enums.constant';
-import { IMember } from '../../../../interfaces/member/member.type';
+import { AtDateDto, IdDto } from '../../../../global-dto';
+import {
+    MemberAddressDto,
+    MemberAuthDto,
+    MemberBestEmailDto,
+    MemberBirthdayDto,
+    MemberMessageDto,
+    MemberNameDto,
+    MembershipDto,
+    MemberSizeDto,
+    MemberUniversityDto,
+} from '../dto/components.dto';
+import { IntersectionType } from '@nestjs/swagger';
 
-export class Member implements IMember {
-    @ApiProperty({ example: randomUUID() })
-    id: string;
-
-    @ApiProperty({ example: randomUUID() })
-    membership: string;
-
-    //
-
-    @ApiProperty()
-    login: string;
-
-    @ApiProperty()
-    password: string;
-
-    @ApiProperty()
-    bestEmail: string | null;
-
-    @ApiProperty()
-    email: string;
-
-    @ApiProperty()
-    phone: string;
-
-    @ApiProperty()
-    socialNetwork: string;
-
-    //
-
-    @ApiProperty()
-    name: string;
-
-    @ApiProperty()
-    surname: string;
-
-    @ApiProperty()
-    middleName: string;
-
-    @ApiProperty()
-    birthday: Date;
-
-    //
-
-    @ApiProperty()
-    group: string;
-
-    @ApiProperty()
-    faculty: string;
-
-    //
-
-    @ApiProperty({ enum: ClothingSizeEnum })
-    clothingSize: string | null;
-
-    @ApiProperty()
-    homeAddress: string | null;
-
-    //
-
-    @ApiProperty()
-    createdAt: Date;
-
-    @ApiProperty()
-    updatedAt: Date;
-}
+export class MemberEntity extends IntersectionType(
+    IdDto,
+    MembershipDto,
+    MemberAuthDto,
+    MemberBestEmailDto,
+    MemberMessageDto,
+    MemberNameDto,
+    MemberBirthdayDto,
+    MemberUniversityDto,
+    MemberSizeDto,
+    MemberAddressDto,
+    AtDateDto,
+) {}
