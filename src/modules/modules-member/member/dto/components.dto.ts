@@ -1,8 +1,9 @@
-import { IsDateString, IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, Matches } from 'class-validator';
+import { IsDateString, IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, IsUUID, Matches } from 'class-validator';
 import { ClothingSizeEnum, MembershipEnum } from '../../../../constants/enums.constant';
 import { Regex } from '../../../../constants/regex.constant';
 import { IsDateWithinRange } from '../../../../pipes/isDateWithinRange.pipe';
 import { ApiProperty } from '@nestjs/swagger';
+import { randomUUID } from 'crypto';
 
 export class MembershipDto {
     @ApiProperty({ enum: MembershipEnum, example: MembershipEnum.FULL })
@@ -105,4 +106,64 @@ export class MemberAddressDto {
     @IsString()
     @IsOptional()
     homeAddress: string | null;
+}
+
+//
+//
+//
+
+export class MemberCreateWithAllInfoBoardToMemberDto {
+    @ApiProperty({ example: randomUUID() })
+    @IsNotEmpty()
+    @IsString()
+    @IsUUID('4')
+    cadenceId: string;
+
+    @ApiProperty({ example: randomUUID() })
+    @IsNotEmpty()
+    @IsString()
+    @IsUUID('4')
+    boardId: string;
+}
+
+export class MemberCreateWithAllInfoCoordinatorToMemberDto {
+    @ApiProperty({ example: randomUUID() })
+    @IsNotEmpty()
+    @IsString()
+    @IsUUID('4')
+    cadenceId: string;
+
+    @ApiProperty({ example: randomUUID() })
+    @IsNotEmpty()
+    @IsString()
+    @IsUUID('4')
+    coordinatorId: string;
+}
+
+export class MemberCreateWithAllInfoCommitteeToMemberDto {
+    @ApiProperty({ example: randomUUID() })
+    @IsNotEmpty()
+    @IsString()
+    @IsUUID('4')
+    cadenceId: string;
+
+    @ApiProperty({ example: randomUUID() })
+    @IsNotEmpty()
+    @IsString()
+    @IsUUID('4')
+    committeeId: string;
+}
+
+export class MemberCreateWithAllInfoEventToMemberDto {
+    @ApiProperty({ example: randomUUID() })
+    @IsNotEmpty()
+    @IsString()
+    @IsUUID('4')
+    eventId: string;
+
+    @ApiProperty({ example: randomUUID() })
+    @IsNotEmpty()
+    @IsString()
+    @IsUUID('4')
+    responsibleId: string;
 }

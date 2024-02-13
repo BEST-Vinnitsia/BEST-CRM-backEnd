@@ -10,5 +10,6 @@ import { CommitteeModule } from '../committee/committee.module';
     imports: [PrismaModule, MemberModule, CommitteeModule, CadenceModule],
     controllers: [CommitteeToMemberController],
     providers: [CommitteeToMemberService],
+    exports: [CommitteeToMemberService],
 })
 export class CommitteeToMemberModule {}

@@ -10,5 +10,6 @@ import { CadenceModule } from '../../cadence/cadence.module';
     imports: [PrismaModule, MemberModule, BoardModule, CadenceModule],
     controllers: [BoardToMemberController],
     providers: [BoardToMemberService],
+    exports: [BoardToMemberService],
 })
 export class BoardToMemberModule {}

@@ -4,6 +4,7 @@ import { CreateDto, DeleteArrayDto, GetByIdDto, UpdateDto } from './dto';
 import { ApiCreatedResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { MemberEntity } from './entity/member.entity';
 import { HttpErrorFilter } from '../../../common/filters/http-exception.filter';
+import { MemberCreateWithAllInfoDto } from './dto/member.dto';
 
 @ApiSecurity('basic')
 @ApiTags('Member')
@@ -27,22 +28,28 @@ export class MemberController {
 
     @Get('by-id')
     @ApiCreatedResponse({ type: MemberEntity })
-    async getById(@Query() data: GetByIdDto) {
-        return await this.service.getById(data);
+    async getById(@Query() dto: GetByIdDto) {
+        return await this.service.getById(dto);
     }
 
     /* ----------------  POST  ---------------- */
     @Post('create')
     @ApiCreatedResponse({ type: MemberEntity })
-    async create(@Body() data: CreateDto) {
-        return await this.service.create(data);
+    async create(@Body() dto: CreateDto) {
+        return await this.service.create(dto);
+    }
+
+    @Post('create-with-all-info')
+    @ApiCreatedResponse()
+    async createWithAllInfo(@Body() dto: MemberCreateWithAllInfoDto) {
+        return await this.service.createWithAllInfo(dto);
     }
 
     /* ----------------  PUT  ---------------- */
     @Put('update')
     @ApiCreatedResponse({ type: MemberEntity })
-    async update(@Body() data: UpdateDto) {
-        return await this.service.update(data);
+    async update(@Body() dto: UpdateDto) {
+        return await this.service.update(dto);
     }
 
     /* ----------------  DELETE  ---------------- */

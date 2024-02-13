@@ -4,6 +4,7 @@ import {
     IMember,
     IMemberCreate,
     IMemberCreateRes,
+    IMemberCreateWithAllInfo,
     IMemberGetId,
     IMemberGetIdRes,
     IMemberGetListRes,
@@ -11,6 +12,13 @@ import {
     IMemberUpdateMembership,
 } from 'src/interfaces/member/member.type';
 import { PrismaService } from '../../prisma/prisma.service';
+import { IMemberListAllInfo } from '../../../interfaces/member/member-big-data.interface';
+import { BoardService } from '../../modules-board/board/board.service';
+import { CadenceService } from '../../cadence/cadence.service';
+import { CommitteeService } from '../../modules-committee/committee/committee.service';
+import { CoordinatorService } from '../../modules-coordinator/coordinator/coordinator.service';
+import { ResponsibleService } from '../../modules-event/responsible/responsible.service';
+import { NewEventService } from '../../modules-event/new-event/new-event.service';
 
 @Injectable()
 export class MemberService {
@@ -19,11 +27,19 @@ export class MemberService {
         IS_EXIST: 'Member is exist',
     };
 
-    constructor(private readonly prisma: PrismaService) {}
+    constructor(
+        private readonly prisma: PrismaService,
+        private readonly boardService: BoardService,
+        private readonly cadenceService: CadenceService,
+        private readonly committeeService: CommitteeService,
+        private readonly coordinatorService: CoordinatorService,
+        private readonly responsibleService: ResponsibleService,
+        private readonly newEventService: NewEventService,
+    ) {}
 
     /* ----------------  GET  ---------------- */
 
-    public async getListAllInfo() {
+    public async getListAllInfo(): Promise<IMemberListAllInfo[]> {
         return this.prisma.member.findMany({
             select: {
                 id: true,
@@ -136,6 +152,92 @@ export class MemberService {
                 homeAddress: dto.homeAddress ? dto.homeAddress : null,
             },
         });
+    }
+
+    public async createWithAllInfo(dto: IMemberCreateWithAllInfo) {
+        const member = await this.prisma.member.findUnique({
+            where: { login: dto.login },
+        });
+        if (member) throw new BadRequestException(this.errorMessages.IS_EXIST);
+
+        // CHECKS
+        const checkBoardPromise = Promise.all(
+            dto.boardToMember.map(async (item) => {
+                await this.boardService.getById({ id: item.boardId });
+                await this.cadenceService.getById({ id: item.cadenceId });
+            }),
+        );
+
+        const checkCoordinatorPromise = Promise.all(
+            dto.coordinatorToMember.map(async (item) => {
+                await this.coordinatorService.getById({ id: item.coordinatorId });
+                await this.cadenceService.getById({ id: item.cadenceId });
+            }),
+        );
+
+        const checkCommitteePromise = Promise.all(
+            dto.committeeToMember.map(async (item) => {
+                await this.committeeService.getById({ id: item.committeeId });
+                await this.cadenceService.getById({ id: item.cadenceId });
+            }),
+        );
+
+        const checkEventPromise = Promise.all(
+            dto.eventToMember.map(async (item) => {
+                const checkResp = await this.responsibleService.getById({ id: item.responsibleId });
+                const checkEvent = await this.newEventService.getById({ id: item.eventId });
+
+                if (checkResp.eventId !== checkEvent.eventId) throw new BadRequestException('event or position id in incorrect');
+            }),
+        );
+
+        await Promise.all([checkBoardPromise, checkCoordinatorPromise, checkCommitteePromise, checkEventPromise]);
+
+        // CREATE member
+        const newMember = await this.create(dto);
+        if (!newMember) throw new InternalServerErrorException();
+
+        // CREATE to member
+        const createBoardToMemberPromise = Promise.all(
+            dto.boardToMember.map(async (item) => {
+                await this.prisma.boardToMember.create({
+                    data: { memberId: newMember.id, cadenceId: item.cadenceId, boardId: item.boardId },
+                });
+            }),
+        );
+
+        const createCoordinatorToMemberPromise = Promise.all(
+            dto.coordinatorToMember.map(async (item) => {
+                await this.prisma.coordinatorToMember.create({
+                    data: { memberId: newMember.id, cadenceId: item.cadenceId, coordinatorId: item.coordinatorId },
+                });
+            }),
+        );
+
+        const createCommitteeToMemberPromise = Promise.all(
+            dto.committeeToMember.map(async (item) => {
+                await this.prisma.committeeToMember.create({
+                    data: { memberId: newMember.id, cadenceId: item.cadenceId, committeeId: item.committeeId },
+                });
+            }),
+        );
+
+        const createEventToMemberPromise = Promise.all(
+            dto.eventToMember.map(async (item) => {
+                await this.prisma.memberToEvent.create({
+                    data: {
+                        memberId: newMember.id,
+                        responsibleId: item.responsibleId,
+                        newEventId: item.eventId,
+                        excluded: false,
+                    },
+                });
+            }),
+        );
+
+        await Promise.all([createBoardToMemberPromise, createCoordinatorToMemberPromise, createCommitteeToMemberPromise, createEventToMemberPromise]);
+
+        return { message: 'add member is done' };
     }
 
     /* ----------------  PUT  ---------------- */

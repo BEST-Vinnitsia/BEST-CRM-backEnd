@@ -10,5 +10,6 @@ import { CoordinatorModule } from '../coordinator/coordinator.module';
     imports: [PrismaModule, MemberModule, CoordinatorModule, CadenceModule],
     controllers: [CoordinatorToMemberController],
     providers: [CoordinatorToMemberService],
+    exports: [CoordinatorToMemberService],
 })
 export class CoordinatorToMemberModule {}
