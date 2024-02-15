@@ -1,7 +1,7 @@
-import { AtDateDto, IdDto } from '../../../../global-dto';
+import { AtDateDto } from '../../../../global-dto';
 import {
+    IdDto,
     MemberAddressDto,
-    MemberAuthDto,
     MemberBestEmailDto,
     MemberBirthdayDto,
     MemberMessageDto,
@@ -11,17 +11,21 @@ import {
     MemberUniversityDto,
 } from '../dto/components.dto';
 import { IntersectionType } from '@nestjs/swagger';
+import { IMemberPrisma } from '../../../../interfaces/prisma';
 
-export class MemberEntity extends IntersectionType(
-    IdDto,
-    MembershipDto,
-    MemberAuthDto,
-    MemberBestEmailDto,
-    MemberMessageDto,
-    MemberNameDto,
-    MemberBirthdayDto,
-    MemberUniversityDto,
-    MemberSizeDto,
-    MemberAddressDto,
-    AtDateDto,
-) {}
+interface IMemberEntity extends Omit<IMemberPrisma, 'password' | 'login'> {}
+
+export class MemberEntity
+    extends IntersectionType(
+        IdDto,
+        MembershipDto,
+        MemberBestEmailDto,
+        MemberMessageDto,
+        MemberNameDto,
+        MemberBirthdayDto,
+        MemberUniversityDto,
+        MemberSizeDto,
+        MemberAddressDto,
+        AtDateDto,
+    )
+    implements IMemberEntity {}

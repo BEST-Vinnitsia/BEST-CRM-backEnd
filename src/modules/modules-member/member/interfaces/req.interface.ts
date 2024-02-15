@@ -11,5 +11,5 @@ export interface IUpdateReq extends Omit<IMemberPrisma, 'login' | 'password' | '
 export interface IDeleteReq extends Pick<IMemberPrisma, 'id'> {}
 
 export interface IDeleteArrayReq {
-    id: string[];
+    id: number[];
 }
