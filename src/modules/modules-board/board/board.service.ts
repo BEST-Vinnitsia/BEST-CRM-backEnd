@@ -20,6 +20,29 @@ export class BoardService {
         return board;
     }
 
+    public async byIdAllInfo(dto: IBoardGetById) {
+        const board = await this.prisma.board.findUnique({
+            where: { id: dto.id },
+            select: {
+                id: true,
+                name: true,
+                isActive: true,
+                boardToMember: {
+                    select: {
+                        id: true,
+                        excluded: true,
+                        excludedDate: true,
+                        cadence: { select: { id: true, number: true, isEnd: true } },
+                        member: { select: { id: true, name: true, surname: true } },
+                    },
+                },
+            },
+        });
+        if (!board) throw new NotFoundException('board not found');
+
+        return board;
+    }
+
     /* ----------------  POST  ---------------- */
     public async create(dto: IBoardCreate): Promise<IBoard> {
         const board = await this.prisma.board.findUnique({

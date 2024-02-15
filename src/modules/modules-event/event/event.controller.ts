@@ -6,10 +6,11 @@ import { Event } from './entity/event.entity';
 import { Claim } from 'src/common/decorators';
 import { BoardGuard } from 'src/common/guards';
 import { HttpErrorFilter } from '../../../common/filters/http-exception.filter';
+import { v1 } from '../../../constants/api-version';
 
 @ApiSecurity('basic')
 @ApiTags('Event')
-@Controller('api/v/1/event')
+@Controller(`${v1}/event`)
 export class EventController {
     constructor(private readonly service: EventService) {}
 

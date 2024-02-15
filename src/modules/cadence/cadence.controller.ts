@@ -4,10 +4,11 @@ import { CreateDto, DeleteArrayDto, GetByIdDto, UpdateDto } from './dto';
 import { ApiCreatedResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { Cadence } from './entity/cadence.entity';
 import { HttpErrorFilter } from '../../common/filters/http-exception.filter';
+import { v1 } from '../../constants/api-version';
 
 @ApiSecurity('basic')
 @ApiTags('Cadence')
-@Controller('api/v/1/cadence')
+@Controller(`${v1}/cadence`)
 export class CadenceController {
     constructor(private readonly service: CadenceService) {}
 

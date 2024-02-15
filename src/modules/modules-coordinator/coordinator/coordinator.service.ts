@@ -20,6 +20,29 @@ export class CoordinatorService {
         return coordinator;
     }
 
+    public async byIdAllInfo(dto: ICoordinatorGetById) {
+        const coordinator = await this.prisma.coordinator.findUnique({
+            where: { id: dto.id },
+            select: {
+                id: true,
+                name: true,
+                isActive: true,
+                coordinatorToMember: {
+                    select: {
+                        id: true,
+                        excluded: true,
+                        excludedDate: true,
+                        cadence: { select: { id: true, number: true, isEnd: true } },
+                        member: { select: { id: true, name: true, surname: true } },
+                    },
+                },
+            },
+        });
+        if (!coordinator) throw new NotFoundException('coordinator not found');
+
+        return coordinator;
+    }
+
     /* ----------------  POST  ---------------- */
     public async create(dto: ICoordinatorCreate): Promise<ICoordinator> {
         const coordinator = await this.prisma.coordinator.findUnique({

@@ -6,10 +6,11 @@ import { Coordinator } from './entity/coordinator.entity';
 import { Claim } from 'src/common/decorators';
 import { BoardGuard } from 'src/common/guards';
 import { HttpErrorFilter } from '../../../common/filters/http-exception.filter';
+import { v1 } from '../../../constants/api-version';
 
 @ApiSecurity('basic')
 @ApiTags('Coordinator')
-@Controller('api/v/1/coordinator')
+@Controller(`${v1}/coordinator`)
 export class CoordinatorController {
     constructor(private readonly service: CoordinatorService) {}
 
@@ -25,6 +26,12 @@ export class CoordinatorController {
     @ApiCreatedResponse({ type: Coordinator })
     async byId(@Query() dto: GetByIdDto) {
         return await this.service.getById(dto);
+    }
+
+    @Get('by-id-all-info')
+    @ApiCreatedResponse({ type: Coordinator })
+    async byIdAllInfo(@Query() dto: GetByIdDto) {
+        return await this.service.byIdAllInfo(dto);
     }
 
     /* ----------------  POST  ---------------- */

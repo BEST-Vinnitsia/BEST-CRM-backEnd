@@ -4,10 +4,11 @@ import { IncreaseEntity } from './entity/increase.entity';
 import { IncreaseService } from './increase.service';
 import { CreateDto, DeleteArrayDto, GetByIdDto, GetByMeetingIdDto, GetByMemberIdDto, UpdateDto } from './dto';
 import { HttpErrorFilter } from '../../../common/filters/http-exception.filter';
+import { v1 } from '../../../constants/api-version';
 
 @ApiSecurity('basic')
 @ApiTags('Increase')
-@Controller('api/v/1/increase')
+@Controller(`${v1}/increase`)
 export class IncreaseController {
     constructor(private readonly service: IncreaseService) {}
 

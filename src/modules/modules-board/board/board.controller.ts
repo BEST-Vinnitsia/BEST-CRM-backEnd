@@ -6,10 +6,11 @@ import { BoardGuard } from '../../../common/guards';
 import { HttpErrorFilter } from '../../../common/filters/http-exception.filter';
 import { BoardService } from './board.service';
 import { CreateDto, DeleteArrayDto, GetByIdDto, UpdateDto } from './dto';
+import { v1 } from '../../../constants/api-version';
 
 @ApiSecurity('basic')
 @ApiTags('Board')
-@Controller('api/v/1/board')
+@Controller(`${v1}/board`)
 export class BoardController {
     constructor(private readonly service: BoardService) {}
 
@@ -25,6 +26,12 @@ export class BoardController {
     @ApiCreatedResponse({ type: Board })
     async byId(@Query() dto: GetByIdDto) {
         return await this.service.getById(dto);
+    }
+
+    @Get('by-id-all-info')
+    @ApiCreatedResponse()
+    async byIdAllInfo(@Query() dto: GetByIdDto) {
+        return await this.service.byIdAllInfo(dto);
     }
 
     /* ----------------  POST  ---------------- */

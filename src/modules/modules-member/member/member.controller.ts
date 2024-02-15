@@ -5,10 +5,11 @@ import { ApiCreatedResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { MemberEntity } from './entity/member.entity';
 import { HttpErrorFilter } from '../../../common/filters/http-exception.filter';
 import { MemberCreateWithAllInfoDto } from './dto/member.dto';
+import { v1 } from '../../../constants/api-version';
 
 @ApiSecurity('basic')
 @ApiTags('Member')
-@Controller('api/v/1/member')
+@Controller(`${v1}/member`)
 export class MemberController {
     constructor(private readonly service: MemberService) {}
 
@@ -30,6 +31,12 @@ export class MemberController {
     @ApiCreatedResponse({ type: MemberEntity })
     async getById(@Query() dto: GetByIdDto) {
         return await this.service.getById(dto);
+    }
+
+    @Get('by-id-all-info')
+    @ApiCreatedResponse()
+    async getByIdAllInfo(@Query() dto: GetByIdDto) {
+        return await this.service.getByIdAllInfo(dto);
     }
 
     /* ----------------  POST  ---------------- */

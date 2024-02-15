@@ -6,10 +6,11 @@ import { Responsible } from './entity/responsible.entity';
 import { Claim } from 'src/common/decorators';
 import { BoardGuard } from 'src/common/guards';
 import { HttpErrorFilter } from '../../../common/filters/http-exception.filter';
+import { v1 } from '../../../constants/api-version';
 
 @ApiSecurity('basic')
 @ApiTags('Responsible')
-@Controller('api/v/1/responsible')
+@Controller(`${v1}/responsible`)
 export class ResponsibleController {
     constructor(private readonly service: ResponsibleService) {}
 

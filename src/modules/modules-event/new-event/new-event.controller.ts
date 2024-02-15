@@ -6,10 +6,11 @@ import { NewEvent } from './entity/new-event.entity';
 import { Claim } from 'src/common/decorators';
 import { BoardGuard } from 'src/common/guards';
 import { HttpErrorFilter } from '../../../common/filters/http-exception.filter';
+import { v1 } from '../../../constants/api-version';
 
 @ApiSecurity('basic')
 @ApiTags('New event')
-@Controller('api/v/1/new-event')
+@Controller(`${v1}/new-event`)
 export class NewEventController {
     constructor(private readonly service: NewEventService) {}
 

@@ -4,10 +4,11 @@ import { ApiCreatedResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { BoardToMember } from './entity/board-to-member.entity';
 import { HttpErrorFilter } from '../../../common/filters/http-exception.filter';
 import { CreateDto, DeleteArrayDto, GetByBoardIdDto, GetByCadenceIdDto, GetByIdDto, GetByMemberIdDto, UpdateDto } from './dto';
+import { v1 } from '../../../constants/api-version';
 
 @ApiSecurity('basic')
 @ApiTags('Board to member')
-@Controller('api/v/1/board-to-member')
+@Controller(`${v1}/board-to-member`)
 export class BoardToMemberController {
     constructor(private readonly service: BoardToMemberService) {}
 

@@ -6,10 +6,11 @@ import { MemberToEvent } from './entity/member-to-event.entity';
 import { Claim } from 'src/common/decorators';
 import { BoardGuard } from 'src/common/guards';
 import { HttpErrorFilter } from '../../../common/filters/http-exception.filter';
+import { v1 } from '../../../constants/api-version';
 
 @ApiSecurity('basic')
 @ApiTags('Member to event')
-@Controller('api/v/1/member-to-event')
+@Controller(`${v1}/member-to-event`)
 export class MemberToEventController {
     constructor(private readonly service: MemberToEventService) {}
 

@@ -5,9 +5,10 @@ import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
 import { CheckTokenForUpdateGuard, CheckTokenGuard, RtGuard } from 'src/common/guards';
 import { GetTokenPayload, Public } from 'src/common/decorators';
 import { IAccessToken, IRefreshToken } from 'src/interfaces/secure/token.interface';
+import { v1 } from '../../constants/api-version';
 
 @ApiTags('Auth')
-@Controller('api/v/1/auth')
+@Controller(`${v1}/auth`)
 export class AuthController {
     constructor(private readonly authService: AuthService) {}
 

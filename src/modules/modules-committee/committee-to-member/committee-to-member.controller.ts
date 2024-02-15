@@ -4,10 +4,11 @@ import { CreateDto, DeleteArrayDto, GetByCadenceIdDto, GetByCommitteeIdDto, GetB
 import { ApiCreatedResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { CommitteeToMember } from './entity/committee-to-member.entity';
 import { HttpErrorFilter } from '../../../common/filters/http-exception.filter';
+import { v1 } from '../../../constants/api-version';
 
 @ApiSecurity('basic')
 @ApiTags('Committee to member')
-@Controller('api/v/1/committee-to-member')
+@Controller(`${v1}/committee-to-member`)
 export class CommitteeToMemberController {
     constructor(private readonly service: CommitteeToMemberService) {}
 

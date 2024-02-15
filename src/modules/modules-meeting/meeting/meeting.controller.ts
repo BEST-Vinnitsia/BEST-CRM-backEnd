@@ -4,10 +4,11 @@ import { MeetingEntity } from './entity/meeting.entity';
 import { MeetingService } from './meeting.service';
 import { CreateDto, DeleteArrayDto, GetByCadenceIdDto, GetByIdDto, UpdateDto } from './dto';
 import { HttpErrorFilter } from '../../../common/filters/http-exception.filter';
+import { v1 } from '../../../constants/api-version';
 
 @ApiSecurity('basic')
 @ApiTags('Meeting')
-@Controller('api/v/1/meeting')
+@Controller(`${v1}/meeting`)
 export class MeetingController {
     constructor(private readonly service: MeetingService) {}
 

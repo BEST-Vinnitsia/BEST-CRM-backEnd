@@ -6,10 +6,11 @@ import { Committee } from './entity/committee.entity';
 import { Claim } from '../../../common/decorators';
 import { BoardGuard } from '../../../common/guards';
 import { HttpErrorFilter } from '../../../common/filters/http-exception.filter';
+import { v1 } from '../../../constants/api-version';
 
 @ApiSecurity('basic')
 @ApiTags('Committee')
-@Controller('api/v/1/committee')
+@Controller(`${v1}/committee`)
 export class CommitteeController {
     constructor(private readonly service: CommitteeService) {}
 
@@ -25,6 +26,12 @@ export class CommitteeController {
     @ApiCreatedResponse({ type: Committee })
     async byId(@Query() dto: GetByIdDto) {
         return await this.service.getById(dto);
+    }
+
+    @Get('by-id-all-info')
+    @ApiCreatedResponse({ type: Committee })
+    async byIdAllInfo(@Query() dto: GetByIdDto) {
+        return await this.service.byIdAllInfo(dto);
     }
 
     /* ----------------  POST  ---------------- */

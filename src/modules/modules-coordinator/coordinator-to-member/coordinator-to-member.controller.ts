@@ -4,10 +4,11 @@ import { CreateDto, DeleteArrayDto, GetByCadenceIdDto, GetByCoordinatorIdDto, Ge
 import { ApiCreatedResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { CoordinatorToMember } from './entity/coordinator-to-member.entity';
 import { HttpErrorFilter } from '../../../common/filters/http-exception.filter';
+import { v1 } from '../../../constants/api-version';
 
 @ApiSecurity('basic')
 @ApiTags('Coordinator to member')
-@Controller('api/v/1/coordinator-to-member')
+@Controller(`${v1}/coordinator-to-member`)
 export class CoordinatorToMemberController {
     constructor(private readonly coordinatorToMemberService: CoordinatorToMemberService) {}
 

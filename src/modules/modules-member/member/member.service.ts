@@ -104,6 +104,62 @@ export class MemberService {
         return member;
     }
 
+    public async getByIdAllInfo(dto: IMemberGetId) {
+        const member = await this.prisma.member.findUnique({
+            where: { id: dto.id },
+            select: {
+                id: true,
+                name: true,
+                surname: true,
+                bestEmail: true,
+                membership: true,
+                email: true,
+                phone: true,
+                socialNetwork: true,
+                group: true,
+                faculty: true,
+                birthday: true,
+                boardToMember: {
+                    select: {
+                        id: true,
+                        cadence: { select: { id: true, number: true, isEnd: true } },
+                        board: { select: { id: true, name: true, isActive: true } },
+                    },
+                },
+                coordinatorToMember: {
+                    select: {
+                        id: true,
+                        cadence: { select: { id: true, number: true, isEnd: true } },
+                        coordinator: { select: { id: true, name: true, isActive: true } },
+                    },
+                },
+                committeeToMember: {
+                    select: {
+                        id: true,
+                        cadence: { select: { id: true, number: true, isEnd: true } },
+                        committee: { select: { id: true, name: true, isActive: true } },
+                    },
+                },
+                memberToEvent: {
+                    select: {
+                        id: true,
+                        newEvent: {
+                            select: {
+                                id: true,
+                                event: { select: { id: true, name: true, isActive: true } },
+                                cadence: { select: { id: true, number: true, isEnd: true } },
+                            },
+                        },
+                        responsible: { select: { id: true, name: true, isActive: true, role: true } },
+                    },
+                },
+            },
+        });
+        if (!member) throw new NotFoundException(this.errorMessages.NOT_FOUND);
+
+        return member;
+    }
+
     public async getByIdNoHaveError(dto: IMemberGetId): Promise<IMemberGetIdRes> {
         return this.prisma.member.findUnique({
             where: { id: dto.id },

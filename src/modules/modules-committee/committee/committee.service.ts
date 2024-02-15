@@ -20,6 +20,30 @@ export class CommitteeService {
         return committee;
     }
 
+    public async byIdAllInfo(dto: ICommitteeGetById) {
+        const committee = await this.prisma.committee.findUnique({
+            where: { id: dto.id },
+            select: {
+                id: true,
+                name: true,
+                isActive: true,
+                committeeToMember: {
+                    select: {
+                        id: true,
+                        isLeader: true,
+                        excluded: true,
+                        excludedDate: true,
+                        cadence: { select: { id: true, number: true, isEnd: true } },
+                        member: { select: { id: true, name: true, surname: true } },
+                    },
+                },
+            },
+        });
+        if (!committee) throw new NotFoundException('committee not found');
+
+        return committee;
+    }
+
     /* ----------------  POST  ---------------- */
     public async create(dto: ICommitteeCreate): Promise<ICommittee> {
         const committee = await this.prisma.committee.findUnique({
