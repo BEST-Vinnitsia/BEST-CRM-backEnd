@@ -10,12 +10,15 @@ import {
     MemberSizeDto,
     MemberUniversityDto,
 } from '../dto/components.dto';
-import { IntersectionType } from '@nestjs/swagger';
-import { IMemberPrisma } from '../../../../interfaces/prisma';
+import { ApiProperty, IntersectionType } from '@nestjs/swagger';
+import { ICreateRes, IDeleteArrayRes, IGetByIdRes, IGetListRes } from '../interfaces/res.interface';
 
-interface IMemberEntity extends Omit<IMemberPrisma, 'password' | 'login'> {}
+/* ----------------  GET  ---------------- */
+export class MemberGetListEntity
+    extends IntersectionType(IdDto, MembershipDto, MemberBestEmailDto, MemberMessageDto, MemberNameDto, MemberBirthdayDto, MemberUniversityDto)
+    implements IGetListRes {}
 
-export class MemberEntity
+export class MemberGetByIdEntity
     extends IntersectionType(
         IdDto,
         MembershipDto,
@@ -28,4 +31,16 @@ export class MemberEntity
         MemberAddressDto,
         AtDateDto,
     )
-    implements IMemberEntity {}
+    implements IGetByIdRes {}
+
+/* ----------------  POST  ---------------- */
+/* ----------------  PUT  ---------------- */
+
+/* ----------------  DELETE  ---------------- */
+export class MemberIdEntity extends IntersectionType(IdDto) implements ICreateRes {}
+
+/* ----------------  DELETE  ---------------- */
+export class MemberDeleteArrayEntity implements IDeleteArrayRes {
+    @ApiProperty()
+    count: number;
+}
