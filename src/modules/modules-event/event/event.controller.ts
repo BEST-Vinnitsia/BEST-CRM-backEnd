@@ -28,6 +28,12 @@ export class EventController {
         return await this.service.getById(dto);
     }
 
+    @Get('by-id-all-info')
+    @ApiCreatedResponse()
+    async byIdAllInfo(@Query() dto: GetByIdDto) {
+        return await this.service.byIdAllInfo(dto);
+    }
+
     /* ----------------  POST  ---------------- */
     @Claim(['demo'])
     @UseGuards(BoardGuard)

@@ -20,6 +20,34 @@ export class EventService {
         return event;
     }
 
+    public async byIdAllInfo(dto: IEventGetById) {
+        const event = await this.prisma.event.findUnique({
+            where: { id: dto.id },
+            select: {
+                name: true,
+                isActive: true,
+                newEvent: {
+                    select: {
+                        id: true,
+                        cadence: { select: { id: true, number: true } },
+                        memberToEvent: {
+                            select: {
+                                id: true,
+                                excluded: true,
+                                excludedDate: true,
+                                member: { select: { id: true, name: true, surname: true } },
+                                responsible: { select: { id: true, name: true, role: true } },
+                            },
+                        },
+                    },
+                },
+            },
+        });
+        if (!event) throw new NotFoundException('event not found');
+
+        return event;
+    }
+
     /* ----------------  POST  ---------------- */
     public async create(dto: IEventCreate): Promise<IEvent> {
         const event = await this.prisma.event.findFirst({
