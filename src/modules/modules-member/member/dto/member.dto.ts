@@ -77,6 +77,46 @@ export class MemberCreateWithAllInfoDto extends IntersectionType(
     eventToMember: MemberCreateWithAllInfoEventToMemberDto[];
 }
 
+export class MemberUpdateWithAllInfoDto extends IntersectionType(
+    IdDto,
+    MembershipDto,
+    MemberBestEmailDto,
+    MemberMessageDto,
+    MemberNameDto,
+    MemberBirthdayDto,
+    MemberUniversityDto,
+    MemberSizeDto,
+    MemberAddressDto,
+) {
+    @ApiProperty({ type: [MemberCreateWithAllInfoBoardToMemberDto] })
+    @ValidateNested({ each: true })
+    @IsArray()
+    @IsNotEmpty()
+    @Type(() => MemberCreateWithAllInfoBoardToMemberDto)
+    boardToMember: MemberCreateWithAllInfoBoardToMemberDto[];
+
+    @ApiProperty({ type: [MemberCreateWithAllInfoCoordinatorToMemberDto] })
+    @ValidateNested({ each: true })
+    @IsArray()
+    @IsNotEmpty()
+    @Type(() => MemberCreateWithAllInfoCoordinatorToMemberDto)
+    coordinatorToMember: MemberCreateWithAllInfoCoordinatorToMemberDto[];
+
+    @ApiProperty({ type: [MemberCreateWithAllInfoCommitteeToMemberDto] })
+    @ValidateNested({ each: true })
+    @IsArray()
+    @IsNotEmpty()
+    @Type(() => MemberCreateWithAllInfoCommitteeToMemberDto)
+    committeeToMember: MemberCreateWithAllInfoCommitteeToMemberDto[];
+
+    @ApiProperty({ type: [MemberCreateWithAllInfoEventToMemberDto] })
+    @ValidateNested({ each: true })
+    @IsArray()
+    @IsNotEmpty()
+    @Type(() => MemberCreateWithAllInfoEventToMemberDto)
+    eventToMember: MemberCreateWithAllInfoEventToMemberDto[];
+}
+
 /* ----------- PUT ----------- */
 export class MemberUpdateDto extends IntersectionType(
     IdDto,

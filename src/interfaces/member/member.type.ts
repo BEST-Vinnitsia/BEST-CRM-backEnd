@@ -54,6 +54,25 @@ export interface IMemberCreateWithAllInfo extends Omit<IMember, 'id' | 'createdA
     }[];
 }
 
+export interface IMemberUpdateWithAllInfo extends Omit<IMember, 'login' | 'password' | 'createdAt' | 'updatedAt'> {
+    boardToMember: {
+        boardId: string;
+        cadenceId: string;
+    }[];
+    coordinatorToMember: {
+        coordinatorId: string;
+        cadenceId: string;
+    }[];
+    committeeToMember: {
+        committeeId: string;
+        cadenceId: string;
+    }[];
+    eventToMember: {
+        eventId: string;
+        responsibleId: string;
+    }[];
+}
+
 export interface IMemberCreateRes extends IMember {}
 
 export interface IMemberUpdate extends Omit<IMember, 'login' | 'password' | 'createdAt' | 'updatedAt'> {}

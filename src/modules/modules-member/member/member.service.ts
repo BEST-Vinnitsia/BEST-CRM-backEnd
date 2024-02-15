@@ -10,6 +10,7 @@ import {
     IMemberGetListRes,
     IMemberUpdate,
     IMemberUpdateMembership,
+    IMemberUpdateWithAllInfo,
 } from 'src/interfaces/member/member.type';
 import { PrismaService } from '../../prisma/prisma.service';
 import { IMemberListAllInfo } from '../../../interfaces/member/member-big-data.interface';
@@ -325,6 +326,110 @@ export class MemberService {
                 homeAddress: dto.homeAddress ? dto.homeAddress : null,
             },
         });
+    }
+
+    public async updateAllInfo(dto: IMemberUpdateWithAllInfo) {
+        // CHECK
+        const getMemberPromise = this.prisma.member.findUnique({ where: { id: dto.id } });
+        const getBoardToMemberListPromise = this.prisma.boardToMember.findMany({ where: { memberId: dto.id } });
+        const getCoordinatorToMemberListPromise = this.prisma.coordinatorToMember.findMany({ where: { memberId: dto.id } });
+        const getCommitteeToMemberListPromise = this.prisma.committeeToMember.findMany({ where: { memberId: dto.id } });
+        const getMemberToEventListPromise = this.prisma.memberToEvent.findMany({ where: { memberId: dto.id } });
+
+        const [
+            member, //
+            boardToMemberList,
+            coordinatorToMemberList,
+            committeeToMemberList,
+            memberToEventList,
+        ] = await Promise.all([
+            getMemberPromise,
+            getBoardToMemberListPromise,
+            getCoordinatorToMemberListPromise,
+            getCommitteeToMemberListPromise,
+            getMemberToEventListPromise,
+        ]);
+
+        if (!member) throw new NotFoundException(this.errorMessages.NOT_FOUND);
+
+        const boardToMemberFilter = boardToMemberList.filter(
+            (item) => !dto.boardToMember.some((d) => item.cadenceId === d.cadenceId && item.boardId === d.boardId),
+        );
+        const coordinatorToMemberFilter = coordinatorToMemberList.filter(
+            (item) => !dto.coordinatorToMember.some((d) => item.cadenceId === d.cadenceId && item.coordinatorId === d.coordinatorId),
+        );
+        const committeeToMemberFilter = committeeToMemberList.filter(
+            (item) => !dto.committeeToMember.some((d) => item.cadenceId === d.cadenceId && item.committeeId === d.committeeId),
+        );
+        const memberToEventFilter = memberToEventList.filter(
+            (item) => !dto.eventToMember.some((d) => item.newEventId === d.eventId && item.responsibleId === d.responsibleId),
+        );
+
+        // DELETE
+        const boardToMemberDeletePromise = this.prisma.boardToMember.deleteMany({ where: { id: { in: boardToMemberFilter.map((i) => i.id) } } });
+        const coordinatorToMemberDeletePromise = this.prisma.coordinatorToMember.deleteMany({
+            where: { id: { in: coordinatorToMemberFilter.map((i) => i.id) } },
+        });
+        const committeeToMemberDeletePromise = this.prisma.committeeToMember.deleteMany({
+            where: { id: { in: committeeToMemberFilter.map((i) => i.id) } },
+        });
+        const memberToEventDeletePromise = this.prisma.memberToEvent.deleteMany({ where: { id: { in: memberToEventFilter.map((i) => i.id) } } });
+
+        await Promise.all([boardToMemberDeletePromise, coordinatorToMemberDeletePromise, committeeToMemberDeletePromise, memberToEventDeletePromise]);
+
+        // ADD
+
+        const boardToMemberFilterDto = dto.boardToMember.filter(
+            (item) => !boardToMemberList.some((d) => item.cadenceId === d.cadenceId && item.boardId === d.boardId),
+        );
+        const coordinatorToMemberFilterDto = dto.coordinatorToMember.filter(
+            (item) => !coordinatorToMemberList.some((d) => item.cadenceId === d.cadenceId && item.coordinatorId === d.coordinatorId),
+        );
+        const committeeToMemberFilterDto = dto.committeeToMember.filter(
+            (item) => !committeeToMemberList.some((d) => item.cadenceId === d.cadenceId && item.committeeId === d.committeeId),
+        );
+        const memberToEventFilterDto = dto.eventToMember.filter(
+            (item) => !memberToEventList.some((d) => item.eventId === d.newEventId && item.responsibleId === d.responsibleId),
+        );
+
+        const boardToMemberCreatePromise = Promise.all(
+            boardToMemberFilterDto.map((i) =>
+                this.prisma.boardToMember.create({
+                    data: { boardId: i.boardId, cadenceId: i.cadenceId, excluded: false, memberId: dto.id },
+                }),
+            ),
+        );
+        const coordinatorToMemberCreatePromise = Promise.all(
+            coordinatorToMemberFilterDto.map((i) =>
+                this.prisma.coordinatorToMember.create({
+                    data: { coordinatorId: i.coordinatorId, cadenceId: i.cadenceId, excluded: false, memberId: dto.id },
+                }),
+            ),
+        );
+        const committeeToMemberCreatePromise = Promise.all(
+            committeeToMemberFilterDto.map((i) =>
+                this.prisma.committeeToMember.create({
+                    data: { committeeId: i.committeeId, cadenceId: i.cadenceId, excluded: false, memberId: dto.id },
+                }),
+            ),
+        );
+        const memberToEventCreatePromise = Promise.all(
+            memberToEventFilterDto.map((i) =>
+                this.prisma.memberToEvent.create({
+                    data: { newEventId: i.eventId, responsibleId: i.responsibleId, excluded: false, memberId: dto.id },
+                }),
+            ),
+        );
+
+        const res = await Promise.all([
+            boardToMemberCreatePromise,
+            coordinatorToMemberCreatePromise,
+            committeeToMemberCreatePromise,
+            memberToEventCreatePromise,
+        ]);
+        console.log(res);
+
+        return { message: 'Member update is done' };
     }
 
     public async updateMembership({ id, membership }: IMemberUpdateMembership): Promise<IMember> {

@@ -4,7 +4,7 @@ import { CreateDto, DeleteArrayDto, GetByIdDto, UpdateDto } from './dto';
 import { ApiCreatedResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { MemberEntity } from './entity/member.entity';
 import { HttpErrorFilter } from '../../../common/filters/http-exception.filter';
-import { MemberCreateWithAllInfoDto } from './dto/member.dto';
+import { MemberCreateWithAllInfoDto, MemberUpdateWithAllInfoDto } from './dto/member.dto';
 import { v1 } from '../../../constants/api-version';
 
 @ApiSecurity('basic')
@@ -57,6 +57,12 @@ export class MemberController {
     @ApiCreatedResponse({ type: MemberEntity })
     async update(@Body() dto: UpdateDto) {
         return await this.service.update(dto);
+    }
+
+    @Put('update-all-info')
+    @ApiCreatedResponse({ type: MemberEntity })
+    async updateAllInfo(@Body() dto: MemberUpdateWithAllInfoDto) {
+        return await this.service.updateAllInfo(dto);
     }
 
     /* ----------------  DELETE  ---------------- */
