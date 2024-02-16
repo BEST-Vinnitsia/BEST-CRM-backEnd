@@ -1,90 +1,107 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-import {
-    IResponsible,
-    IResponsibleCreate,
-    IResponsibleGetByEventId,
-    IResponsibleGetById,
-    IResponsibleUpdate,
-} from 'src/interfaces/event/responsible.interface';
+import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
-import { EventService } from '../event/event.service';
+import { ICreateRes, IDeleteArrayRes, IDeleteRes, IGetByIdRes, IGetListRes, IUpdateRes } from './interfaces/res.interface';
+import { ICreateReq, IDeleteReq, IGetByIdReq, IUpdateReq } from './interfaces/req.interface';
+
+interface IResponsibleService {
+    getList(): Promise<IGetListRes[]>;
+
+    getById(dto: IGetByIdReq): Promise<IGetByIdRes>;
+
+    create(dto: ICreateReq): Promise<ICreateRes>;
+
+    update(dto: IUpdateReq): Promise<IUpdateRes>;
+
+    deleteById(dto: IDeleteReq): Promise<IDeleteRes>;
+
+    deleteArray(dto: number[]): Promise<IDeleteArrayRes>;
+}
 
 @Injectable()
-export class ResponsibleService {
-    constructor(
-        private readonly prisma: PrismaService,
-        private readonly eventService: EventService,
-    ) {}
+export class ResponsibleService implements IResponsibleService {
+    constructor(private readonly prisma: PrismaService) {}
 
     /* ----------------  GET  ---------------- */
-    public async getList(): Promise<IResponsible[]> {
-        return this.prisma.responsible.findMany();
+    public async getList(): Promise<IGetListRes[]> {
+        return this.prisma.responsible.findMany({
+            select: {
+                id: true,
+                isActive: true,
+                name: true,
+                fullName: true,
+                role: true,
+                description: true,
+                eventId: true,
+            },
+        });
     }
 
-    public async getById(dto: IResponsibleGetById): Promise<IResponsible> {
-        const responsible = await this.prisma.responsible.findUnique({
-            where: { id: dto.id },
-        });
-        if (!responsible) throw new NotFoundException('responsible not found');
+    public async getById(dto: IGetByIdReq): Promise<IGetByIdRes> {
+        const responsible = await this.prisma.responsible.findUnique({ where: { id: dto.id } });
+        if (!responsible) throw new NotFoundException('Responsible not found');
 
         return responsible;
     }
 
-    public async getByEventId(dto: IResponsibleGetByEventId): Promise<IResponsible[]> {
-        return this.prisma.responsible.findMany({
-            where: { eventId: dto.eventId },
-        });
-    }
-
     /* ----------------  POST  ---------------- */
-    public async create(dto: IResponsibleCreate): Promise<IResponsible> {
+    public async create(dto: ICreateReq): Promise<ICreateRes> {
         const responsible = await this.prisma.responsible.findFirst({
-            where: {
-                eventId: dto.eventId,
-                name: dto.name.toLocaleLowerCase(),
-                role: dto.role.toLocaleLowerCase(),
-            },
+            where: { eventId: dto.eventId, name: dto.name, role: dto.role },
         });
-        if (responsible) throw new BadRequestException('responsible is exist');
+        if (responsible) throw new BadRequestException('Responsible with this params is exist');
 
-        await this.eventService.getById({ id: dto.eventId });
-
-        return this.prisma.responsible.create({
+        const responsibleCreate = await this.prisma.responsible.create({
             data: {
                 eventId: dto.eventId,
-                name: dto.name.toLocaleLowerCase(),
+                name: dto.name,
+                fullName: dto.fullName,
                 isActive: dto.isActive,
-                role: dto.role.toLocaleLowerCase(),
+                role: dto.role,
                 description: dto.description,
             },
         });
+
+        return { id: responsibleCreate.id };
     }
 
     /* ----------------  PUT  ---------------- */
-    public async update(dto: IResponsibleUpdate): Promise<IResponsible> {
-        const responsible = await this.prisma.responsible.findUnique({
-            where: { id: dto.id },
-        });
-        if (!responsible) throw new NotFoundException('responsible is not exist');
+    public async update(dto: IUpdateReq): Promise<IUpdateRes> {
+        const responsibleById = await this.prisma.responsible.findUnique({ where: { id: dto.id } });
+        if (!responsibleById) throw new NotFoundException('Responsible is not found');
 
-        await this.eventService.getById({ id: dto.eventId });
-
-        return this.prisma.responsible.update({
+        const responsibleUpdate = await this.prisma.responsible.update({
             where: { id: dto.id },
             data: {
                 eventId: dto.eventId,
-                name: dto.name.toLocaleLowerCase(),
+                name: dto.name,
+                fullName: dto.fullName,
                 isActive: dto.isActive,
-                role: dto.role.toLocaleLowerCase(),
+                role: dto.role,
                 description: dto.description,
             },
         });
+
+        return { id: responsibleUpdate.id };
     }
 
     /* ----------------  DELETE  ---------------- */
-    public async delete(dto: string[]) {
-        return this.prisma.responsible.deleteMany({
-            where: { id: { in: dto } },
-        });
+    public async deleteById(dto: IDeleteReq): Promise<IDeleteRes> {
+        const responsible = await this.prisma.responsible.findUnique({ where: { id: dto.id } });
+        if (!responsible) throw new NotFoundException('Responsible is not found');
+
+        try {
+            const deleteResponsible = await this.prisma.responsible.delete({ where: { id: dto.id } });
+            return { id: deleteResponsible.id };
+        } catch (err) {
+            throw new InternalServerErrorException('Error delete responsible');
+        }
+    }
+
+    public async deleteArray(dto: number[]): Promise<IDeleteArrayRes> {
+        try {
+            return this.prisma.responsible.deleteMany({ where: { id: { in: dto } } });
+        } catch (err) {
+            throw new InternalServerErrorException('Error delete all responsibles');
+        }
     }
 }
