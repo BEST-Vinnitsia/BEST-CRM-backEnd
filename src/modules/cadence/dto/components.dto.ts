@@ -1,25 +1,28 @@
 import { IsBoolean, IsDateString, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { ICadenceCreate } from 'src/interfaces/cadence.interface';
 
-export class CadenceCreateDto implements ICadenceCreate {
+export class CadenceNumberDto {
     @ApiProperty()
     @IsNotEmpty()
     @IsNumber()
     number: number;
+}
 
-    @ApiProperty()
-    @IsNotEmpty()
-    @IsDateString()
-    startDate: Date;
-
+export class CadenceIsEndDto {
     @ApiProperty()
     @IsNotEmpty()
     @IsBoolean()
     isEnd: boolean;
+}
 
-    @ApiProperty()
+export class CadenceDateDto {
+    @ApiProperty({ example: new Date('2000-01-01') })
     @IsDateString()
     @IsOptional()
-    endDate: Date | null;
+    startDate: Date;
+
+    @ApiProperty({ example: new Date('2000-01-01') })
+    @IsDateString()
+    @IsOptional()
+    endDate: Date
 }

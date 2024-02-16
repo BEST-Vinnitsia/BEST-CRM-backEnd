@@ -1,6 +1,5 @@
 import { ApiProperty, IntersectionType } from '@nestjs/swagger';
 import {
-    IdDto,
     MemberAddressDto,
     MemberAuthDto,
     MemberBestEmailDto,
@@ -13,6 +12,7 @@ import {
 } from './components.dto';
 import { IsArray, IsNotEmpty, IsNumber } from 'class-validator';
 import { ICreateReq, IDeleteArrayReq, IDeleteReq, IGetByIdReq, IUpdateReq } from '../interfaces/req.interface';
+import { IdDto } from '../../../../global-dto';
 
 /* ----------- GET ----------- */
 export class MemberGetByIdDto extends IntersectionType(IdDto) implements IGetByIdReq {}

@@ -1,15 +1,8 @@
-import { IsDateString, IsEmail, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString, Matches } from 'class-validator';
+import { IsDateString, IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, Matches } from 'class-validator';
 import { ClothingSizeEnum, MembershipEnum } from '../../../../constants/enums.constant';
 import { Regex } from '../../../../constants/regex.constant';
 import { IsDateWithinRange } from '../../../../pipes/isDateWithinRange.pipe';
 import { ApiProperty } from '@nestjs/swagger';
-
-export class IdDto {
-    @ApiProperty()
-    @IsNotEmpty()
-    @IsNumber()
-    id: number;
-}
 
 export class MembershipDto {
     @ApiProperty({ enum: MembershipEnum, example: MembershipEnum.FULL })
