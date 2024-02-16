@@ -1,13 +1,12 @@
 import { Body, Controller, Delete, Get, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { CommitteeService } from './committee.service';
-import { CreateDto, DeleteArrayDto, GetByIdDto, UpdateDto } from './dto';
+import { CreateDto, DeleteArrayDto, DeleteDto, GetByIdDto, UpdateDto } from './dto';
 import { ApiCreatedResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { CreateEntity, DeleteArrayEntity, DeleteEntity, GetByIdEntity, GetListEntity, UpdateEntity } from './entity';
 import { Claim } from '../../../common/decorators';
 import { BoardGuard } from '../../../common/guards';
 import { v1 } from '../../../constants/api-version';
 import { ICreateRes, IDeleteArrayRes, IDeleteRes, IGetByIdRes, IGetListRes, IUpdateRes } from './interfaces/res.interface';
-import { DeleteDto } from '../../modules-board/board/dto';
 
 interface ICommitteeController {
     getList(): Promise<IGetListRes[]>;
