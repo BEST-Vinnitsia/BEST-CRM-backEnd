@@ -9,7 +9,7 @@ export class EventIdDto_c {
 }
 
 export class NameDto_c {
-    @ApiProperty({ example: 'MO' })
+    @ApiProperty({ example: 'MO | FR | HR | Food ...' })
     @IsNotEmpty()
     @IsString()
     name: string;

@@ -1,11 +1,12 @@
 import { ApiProperty, IntersectionType } from '@nestjs/swagger';
 import { DescriptionDto_c, EventIdDto_c, IsActiveDto_c, NameDto_c, RoleDto_c } from './components.dto';
 import { IsArray, IsNotEmpty, IsNumber } from 'class-validator';
-import { ICreateReq, IDeleteArrayReq, IDeleteReq, IGetByIdReq, IUpdateReq } from '../interfaces/req.interface';
+import { ICreateReq, IDeleteArrayReq, IDeleteReq, IGetByEventIdReq, IGetByIdReq, IUpdateReq } from '../interfaces/req.interface';
 import { IdDto_c } from '../../../../global-dto';
 
 /* ----------- GET ----------- */
 export class ResponsibleGetByIdDto extends IntersectionType(IdDto_c) implements IGetByIdReq {}
+export class ResponsibleGetEventByIdDto extends IntersectionType(EventIdDto_c) implements IGetByEventIdReq {}
 
 /* ----------- POST ----------- */
 export class ResponsibleCreateDto

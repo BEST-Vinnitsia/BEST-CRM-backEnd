@@ -3,6 +3,7 @@ import { IResponsiblePrisma } from '../../../../interfaces/prisma';
 export interface IGetListReq {}
 
 export interface IGetByIdReq extends Pick<IResponsiblePrisma, 'id'> {}
+export interface IGetByEventIdReq extends Pick<IResponsiblePrisma, 'eventId'> {}
 
 export interface ICreateReq extends Omit<IResponsiblePrisma, 'id' | 'createdAt' | 'updatedAt'> {}
 

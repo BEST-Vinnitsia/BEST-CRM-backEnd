@@ -1,12 +1,14 @@
 import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
-import { ICreateRes, IDeleteArrayRes, IDeleteRes, IGetByIdRes, IGetListRes, IUpdateRes } from './interfaces/res.interface';
-import { ICreateReq, IDeleteReq, IGetByIdReq, IUpdateReq } from './interfaces/req.interface';
+import { ICreateRes, IDeleteArrayRes, IDeleteRes, IGetByEventIdRes, IGetByIdRes, IGetListRes, IUpdateRes } from './interfaces/res.interface';
+import { ICreateReq, IDeleteReq, IGetByEventIdReq, IGetByIdReq, IUpdateReq } from './interfaces/req.interface';
 
 interface IResponsibleService {
     getList(): Promise<IGetListRes[]>;
 
     getById(dto: IGetByIdReq): Promise<IGetByIdRes>;
+
+    getByEventId(dto: IGetByEventIdReq): Promise<IGetByEventIdRes[]>;
 
     create(dto: ICreateReq): Promise<ICreateRes>;
 
@@ -41,6 +43,10 @@ export class ResponsibleService implements IResponsibleService {
         if (!responsible) throw new NotFoundException('Responsible not found');
 
         return responsible;
+    }
+
+    public async getByEventId(dto: IGetByEventIdReq): Promise<IGetByEventIdRes[]> {
+        return this.prisma.responsible.findMany({ where: { eventId: dto.eventId } });
     }
 
     /* ----------------  POST  ---------------- */
