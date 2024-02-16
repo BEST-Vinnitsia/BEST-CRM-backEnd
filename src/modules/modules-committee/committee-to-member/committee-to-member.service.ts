@@ -1,108 +1,143 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-import {
-    ICommitteeToMember,
-    ICommitteeToMemberCreate,
-    ICommitteeToMemberGetByCadenceId,
-    ICommitteeToMemberGetByCommitteeId,
-    ICommitteeToMemberGetById,
-    ICommitteeToMemberGetByMemberId,
-    ICommitteeToMemberUpdate,
-} from 'src/interfaces/committee/committee-to-member.interface';
+import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
-import { MemberService } from '../../modules-member/member/member.service';
-import { CadenceService } from '../../cadence/cadence.service';
-import { CommitteeService } from '../committee/committee.service';
+import {
+    ICreateRes,
+    IDeleteArrayRes,
+    IDeleteRes,
+    IGetByCadenceIdRes,
+    IGetByCommitteeIdRes,
+    IGetByIdRes,
+    IGetByMemberIdRes,
+    IGetListRes,
+    IUpdateRes,
+} from './interfaces/res.interface';
+import {
+    ICreateReq,
+    IDeleteReq,
+    IGetByCadenceIdReq,
+    IGetByCommitteeIdReq,
+    IGetByIdReq,
+    IGetByMemberIdReq,
+    IUpdateReq,
+} from './interfaces/req.interface';
+
+interface ICommitteeToMemberService {
+    getList(): Promise<IGetListRes[]>;
+
+    getById(dto: IGetByIdReq): Promise<IGetByIdRes>;
+
+    getByMemberId(dto: IGetByMemberIdReq): Promise<IGetByMemberIdRes[]>;
+
+    getByCadenceId(dto: IGetByCadenceIdReq): Promise<IGetByCadenceIdRes[]>;
+
+    getByCommitteeId(dto: IGetByCommitteeIdReq): Promise<IGetByCommitteeIdRes[]>;
+
+    create(dto: ICreateReq): Promise<ICreateRes>;
+
+    update(dto: IUpdateReq): Promise<IUpdateRes>;
+
+    deleteById(dto: IDeleteReq): Promise<IDeleteRes>;
+
+    deleteArray(dto: number[]): Promise<IDeleteArrayRes>;
+}
 
 @Injectable()
-export class CommitteeToMemberService {
-    constructor(
-        private readonly prisma: PrismaService,
-        private readonly memberService: MemberService,
-        private readonly cadenceService: CadenceService,
-        private readonly committeeService: CommitteeService,
-    ) {}
+export class CommitteeToMemberService implements ICommitteeToMemberService {
+    constructor(private readonly prisma: PrismaService) {}
 
     /* ----------------  GET  ---------------- */
 
-    public async getList(): Promise<ICommitteeToMember[]> {
-        return this.prisma.committeeToMember.findMany();
+    public async getList(): Promise<IGetListRes[]> {
+        return this.prisma.committeeToMember.findMany({
+            select: {
+                id: true,
+                memberId: true,
+                excludedDate: true,
+                excluded: true,
+                cadenceId: true,
+                committeeId: true,
+                isLeader: true,
+            },
+        });
     }
 
-    public async getById(dto: ICommitteeToMemberGetById): Promise<ICommitteeToMember> {
-        const committeeToMember = await this.prisma.committeeToMember.findUnique({
-            where: { id: dto.id },
-        });
-        if (!committeeToMember) throw new NotFoundException('committee to member not found');
+    public async getById(dto: IGetByIdReq): Promise<IGetByIdRes> {
+        const committeeToMember = await this.prisma.committeeToMember.findUnique({ where: { id: dto.id } });
+        if (!committeeToMember) throw new NotFoundException('Committee to member not found');
         return committeeToMember;
     }
 
-    public async getByMemberId(dto: ICommitteeToMemberGetByMemberId): Promise<ICommitteeToMember[]> {
-        return this.prisma.committeeToMember.findMany({
-            where: { memberId: dto.memberId },
-        });
+    public async getByMemberId(dto: IGetByMemberIdReq): Promise<IGetByMemberIdRes[]> {
+        return this.prisma.committeeToMember.findMany({ where: { memberId: dto.memberId } });
     }
 
-    public async getByCadenceId(dto: ICommitteeToMemberGetByCadenceId): Promise<ICommitteeToMember[]> {
-        return this.prisma.committeeToMember.findMany({
-            where: { cadenceId: dto.cadenceId },
-        });
+    public async getByCadenceId(dto: IGetByCadenceIdReq): Promise<IGetByCadenceIdRes[]> {
+        return this.prisma.committeeToMember.findMany({ where: { cadenceId: dto.cadenceId } });
     }
 
-    public async getByCommitteeId(dto: ICommitteeToMemberGetByCommitteeId): Promise<ICommitteeToMember[]> {
-        return this.prisma.committeeToMember.findMany({
-            where: { committeeId: dto.committeeId },
-        });
+    public async getByCommitteeId(dto: IGetByCommitteeIdReq): Promise<IGetByCommitteeIdRes[]> {
+        return this.prisma.committeeToMember.findMany({ where: { committeeId: dto.committeeId } });
     }
 
     /* ----------------  POST  ---------------- */
-    public async create(dto: ICommitteeToMemberCreate): Promise<ICommitteeToMember> {
-        const checkExist = await this.prisma.committeeToMember.findFirst({
-            where: {
-                memberId: dto.memberId,
-                cadenceId: dto.cadenceId,
-                committeeId: dto.committeeId,
-            },
+    public async create(dto: ICreateReq): Promise<ICreateRes> {
+        const committeeToMember = await this.prisma.committeeToMember.findFirst({
+            where: { memberId: dto.memberId, cadenceId: dto.cadenceId, committeeId: dto.committeeId },
         });
-        if (checkExist) throw new BadRequestException('This committee to member is exist');
+        if (committeeToMember) throw new BadRequestException('This committee to member is exist');
 
-        await this.memberService.getById({ id: dto.memberId });
-        await this.cadenceService.getById({ id: dto.cadenceId });
-        await this.committeeService.getById({ id: dto.committeeId });
-
-        return this.prisma.committeeToMember.create({
+        const createCommitteeToMember = await this.prisma.committeeToMember.create({
             data: {
                 cadenceId: dto.cadenceId,
                 committeeId: dto.committeeId,
                 memberId: dto.memberId,
+                isLeader: dto.isLeader,
+                excluded: dto.excluded,
+                excludedDate: dto.excludedDate,
             },
         });
+
+        return { id: createCommitteeToMember.id };
     }
 
     /* ----------------  PUT  ---------------- */
-    public async update(dto: ICommitteeToMemberUpdate): Promise<ICommitteeToMember> {
-        const checkExist = await this.prisma.committeeToMember.findUnique({
-            where: { id: dto.id },
-        });
-        if (!checkExist) throw new NotFoundException('committee to member not found');
+    public async update(dto: IUpdateReq): Promise<IUpdateRes> {
+        const committeeToMember = await this.prisma.committeeToMember.findUnique({ where: { id: dto.id } });
+        if (!committeeToMember) throw new NotFoundException('Committee to member not found');
 
-        await this.memberService.getById({ id: dto.memberId });
-        await this.cadenceService.getById({ id: dto.cadenceId });
-        await this.committeeService.getById({ id: dto.committeeId });
-
-        return this.prisma.committeeToMember.update({
+        const updateCommitteeToMember = await this.prisma.committeeToMember.update({
             where: { id: dto.id },
             data: {
                 cadenceId: dto.cadenceId,
                 committeeId: dto.committeeId,
                 memberId: dto.memberId,
+                isLeader: dto.isLeader,
+                excluded: dto.excluded,
+                excludedDate: dto.excludedDate,
             },
         });
+
+        return { id: updateCommitteeToMember.id };
     }
 
     /* ----------------  DELETE  ---------------- */
-    public async delete(dto: string[]) {
-        return this.prisma.committeeToMember.deleteMany({
-            where: { id: { in: dto } },
-        });
+    public async deleteById(dto: IDeleteReq): Promise<IDeleteRes> {
+        const committeeToMember = await this.prisma.committeeToMember.findUnique({ where: { id: dto.id } });
+        if (!committeeToMember) throw new NotFoundException('Committee to member is not found');
+
+        try {
+            const deleteCommitteeToMember = await this.prisma.committeeToMember.delete({ where: { id: dto.id } });
+            return { id: deleteCommitteeToMember.id };
+        } catch (err) {
+            throw new InternalServerErrorException('Error delete committee to member');
+        }
+    }
+
+    public async deleteArray(dto: number[]): Promise<IDeleteArrayRes> {
+        try {
+            return this.prisma.committeeToMember.deleteMany({ where: { id: { in: dto } } });
+        } catch (err) {
+            throw new InternalServerErrorException('Error delete all committee to member');
+        }
     }
 }

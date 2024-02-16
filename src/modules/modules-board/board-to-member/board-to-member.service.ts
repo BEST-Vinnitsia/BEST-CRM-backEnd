@@ -71,7 +71,7 @@ export class BoardToMemberService implements IBoardService {
         });
         if (boardToMember) throw new BadRequestException('This board to member is exist');
 
-        return this.prisma.boardToMember.create({
+        const createBoardToMember = await this.prisma.boardToMember.create({
             data: {
                 cadenceId: dto.cadenceId,
                 boardId: dto.boardId,
@@ -80,6 +80,8 @@ export class BoardToMemberService implements IBoardService {
                 excludedDate: dto.excludedDate,
             },
         });
+
+        return { id: createBoardToMember.id };
     }
 
     /* ----------------  PUT  ---------------- */
@@ -87,7 +89,7 @@ export class BoardToMemberService implements IBoardService {
         const boardToMember = await this.prisma.boardToMember.findUnique({ where: { id: dto.id } });
         if (!boardToMember) throw new NotFoundException('Board to member not found');
 
-        return this.prisma.boardToMember.update({
+        const updateBoardToMember = await this.prisma.boardToMember.update({
             where: { id: dto.id },
             data: {
                 cadenceId: dto.cadenceId,
@@ -97,6 +99,8 @@ export class BoardToMemberService implements IBoardService {
                 excludedDate: dto.excludedDate,
             },
         });
+
+        return { id: updateBoardToMember.id };
     }
 
     /* ----------------  DELETE  ---------------- */
