@@ -63,7 +63,7 @@ export class CoordinatorToMemberController implements ICoordinatorToMemberContro
 
     @Get('by-id')
     @ApiCreatedResponse({ type: GetByIdEntity })
-    async getById(@Query() dto: GetByIdDto): Promise<IGetByIdRes[]> {
+    async getById(@Query() dto: GetByIdDto): Promise<IGetByIdRes> {
         return await this.coordinatorToMemberService.getById(dto);
     }
 

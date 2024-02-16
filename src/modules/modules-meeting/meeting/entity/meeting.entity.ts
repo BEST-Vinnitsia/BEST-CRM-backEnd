@@ -1,25 +1,27 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { randomUUID } from 'crypto';
-import { IMeeting } from '../../../../interfaces/meeting/meeting.interface';
+import { AtDateDto_c, IdDto_c } from '../../../../global-dto';
+import { CadenceIdDto_c, DateDto_c, NameDto_c, TypeDto_c } from '../dto/components.dto';
+import { ApiProperty, IntersectionType } from '@nestjs/swagger';
+import { ICreateRes, IDeleteArrayRes, IGetByCadenceIdRes, IGetByIdRes, IGetListRes } from '../interfaces/res.interface';
 
-export class MeetingEntity implements IMeeting {
-    @ApiProperty({ example: randomUUID() })
-    id: string;
+/* ----------------  GET  ---------------- */
+export class MeetingGetListEntity extends IntersectionType(IdDto_c, CadenceIdDto_c, NameDto_c, TypeDto_c, DateDto_c) implements IGetListRes {}
 
-    @ApiProperty({ example: randomUUID() })
-    cadenceId: string;
+export class MeetingGetByIdEntity
+    extends IntersectionType(IdDto_c, AtDateDto_c, CadenceIdDto_c, NameDto_c, TypeDto_c, DateDto_c)
+    implements IGetByIdRes {}
 
+export class MeetingGetByCadenceIdEntity
+    extends IntersectionType(IdDto_c, AtDateDto_c, CadenceIdDto_c, NameDto_c, TypeDto_c, DateDto_c)
+    implements IGetByCadenceIdRes {}
+
+/* ----------------  POST  ---------------- */
+/* ----------------  PUT  ---------------- */
+
+/* ----------------  DELETE  ---------------- */
+export class MeetingIdEntity extends IntersectionType(IdDto_c) implements ICreateRes {}
+
+/* ----------------  DELETE  ---------------- */
+export class MeetingDeleteArrayEntity implements IDeleteArrayRes {
     @ApiProperty()
-    name: string;
-
-    @ApiProperty()
-    date: Date;
-
-    //
-
-    @ApiProperty()
-    createdAt: Date;
-
-    @ApiProperty()
-    updatedAt: Date;
+    count: number;
 }
