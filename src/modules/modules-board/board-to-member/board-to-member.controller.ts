@@ -1,68 +1,113 @@
-import { Body, Controller, Delete, Get, Post, Put, Query, UseFilters } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Put, Query } from '@nestjs/common';
 import { BoardToMemberService } from './board-to-member.service';
 import { ApiCreatedResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
-import { BoardToMember } from './entity/board-to-member.entity';
-import { HttpErrorFilter } from '../../../common/filters/http-exception.filter';
-import { CreateDto, DeleteArrayDto, GetByBoardIdDto, GetByCadenceIdDto, GetByIdDto, GetByMemberIdDto, UpdateDto } from './dto';
+import {
+    CreateEntity,
+    DeleteArrayEntity,
+    DeleteEntity,
+    GetByBoardIdEntity,
+    GetByCadenceIdEntity,
+    GetByIdEntity,
+    GetByMemberIdEntity,
+    GetListEntity,
+    UpdateEntity,
+} from './entity';
+import { CreateDto, DeleteArrayDto, DeleteDto, GetByBoardIdDto, GetByCadenceIdDto, GetByIdDto, GetByMemberIdDto, UpdateDto } from './dto';
 import { v1 } from '../../../constants/api-version';
+import {
+    ICreateRes,
+    IDeleteArrayRes,
+    IDeleteRes,
+    IGetByBoardIdRes,
+    IGetByCadenceIdRes,
+    IGetByIdRes,
+    IGetByMemberIdRes,
+    IGetListRes,
+    IUpdateRes,
+} from './interfaces/res.interface';
+
+interface IBoardToMemberController {
+    getList(): Promise<IGetListRes[]>;
+
+    getById(dto: GetByIdDto): Promise<IGetByIdRes>;
+
+    getByBoardId(dto: GetByBoardIdDto): Promise<IGetByBoardIdRes[]>;
+
+    getByCadenceId(dto: GetByCadenceIdDto): Promise<IGetByCadenceIdRes[]>;
+
+    getByMemberId(dto: GetByMemberIdDto): Promise<IGetByMemberIdRes[]>;
+
+    create(dto: CreateDto): Promise<ICreateRes>;
+
+    update(dto: UpdateDto): Promise<IUpdateRes>;
+
+    deleteById(dto: DeleteDto): Promise<IDeleteRes>;
+
+    deleteArray(dto: DeleteArrayDto): Promise<IDeleteArrayRes>;
+}
 
 @ApiSecurity('basic')
 @ApiTags('Board to member')
 @Controller(`${v1}/board-to-member`)
-export class BoardToMemberController {
+export class BoardToMemberController implements IBoardToMemberController {
     constructor(private readonly service: BoardToMemberService) {}
 
     /* ----------------  GET  ---------------- */
 
     @Get('list')
-    @ApiCreatedResponse({ type: [BoardToMember] })
-    async getList() {
+    @ApiCreatedResponse({ type: [GetListEntity] })
+    async getList(): Promise<IGetListRes[]> {
         return await this.service.getList();
     }
 
     @Get('by-id')
-    @ApiCreatedResponse({ type: BoardToMember })
-    async getById(@Query() dto: GetByIdDto) {
+    @ApiCreatedResponse({ type: GetByIdEntity })
+    async getById(@Query() dto: GetByIdDto): Promise<IGetByIdRes> {
         return await this.service.getById(dto);
     }
 
     @Get('by-member-id')
-    @ApiCreatedResponse({ type: BoardToMember })
-    async getByMemberId(@Query() dto: GetByMemberIdDto) {
+    @ApiCreatedResponse({ type: GetByMemberIdEntity })
+    async getByMemberId(@Query() dto: GetByMemberIdDto): Promise<IGetByMemberIdRes[]> {
         return await this.service.getByMemberId(dto);
     }
 
     @Get('by-cadence-id')
-    @ApiCreatedResponse({ type: BoardToMember })
-    async getByCadenceId(@Query() dto: GetByCadenceIdDto) {
+    @ApiCreatedResponse({ type: GetByCadenceIdEntity })
+    async getByCadenceId(@Query() dto: GetByCadenceIdDto): Promise<IGetByCadenceIdRes[]> {
         return await this.service.getByCadenceId(dto);
     }
 
     @Get('by-board-id')
-    @ApiCreatedResponse({ type: BoardToMember })
-    async getByBoardId(@Query() dto: GetByBoardIdDto) {
+    @ApiCreatedResponse({ type: GetByBoardIdEntity })
+    async getByBoardId(@Query() dto: GetByBoardIdDto): Promise<IGetByBoardIdRes[]> {
         return await this.service.getByBoardId(dto);
     }
 
     /* ----------------  POST  ---------------- */
-    @Post('create')
-    @ApiCreatedResponse({ type: BoardToMember })
-    async create(@Body() dto: CreateDto) {
+    @Post('')
+    @ApiCreatedResponse({ type: CreateEntity })
+    async create(@Body() dto: CreateDto): Promise<ICreateRes> {
         return await this.service.create(dto);
     }
 
     /* ----------------  PUT  ---------------- */
-    @Put('update')
-    @ApiCreatedResponse({ type: BoardToMember })
-    async update(@Body() dto: UpdateDto) {
+    @Put('')
+    @ApiCreatedResponse({ type: UpdateEntity })
+    async update(@Body() dto: UpdateDto): Promise<IUpdateRes> {
         return await this.service.update(dto);
     }
 
     /* ----------------  DELETE  ---------------- */
-    @Delete('delete')
-    @ApiCreatedResponse({ type: BoardToMember })
-    @UseFilters(HttpErrorFilter)
-    async delete(@Body() dto: DeleteArrayDto) {
-        return await this.service.delete(dto.boardToMemberId);
+    @Delete('by-id')
+    @ApiCreatedResponse({ type: DeleteEntity })
+    async deleteById(@Body() dto: DeleteDto): Promise<IDeleteRes> {
+        return await this.service.deleteById(dto);
+    }
+
+    @Delete('delete-array')
+    @ApiCreatedResponse({ type: DeleteArrayEntity })
+    async deleteArray(@Body() dto: DeleteArrayDto): Promise<IDeleteArrayRes> {
+        return await this.service.deleteArray(dto.id);
     }
 }
