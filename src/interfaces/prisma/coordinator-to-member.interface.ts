@@ -4,7 +4,7 @@ export interface ICoordinatorToMemberPrisma {
     coordinatorId: number;
     cadenceId: number;
     excluded: boolean;
-    excludedDate: Date | number;
+    excludedDate: Date | null;
     createdAt: Date;
     updatedAt: Date;
 }
