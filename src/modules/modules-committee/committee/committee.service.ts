@@ -1,83 +1,90 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
-import { ICommittee, ICommitteeCreate, ICommitteeGetById, ICommitteeUpdate } from '../../../interfaces/committee/committee.interface';
+import { ICreateRes, IDeleteArrayRes, IDeleteRes, IGetByIdRes, IGetListRes, IUpdateRes } from './interfaces/res.interface';
+import { ICreateReq, IDeleteReq, IGetByIdReq, IUpdateReq } from './interfaces/req.interface';
+
+interface ICommitteeService {
+    getList(): Promise<IGetListRes[]>;
+
+    getById(dto: IGetByIdReq): Promise<IGetByIdRes>;
+
+    create(dto: ICreateReq): Promise<ICreateRes>;
+
+    update(dto: IUpdateReq): Promise<IUpdateRes>;
+
+    deleteById(dto: IDeleteReq): Promise<IDeleteRes>;
+
+    deleteArray(dto: number[]): Promise<IDeleteArrayRes>;
+}
 
 @Injectable()
-export class CommitteeService {
+export class CommitteeService implements ICommitteeService {
     constructor(private readonly prisma: PrismaService) {}
 
     /* ----------------  GET  ---------------- */
-    public async getList(): Promise<ICommittee[]> {
-        return this.prisma.committee.findMany();
+    public async getList(): Promise<IGetListRes[]> {
+        return this.prisma.committee.findMany({ select: { id: true, isActive: true, name: true, fullName: true } });
     }
 
-    public async getById(dto: ICommitteeGetById): Promise<ICommittee> {
-        const committee = await this.prisma.committee.findUnique({
-            where: { id: dto.id },
-        });
-        if (!committee) throw new NotFoundException('committee not found');
-
-        return committee;
-    }
-
-    public async byIdAllInfo(dto: ICommitteeGetById) {
-        const committee = await this.prisma.committee.findUnique({
-            where: { id: dto.id },
-            select: {
-                id: true,
-                name: true,
-                isActive: true,
-                committeeToMember: {
-                    select: {
-                        id: true,
-                        isLeader: true,
-                        excluded: true,
-                        excludedDate: true,
-                        cadence: { select: { id: true, number: true, isEnd: true } },
-                        member: { select: { id: true, name: true, surname: true } },
-                    },
-                },
-            },
-        });
-        if (!committee) throw new NotFoundException('committee not found');
+    public async getById(dto: IGetByIdReq): Promise<IGetByIdRes> {
+        const committee = await this.prisma.committee.findUnique({ where: { id: dto.id } });
+        if (!committee) throw new NotFoundException('Committee not found');
 
         return committee;
     }
 
     /* ----------------  POST  ---------------- */
-    public async create(dto: ICommitteeCreate): Promise<ICommittee> {
-        const committee = await this.prisma.committee.findUnique({
-            where: { name: dto.name },
-        });
-        if (committee) throw new BadRequestException('committee is exist');
+    public async create(dto: ICreateReq): Promise<ICreateRes> {
+        const committeeByName = await this.prisma.committee.findUnique({ where: { name: dto.name } });
+        if (committeeByName) throw new BadRequestException('Committee with this name is exist');
 
-        return this.prisma.committee.create({
-            data: {
-                name: dto.name,
-                isActive: dto.isActive,
-            },
+        const committeeByFullName = await this.prisma.committee.findUnique({ where: { fullName: dto.fullName } });
+        if (committeeByFullName) throw new BadRequestException('Committee with this full name is exist');
+
+        const committeeCreate = await this.prisma.committee.create({
+            data: { name: dto.name, fullName: dto.fullName, isActive: dto.isActive },
         });
+
+        return { id: committeeCreate.id };
     }
 
     /* ----------------  PUT  ---------------- */
-    public async update(dto: ICommitteeUpdate): Promise<ICommittee> {
-        const committee = await this.prisma.committee.findUnique({
-            where: { id: dto.id },
-        });
-        if (!committee) throw new NotFoundException('committee is not exist');
+    public async update(dto: IUpdateReq): Promise<IUpdateRes> {
+        const committeeById = await this.prisma.committee.findUnique({ where: { id: dto.id } });
+        if (!committeeById) throw new NotFoundException('Committee is not found');
 
-        return this.prisma.committee.update({
+        const committeeByName = await this.prisma.committee.findUnique({ where: { name: dto.name } });
+        if (committeeByName) throw new BadRequestException('Committee with this name is exist');
+
+        const committeeByFullName = await this.prisma.committee.findUnique({ where: { fullName: dto.fullName } });
+        if (committeeByFullName) throw new BadRequestException('Committee with this full name is exist');
+
+        const committeeUpdate = await this.prisma.committee.update({
             where: { id: dto.id },
-            data: {
-                isActive: dto.isActive,
-            },
+            data: { name: dto.name, fullName: dto.fullName, isActive: dto.isActive },
         });
+
+        return { id: committeeUpdate.id };
     }
 
     /* ----------------  DELETE  ---------------- */
-    public async delete(dto: string[]) {
-        return this.prisma.committee.deleteMany({
-            where: { id: { in: dto } },
-        });
+    public async deleteById(dto: IDeleteReq): Promise<IDeleteRes> {
+        const committee = await this.prisma.committee.findUnique({ where: { id: dto.id } });
+        if (!committee) throw new NotFoundException('Committee is not found');
+
+        try {
+            const deleteCommittee = await this.prisma.committee.delete({ where: { id: dto.id } });
+            return { id: deleteCommittee.id };
+        } catch (err) {
+            throw new InternalServerErrorException('Error delete committee');
+        }
+    }
+
+    public async deleteArray(dto: number[]): Promise<IDeleteArrayRes> {
+        try {
+            return this.prisma.committee.deleteMany({ where: { id: { in: dto } } });
+        } catch (err) {
+            throw new InternalServerErrorException('Error delete all committees');
+        }
     }
 }

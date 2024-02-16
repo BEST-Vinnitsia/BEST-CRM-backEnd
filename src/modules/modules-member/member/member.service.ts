@@ -138,9 +138,12 @@ export class MemberService implements IMemberService {
         const member = await this.prisma.member.findUnique({ where: { id: dto.id } });
         if (!member) throw new NotFoundException('Member is not found');
 
-        const deleteMember = await this.prisma.member.delete({ where: { id: dto.id } });
-
-        return { id: deleteMember.id };
+        try {
+            const deleteMember = await this.prisma.member.delete({ where: { id: dto.id } });
+            return { id: deleteMember.id };
+        } catch (err) {
+            throw new InternalServerErrorException('Error delete member');
+        }
     }
 
     public async deleteArray(dto: number[]): Promise<IDeleteArrayRes> {

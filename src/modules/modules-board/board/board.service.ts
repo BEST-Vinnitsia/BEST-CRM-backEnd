@@ -52,6 +52,9 @@ export class BoardService implements IBoardService {
 
     /* ----------------  PUT  ---------------- */
     public async update(dto: IUpdateReq): Promise<IUpdateRes> {
+        const boardById = await this.prisma.board.findUnique({ where: { id: dto.id } });
+        if (!boardById) throw new NotFoundException('Board is not found');
+
         const boardByName = await this.prisma.board.findUnique({ where: { name: dto.name } });
         if (boardByName) throw new BadRequestException('Board with this name is exist');
 
@@ -68,11 +71,11 @@ export class BoardService implements IBoardService {
 
     /* ----------------  DELETE  ---------------- */
     public async deleteById(dto: IDeleteReq): Promise<IDeleteRes> {
-        const board = await this.prisma.cadence.findUnique({ where: { id: dto.id } });
+        const board = await this.prisma.board.findUnique({ where: { id: dto.id } });
         if (!board) throw new NotFoundException('Board is not found');
 
         try {
-            const deleteBoard = await this.prisma.cadence.delete({ where: { id: dto.id } });
+            const deleteBoard = await this.prisma.board.delete({ where: { id: dto.id } });
             return { id: deleteBoard.id };
         } catch (err) {
             throw new InternalServerErrorException('Error delete board');
