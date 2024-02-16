@@ -107,7 +107,7 @@ export class ResponsibleService implements IResponsibleService {
         try {
             return this.prisma.responsible.deleteMany({ where: { id: { in: dto } } });
         } catch (err) {
-            throw new InternalServerErrorException('Error delete all responsibles');
+            throw new InternalServerErrorException('Error delete all responsible');
         }
     }
 }
