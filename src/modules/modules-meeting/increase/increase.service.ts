@@ -1,83 +1,81 @@
-import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
+
+import { ICreateReq, IDeleteReq, IGetByIdReq, IGetByMeetingIdReq, IGetByMemberIdReq, IUpdateReq } from './interfaces/req.interface';
 import {
-    IIncreaseCreate,
-    IIncreaseGetById,
-    IIncreaseGetByMeetingId,
-    IIncreaseGetByMemberId,
-    IIncreaseUpdate,
-} from '../../../interfaces/meeting/increase.interface';
-import { MemberService } from '../../modules-member/member/member.service';
-import { MeetingService } from '../meeting/meeting.service';
+    ICreateRes,
+    IDeleteArrayRes,
+    IDeleteRes,
+    IGetByIdRes,
+    IGetByMeetingIdRes,
+    IGetByMemberIdRes,
+    IGetListRes,
+    IUpdateRes,
+} from './interfaces/res.interface';
+
+interface IIncreaseService {
+    getList(): Promise<IGetListRes[]>;
+
+    getById(dto: IGetByIdReq): Promise<IGetByIdRes>;
+
+    getByMemberId(dto: IGetByMemberIdReq): Promise<IGetByMemberIdRes[]>;
+
+    getByMeetingId(dto: IGetByMeetingIdReq): Promise<IGetByMeetingIdRes[]>;
+
+    create(dto: ICreateReq): Promise<ICreateRes>;
+
+    update(dto: IUpdateReq): Promise<IUpdateRes>;
+
+    deleteById(dto: IDeleteReq): Promise<IDeleteRes>;
+
+    deleteArray(dto: number[]): Promise<IDeleteArrayRes>;
+}
 
 @Injectable()
-export class IncreaseService {
-    constructor(
-        private readonly prisma: PrismaService,
-        private readonly memberService: MemberService,
-        private readonly meetingService: MeetingService,
-    ) {}
+export class IncreaseService implements IIncreaseService {
+    constructor(private readonly prisma: PrismaService) {}
 
     /* ----------------  GET  ---------------- */
-    public async getList() {
-        return this.prisma.increase.findMany();
-    }
-
-    public async getByMemberId({ memberId }: IIncreaseGetByMemberId) {
+    public async getList(): Promise<IGetListRes[]> {
         return this.prisma.increase.findMany({
-            where: { memberId },
+            select: { id: true, memberId: true, membership: true, meetingId: true },
         });
     }
 
-    public async getByMeetingId({ meetingId }: IIncreaseGetByMeetingId) {
-        return this.prisma.increase.findMany({
-            where: { meetingId },
-        });
+    public async getByMemberId({ memberId }: IGetByMemberIdReq): Promise<IGetByMemberIdRes[]> {
+        return this.prisma.increase.findMany({ where: { memberId } });
     }
 
-    public async getById({ id }: IIncreaseGetById) {
-        const result = await this.prisma.increase.findUnique({
-            where: { id },
-        });
-        if (!result) throw new NotFoundException('increase is not found');
+    public async getByMeetingId({ meetingId }: IGetByMeetingIdReq): Promise<IGetByMeetingIdRes[]> {
+        return this.prisma.increase.findMany({ where: { meetingId } });
+    }
 
-        return result;
+    public async getById(dto: IGetByIdReq): Promise<IGetByIdRes> {
+        const increase = await this.prisma.increase.findUnique({ where: { id: dto.id } });
+        if (!increase) throw new NotFoundException('Increase is not found');
+
+        return increase;
     }
 
     /* ----------------  POST  ---------------- */
-    public async create(dto: IIncreaseCreate) {
-        const meetingInDb = await this.meetingService.getById({ id: dto.meetingId });
-        if (meetingInDb.name !== 'LGA') throw new BadRequestException('incorrect meeting type');
-
-        await this.memberService.getById({ id: dto.memberId });
-
-        const newIncrease = await this.prisma.increase.create({
+    public async create(dto: ICreateReq): Promise<ICreateRes> {
+        const increase = await this.prisma.increase.create({
             data: {
                 memberId: dto.memberId,
                 meetingId: dto.meetingId,
                 membership: dto.membership,
             },
         });
-        if (!newIncrease) throw new InternalServerErrorException();
 
-        await this.memberService.updateMembership({ id: dto.memberId, membership: dto.membership });
-
-        return newIncrease;
+        return { id: increase.id };
     }
 
     /* ----------------  PUT  ---------------- */
-    public async update(dto: IIncreaseUpdate) {
-        const meetingInDb = await this.meetingService.getById({ id: dto.meetingId });
-        if (meetingInDb.name !== 'LGA') throw new BadRequestException('incorrect meeting type');
+    public async update(dto: IUpdateReq): Promise<IUpdateRes> {
+        const increase = await this.prisma.increase.findUnique({ where: { id: dto.id } });
+        if (!increase) throw new NotFoundException('This increase is not found');
 
-        await this.memberService.getById({ id: dto.memberId });
-
-        const checkIncrease = await this.prisma.increase.findUnique({
-            where: { id: dto.id },
-        });
-        if (!checkIncrease) throw new NotFoundException('this increase is not found');
-
-        const updateMeeting = await this.prisma.increase.update({
+        const updateIncrease = await this.prisma.increase.update({
             where: { id: dto.id },
             data: {
                 memberId: dto.memberId,
@@ -85,17 +83,28 @@ export class IncreaseService {
                 membership: dto.membership,
             },
         });
-        if (!updateMeeting) throw new InternalServerErrorException();
 
-        await this.memberService.updateMembership({ id: dto.memberId, membership: dto.membership });
-
-        return updateMeeting;
+        return { id: updateIncrease.id };
     }
 
     /* ----------------  DELETE  ---------------- */
-    public async delete(dto: string[]) {
-        return this.prisma.increase.deleteMany({
-            where: { id: { in: dto } },
-        });
+    public async deleteById(dto: IDeleteReq): Promise<IDeleteRes> {
+        const increase = await this.prisma.increase.findUnique({ where: { id: dto.id } });
+        if (!increase) throw new NotFoundException('Increase is not found');
+
+        try {
+            const deleteIncrease = await this.prisma.increase.delete({ where: { id: dto.id } });
+            return { id: deleteIncrease.id };
+        } catch (err) {
+            throw new InternalServerErrorException('Error delete increase');
+        }
+    }
+
+    public async deleteArray(dto: number[]): Promise<IDeleteArrayRes> {
+        try {
+            return this.prisma.increase.deleteMany({ where: { id: { in: dto } } });
+        } catch (err) {
+            throw new InternalServerErrorException('Error delete all increase');
+        }
     }
 }

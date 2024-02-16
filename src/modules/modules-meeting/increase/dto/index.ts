@@ -1,6 +1,8 @@
-export { IncreaseGetByIdDto as GetByIdDto } from './get-by-id.dto';
-export { IncreaseGetByMemberIdDto as GetByMemberIdDto } from './get-by-member-id.dto';
-export { IncreaseGetByMeetingIdDto as GetByMeetingIdDto } from './get-by-meeting-id.dto';
-export { IncreaseCreateDto as CreateDto } from './create.dto';
-export { IncreaseUpdateDto as UpdateDto } from './update.dto';
-export { IncreaseDeleteArrayDto as DeleteArrayDto } from './delete-array.dto';
+export { IncreaseGetByIdDto as GetByIdDto } from './increase.dto';
+export { IncreaseGetByMeetingIdDto as GetByMeetingIdDto } from './increase.dto';
+export { IncreaseGetByMemberIdDto as GetByMemberIdDto } from './increase.dto';
+
+export { IncreaseCreateDto as CreateDto } from './increase.dto';
+export { IncreaseUpdateDto as UpdateDto } from './increase.dto';
+export { IncreaseDeleteDto as DeleteDto } from './increase.dto';
+export { IncreaseDeleteArrayDto as DeleteArrayDto } from './increase.dto';

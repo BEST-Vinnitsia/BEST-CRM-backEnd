@@ -1,6 +1,6 @@
 export interface IIncrease {
-    id: string;
-    meetingId: string;
+    id: number;
+    meetingId: number;
     memberId: string;
     membership: string /* Observer, Baby, Full, Alumni, Excluded */;
 
