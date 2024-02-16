@@ -1,60 +1,73 @@
-import { Body, Controller, Delete, Get, Post, Put, Query, UseFilters, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { EventService } from './event.service';
-import { CreateDto, DeleteArrayDto, GetByIdDto, UpdateDto } from './dto';
+import { CreateDto, DeleteArrayDto, DeleteDto, GetByIdDto, UpdateDto } from './dto';
 import { ApiCreatedResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
-import { Event } from './entity/event.entity';
+import { CreateEntity, DeleteArrayEntity, DeleteEntity, GetByIdEntity, GetListEntity, UpdateEntity } from './entity';
 import { Claim } from 'src/common/decorators';
 import { BoardGuard } from 'src/common/guards';
-import { HttpErrorFilter } from '../../../common/filters/http-exception.filter';
 import { v1 } from '../../../constants/api-version';
+import { ICreateRes, IDeleteArrayRes, IDeleteRes, IGetByIdRes, IGetListRes, IUpdateRes } from './interfaces/res.interface';
+
+interface IEventController {
+    getList(): Promise<IGetListRes[]>;
+
+    getById(dto: GetByIdDto): Promise<IGetByIdRes>;
+
+    create(dto: CreateDto): Promise<ICreateRes>;
+
+    update(dto: UpdateDto): Promise<IUpdateRes>;
+
+    deleteById(dto: DeleteDto): Promise<IDeleteRes>;
+
+    deleteArray(dto: DeleteArrayDto): Promise<IDeleteArrayRes>;
+}
 
 @ApiSecurity('basic')
 @ApiTags('Event')
 @Controller(`${v1}/event`)
-export class EventController {
+export class EventController implements IEventController {
     constructor(private readonly service: EventService) {}
 
     /* ----------------  GET  ---------------- */
 
     @Get('list')
-    @ApiCreatedResponse({ type: [Event] })
-    async list() {
+    @ApiCreatedResponse({ type: [GetListEntity] })
+    async getList(): Promise<IGetListRes[]> {
         return await this.service.getList();
     }
 
     @Get('by-id')
-    @ApiCreatedResponse({ type: Event })
-    async byId(@Query() dto: GetByIdDto) {
+    @ApiCreatedResponse({ type: GetByIdEntity })
+    async getById(@Query() dto: GetByIdDto): Promise<IGetByIdRes> {
         return await this.service.getById(dto);
-    }
-
-    @Get('by-id-all-info')
-    @ApiCreatedResponse()
-    async byIdAllInfo(@Query() dto: GetByIdDto) {
-        return await this.service.byIdAllInfo(dto);
     }
 
     /* ----------------  POST  ---------------- */
     @Claim(['demo'])
     @UseGuards(BoardGuard)
-    @Post('create')
-    @ApiCreatedResponse({ type: Event })
-    async create(@Body() dto: CreateDto) {
+    @Post('')
+    @ApiCreatedResponse({ type: CreateEntity })
+    async create(@Body() dto: CreateDto): Promise<ICreateRes> {
         return await this.service.create(dto);
     }
 
     /* ----------------  PUT  ---------------- */
-    @Put('update')
-    @ApiCreatedResponse({ type: Event })
-    async update(@Body() dto: UpdateDto) {
+    @Put('')
+    @ApiCreatedResponse({ type: UpdateEntity })
+    async update(@Body() dto: UpdateDto): Promise<IUpdateRes> {
         return await this.service.update(dto);
     }
 
     /* ----------------  DELETE  ---------------- */
-    @Delete('delete')
-    @ApiCreatedResponse({ type: Event })
-    @UseFilters(HttpErrorFilter)
-    async delete(@Body() dto: DeleteArrayDto) {
-        return this.service.delete(dto.eventsId);
+    @Delete('by-id')
+    @ApiCreatedResponse({ type: DeleteEntity })
+    async deleteById(@Body() dto: DeleteDto): Promise<IDeleteRes> {
+        return this.service.deleteById(dto);
+    }
+
+    @Delete('delete-array')
+    @ApiCreatedResponse({ type: DeleteArrayEntity })
+    async deleteArray(@Body() dto: DeleteArrayDto): Promise<IDeleteArrayRes> {
+        return this.service.deleteArray(dto.id);
     }
 }

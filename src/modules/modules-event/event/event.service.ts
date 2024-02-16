@@ -1,87 +1,90 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-import { IEvent, IEventCreate, IEventGetById, IEventUpdate } from 'src/interfaces/event/event.interface';
+import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
+import { ICreateRes, IDeleteArrayRes, IDeleteRes, IGetByIdRes, IGetListRes, IUpdateRes } from './interfaces/res.interface';
+import { ICreateReq, IDeleteReq, IGetByIdReq, IUpdateReq } from './interfaces/req.interface';
+
+interface IEventService {
+    getList(): Promise<IGetListRes[]>;
+
+    getById(dto: IGetByIdReq): Promise<IGetByIdRes>;
+
+    create(dto: ICreateReq): Promise<ICreateRes>;
+
+    update(dto: IUpdateReq): Promise<IUpdateRes>;
+
+    deleteById(dto: IDeleteReq): Promise<IDeleteRes>;
+
+    deleteArray(dto: number[]): Promise<IDeleteArrayRes>;
+}
 
 @Injectable()
-export class EventService {
+export class EventService implements IEventService {
     constructor(private readonly prisma: PrismaService) {}
 
     /* ----------------  GET  ---------------- */
-    public async getList(): Promise<IEvent[]> {
-        return this.prisma.event.findMany();
+    public async getList(): Promise<IGetListRes[]> {
+        return this.prisma.event.findMany({ select: { id: true, isActive: true, name: true, fullName: true } });
     }
 
-    public async getById(dto: IEventGetById): Promise<IEvent> {
-        const event = await this.prisma.event.findUnique({
-            where: { id: dto.id },
-        });
-        if (!event) throw new NotFoundException('event not found');
+    public async getById(dto: IGetByIdReq): Promise<IGetByIdRes> {
+        const coordinator = await this.prisma.event.findUnique({ where: { id: dto.id } });
+        if (!coordinator) throw new NotFoundException('Event not found');
 
-        return event;
-    }
-
-    public async byIdAllInfo(dto: IEventGetById) {
-        const event = await this.prisma.event.findUnique({
-            where: { id: dto.id },
-            select: {
-                name: true,
-                isActive: true,
-                newEvent: {
-                    select: {
-                        id: true,
-                        cadence: { select: { id: true, number: true } },
-                        memberToEvent: {
-                            select: {
-                                id: true,
-                                excluded: true,
-                                excludedDate: true,
-                                member: { select: { id: true, name: true, surname: true } },
-                                responsible: { select: { id: true, name: true, role: true } },
-                            },
-                        },
-                    },
-                },
-            },
-        });
-        if (!event) throw new NotFoundException('event not found');
-
-        return event;
+        return coordinator;
     }
 
     /* ----------------  POST  ---------------- */
-    public async create(dto: IEventCreate): Promise<IEvent> {
-        const event = await this.prisma.event.findFirst({
-            where: { name: dto.name },
-        });
-        if (event) throw new BadRequestException('event is exist');
+    public async create(dto: ICreateReq): Promise<ICreateRes> {
+        const eventByName = await this.prisma.event.findUnique({ where: { name: dto.name } });
+        if (eventByName) throw new BadRequestException('Event with this name is exist');
 
-        return this.prisma.event.create({
-            data: {
-                name: dto.name.toLocaleLowerCase(),
-                isActive: dto.isActive,
-            },
+        const eventByFullName = await this.prisma.event.findUnique({ where: { fullName: dto.fullName } });
+        if (eventByFullName) throw new BadRequestException('Event with this full name is exist');
+
+        const eventCreate = await this.prisma.event.create({
+            data: { name: dto.name, fullName: dto.fullName, isActive: dto.isActive },
         });
+
+        return { id: eventCreate.id };
     }
 
     /* ----------------  PUT  ---------------- */
-    public async update(dto: IEventUpdate): Promise<IEvent> {
-        const event = await this.prisma.event.findUnique({
-            where: { id: dto.id },
-        });
-        if (!event) throw new NotFoundException('event is not exist');
+    public async update(dto: IUpdateReq): Promise<IUpdateRes> {
+        const eventById = await this.prisma.event.findUnique({ where: { id: dto.id } });
+        if (!eventById) throw new NotFoundException('Event is not found');
 
-        return this.prisma.event.update({
+        const eventByName = await this.prisma.event.findUnique({ where: { name: dto.name } });
+        if (eventByName) throw new BadRequestException('Event with this name is exist');
+
+        const eventByFullName = await this.prisma.event.findUnique({ where: { fullName: dto.fullName } });
+        if (eventByFullName) throw new BadRequestException('Event with this full name is exist');
+
+        const eventUpdate = await this.prisma.event.update({
             where: { id: dto.id },
-            data: {
-                isActive: dto.isActive,
-            },
+            data: { name: dto.name, fullName: dto.fullName, isActive: dto.isActive },
         });
+
+        return { id: eventUpdate.id };
     }
 
     /* ----------------  DELETE  ---------------- */
-    public async delete(dto: string[]) {
-        return this.prisma.event.deleteMany({
-            where: { id: { in: dto } },
-        });
+    public async deleteById(dto: IDeleteReq): Promise<IDeleteRes> {
+        const event = await this.prisma.event.findUnique({ where: { id: dto.id } });
+        if (!event) throw new NotFoundException('Event is not found');
+
+        try {
+            const deleteEvent = await this.prisma.event.delete({ where: { id: dto.id } });
+            return { id: deleteEvent.id };
+        } catch (err) {
+            throw new InternalServerErrorException('Error delete event');
+        }
+    }
+
+    public async deleteArray(dto: number[]): Promise<IDeleteArrayRes> {
+        try {
+            return this.prisma.event.deleteMany({ where: { id: { in: dto } } });
+        } catch (err) {
+            throw new InternalServerErrorException('Error delete all events');
+        }
     }
 }
