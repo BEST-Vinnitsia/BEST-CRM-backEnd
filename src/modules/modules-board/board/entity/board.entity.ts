@@ -1,21 +1,21 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { randomUUID } from 'crypto';
-import { BoardEnum } from 'src/constants/enums.constant';
-import { IBoard } from 'src/interfaces/board/board.interface';
+import { AtDateDto_c, IdDto_c } from '../../../../global-dto';
+import { NameDto_c, IsActiveDto_c } from '../dto/components.dto';
+import { ApiProperty, IntersectionType } from '@nestjs/swagger';
+import { ICreateRes, IDeleteArrayRes, IGetByIdRes, IGetListRes } from '../interfaces/res.interface';
 
-export class Board implements IBoard {
-  @ApiProperty({ example: randomUUID() })
-  id: string;
+/* ----------------  GET  ---------------- */
+export class BoardGetListEntity extends IntersectionType(IdDto_c, NameDto_c, IsActiveDto_c) implements IGetListRes {}
 
-  @ApiProperty({ enum: BoardEnum })
-  name: string;
+export class BoardGetByIdEntity extends IntersectionType(IdDto_c, AtDateDto_c, NameDto_c, IsActiveDto_c) implements IGetByIdRes {}
 
-  @ApiProperty()
-  isActive: boolean;
+/* ----------------  POST  ---------------- */
+/* ----------------  PUT  ---------------- */
 
-  @ApiProperty()
-  createdAt: Date;
+/* ----------------  DELETE  ---------------- */
+export class BoardIdEntity extends IntersectionType(IdDto_c) implements ICreateRes {}
 
-  @ApiProperty()
-  updatedAt: Date;
+/* ----------------  DELETE  ---------------- */
+export class BoardDeleteArrayEntity implements IDeleteArrayRes {
+    @ApiProperty()
+    count: number;
 }

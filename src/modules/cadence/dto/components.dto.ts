@@ -1,21 +1,21 @@
 import { IsBoolean, IsDateString, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class CadenceNumberDto {
+export class NumberDto_c {
     @ApiProperty()
     @IsNotEmpty()
     @IsNumber()
     number: number;
 }
 
-export class CadenceIsEndDto {
+export class IsEndDto_c {
     @ApiProperty()
     @IsNotEmpty()
     @IsBoolean()
     isEnd: boolean;
 }
 
-export class CadenceDateDto {
+export class DateDto_c {
     @ApiProperty({ example: new Date('2000-01-01') })
     @IsDateString()
     @IsOptional()

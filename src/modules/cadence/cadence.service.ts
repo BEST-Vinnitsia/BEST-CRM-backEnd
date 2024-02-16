@@ -90,9 +90,9 @@ export class CadenceService implements ICadenceService {
         const cadence = await this.prisma.cadence.findUnique({ where: { id: dto.id } });
         if (!cadence) throw new NotFoundException('Cadence is not found');
 
-        const cadenceMember = await this.prisma.cadence.delete({ where: { id: dto.id } });
+        const deleteCadence = await this.prisma.cadence.delete({ where: { id: dto.id } });
 
-        return { id: cadenceMember.id };
+        return { id: deleteCadence.id };
     }
 
     public async deleteArray(dto: number[]): Promise<IDeleteArrayRes> {
