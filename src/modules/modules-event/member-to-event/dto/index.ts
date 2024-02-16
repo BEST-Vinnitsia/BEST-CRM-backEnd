@@ -1,7 +1,10 @@
-export { MemberToEventGetByIdDto as GetByIdDto } from './get-by-id.dto';
-export { MemberToEventGetByMemberIdDto as GetByMemberIdDto } from './get-by-member-id.dto';
-export { MemberToEventGetByResponsibleIdDto as GetByResponsibleIdDto } from './get-by-responsible-id.dto';
-export { MemberToEventGetByNewEventIdDto as GetByNewEventIdDto } from './get-by-new-event-id.dto';
-export { MemberToEventCreateDto as CreateDto } from './create.dto';
-export { MemberToEventUpdateDto as UpdateDto } from './update.dto';
-export { MemberToEventDeleteArrayDto as DeleteArrayDto } from './delete-array.dto';
+export { MemberToNewEventGetByIdDto as GetByIdDto } from './member-to-new-event.dto';
+
+export { MemberToNewEventGetByNewEventIdDto as GetByNewEventIdDto } from './member-to-new-event.dto';
+export { MemberToNewEventGetByResponsibleIdDto as GetByResponsibleIdDto } from './member-to-new-event.dto';
+export { MemberToNewEventGetByMemberIdDto as GetByMemberIdDto } from './member-to-new-event.dto';
+
+export { MemberToNewEventCreateDto as CreateDto } from './member-to-new-event.dto';
+export { MemberToNewEventUpdateDto as UpdateDto } from './member-to-new-event.dto';
+export { MemberToNewEventDeleteDto as DeleteDto } from './member-to-new-event.dto';
+export { MemberToNewEventDeleteArrayDto as DeleteArrayDto } from './member-to-new-event.dto';

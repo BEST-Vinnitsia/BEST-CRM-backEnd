@@ -1,15 +1,15 @@
 import { Module } from '@nestjs/common';
 import { PrismaModule } from '../../prisma/prisma.module';
-import { MemberToEventController } from './member-to-event.controller';
-import { MemberToEventService } from './member-to-event.service';
+import { MemberToNewEventController } from './member-to-new-event.controller';
+import { MemberToNewEventService } from './member-to-new-event.service';
 import { ResponsibleModule } from '../responsible/responsible.module';
 import { MemberModule } from '../../modules-member/member/member.module';
 import { NewEventModule } from '../new-event/new-event.module';
 
 @Module({
     imports: [PrismaModule, NewEventModule, MemberModule, ResponsibleModule],
-    controllers: [MemberToEventController],
-    providers: [MemberToEventService],
-    exports: [MemberToEventService],
+    controllers: [MemberToNewEventController],
+    providers: [MemberToNewEventService],
+    exports: [MemberToNewEventService],
 })
-export class MemberToEventModule {}
+export class MemberToNewEventModule {}
