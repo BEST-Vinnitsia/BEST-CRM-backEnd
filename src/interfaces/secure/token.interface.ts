@@ -1,6 +1,6 @@
 export interface ITokenPayload {
-  refreshTokenId: string;
-  memberId: string;
+  refreshTokenId: number;
+  memberId: number;
   name: string;
   surname: string;
   membershipName: string;

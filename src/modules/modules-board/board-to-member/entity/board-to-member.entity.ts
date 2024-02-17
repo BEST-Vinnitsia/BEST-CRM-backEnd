@@ -1,29 +1,45 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { randomUUID } from 'crypto';
-import { IBoardToMember } from '../../../../interfaces/board/board-to-member.interface';
+import { AtDateDto_c, IdDto_c } from '../../../../global-dto';
+import { BoardIdDto_c, CadenceIdDto_c, ExcludedDto_c, MemberIdDto_c } from '../dto/components.dto';
+import { ApiProperty, IntersectionType } from '@nestjs/swagger';
+import {
+    ICreateRes,
+    IDeleteArrayRes,
+    IGetByBoardIdRes,
+    IGetByCadenceIdRes,
+    IGetByIdRes,
+    IGetByMemberIdRes,
+    IGetListRes,
+} from '../interfaces/res.interface';
 
-export class BoardToMember implements IBoardToMember {
-    @ApiProperty({ example: randomUUID() })
-    id: string;
+/* ----------------  GET  ---------------- */
+export class BoardToMemberGetListEntity
+    extends IntersectionType(IdDto_c, CadenceIdDto_c, MemberIdDto_c, BoardIdDto_c, ExcludedDto_c)
+    implements IGetListRes {}
 
-    @ApiProperty({ example: randomUUID() })
-    cadenceId: string;
+export class BoardToMemberGetByIdEntity
+    extends IntersectionType(IdDto_c, AtDateDto_c, CadenceIdDto_c, MemberIdDto_c, BoardIdDto_c, ExcludedDto_c)
+    implements IGetByIdRes {}
 
-    @ApiProperty({ example: randomUUID() })
-    boardId: string;
+export class BoardToMemberGetByBoardIdEntity
+    extends IntersectionType(IdDto_c, AtDateDto_c, CadenceIdDto_c, MemberIdDto_c, BoardIdDto_c, ExcludedDto_c)
+    implements IGetByBoardIdRes {}
 
-    @ApiProperty({ example: randomUUID() })
-    memberId: string;
+export class BoardToMemberGetByCadenceIdEntity
+    extends IntersectionType(IdDto_c, AtDateDto_c, CadenceIdDto_c, MemberIdDto_c, BoardIdDto_c, ExcludedDto_c)
+    implements IGetByCadenceIdRes {}
 
+export class BoardToMemberGetByMemberIdEntity
+    extends IntersectionType(IdDto_c, AtDateDto_c, CadenceIdDto_c, MemberIdDto_c, BoardIdDto_c, ExcludedDto_c)
+    implements IGetByMemberIdRes {}
+
+/* ----------------  POST  ---------------- */
+/* ----------------  PUT  ---------------- */
+
+/* ----------------  DELETE  ---------------- */
+export class BoardToMemberIdEntity extends IntersectionType(IdDto_c) implements ICreateRes {}
+
+/* ----------------  DELETE  ---------------- */
+export class BoardToMemberDeleteArrayEntity implements IDeleteArrayRes {
     @ApiProperty()
-    excluded: boolean;
-
-    @ApiProperty()
-    excludedDate: Date | null;
-
-    @ApiProperty()
-    createdAt: Date;
-
-    @ApiProperty()
-    updatedAt: Date;
+    count: number;
 }

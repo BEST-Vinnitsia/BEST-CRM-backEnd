@@ -1,142 +1,52 @@
-import { ApiProperty, IntersectionType } from '@nestjs/swagger';
+import { IntersectionType } from '@nestjs/swagger';
 import {
-    MemberAddressDto,
-    MemberAuthDto,
-    MemberBestEmailDto,
-    MemberBirthdayDto,
-    MemberCreateWithAllInfoBoardToMemberDto,
-    MemberCreateWithAllInfoCommitteeToMemberDto,
-    MemberCreateWithAllInfoCoordinatorToMemberDto,
-    MemberCreateWithAllInfoEventToMemberDto,
-    MemberMessageDto,
-    MemberNameDto,
-    MembershipDto,
-    MemberSizeDto,
-    MemberUniversityDto,
+    AddressDto_c,
+    AuthDto_c,
+    BestEmailDto_c,
+    BirthdayDto_c,
+    MembershipDto_c,
+    MessageDto_c,
+    NameDto_c,
+    SizeDto_c,
+    UniversityDto_c,
 } from './components.dto';
-import { IMemberDeleteArray } from '../../../../interfaces/member/member.type';
-import { randomUUID } from 'crypto';
-import { IsArray, IsNotEmpty, IsString, IsUUID, ValidateNested } from 'class-validator';
-import { IdDto } from '../../../../global-dto';
-import { Type } from 'class-transformer';
+import { ICreateReq, IDeleteArrayReq, IDeleteReq, IGetByIdReq, IUpdateReq } from '../interfaces/req.interface';
+import { IdArrayDto_c, IdDto_c } from '../../../../global-dto';
 
 /* ----------- GET ----------- */
-
-export class MemberGetByIdDto extends IntersectionType(IdDto) {}
+export class MemberGetByIdDto extends IntersectionType(IdDto_c) implements IGetByIdReq {}
 
 /* ----------- POST ----------- */
-export class MemberCreateDto extends IntersectionType(
-    MembershipDto,
-    MemberAuthDto,
-    MemberBestEmailDto,
-    MemberMessageDto,
-    MemberNameDto,
-    MemberBirthdayDto,
-    MemberUniversityDto,
-    MemberSizeDto,
-    MemberAddressDto,
-) {}
-
-export class MemberCreateWithAllInfoDto extends IntersectionType(
-    MembershipDto,
-    MemberAuthDto,
-    MemberBestEmailDto,
-    MemberMessageDto,
-    MemberNameDto,
-    MemberBirthdayDto,
-    MemberUniversityDto,
-    MemberSizeDto,
-    MemberAddressDto,
-) {
-    @ApiProperty({ type: [MemberCreateWithAllInfoBoardToMemberDto] })
-    @ValidateNested({ each: true })
-    @IsArray()
-    @IsNotEmpty()
-    @Type(() => MemberCreateWithAllInfoBoardToMemberDto)
-    boardToMember: MemberCreateWithAllInfoBoardToMemberDto[];
-
-    @ApiProperty({ type: [MemberCreateWithAllInfoCoordinatorToMemberDto] })
-    @ValidateNested({ each: true })
-    @IsArray()
-    @IsNotEmpty()
-    @Type(() => MemberCreateWithAllInfoCoordinatorToMemberDto)
-    coordinatorToMember: MemberCreateWithAllInfoCoordinatorToMemberDto[];
-
-    @ApiProperty({ type: [MemberCreateWithAllInfoCommitteeToMemberDto] })
-    @ValidateNested({ each: true })
-    @IsArray()
-    @IsNotEmpty()
-    @Type(() => MemberCreateWithAllInfoCommitteeToMemberDto)
-    committeeToMember: MemberCreateWithAllInfoCommitteeToMemberDto[];
-
-    @ApiProperty({ type: [MemberCreateWithAllInfoEventToMemberDto] })
-    @ValidateNested({ each: true })
-    @IsArray()
-    @IsNotEmpty()
-    @Type(() => MemberCreateWithAllInfoEventToMemberDto)
-    eventToMember: MemberCreateWithAllInfoEventToMemberDto[];
-}
-
-export class MemberUpdateWithAllInfoDto extends IntersectionType(
-    IdDto,
-    MembershipDto,
-    MemberBestEmailDto,
-    MemberMessageDto,
-    MemberNameDto,
-    MemberBirthdayDto,
-    MemberUniversityDto,
-    MemberSizeDto,
-    MemberAddressDto,
-) {
-    @ApiProperty({ type: [MemberCreateWithAllInfoBoardToMemberDto] })
-    @ValidateNested({ each: true })
-    @IsArray()
-    @IsNotEmpty()
-    @Type(() => MemberCreateWithAllInfoBoardToMemberDto)
-    boardToMember: MemberCreateWithAllInfoBoardToMemberDto[];
-
-    @ApiProperty({ type: [MemberCreateWithAllInfoCoordinatorToMemberDto] })
-    @ValidateNested({ each: true })
-    @IsArray()
-    @IsNotEmpty()
-    @Type(() => MemberCreateWithAllInfoCoordinatorToMemberDto)
-    coordinatorToMember: MemberCreateWithAllInfoCoordinatorToMemberDto[];
-
-    @ApiProperty({ type: [MemberCreateWithAllInfoCommitteeToMemberDto] })
-    @ValidateNested({ each: true })
-    @IsArray()
-    @IsNotEmpty()
-    @Type(() => MemberCreateWithAllInfoCommitteeToMemberDto)
-    committeeToMember: MemberCreateWithAllInfoCommitteeToMemberDto[];
-
-    @ApiProperty({ type: [MemberCreateWithAllInfoEventToMemberDto] })
-    @ValidateNested({ each: true })
-    @IsArray()
-    @IsNotEmpty()
-    @Type(() => MemberCreateWithAllInfoEventToMemberDto)
-    eventToMember: MemberCreateWithAllInfoEventToMemberDto[];
-}
+export class MemberCreateDto
+    extends IntersectionType(
+        MembershipDto_c,
+        AuthDto_c,
+        BestEmailDto_c,
+        MessageDto_c,
+        NameDto_c,
+        BirthdayDto_c,
+        UniversityDto_c,
+        SizeDto_c,
+        AddressDto_c,
+    )
+    implements ICreateReq {}
 
 /* ----------- PUT ----------- */
-export class MemberUpdateDto extends IntersectionType(
-    IdDto,
-    MembershipDto,
-    MemberAuthDto,
-    MemberBestEmailDto,
-    MemberMessageDto,
-    MemberNameDto,
-    MemberBirthdayDto,
-    MemberUniversityDto,
-    MemberSizeDto,
-    MemberAddressDto,
-) {}
+export class MemberUpdateDto
+    extends IntersectionType(
+        IdDto_c,
+        MembershipDto_c,
+        BestEmailDto_c,
+        MessageDto_c,
+        NameDto_c,
+        BirthdayDto_c,
+        UniversityDto_c,
+        SizeDto_c,
+        AddressDto_c,
+    )
+    implements IUpdateReq {}
 
 /* ----------- DELETE ----------- */
-export class MemberDeleteArrayDto implements IMemberDeleteArray {
-    @ApiProperty({ example: [randomUUID()] })
-    @IsNotEmpty()
-    @IsString({ each: true })
-    @IsArray()
-    @IsUUID('4', { each: true })
-    membersId: string[];
-}
+export class MemberDeleteDto extends IntersectionType(IdDto_c) implements IDeleteReq {}
+
+export class MemberDeleteArrayDto extends IntersectionType(IdArrayDto_c) implements IDeleteArrayReq {}

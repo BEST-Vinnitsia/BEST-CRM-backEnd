@@ -1,8 +1,7 @@
 import { NestFactory } from '@nestjs/core';
-import { ValidationPipe, Logger } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { AppModule } from './modules/app/app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { HttpErrorFilter } from './common/filters/http-exception.filter';
 
 async function bootstrap() {
     const logger = new Logger('bootstrap');
@@ -28,7 +27,7 @@ async function bootstrap() {
     const config = new DocumentBuilder() //
         .setTitle('BEST CRM System')
         .setDescription('The BEST CRM System API')
-        .setVersion('1.0')
+        .setVersion('2.0')
         .addSecurity('basic', {
             type: 'http',
             scheme: 'basic',

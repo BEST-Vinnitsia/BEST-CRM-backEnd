@@ -1,29 +1,29 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { randomUUID } from 'crypto';
-import { IResponsible } from '../../../../interfaces/event/responsible.interface';
+import { AtDateDto_c, IdDto_c } from '../../../../global-dto';
+import { DescriptionDto_c, EventIdDto_c, IsActiveDto_c, NameDto_c, RoleDto_c } from '../dto/components.dto';
+import { ApiProperty, IntersectionType } from '@nestjs/swagger';
+import { ICreateRes, IDeleteArrayRes, IGetByEventIdRes, IGetByIdRes, IGetListRes } from '../interfaces/res.interface';
 
-export class Responsible implements IResponsible {
-    @ApiProperty({ example: randomUUID() })
-    id: string;
+/* ----------------  GET  ---------------- */
+export class ResponsibleGetListEntity
+    extends IntersectionType(IdDto_c, EventIdDto_c, NameDto_c, IsActiveDto_c, DescriptionDto_c, RoleDto_c)
+    implements IGetListRes {}
 
-    @ApiProperty({ example: randomUUID() })
-    eventId: string;
+export class ResponsibleGetByIdEntity
+    extends IntersectionType(IdDto_c, AtDateDto_c, EventIdDto_c, NameDto_c, IsActiveDto_c, DescriptionDto_c, RoleDto_c)
+    implements IGetByIdRes {}
 
+export class ResponsibleGetByEventIdEntity
+    extends IntersectionType(IdDto_c, AtDateDto_c, EventIdDto_c, NameDto_c, IsActiveDto_c, DescriptionDto_c, RoleDto_c)
+    implements IGetByEventIdRes {}
+
+/* ----------------  POST  ---------------- */
+/* ----------------  PUT  ---------------- */
+
+/* ----------------  DELETE  ---------------- */
+export class ResponsibleIdEntity extends IntersectionType(IdDto_c) implements ICreateRes {}
+
+/* ----------------  DELETE  ---------------- */
+export class ResponsibleDeleteArrayEntity implements IDeleteArrayRes {
     @ApiProperty()
-    name: string;
-
-    @ApiProperty()
-    isActive: boolean;
-
-    @ApiProperty()
-    role: string;
-
-    @ApiProperty()
-    description: string | null;
-
-    @ApiProperty()
-    createdAt: Date;
-
-    @ApiProperty()
-    updatedAt: Date;
+    count: number;
 }

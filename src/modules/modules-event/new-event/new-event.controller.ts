@@ -1,66 +1,108 @@
-import { Body, Controller, Delete, Get, Post, Put, Query, UseFilters, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Put, Query, UseGuards } from '@nestjs/common';
+import { ApiCreatedResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { NewEventService } from './new-event.service';
 import { CreateDto, DeleteArrayDto, GetByCadenceIdDto, GetByEventIdDto, GetByIdDto, UpdateDto } from './dto';
-import { ApiCreatedResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
-import { NewEvent } from './entity/new-event.entity';
+import {
+    CreateEntity,
+    DeleteArrayEntity,
+    DeleteEntity,
+    GetByCadenceIdEntity,
+    GetByEventIdEntity,
+    GetByIdEntity,
+    GetListEntity,
+    UpdateEntity,
+} from './entity';
 import { Claim } from 'src/common/decorators';
 import { BoardGuard } from 'src/common/guards';
-import { HttpErrorFilter } from '../../../common/filters/http-exception.filter';
-import { v1 } from '../../../constants/api-version';
+import { v2 } from '../../../constants/api-version';
+import {
+    ICreateRes,
+    IDeleteArrayRes,
+    IDeleteRes,
+    IGetByCadenceIdRes,
+    IGetByEventIdRes,
+    IGetByIdRes,
+    IGetListRes,
+    IUpdateRes,
+} from './interfaces/res.interface';
+import { DeleteDto } from '../event/dto';
+
+interface INewEventController {
+    getList(): Promise<IGetListRes[]>;
+
+    getById(dto: GetByIdDto): Promise<IGetByIdRes>;
+
+    getByCadenceId(dto: GetByCadenceIdDto): Promise<IGetByCadenceIdRes[]>;
+
+    getByEventId(dto: GetByEventIdDto): Promise<IGetByEventIdRes[]>;
+
+    create(dto: CreateDto): Promise<ICreateRes>;
+
+    update(dto: UpdateDto): Promise<IUpdateRes>;
+
+    deleteById(dto: DeleteDto): Promise<IDeleteRes>;
+
+    deleteArray(dto: DeleteArrayDto): Promise<IDeleteArrayRes>;
+}
 
 @ApiSecurity('basic')
 @ApiTags('New event')
-@Controller(`${v1}/new-event`)
-export class NewEventController {
+@Controller(`${v2}/new-event`)
+export class NewEventController implements INewEventController {
     constructor(private readonly service: NewEventService) {}
 
     /* ----------------  GET  ---------------- */
 
     @Get('list')
-    @ApiCreatedResponse({ type: [NewEvent] })
-    async list() {
+    @ApiCreatedResponse({ type: [GetListEntity] })
+    async getList(): Promise<IGetListRes[]> {
         return await this.service.getList();
     }
 
-    @Get('by-id')
-    @ApiCreatedResponse({ type: NewEvent })
-    async getById(@Query() dto: GetByIdDto) {
+    @Get('')
+    @ApiCreatedResponse({ type: GetByIdEntity })
+    async getById(@Query() dto: GetByIdDto): Promise<IGetByIdRes> {
         return await this.service.getById(dto);
     }
 
     @Get('by-cadence-id')
-    @ApiCreatedResponse({ type: NewEvent })
-    async getByCadenceId(@Query() dto: GetByCadenceIdDto) {
+    @ApiCreatedResponse({ type: GetByCadenceIdEntity })
+    async getByCadenceId(@Query() dto: GetByCadenceIdDto): Promise<IGetByCadenceIdRes[]> {
         return await this.service.getByCadenceId(dto);
     }
 
     @Get('by-event-id')
-    @ApiCreatedResponse({ type: NewEvent })
-    async getByEventId(@Query() dto: GetByEventIdDto) {
+    @ApiCreatedResponse({ type: GetByEventIdEntity })
+    async getByEventId(@Query() dto: GetByEventIdDto): Promise<IGetByEventIdRes[]> {
         return await this.service.getByEventId(dto);
     }
 
     /* ----------------  POST  ---------------- */
     @Claim(['demo'])
     @UseGuards(BoardGuard)
-    @Post('create')
-    @ApiCreatedResponse({ type: NewEvent })
-    async create(@Body() dto: CreateDto) {
+    @Post('')
+    @ApiCreatedResponse({ type: CreateEntity })
+    async create(@Body() dto: CreateDto): Promise<ICreateRes> {
         return await this.service.create(dto);
     }
 
     /* ----------------  PUT  ---------------- */
-    @Put('update')
-    @ApiCreatedResponse({ type: NewEvent })
-    async update(@Body() dto: UpdateDto) {
+    @Put('')
+    @ApiCreatedResponse({ type: UpdateEntity })
+    async update(@Body() dto: UpdateDto): Promise<IUpdateRes> {
         return await this.service.update(dto);
     }
 
     /* ----------------  DELETE  ---------------- */
-    @Delete('delete')
-    @ApiCreatedResponse({ type: NewEvent })
-    @UseFilters(HttpErrorFilter)
-    async delete(@Body() dto: DeleteArrayDto) {
-        return this.service.delete(dto.newEventsId);
+    @Delete('')
+    @ApiCreatedResponse({ type: DeleteEntity })
+    async deleteById(@Body() dto: DeleteDto): Promise<IDeleteRes> {
+        return await this.service.deleteById(dto);
+    }
+
+    @Delete('delete-array')
+    @ApiCreatedResponse({ type: DeleteArrayEntity })
+    async deleteArray(@Body() dto: DeleteArrayDto): Promise<IDeleteArrayRes> {
+        return await this.service.deleteArray(dto.id);
     }
 }

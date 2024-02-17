@@ -1,11 +1,10 @@
-import { IsDateString, IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, IsUUID, Matches } from 'class-validator';
+import { IsDateString, IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, Matches } from 'class-validator';
 import { ClothingSizeEnum, MembershipEnum } from '../../../../constants/enums.constant';
 import { Regex } from '../../../../constants/regex.constant';
 import { IsDateWithinRange } from '../../../../pipes/isDateWithinRange.pipe';
 import { ApiProperty } from '@nestjs/swagger';
-import { randomUUID } from 'crypto';
 
-export class MembershipDto {
+export class MembershipDto_c {
     @ApiProperty({ enum: MembershipEnum, example: MembershipEnum.FULL })
     @IsNotEmpty()
     @IsString()
@@ -13,7 +12,7 @@ export class MembershipDto {
     membership: string;
 }
 
-export class MemberAuthDto {
+export class AuthDto_c {
     @ApiProperty({ example: 'login@email.com' })
     @IsNotEmpty()
     @IsString()
@@ -27,15 +26,15 @@ export class MemberAuthDto {
     password: string;
 }
 
-export class MemberBestEmailDto {
+export class BestEmailDto_c {
     @ApiProperty({ example: 'name.surname@best-eu.org' })
     @IsString()
     @IsEmail()
     @IsOptional()
-    bestEmail: string | null;
+    bestEmail: string;
 }
 
-export class MemberMessageDto {
+export class MessageDto_c {
     @ApiProperty({ example: 'mail@mail.com' })
     @IsString()
     @IsNotEmpty()
@@ -53,7 +52,7 @@ export class MemberMessageDto {
     socialNetwork: string;
 }
 
-export class MemberNameDto {
+export class NameDto_c {
     @ApiProperty({ example: 'Name' })
     @IsNotEmpty()
     @IsString()
@@ -73,7 +72,7 @@ export class MemberNameDto {
     middleName: string;
 }
 
-export class MemberBirthdayDto {
+export class BirthdayDto_c {
     @ApiProperty({ example: new Date('2000-01-01') })
     @IsNotEmpty()
     @IsDateString()
@@ -81,7 +80,7 @@ export class MemberBirthdayDto {
     birthday: Date;
 }
 
-export class MemberUniversityDto {
+export class UniversityDto_c {
     @ApiProperty({ example: 'УБ-21б' })
     @IsNotEmpty()
     @IsString()
@@ -93,77 +92,17 @@ export class MemberUniversityDto {
     faculty: string;
 }
 
-export class MemberSizeDto {
+export class SizeDto_c {
     @ApiProperty({ enum: ClothingSizeEnum, example: ClothingSizeEnum.M })
     @IsString()
     @IsEnum(ClothingSizeEnum)
     @IsOptional()
-    clothingSize: string | null;
+    clothingSize: string;
 }
 
-export class MemberAddressDto {
+export class AddressDto_c {
     @ApiProperty()
     @IsString()
     @IsOptional()
-    homeAddress: string | null;
-}
-
-//
-//
-//
-
-export class MemberCreateWithAllInfoBoardToMemberDto {
-    @ApiProperty({ example: randomUUID() })
-    @IsNotEmpty()
-    @IsString()
-    @IsUUID('4')
-    cadenceId: string;
-
-    @ApiProperty({ example: randomUUID() })
-    @IsNotEmpty()
-    @IsString()
-    @IsUUID('4')
-    boardId: string;
-}
-
-export class MemberCreateWithAllInfoCoordinatorToMemberDto {
-    @ApiProperty({ example: randomUUID() })
-    @IsNotEmpty()
-    @IsString()
-    @IsUUID('4')
-    cadenceId: string;
-
-    @ApiProperty({ example: randomUUID() })
-    @IsNotEmpty()
-    @IsString()
-    @IsUUID('4')
-    coordinatorId: string;
-}
-
-export class MemberCreateWithAllInfoCommitteeToMemberDto {
-    @ApiProperty({ example: randomUUID() })
-    @IsNotEmpty()
-    @IsString()
-    @IsUUID('4')
-    cadenceId: string;
-
-    @ApiProperty({ example: randomUUID() })
-    @IsNotEmpty()
-    @IsString()
-    @IsUUID('4')
-    committeeId: string;
-}
-
-export class MemberCreateWithAllInfoEventToMemberDto {
-    @ApiProperty({ example: randomUUID() })
-    @IsNotEmpty()
-    @IsString()
-    @IsUUID('4')
-    eventId: string;
-
-    @ApiProperty({ example: randomUUID() })
-    @IsNotEmpty()
-    @IsString()
-    @IsUUID('4')
-    responsibleId: string;
+    homeAddress: string;
 }

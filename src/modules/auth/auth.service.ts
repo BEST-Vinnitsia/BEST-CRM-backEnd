@@ -16,16 +16,18 @@ export class AuthService {
 
     /* ----------------  LOGIN  ---------------- */
     public async login(dto: IAuthLogin): Promise<{ access: string; refresh: string }> {
-        const findMember = await this.getMemberFullInfo({ login: dto.login });
+        const findMember = await this.prisma.member.findUnique({ where: { login: dto.login } });
         if (!findMember) throw new BadRequestException('incorrect email or password');
 
         const isMatch = await bcrypt.compare(dto.password, findMember.password);
         if (!isMatch) throw new BadRequestException('incorrect email or password');
 
-        const newRefresh = await this.createRefreshInDb({ memberId: findMember.id });
+        const newRefreshTokenInDb = await this.prisma.refreshToken.create({
+            data: { memberId: findMember.id, needUpdate: false },
+        });
 
         const tokenPayload: ITokenPayload = {
-            refreshTokenId: newRefresh.id,
+            refreshTokenId: newRefreshTokenInDb.id,
             memberId: findMember.id,
             membershipName: findMember.membership,
             name: findMember.name,
@@ -46,28 +48,33 @@ export class AuthService {
 
     /* ----------------  REFRESH  ---------------- */
     public async refresh(refresh: IRefreshToken): Promise<{ access: string }> {
-        const newAccessToken = await this.generateToken('access', {
+        const tokenPayload: ITokenPayload = {
             refreshTokenId: refresh.refreshTokenId,
             memberId: refresh.memberId,
             membershipName: refresh.membershipName,
             name: refresh.name,
             surname: refresh.surname,
             claims: [],
-        });
+        };
+
+        const newAccessToken = await this.generateToken('access', tokenPayload);
 
         return { access: newAccessToken };
     }
 
     /* ----------------  UPDATE  ---------------- */
     public async update(refresh: IRefreshToken): Promise<{ access: string; refresh: string }> {
-        const findMember = await this.getMemberFullInfo({ id: refresh.memberId });
-        if (!findMember) throw new BadRequestException('incorrect email or password');
+        const findMember = await this.prisma.member.findUnique({ where: { id: refresh.memberId } });
+        if (!findMember) throw new BadRequestException('incorrect token');
 
-        const newRefresh = await this.createRefreshInDb({ memberId: findMember.id });
+        const newRefreshTokenInDb = await this.prisma.refreshToken.create({
+            data: { memberId: findMember.id, needUpdate: false },
+        });
+
         await this.prisma.refreshToken.delete({ where: { id: refresh.refreshTokenId } });
 
         const tokenPayload: ITokenPayload = {
-            refreshTokenId: newRefresh.id,
+            refreshTokenId: newRefreshTokenInDb.id,
             memberId: findMember.id,
             membershipName: findMember.membership,
             name: findMember.name,
@@ -105,54 +112,5 @@ export class AuthService {
                 expiresIn: tokenType === 'access' ? 60 * 15 : 60 * 60 * 24 * 7,
             },
         );
-    }
-
-    private async getMemberFullInfo({ id, login }: { id?: string; login?: string }) {
-        if (!id && !login) return;
-
-        // const some = {
-        //     boardToMember: {
-        //         some: {
-        //             exclure: false,
-        //             board: { isActive: true },
-        //             cadence: { isEnd: false },
-        //         },
-        //     },
-        //     coordinatorToMember: {
-        //         some: {
-        //             exclure: false,
-        //             coordinator: { isActive: true },
-        //             cadence: { isEnd: false },
-        //         },
-        //     },
-        //     committeeToMember: {
-        //         some: {
-        //             exclure: false,
-        //             committee: { isActive: true },
-        //             cadence: { isEnd: false },
-        //         },
-        //     },
-        // };
-        //
-        // const include = {
-        //     boardToMember: { include: { board: true, cadence: true } },
-        //     coordinatorToMember: { include: { coordinator: true, cadence: true } },
-        //     committeeToMember: { include: { committee: true, cadence: true } },
-        // };
-
-        if (id) {
-            return this.prisma.member.findUnique({
-                where: { id },
-            });
-        }
-        return this.prisma.member.findUnique({
-            where: { login },
-        });
-    }
-
-    private async createRefreshInDb({ memberId }: { memberId: string }) {
-        return this.prisma.refreshToken.create({
-            data: { memberId, needUpdate: false },
-        });
     }
 }

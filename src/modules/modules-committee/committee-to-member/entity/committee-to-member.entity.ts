@@ -1,29 +1,45 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { randomUUID } from 'crypto';
-import { ICommitteeToMember } from '../../../../interfaces/committee/committee-to-member.interface';
+import { AtDateDto_c, IdDto_c } from '../../../../global-dto';
+import { CadenceIdDto_c, CommitteeIdDto_c, ExcludedDto_c, IsLeaderDto_c, MemberIdDto_c } from '../dto/components.dto';
+import { ApiProperty, IntersectionType } from '@nestjs/swagger';
+import {
+    ICreateRes,
+    IDeleteArrayRes,
+    IGetByCadenceIdRes,
+    IGetByCommitteeIdRes,
+    IGetByIdRes,
+    IGetByMemberIdRes,
+    IGetListRes,
+} from '../interfaces/res.interface';
 
-export class CommitteeToMember implements ICommitteeToMember {
-    @ApiProperty({ example: randomUUID() })
-    id: string;
+/* ----------------  GET  ---------------- */
+export class CommitteeToMemberGetListEntity
+    extends IntersectionType(IdDto_c, CadenceIdDto_c, MemberIdDto_c, CommitteeIdDto_c, ExcludedDto_c, IsLeaderDto_c)
+    implements IGetListRes {}
 
-    @ApiProperty({ example: randomUUID() })
-    cadenceId: string;
+export class CommitteeToMemberGetByIdEntity
+    extends IntersectionType(IdDto_c, AtDateDto_c, CadenceIdDto_c, MemberIdDto_c, CommitteeIdDto_c, ExcludedDto_c, IsLeaderDto_c)
+    implements IGetByIdRes {}
 
-    @ApiProperty({ example: randomUUID() })
-    committeeId: string;
+export class CommitteeToMemberGetByBoardIdEntity
+    extends IntersectionType(IdDto_c, AtDateDto_c, CadenceIdDto_c, MemberIdDto_c, CommitteeIdDto_c, ExcludedDto_c, IsLeaderDto_c)
+    implements IGetByCommitteeIdRes {}
 
-    @ApiProperty({ example: randomUUID() })
-    memberId: string;
+export class CommitteeToMemberGetByCadenceIdEntity
+    extends IntersectionType(IdDto_c, AtDateDto_c, CadenceIdDto_c, MemberIdDto_c, CommitteeIdDto_c, ExcludedDto_c, IsLeaderDto_c)
+    implements IGetByCadenceIdRes {}
 
+export class CommitteeToMemberGetByMemberIdEntity
+    extends IntersectionType(IdDto_c, AtDateDto_c, CadenceIdDto_c, MemberIdDto_c, CommitteeIdDto_c, ExcludedDto_c, IsLeaderDto_c)
+    implements IGetByMemberIdRes {}
+
+/* ----------------  POST  ---------------- */
+/* ----------------  PUT  ---------------- */
+
+/* ----------------  DELETE  ---------------- */
+export class CommitteeToMemberIdEntity extends IntersectionType(IdDto_c) implements ICreateRes {}
+
+/* ----------------  DELETE  ---------------- */
+export class CommitteeToMemberDeleteArrayEntity implements IDeleteArrayRes {
     @ApiProperty()
-    excluded: boolean;
-
-    @ApiProperty()
-    excludedDate: Date | null;
-
-    @ApiProperty()
-    createdAt: Date;
-
-    @ApiProperty()
-    updatedAt: Date;
+    count: number;
 }

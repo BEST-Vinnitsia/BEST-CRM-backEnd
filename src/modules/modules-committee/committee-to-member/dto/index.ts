@@ -1,7 +1,9 @@
-export { CommitteeToMemberGetByIdDto as GetByIdDto } from './get-by-id.dto';
-export { CommitteeToMemberGetByCadenceIdDto as GetByCadenceIdDto } from './get-by-cadence-id.dto';
-export { CommitteeToMemberGetByCommitteeIdDto as GetByCommitteeIdDto } from './get-by-committee-id.dto';
-export { CommitteeToMemberGetByMemberIdDto as GetByMemberIdDto } from './get-by-member-id.dto';
-export { CommitteeToMemberCreateDto as CreateDto } from './create.dto';
-export { CommitteeToMemberUpdateDto as UpdateDto } from './update.dto';
-export { CommitteeToMemberDeleteArrayDto as DeleteArrayDto } from './delete-array.dto';
+export { CommitteeToMemberGetByIdDto as GetByIdDto } from './committee-to-member.dto';
+export { CommitteeToMemberGetByCommitteeIdDto as GetByCommitteeIdDto } from './committee-to-member.dto';
+export { CommitteeToMemberGetByCadenceIdDto as GetByCadenceIdDto } from './committee-to-member.dto';
+export { CommitteeToMemberGetByMemberIdDto as GetByMemberIdDto } from './committee-to-member.dto';
+
+export { CommitteeToMemberCreateDto as CreateDto } from './committee-to-member.dto';
+export { CommitteeToMemberUpdateDto as UpdateDto } from './committee-to-member.dto';
+export { CommitteeToMemberDeleteDto as DeleteDto } from './committee-to-member.dto';
+export { CommitteeToMemberDeleteArrayDto as DeleteArrayDto } from './committee-to-member.dto';

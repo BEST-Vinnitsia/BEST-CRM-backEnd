@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class AtDateDto {
+export class AtDateDto_c {
     @ApiProperty()
     createdAt: Date;
 

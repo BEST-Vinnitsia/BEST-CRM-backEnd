@@ -1,56 +1,77 @@
-import { Body, Controller, Delete, Get, Post, Put, Query, UseFilters } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Put, Query } from '@nestjs/common';
 import { ApiCreatedResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
-import { MeetingEntity } from './entity/meeting.entity';
+import { CreateEntity, DeleteArrayEntity, DeleteEntity, GetByCadenceIdEntity, GetByIdEntity, GetListEntity, UpdateEntity } from './entity';
 import { MeetingService } from './meeting.service';
-import { CreateDto, DeleteArrayDto, GetByCadenceIdDto, GetByIdDto, UpdateDto } from './dto';
-import { HttpErrorFilter } from '../../../common/filters/http-exception.filter';
-import { v1 } from '../../../constants/api-version';
+import { v2 } from '../../../constants/api-version';
+import { ICreateRes, IDeleteArrayRes, IDeleteRes, IGetByCadenceIdRes, IGetByIdRes, IGetListRes, IUpdateRes } from './interfaces/res.interface';
+import { CreateDto, DeleteArrayDto, DeleteDto, GetByCadenceIdDto, GetByIdDto, UpdateDto } from './dto';
+
+interface IMeetingController {
+    getList(): Promise<IGetListRes[]>;
+
+    getById(dto: GetByIdDto): Promise<IGetByIdRes>;
+
+    getByCadenceId(dto: GetByCadenceIdDto): Promise<IGetByCadenceIdRes[]>;
+
+    create(dto: CreateDto): Promise<ICreateRes>;
+
+    update(dto: UpdateDto): Promise<IUpdateRes>;
+
+    deleteById(dto: DeleteDto): Promise<IDeleteRes>;
+
+    deleteArray(dto: DeleteArrayDto): Promise<IDeleteArrayRes>;
+}
 
 @ApiSecurity('basic')
 @ApiTags('Meeting')
-@Controller(`${v1}/meeting`)
-export class MeetingController {
+@Controller(`${v2}/meeting`)
+export class MeetingController implements IMeetingController {
     constructor(private readonly service: MeetingService) {}
 
     /* ----------------  GET  ---------------- */
 
     @Get('list')
-    @ApiCreatedResponse({ type: [MeetingEntity] })
-    async getList() {
+    @ApiCreatedResponse({ type: [GetListEntity] })
+    async getList(): Promise<IGetListRes[]> {
         return this.service.getList();
     }
 
     @Get('by-cadence-id')
-    @ApiCreatedResponse({ type: [MeetingEntity] })
-    async getByCadenceId(@Query() dto: GetByCadenceIdDto) {
+    @ApiCreatedResponse({ type: [GetByCadenceIdEntity] })
+    async getByCadenceId(@Query() dto: GetByCadenceIdDto): Promise<IGetByCadenceIdRes[]> {
         return this.service.getByCadenceId(dto);
     }
 
-    @Get('by-id')
-    @ApiCreatedResponse({ type: MeetingEntity })
-    async getById(@Query() dto: GetByIdDto) {
+    @Get('')
+    @ApiCreatedResponse({ type: GetByIdEntity })
+    async getById(@Query() dto: GetByIdDto): Promise<IGetByIdRes> {
         return this.service.getById(dto);
     }
 
     /* ----------------  POST  ---------------- */
-    @Post('create')
-    @ApiCreatedResponse({ type: MeetingEntity })
-    async create(@Body() dto: CreateDto) {
+    @Post('')
+    @ApiCreatedResponse({ type: CreateEntity })
+    async create(@Body() dto: CreateDto): Promise<ICreateRes> {
         return await this.service.create(dto);
     }
 
     /* ----------------  PUT  ---------------- */
-    @Put('update')
-    @ApiCreatedResponse({ type: MeetingEntity })
-    async update(@Body() dto: UpdateDto) {
+    @Put('')
+    @ApiCreatedResponse({ type: UpdateEntity })
+    async update(@Body() dto: UpdateDto): Promise<IUpdateRes> {
         return await this.service.update(dto);
     }
 
     /* ----------------  DELETE  ---------------- */
-    @Delete('delete')
-    @ApiCreatedResponse({ type: MeetingEntity })
-    @UseFilters(HttpErrorFilter)
-    async delete(@Body() dto: DeleteArrayDto) {
-        return this.service.delete(dto.meetingsId);
+    @Delete('')
+    @ApiCreatedResponse({ type: DeleteEntity })
+    async deleteById(@Body() dto: DeleteDto): Promise<IDeleteRes> {
+        return this.service.deleteById(dto);
+    }
+
+    @Delete('delete-array')
+    @ApiCreatedResponse({ type: DeleteArrayEntity })
+    async deleteArray(@Body() dto: DeleteArrayDto): Promise<IDeleteArrayRes> {
+        return this.service.deleteArray(dto.id);
     }
 }

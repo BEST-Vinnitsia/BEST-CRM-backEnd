@@ -1,7 +1,9 @@
-export { CoordinatorToMemberGetByIdDto as GetByIdDto } from './get-by-id.dto';
-export { CoordinatorToMemberGetByCadenceIdDto as GetByCadenceIdDto } from './get-by-cadence-id.dto';
-export { CoordinatorToMemberGetByCoordinatorIdDto as GetByCoordinatorIdDto } from './get-by-coordinator-id.dto';
-export { CoordinatorToMemberGetByMemberIdDto as GetByMemberIdDto } from './get-by-member-id.dto';
-export { CoordinatorToMemberCreateDto as CreateDto } from './create.dto';
-export { CoordinatorToMemberUpdateDto as UpdateDto } from './update.dto';
-export { CoordinatorToMemberDeleteArrayDto as DeleteArrayDto } from './delete-array.dto';
+export { CoordinatorToMemberGetByIdDto as GetByIdDto } from './coordinator-to-member.dto';
+export { CoordinatorToMemberGetByCoordinatorIdDto as GetByCoordinatorIdDto } from './coordinator-to-member.dto';
+export { CoordinatorToMemberGetByCadenceIdDto as GetByCadenceIdDto } from './coordinator-to-member.dto';
+export { CoordinatorToMemberGetByMemberIdDto as GetByMemberIdDto } from './coordinator-to-member.dto';
+
+export { CoordinatorToMemberCreateDto as CreateDto } from './coordinator-to-member.dto';
+export { CoordinatorToMemberUpdateDto as UpdateDto } from './coordinator-to-member.dto';
+export { CoordinatorToMemberDeleteDto as DeleteDto } from './coordinator-to-member.dto';
+export { CoordinatorToMemberDeleteArrayDto as DeleteArrayDto } from './coordinator-to-member.dto';
