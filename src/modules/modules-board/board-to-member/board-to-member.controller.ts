@@ -101,7 +101,7 @@ export class BoardToMemberController implements IBoardToMemberController {
     /* ----------------  DELETE  ---------------- */
     @Delete('')
     @ApiCreatedResponse({ type: DeleteEntity })
-    async deleteById(@Body() dto: DeleteDto): Promise<IDeleteRes> {
+    async deleteById(@Query() dto: DeleteDto): Promise<IDeleteRes> {
         return await this.service.deleteById(dto);
     }
 

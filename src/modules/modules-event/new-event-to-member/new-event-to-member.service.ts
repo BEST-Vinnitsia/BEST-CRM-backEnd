@@ -45,7 +45,7 @@ interface IMemberToNewEventService {
 }
 
 @Injectable()
-export class MemberToNewEventService implements IMemberToNewEventService {
+export class NewEventToMemberService implements IMemberToNewEventService {
     constructor(
         private readonly prisma: PrismaService,
         private readonly responsibleService: ResponsibleService,

@@ -91,7 +91,7 @@ export class IncreaseController implements IIncreaseController {
     /* ----------------  DELETE  ---------------- */
     @Delete('')
     @ApiCreatedResponse({ type: DeleteEntity })
-    async deleteById(@Body() dto: DeleteDto): Promise<IDeleteRes> {
+    async deleteById(@Query() dto: DeleteDto): Promise<IDeleteRes> {
         return this.service.deleteById(dto);
     }
 

@@ -102,7 +102,7 @@ export class CoordinatorToMemberController implements ICoordinatorToMemberContro
     /* ----------------  DELETE  ---------------- */
     @Delete('')
     @ApiCreatedResponse({ type: DeleteEntity })
-    async deleteById(@Body() dto: DeleteDto): Promise<IDeleteRes> {
+    async deleteById(@Query() dto: DeleteDto): Promise<IDeleteRes> {
         return await this.coordinatorToMemberService.deleteById(dto);
     }
 

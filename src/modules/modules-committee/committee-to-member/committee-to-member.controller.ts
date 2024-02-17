@@ -101,7 +101,7 @@ export class CommitteeToMemberController implements ICommitteeToMemberController
     /* ----------------  DELETE  ---------------- */
     @Delete('delete')
     @ApiCreatedResponse({ type: DeleteEntity })
-    async deleteById(@Body() dto: DeleteDto): Promise<IDeleteRes> {
+    async deleteById(@Query() dto: DeleteDto): Promise<IDeleteRes> {
         return await this.service.deleteById(dto);
     }
 

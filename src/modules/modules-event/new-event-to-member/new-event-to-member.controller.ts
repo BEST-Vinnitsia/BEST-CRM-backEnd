@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Post, Put, Query, UseGuards } from '@nestjs/common';
-import { MemberToNewEventService } from './member-to-new-event.service';
+import { NewEventToMemberService } from './new-event-to-member.service';
 import { CreateDto, DeleteArrayDto, GetByIdDto, GetByMemberIdDto, GetByNewEventIdDto, GetByResponsibleIdDto, UpdateDto } from './dto';
 import { ApiCreatedResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import {
@@ -50,10 +50,10 @@ interface IMemberToNewEventController {
 }
 
 @ApiSecurity('basic')
-@ApiTags('Member to event')
-@Controller(`${v2}/member-to-event`)
-export class MemberToNewEventController implements IMemberToNewEventController {
-    constructor(private readonly service: MemberToNewEventService) {}
+@ApiTags('New event to member')
+@Controller(`${v2}/new-event-to-member`)
+export class NewEventToMemberController implements IMemberToNewEventController {
+    constructor(private readonly service: NewEventToMemberService) {}
 
     /* ----------------  GET  ---------------- */
 
@@ -106,7 +106,7 @@ export class MemberToNewEventController implements IMemberToNewEventController {
     /* ----------------  DELETE  ---------------- */
     @Delete('')
     @ApiCreatedResponse({ type: DeleteEntity })
-    async deleteById(@Body() dto: DeleteDto): Promise<IDeleteRes> {
+    async deleteById(@Query() dto: DeleteDto): Promise<IDeleteRes> {
         return this.service.deleteById(dto);
     }
 

@@ -21,7 +21,7 @@ import { CommitteeToMemberModule } from '../modules-committee/committee-to-membe
 import { EventModule } from '../modules-event/event/event.module';
 import { ResponsibleModule } from '../modules-event/responsible/responsible.module';
 import { NewEventModule } from '../modules-event/new-event/new-event.module';
-import { MemberToNewEventModule } from '../modules-event/member-to-event/member-to-new-event.module';
+import { NewEventToMemberModule } from '../modules-event/new-event-to-member/new-event-to-member.module';
 // meeting
 import { MeetingModule } from '../modules-meeting/meeting/meeting.module';
 import { IncreaseModule } from '../modules-meeting/increase/increase.module';
@@ -54,7 +54,7 @@ import { IncreaseModule } from '../modules-meeting/increase/increase.module';
         EventModule,
         ResponsibleModule,
         NewEventModule,
-        MemberToNewEventModule,
+        NewEventToMemberModule,
 
         // meeting
         MeetingModule,
