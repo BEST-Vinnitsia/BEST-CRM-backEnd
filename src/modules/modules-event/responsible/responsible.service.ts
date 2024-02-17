@@ -2,6 +2,7 @@ import { BadRequestException, Injectable, InternalServerErrorException, NotFound
 import { PrismaService } from '../../prisma/prisma.service';
 import { ICreateRes, IDeleteArrayRes, IDeleteRes, IGetByEventIdRes, IGetByIdRes, IGetListRes, IUpdateRes } from './interfaces/res.interface';
 import { ICreateReq, IDeleteReq, IGetByEventIdReq, IGetByIdReq, IUpdateReq } from './interfaces/req.interface';
+import { EventService } from '../event/event.service';
 
 interface IResponsibleService {
     getList(): Promise<IGetListRes[]>;
@@ -21,7 +22,10 @@ interface IResponsibleService {
 
 @Injectable()
 export class ResponsibleService implements IResponsibleService {
-    constructor(private readonly prisma: PrismaService) {}
+    constructor(
+        private readonly prisma: PrismaService,
+        private readonly eventService: EventService,
+    ) {}
 
     /* ----------------  GET  ---------------- */
     public async getList(): Promise<IGetListRes[]> {
@@ -51,10 +55,13 @@ export class ResponsibleService implements IResponsibleService {
 
     /* ----------------  POST  ---------------- */
     public async create(dto: ICreateReq): Promise<ICreateRes> {
+
         const responsible = await this.prisma.responsible.findFirst({
             where: { eventId: dto.eventId, name: dto.name, role: dto.role },
         });
         if (responsible) throw new BadRequestException('Responsible with this params is exist');
+
+        await this.eventService.getById({ id: dto.eventId });
 
         const responsibleCreate = await this.prisma.responsible.create({
             data: {
@@ -74,6 +81,8 @@ export class ResponsibleService implements IResponsibleService {
     public async update(dto: IUpdateReq): Promise<IUpdateRes> {
         const responsibleById = await this.prisma.responsible.findUnique({ where: { id: dto.id } });
         if (!responsibleById) throw new NotFoundException('Responsible is not found');
+
+        await this.eventService.getById({ id: dto.eventId });
 
         const responsibleUpdate = await this.prisma.responsible.update({
             where: { id: dto.id },

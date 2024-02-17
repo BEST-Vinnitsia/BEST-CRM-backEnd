@@ -11,6 +11,7 @@ import {
     IUpdateRes,
 } from './interfaces/res.interface';
 import { ICreateReq, IDeleteReq, IGetByCadenceIdReq, IGetByEventIdReq, IGetByIdReq, IUpdateReq } from './interfaces/req.interface';
+import { EventService } from '../event/event.service';
 
 interface IResponsibleService {
     getList(): Promise<IGetListRes[]>;
@@ -32,7 +33,10 @@ interface IResponsibleService {
 
 @Injectable()
 export class NewEventService implements IResponsibleService {
-    constructor(private readonly prisma: PrismaService) {}
+    constructor(
+        private readonly prisma: PrismaService,
+        private readonly eventService: EventService,
+    ) {}
 
     /* ----------------  GET  ---------------- */
     public async getList(): Promise<IGetListRes[]> {
@@ -63,6 +67,8 @@ export class NewEventService implements IResponsibleService {
         });
         if (newEvent) throw new BadRequestException('New event is exist');
 
+        await this.eventService.getById({ id: dto.eventId });
+
         const createNewEvent = await this.prisma.newEvent.create({
             data: { eventId: dto.eventId, cadenceId: dto.cadenceId, name: dto.name },
         });
@@ -74,6 +80,8 @@ export class NewEventService implements IResponsibleService {
     public async update(dto: IUpdateReq): Promise<IUpdateRes> {
         const newEvent = await this.prisma.newEvent.findUnique({ where: { id: dto.id } });
         if (!newEvent) throw new NotFoundException('New event is not exist');
+
+        await this.eventService.getById({ id: dto.eventId });
 
         const updateNewEvent = await this.prisma.newEvent.update({
             where: { id: dto.id },

@@ -20,6 +20,9 @@ import {
     IGetByMemberIdReq,
     IUpdateReq,
 } from './interfaces/req.interface';
+import { CoordinatorService } from '../coordinator/coordinator.service';
+import { MemberService } from '../../modules-member/member/member.service';
+import { CadenceService } from '../../cadence/cadence.service';
 
 interface ICoordinatorToMemberService {
     getList(): Promise<IGetListRes[]>;
@@ -43,7 +46,12 @@ interface ICoordinatorToMemberService {
 
 @Injectable()
 export class CoordinatorToMemberService implements ICoordinatorToMemberService {
-    constructor(private readonly prisma: PrismaService) {}
+    constructor(
+        private readonly prisma: PrismaService,
+        private readonly coordinatorService: CoordinatorService,
+        private readonly memberService: MemberService,
+        private readonly cadenceService: CadenceService,
+    ) {}
 
     /* ----------------  GET  ---------------- */
 
@@ -85,6 +93,10 @@ export class CoordinatorToMemberService implements ICoordinatorToMemberService {
         });
         if (coordinatorToMember) throw new BadRequestException('This coordinator to member is exist');
 
+        await this.memberService.getById({ id: dto.memberId });
+        await this.coordinatorService.getById({ id: dto.coordinatorId });
+        await this.cadenceService.getById({ id: dto.cadenceId });
+
         const createCoordinatorToMember = await this.prisma.coordinatorToMember.create({
             data: {
                 cadenceId: dto.cadenceId,
@@ -102,6 +114,10 @@ export class CoordinatorToMemberService implements ICoordinatorToMemberService {
     public async update(dto: IUpdateReq): Promise<IUpdateRes> {
         const coordinatorToMember = await this.prisma.coordinatorToMember.findUnique({ where: { id: dto.id } });
         if (!coordinatorToMember) throw new NotFoundException('Coordinator to member not found');
+
+        await this.memberService.getById({ id: dto.memberId });
+        await this.coordinatorService.getById({ id: dto.coordinatorId });
+        await this.cadenceService.getById({ id: dto.cadenceId });
 
         const updateCoordinatorToMember = await this.prisma.coordinatorToMember.update({
             where: { id: dto.id },

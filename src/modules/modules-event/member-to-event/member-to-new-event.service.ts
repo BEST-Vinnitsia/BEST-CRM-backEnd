@@ -20,6 +20,9 @@ import {
     IGetByResponsibleIdReq,
     IUpdateReq,
 } from './interfaces/req.interface';
+import { ResponsibleService } from '../responsible/responsible.service';
+import { NewEventService } from '../new-event/new-event.service';
+import { MemberService } from '../../modules-member/member/member.service';
 
 interface IMemberToNewEventService {
     getList(): Promise<IGetListRes[]>;
@@ -43,7 +46,12 @@ interface IMemberToNewEventService {
 
 @Injectable()
 export class MemberToNewEventService implements IMemberToNewEventService {
-    constructor(private readonly prisma: PrismaService) {}
+    constructor(
+        private readonly prisma: PrismaService,
+        private readonly responsibleService: ResponsibleService,
+        private readonly newEventService: NewEventService,
+        private readonly memberService: MemberService,
+    ) {}
 
     /* ----------------  GET  ---------------- */
     public async getList(): Promise<IGetListRes[]> {
@@ -85,6 +93,10 @@ export class MemberToNewEventService implements IMemberToNewEventService {
         });
         if (!newEventToMemberById) throw new NotFoundException('Is not found');
 
+        await this.newEventService.getById({ id: dto.newEventId });
+        await this.responsibleService.getById({ id: dto.responsibleId });
+        await this.memberService.getById({ id: dto.memberId });
+
         const newEventToMemberByIdUpdate = await this.prisma.newEventToMember.create({
             data: {
                 newEventId: dto.newEventId,
@@ -103,6 +115,10 @@ export class MemberToNewEventService implements IMemberToNewEventService {
         const newEventToMemberById = await this.prisma.newEventToMember.findUnique({ where: { id: dto.id } });
         if (!newEventToMemberById) throw new NotFoundException('Is not found');
 
+        await this.newEventService.getById({ id: dto.newEventId });
+        await this.responsibleService.getById({ id: dto.responsibleId });
+        await this.memberService.getById({ id: dto.memberId });
+        
         const newEventToMemberByIdUpdate = await this.prisma.newEventToMember.update({
             where: { id: dto.id },
             data: {

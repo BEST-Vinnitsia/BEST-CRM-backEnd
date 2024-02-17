@@ -2,6 +2,7 @@ import { Injectable, InternalServerErrorException, NotFoundException } from '@ne
 import { PrismaService } from '../../prisma/prisma.service';
 import { ICreateRes, IDeleteArrayRes, IDeleteRes, IGetByCadenceIdRes, IGetByIdRes, IGetListRes, IUpdateRes } from './interfaces/res.interface';
 import { ICreateReq, IDeleteReq, IGetByCadenceIdReq, IGetByIdReq, IUpdateReq } from './interfaces/req.interface';
+import { CadenceService } from '../../cadence/cadence.service';
 
 interface IMeetingService {
     getList(): Promise<IGetListRes[]>;
@@ -21,7 +22,10 @@ interface IMeetingService {
 
 @Injectable()
 export class MeetingService implements IMeetingService {
-    constructor(private readonly prisma: PrismaService) {}
+    constructor(
+        private readonly prisma: PrismaService,
+        private readonly cadenceService: CadenceService,
+    ) {}
 
     /* ----------------  GET  ---------------- */
     public async getList(): Promise<IGetListRes[]> {
@@ -48,6 +52,8 @@ export class MeetingService implements IMeetingService {
         // });
         // if (meeting) throw new BadRequestException('This meeting is exist');
 
+        await this.cadenceService.getById({ id: dto.cadenceId });
+
         const createMeeting = await this.prisma.meeting.create({
             data: {
                 cadenceId: dto.cadenceId,
@@ -64,6 +70,8 @@ export class MeetingService implements IMeetingService {
     public async update(dto: IUpdateReq): Promise<IUpdateRes> {
         const meeting = await this.prisma.meeting.findUnique({ where: { id: dto.id } });
         if (!meeting) throw new NotFoundException('Meeting not found');
+
+        await this.cadenceService.getById({ id: dto.cadenceId });
 
         const updateMeeting = await this.prisma.meeting.update({
             where: { id: dto.id },

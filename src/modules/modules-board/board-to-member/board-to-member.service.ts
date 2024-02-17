@@ -12,6 +12,9 @@ import {
     IGetListRes,
     IUpdateRes,
 } from './interfaces/res.interface';
+import { MemberService } from '../../modules-member/member/member.service';
+import { CadenceService } from '../../cadence/cadence.service';
+import { BoardService } from '../board/board.service';
 
 interface IBoardService {
     getList(): Promise<IGetListRes[]>;
@@ -35,7 +38,12 @@ interface IBoardService {
 
 @Injectable()
 export class BoardToMemberService implements IBoardService {
-    constructor(private readonly prisma: PrismaService) {}
+    constructor(
+        private readonly prisma: PrismaService,
+        private readonly memberService: MemberService,
+        private readonly cadenceService: CadenceService,
+        private readonly boardService: BoardService,
+    ) {}
 
     /* ----------------  GET  ---------------- */
 
@@ -71,6 +79,10 @@ export class BoardToMemberService implements IBoardService {
         });
         if (boardToMember) throw new BadRequestException('This board to member is exist');
 
+        await this.memberService.getById({ id: dto.memberId });
+        await this.boardService.getById({ id: dto.boardId });
+        await this.cadenceService.getById({ id: dto.cadenceId });
+
         const createBoardToMember = await this.prisma.boardToMember.create({
             data: {
                 cadenceId: dto.cadenceId,
@@ -88,6 +100,10 @@ export class BoardToMemberService implements IBoardService {
     public async update(dto: IUpdateReq): Promise<IUpdateRes> {
         const boardToMember = await this.prisma.boardToMember.findUnique({ where: { id: dto.id } });
         if (!boardToMember) throw new NotFoundException('Board to member not found');
+
+        await this.memberService.getById({ id: dto.memberId });
+        await this.boardService.getById({ id: dto.boardId });
+        await this.cadenceService.getById({ id: dto.cadenceId });
 
         const updateBoardToMember = await this.prisma.boardToMember.update({
             where: { id: dto.id },

@@ -20,6 +20,9 @@ import {
     IGetByMemberIdReq,
     IUpdateReq,
 } from './interfaces/req.interface';
+import { MemberService } from '../../modules-member/member/member.service';
+import { CadenceService } from '../../cadence/cadence.service';
+import { CommitteeService } from '../committee/committee.service';
 
 interface ICommitteeToMemberService {
     getList(): Promise<IGetListRes[]>;
@@ -43,7 +46,12 @@ interface ICommitteeToMemberService {
 
 @Injectable()
 export class CommitteeToMemberService implements ICommitteeToMemberService {
-    constructor(private readonly prisma: PrismaService) {}
+    constructor(
+        private readonly prisma: PrismaService,
+        private readonly memberService: MemberService,
+        private readonly cadenceService: CadenceService,
+        private readonly committeeService: CommitteeService,
+    ) {}
 
     /* ----------------  GET  ---------------- */
 
@@ -86,6 +94,10 @@ export class CommitteeToMemberService implements ICommitteeToMemberService {
         });
         if (committeeToMember) throw new BadRequestException('This committee to member is exist');
 
+        await this.memberService.getById({ id: dto.memberId });
+        await this.committeeService.getById({ id: dto.committeeId });
+        await this.cadenceService.getById({ id: dto.cadenceId });
+
         const createCommitteeToMember = await this.prisma.committeeToMember.create({
             data: {
                 cadenceId: dto.cadenceId,
@@ -104,6 +116,10 @@ export class CommitteeToMemberService implements ICommitteeToMemberService {
     public async update(dto: IUpdateReq): Promise<IUpdateRes> {
         const committeeToMember = await this.prisma.committeeToMember.findUnique({ where: { id: dto.id } });
         if (!committeeToMember) throw new NotFoundException('Committee to member not found');
+
+        await this.memberService.getById({ id: dto.memberId });
+        await this.committeeService.getById({ id: dto.committeeId });
+        await this.cadenceService.getById({ id: dto.cadenceId });
 
         const updateCommitteeToMember = await this.prisma.committeeToMember.update({
             where: { id: dto.id },

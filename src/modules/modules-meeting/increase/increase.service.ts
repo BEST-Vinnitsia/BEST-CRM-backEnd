@@ -12,6 +12,8 @@ import {
     IGetListRes,
     IUpdateRes,
 } from './interfaces/res.interface';
+import { MemberService } from '../../modules-member/member/member.service';
+import { MeetingService } from '../meeting/meeting.service';
 
 interface IIncreaseService {
     getList(): Promise<IGetListRes[]>;
@@ -33,7 +35,11 @@ interface IIncreaseService {
 
 @Injectable()
 export class IncreaseService implements IIncreaseService {
-    constructor(private readonly prisma: PrismaService) {}
+    constructor(
+        private readonly prisma: PrismaService,
+        private readonly memberService: MemberService,
+        private readonly meetingService: MeetingService,
+    ) {}
 
     /* ----------------  GET  ---------------- */
     public async getList(): Promise<IGetListRes[]> {
@@ -59,6 +65,9 @@ export class IncreaseService implements IIncreaseService {
 
     /* ----------------  POST  ---------------- */
     public async create(dto: ICreateReq): Promise<ICreateRes> {
+        await this.memberService.getById({ id: dto.memberId });
+        await this.meetingService.getById({ id: dto.meetingId });
+
         const increase = await this.prisma.increase.create({
             data: {
                 memberId: dto.memberId,
@@ -75,6 +84,9 @@ export class IncreaseService implements IIncreaseService {
         const increase = await this.prisma.increase.findUnique({ where: { id: dto.id } });
         if (!increase) throw new NotFoundException('This increase is not found');
 
+        await this.memberService.getById({ id: dto.memberId });
+        await this.meetingService.getById({ id: dto.meetingId });
+        
         const updateIncrease = await this.prisma.increase.update({
             where: { id: dto.id },
             data: {
