@@ -13,7 +13,7 @@ import {
     UpdateEntity,
 } from './entity';
 import { CreateDto, DeleteArrayDto, DeleteDto, GetByBoardIdDto, GetByCadenceIdDto, GetByIdDto, GetByMemberIdDto, UpdateDto } from './dto';
-import { v1 } from '../../../constants/api-version';
+import { v2 } from '../../../constants/api-version';
 import {
     ICreateRes,
     IDeleteArrayRes,
@@ -48,7 +48,7 @@ interface IBoardToMemberController {
 
 @ApiSecurity('basic')
 @ApiTags('Board to member')
-@Controller(`${v1}/board-to-member`)
+@Controller(`${v2}/board-to-member`)
 export class BoardToMemberController implements IBoardToMemberController {
     constructor(private readonly service: BoardToMemberService) {}
 
@@ -60,7 +60,7 @@ export class BoardToMemberController implements IBoardToMemberController {
         return await this.service.getList();
     }
 
-    @Get('by-id')
+    @Get('')
     @ApiCreatedResponse({ type: GetByIdEntity })
     async getById(@Query() dto: GetByIdDto): Promise<IGetByIdRes> {
         return await this.service.getById(dto);
@@ -99,7 +99,7 @@ export class BoardToMemberController implements IBoardToMemberController {
     }
 
     /* ----------------  DELETE  ---------------- */
-    @Delete('by-id')
+    @Delete('')
     @ApiCreatedResponse({ type: DeleteEntity })
     async deleteById(@Body() dto: DeleteDto): Promise<IDeleteRes> {
         return await this.service.deleteById(dto);

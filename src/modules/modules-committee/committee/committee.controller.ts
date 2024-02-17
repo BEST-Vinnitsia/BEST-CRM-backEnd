@@ -5,7 +5,7 @@ import { ApiCreatedResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { CreateEntity, DeleteArrayEntity, DeleteEntity, GetByIdEntity, GetListEntity, UpdateEntity } from './entity';
 import { Claim } from '../../../common/decorators';
 import { BoardGuard } from '../../../common/guards';
-import { v1 } from '../../../constants/api-version';
+import { v2 } from '../../../constants/api-version';
 import { ICreateRes, IDeleteArrayRes, IDeleteRes, IGetByIdRes, IGetListRes, IUpdateRes } from './interfaces/res.interface';
 
 interface ICommitteeController {
@@ -24,7 +24,7 @@ interface ICommitteeController {
 
 @ApiSecurity('basic')
 @ApiTags('Committee')
-@Controller(`${v1}/committee`)
+@Controller(`${v2}/committee`)
 export class CommitteeController implements ICommitteeController {
     constructor(private readonly service: CommitteeService) {}
 
@@ -36,7 +36,7 @@ export class CommitteeController implements ICommitteeController {
         return await this.service.getList();
     }
 
-    @Get('by-id')
+    @Get('')
     @ApiCreatedResponse({ type: GetByIdEntity })
     async getById(@Query() dto: GetByIdDto): Promise<IGetByIdRes> {
         return await this.service.getById(dto);
@@ -59,7 +59,7 @@ export class CommitteeController implements ICommitteeController {
     }
 
     /* ----------------  DELETE  ---------------- */
-    @Delete('by-id')
+    @Delete('')
     @ApiCreatedResponse({ type: DeleteEntity })
     async deleteById(@Body() dto: DeleteDto): Promise<IDeleteRes> {
         return await this.service.deleteById(dto);

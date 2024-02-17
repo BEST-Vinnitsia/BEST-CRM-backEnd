@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Post, Put, Query } from '@nestjs/common'
 import { ApiCreatedResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { CreateEntity, DeleteArrayEntity, DeleteEntity, GetByCadenceIdEntity, GetByIdEntity, GetListEntity, UpdateEntity } from './entity';
 import { MeetingService } from './meeting.service';
-import { v1 } from '../../../constants/api-version';
+import { v2 } from '../../../constants/api-version';
 import { ICreateRes, IDeleteArrayRes, IDeleteRes, IGetByCadenceIdRes, IGetByIdRes, IGetListRes, IUpdateRes } from './interfaces/res.interface';
 import { CreateDto, DeleteArrayDto, DeleteDto, GetByCadenceIdDto, GetByIdDto, UpdateDto } from './dto';
 
@@ -24,7 +24,7 @@ interface IMeetingController {
 
 @ApiSecurity('basic')
 @ApiTags('Meeting')
-@Controller(`${v1}/meeting`)
+@Controller(`${v2}/meeting`)
 export class MeetingController implements IMeetingController {
     constructor(private readonly service: MeetingService) {}
 
@@ -42,7 +42,7 @@ export class MeetingController implements IMeetingController {
         return this.service.getByCadenceId(dto);
     }
 
-    @Get('by-id')
+    @Get('')
     @ApiCreatedResponse({ type: GetByIdEntity })
     async getById(@Query() dto: GetByIdDto): Promise<IGetByIdRes> {
         return this.service.getById(dto);
@@ -63,7 +63,7 @@ export class MeetingController implements IMeetingController {
     }
 
     /* ----------------  DELETE  ---------------- */
-    @Delete('by-id')
+    @Delete('')
     @ApiCreatedResponse({ type: DeleteEntity })
     async deleteById(@Body() dto: DeleteDto): Promise<IDeleteRes> {
         return this.service.deleteById(dto);

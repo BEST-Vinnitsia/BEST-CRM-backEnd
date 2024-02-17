@@ -15,7 +15,7 @@ import {
 } from './entity';
 import { Claim } from 'src/common/decorators';
 import { BoardGuard } from 'src/common/guards';
-import { v1 } from '../../../constants/api-version';
+import { v2 } from '../../../constants/api-version';
 import { DeleteDto } from '../event/dto';
 import {
     ICreateRes,
@@ -51,7 +51,7 @@ interface IMemberToNewEventController {
 
 @ApiSecurity('basic')
 @ApiTags('Member to event')
-@Controller(`${v1}/member-to-event`)
+@Controller(`${v2}/member-to-event`)
 export class MemberToNewEventController implements IMemberToNewEventController {
     constructor(private readonly service: MemberToNewEventService) {}
 
@@ -63,7 +63,7 @@ export class MemberToNewEventController implements IMemberToNewEventController {
         return await this.service.getList();
     }
 
-    @Get('by-id')
+    @Get('')
     @ApiCreatedResponse({ type: GetByIdEntity })
     async getById(@Query() dto: GetByIdDto): Promise<IGetByIdRes> {
         return await this.service.getById(dto);
@@ -104,7 +104,7 @@ export class MemberToNewEventController implements IMemberToNewEventController {
     }
 
     /* ----------------  DELETE  ---------------- */
-    @Delete('by-id')
+    @Delete('')
     @ApiCreatedResponse({ type: DeleteEntity })
     async deleteById(@Body() dto: DeleteDto): Promise<IDeleteRes> {
         return this.service.deleteById(dto);

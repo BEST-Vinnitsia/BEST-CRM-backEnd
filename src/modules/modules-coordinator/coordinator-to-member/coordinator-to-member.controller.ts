@@ -13,7 +13,7 @@ import {
     GetListEntity,
     UpdateEntity,
 } from './entity';
-import { v1 } from '../../../constants/api-version';
+import { v2 } from '../../../constants/api-version';
 
 import {
     ICreateRes,
@@ -49,7 +49,7 @@ interface ICoordinatorToMemberController {
 
 @ApiSecurity('basic')
 @ApiTags('Coordinator to member')
-@Controller(`${v1}/coordinator-to-member`)
+@Controller(`${v2}/coordinator-to-member`)
 export class CoordinatorToMemberController implements ICoordinatorToMemberController {
     constructor(private readonly coordinatorToMemberService: CoordinatorToMemberService) {}
 
@@ -61,7 +61,7 @@ export class CoordinatorToMemberController implements ICoordinatorToMemberContro
         return await this.coordinatorToMemberService.getList();
     }
 
-    @Get('by-id')
+    @Get('')
     @ApiCreatedResponse({ type: GetByIdEntity })
     async getById(@Query() dto: GetByIdDto): Promise<IGetByIdRes> {
         return await this.coordinatorToMemberService.getById(dto);
@@ -100,7 +100,7 @@ export class CoordinatorToMemberController implements ICoordinatorToMemberContro
     }
 
     /* ----------------  DELETE  ---------------- */
-    @Delete('by-id')
+    @Delete('')
     @ApiCreatedResponse({ type: DeleteEntity })
     async deleteById(@Body() dto: DeleteDto): Promise<IDeleteRes> {
         return await this.coordinatorToMemberService.deleteById(dto);

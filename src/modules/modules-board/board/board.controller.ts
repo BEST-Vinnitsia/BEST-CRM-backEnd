@@ -5,7 +5,7 @@ import { Claim } from '../../../common/decorators';
 import { BoardGuard } from '../../../common/guards';
 import { BoardService } from './board.service';
 import { CreateDto, DeleteArrayDto, DeleteDto, GetByIdDto, UpdateDto } from './dto';
-import { v1 } from '../../../constants/api-version';
+import { v2 } from '../../../constants/api-version';
 import { ICreateRes, IDeleteArrayRes, IDeleteRes, IGetByIdRes, IGetListRes, IUpdateRes } from './interfaces/res.interface';
 
 interface IBoardController {
@@ -24,7 +24,7 @@ interface IBoardController {
 
 @ApiSecurity('basic')
 @ApiTags('Board')
-@Controller(`${v1}/board`)
+@Controller(`${v2}/board`)
 export class BoardController implements IBoardController {
     constructor(private readonly service: BoardService) {}
 
@@ -36,7 +36,7 @@ export class BoardController implements IBoardController {
         return await this.service.getList();
     }
 
-    @Get('by-id')
+    @Get('')
     @ApiCreatedResponse({ type: GetByIdEntity })
     async getById(@Query() dto: GetByIdDto): Promise<IGetByIdRes> {
         return await this.service.getById(dto);
@@ -45,21 +45,21 @@ export class BoardController implements IBoardController {
     /* ----------------  POST  ---------------- */
     @Claim(['demo'])
     @UseGuards(BoardGuard)
-    @Post('create')
+    @Post('')
     @ApiCreatedResponse({ type: CreateEntity })
     async create(@Body() dto: CreateDto): Promise<ICreateRes> {
         return await this.service.create(dto);
     }
 
     /* ----------------  PUT  ---------------- */
-    @Put('update')
+    @Put('')
     @ApiCreatedResponse({ type: UpdateEntity })
     async update(@Body() dto: UpdateDto): Promise<IUpdateRes> {
         return await this.service.update(dto);
     }
 
     /* ----------------  DELETE  ---------------- */
-    @Delete('by-id')
+    @Delete('')
     @ApiCreatedResponse({ type: DeleteEntity })
     async deleteById(@Body() dto: DeleteDto): Promise<IDeleteRes> {
         return await this.service.deleteById(dto);

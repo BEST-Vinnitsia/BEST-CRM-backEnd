@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Post, Put, Query } from '@nestjs/common'
 import { CommitteeToMemberService } from './committee-to-member.service';
 import { CreateDto, DeleteArrayDto, DeleteDto, GetByCadenceIdDto, GetByCommitteeIdDto, GetByIdDto, GetByMemberIdDto, UpdateDto } from './dto';
 import { ApiCreatedResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
-import { v1 } from '../../../constants/api-version';
+import { v2 } from '../../../constants/api-version';
 import {
     ICreateRes,
     IDeleteArrayRes,
@@ -48,7 +48,7 @@ interface ICommitteeToMemberController {
 
 @ApiSecurity('basic')
 @ApiTags('Committee to member')
-@Controller(`${v1}/committee-to-member`)
+@Controller(`${v2}/committee-to-member`)
 export class CommitteeToMemberController implements ICommitteeToMemberController {
     constructor(private readonly service: CommitteeToMemberService) {}
 
@@ -60,7 +60,7 @@ export class CommitteeToMemberController implements ICommitteeToMemberController
         return await this.service.getList();
     }
 
-    @Get('by-id')
+    @Get('')
     @ApiCreatedResponse({ type: GetByIdEntity })
     async getById(@Query() dto: GetByIdDto): Promise<IGetByIdRes> {
         return await this.service.getById(dto);

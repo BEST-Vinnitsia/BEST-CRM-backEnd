@@ -5,7 +5,7 @@ import { ApiCreatedResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { CreateEntity, DeleteArrayEntity, DeleteEntity, GetByIdEntity, GetListEntity, UpdateEntity } from './entity';
 import { Claim } from 'src/common/decorators';
 import { BoardGuard } from 'src/common/guards';
-import { v1 } from '../../../constants/api-version';
+import { v2 } from '../../../constants/api-version';
 import { ICreateRes, IDeleteArrayRes, IDeleteRes, IGetByIdRes, IGetListRes, IUpdateRes } from './interfaces/res.interface';
 
 interface ICoordinatorController {
@@ -24,7 +24,7 @@ interface ICoordinatorController {
 
 @ApiSecurity('basic')
 @ApiTags('Coordinator')
-@Controller(`${v1}/coordinator`)
+@Controller(`${v2}/coordinator`)
 export class CoordinatorController implements ICoordinatorController {
     constructor(private readonly service: CoordinatorService) {}
 
@@ -36,7 +36,7 @@ export class CoordinatorController implements ICoordinatorController {
         return await this.service.getList();
     }
 
-    @Get('by-id')
+    @Get('')
     @ApiCreatedResponse({ type: GetByIdEntity })
     async getById(@Query() dto: GetByIdDto): Promise<IGetByIdRes> {
         return await this.service.getById(dto);
@@ -59,7 +59,7 @@ export class CoordinatorController implements ICoordinatorController {
     }
 
     /* ----------------  DELETE  ---------------- */
-    @Delete('by-id')
+    @Delete('')
     @ApiCreatedResponse({ type: DeleteEntity })
     async deleteById(@Body() dto: DeleteDto): Promise<IDeleteRes> {
         return await this.service.deleteById(dto);

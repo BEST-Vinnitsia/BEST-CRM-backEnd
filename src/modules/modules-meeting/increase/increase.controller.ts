@@ -12,7 +12,7 @@ import {
 } from './entity';
 import { IncreaseService } from './increase.service';
 import { CreateDto, DeleteArrayDto, DeleteDto, GetByIdDto, GetByMeetingIdDto, GetByMemberIdDto, UpdateDto } from './dto';
-import { v1 } from '../../../constants/api-version';
+import { v2 } from '../../../constants/api-version';
 import {
     ICreateRes,
     IDeleteArrayRes,
@@ -44,7 +44,7 @@ interface IIncreaseController {
 
 @ApiSecurity('basic')
 @ApiTags('Increase')
-@Controller(`${v1}/increase`)
+@Controller(`${v2}/increase`)
 export class IncreaseController implements IIncreaseController {
     constructor(private readonly service: IncreaseService) {}
 
@@ -68,7 +68,7 @@ export class IncreaseController implements IIncreaseController {
         return this.service.getByMeetingId(dto);
     }
 
-    @Get('by-id')
+    @Get('')
     @ApiCreatedResponse({ type: GetByIdEntity })
     async getById(@Query() dto: GetByIdDto): Promise<IGetByIdRes> {
         return this.service.getById(dto);
@@ -89,7 +89,7 @@ export class IncreaseController implements IIncreaseController {
     }
 
     /* ----------------  DELETE  ---------------- */
-    @Delete('by-id')
+    @Delete('')
     @ApiCreatedResponse({ type: DeleteEntity })
     async deleteById(@Body() dto: DeleteDto): Promise<IDeleteRes> {
         return this.service.deleteById(dto);

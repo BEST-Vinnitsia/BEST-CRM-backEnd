@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Post, Put, Query } from '@nestjs/common'
 import { MemberService } from './member.service';
 import { CreateDto, DeleteArrayDto, DeleteDto, GetByIdDto, UpdateDto } from './dto';
 import { ApiCreatedResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
-import { v1 } from '../../../constants/api-version';
+import { v2 } from '../../../constants/api-version';
 import { ICreateRes, IDeleteArrayRes, IDeleteRes, IGetByIdRes, IGetListRes, IUpdateRes } from './interfaces/res.interface';
 import { CreateEntity, DeleteArrayEntity, DeleteEntity, GetByIdEntity, GetListEntity, UpdateEntity } from './entity';
 
@@ -22,7 +22,7 @@ interface IMemberController {
 
 @ApiSecurity('basic')
 @ApiTags('Member')
-@Controller(`${v1}/member`)
+@Controller(`${v2}/member`)
 export class MemberController implements IMemberController {
     constructor(private readonly service: MemberService) {}
 
@@ -33,7 +33,7 @@ export class MemberController implements IMemberController {
         return await this.service.getList();
     }
 
-    @Get('by-id')
+    @Get('')
     @ApiCreatedResponse({ type: GetByIdEntity })
     public async getById(@Query() dto: GetByIdDto): Promise<IGetByIdRes> {
         return await this.service.getById(dto);
@@ -54,7 +54,7 @@ export class MemberController implements IMemberController {
     }
 
     /* ----------------  DELETE  ---------------- */
-    @Delete('by-id')
+    @Delete('')
     @ApiCreatedResponse({ type: DeleteEntity })
     public async deleteById(@Query() dto: DeleteDto): Promise<IDeleteRes> {
         return await this.service.deleteById(dto);
