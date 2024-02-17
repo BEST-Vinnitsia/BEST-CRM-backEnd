@@ -1,8 +1,7 @@
-import { ApiProperty, IntersectionType } from '@nestjs/swagger';
+import { IntersectionType } from '@nestjs/swagger';
 import { DateDto_c, IsEndDto_c, NumberDto_c } from './components.dto';
-import { IsArray, IsNotEmpty, IsNumber } from 'class-validator';
 import { ICreateReq, IDeleteArrayReq, IDeleteReq, IGetByIdReq, IUpdateReq } from '../interfaces/req.interface';
-import { AtDateDto_c, IdDto_c } from '../../../global-dto';
+import { AtDateDto_c, IdArrayDto_c, IdDto_c } from '../../../global-dto';
 
 /* ----------- GET ----------- */
 export class CadenceGetByIdDto extends IntersectionType(IdDto_c) implements IGetByIdReq {}
@@ -16,10 +15,4 @@ export class CadenceUpdateDto extends IntersectionType(IdDto_c, AtDateDto_c, Num
 /* ----------- DELETE ----------- */
 export class CadenceDeleteDto extends IntersectionType(IdDto_c) implements IDeleteReq {}
 
-export class CadenceDeleteArrayDto implements IDeleteArrayReq {
-    @ApiProperty()
-    @IsNotEmpty()
-    @IsNumber()
-    @IsArray()
-    id: number[];
-}
+export class CadenceDeleteArrayDto extends IntersectionType(IdArrayDto_c) implements IDeleteArrayReq {}

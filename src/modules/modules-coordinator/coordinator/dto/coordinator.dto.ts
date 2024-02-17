@@ -1,8 +1,7 @@
-import { ApiProperty, IntersectionType } from '@nestjs/swagger';
+import { IntersectionType } from '@nestjs/swagger';
 import { IsActiveDto_c, NameDto_c } from './components.dto';
-import { IsArray, IsNotEmpty, IsNumber } from 'class-validator';
 import { ICreateReq, IDeleteArrayReq, IDeleteReq, IGetByIdReq, IUpdateReq } from '../interfaces/req.interface';
-import { IdDto_c } from '../../../../global-dto';
+import { IdArrayDto_c, IdDto_c } from '../../../../global-dto';
 
 /* ----------- GET ----------- */
 export class CoordinatorGetByIdDto extends IntersectionType(IdDto_c) implements IGetByIdReq {}
@@ -16,10 +15,4 @@ export class CoordinatorUpdateDto extends IntersectionType(IdDto_c, NameDto_c, I
 /* ----------- DELETE ----------- */
 export class CoordinatorDeleteDto extends IntersectionType(IdDto_c) implements IDeleteReq {}
 
-export class CoordinatorDeleteArrayDto implements IDeleteArrayReq {
-    @ApiProperty()
-    @IsNotEmpty()
-    @IsNumber()
-    @IsArray()
-    id: number[];
-}
+export class CoordinatorDeleteArrayDto extends IntersectionType(IdArrayDto_c) implements IDeleteArrayReq {}

@@ -1,6 +1,5 @@
-import { ApiProperty, IntersectionType } from '@nestjs/swagger';
+import { IntersectionType } from '@nestjs/swagger';
 import { BoardIdDto_c, CadenceIdDto_c, ExcludedDto_c, MemberIdDto_c } from './components.dto';
-import { IsArray, IsNotEmpty, IsNumber } from 'class-validator';
 import {
     ICreateReq,
     IDeleteArrayReq,
@@ -11,7 +10,7 @@ import {
     IGetByMemberIdReq,
     IUpdateReq,
 } from '../interfaces/req.interface';
-import { IdDto_c } from '../../../../global-dto';
+import { IdArrayDto_c, IdDto_c } from '../../../../global-dto';
 
 /* ----------- GET ----------- */
 export class BoardToMemberGetByIdDto extends IntersectionType(IdDto_c) implements IGetByIdReq {}
@@ -33,10 +32,4 @@ export class BoardToMemberUpdateDto
 /* ----------- DELETE ----------- */
 export class BoardToMemberDeleteDto extends IntersectionType(IdDto_c) implements IDeleteReq {}
 
-export class BoardToMemberDeleteArrayDto implements IDeleteArrayReq {
-    @ApiProperty()
-    @IsNotEmpty()
-    @IsNumber()
-    @IsArray()
-    id: number[];
-}
+export class BoardToMemberDeleteArrayDto extends IntersectionType(IdArrayDto_c) implements IDeleteArrayReq {}
