@@ -69,21 +69,21 @@ export class CoordinatorToMemberService implements ICoordinatorToMemberService {
     }
 
     public async getById(dto: IGetByIdReq): Promise<IGetByIdRes> {
-        const coordinatorToMember = await this.prisma.coordinatorToMember.findUnique({ where: { id: dto.id } });
+        const coordinatorToMember = await this.prisma.coordinatorToMember.findUnique({ where: { id: parseInt(dto.id) } });
         if (!coordinatorToMember) throw new NotFoundException('board to member not found');
         return coordinatorToMember;
     }
 
     public async getByMemberId(dto: IGetByMemberIdReq): Promise<IGetByMemberIdRes[]> {
-        return this.prisma.coordinatorToMember.findMany({ where: { memberId: dto.memberId } });
+        return this.prisma.coordinatorToMember.findMany({ where: { memberId: parseInt(dto.memberId) } });
     }
 
     public async getByCadenceId(dto: IGetByCadenceIdReq): Promise<IGetByCadenceIdRes[]> {
-        return this.prisma.coordinatorToMember.findMany({ where: { cadenceId: dto.cadenceId } });
+        return this.prisma.coordinatorToMember.findMany({ where: { cadenceId: parseInt(dto.cadenceId) } });
     }
 
     public async getByCoordinatorId(dto: IGetByCoordinatorIdReq): Promise<IGetByCoordinatorIdRes[]> {
-        return this.prisma.coordinatorToMember.findMany({ where: { coordinatorId: dto.coordinatorId } });
+        return this.prisma.coordinatorToMember.findMany({ where: { coordinatorId: parseInt(dto.coordinatorId) } });
     }
 
     /* ----------------  POST  ---------------- */
@@ -93,9 +93,9 @@ export class CoordinatorToMemberService implements ICoordinatorToMemberService {
         });
         if (coordinatorToMember) throw new BadRequestException('This coordinator to member is exist');
 
-        await this.memberService.getById({ id: dto.memberId });
-        await this.coordinatorService.getById({ id: dto.coordinatorId });
-        await this.cadenceService.getById({ id: dto.cadenceId });
+        await this.memberService.checkById({ id: dto.memberId });
+        await this.coordinatorService.checkById({ id: dto.coordinatorId });
+        await this.cadenceService.checkById({ id: dto.cadenceId });
 
         const createCoordinatorToMember = await this.prisma.coordinatorToMember.create({
             data: {
@@ -115,9 +115,9 @@ export class CoordinatorToMemberService implements ICoordinatorToMemberService {
         const coordinatorToMember = await this.prisma.coordinatorToMember.findUnique({ where: { id: dto.id } });
         if (!coordinatorToMember) throw new NotFoundException('Coordinator to member not found');
 
-        await this.memberService.getById({ id: dto.memberId });
-        await this.coordinatorService.getById({ id: dto.coordinatorId });
-        await this.cadenceService.getById({ id: dto.cadenceId });
+        await this.memberService.checkById({ id: dto.memberId });
+        await this.coordinatorService.checkById({ id: dto.coordinatorId });
+        await this.cadenceService.checkById({ id: dto.cadenceId });
 
         const updateCoordinatorToMember = await this.prisma.coordinatorToMember.update({
             where: { id: dto.id },
@@ -135,11 +135,11 @@ export class CoordinatorToMemberService implements ICoordinatorToMemberService {
 
     /* ----------------  DELETE  ---------------- */
     public async deleteById(dto: IDeleteReq): Promise<IDeleteRes> {
-        const coordinatorToMember = await this.prisma.coordinatorToMember.findUnique({ where: { id: dto.id } });
+        const coordinatorToMember = await this.prisma.coordinatorToMember.findUnique({ where: { id: parseInt(dto.id) } });
         if (!coordinatorToMember) throw new NotFoundException('Coordinator to member is not found');
 
         try {
-            const deleteCoordinatorToMember = await this.prisma.coordinatorToMember.delete({ where: { id: dto.id } });
+            const deleteCoordinatorToMember = await this.prisma.coordinatorToMember.delete({ where: { id: parseInt(dto.id) } });
             return { id: deleteCoordinatorToMember.id };
         } catch (err) {
             throw new InternalServerErrorException('Error delete coordinator to member');

@@ -1,5 +1,5 @@
 import { IntersectionType } from '@nestjs/swagger';
-import { CadenceIdDto_c, CoordinatorIdDto_c, ExcludedDto_c, MemberIdDto_c } from './components.dto';
+import { ExcludedDto_c } from './components.dto';
 import {
     ICreateReq,
     IDeleteArrayReq,
@@ -10,16 +10,26 @@ import {
     IGetByMemberIdReq,
     IUpdateReq,
 } from '../interfaces/req.interface';
-import { IdArrayDto_c, IdDto_c } from '../../../../global-dto';
+import {
+    CadenceIdDto_c,
+    CadenceIdStringDto_c,
+    CoordinatorIdDto_c,
+    CoordinatorIdStringDto_c,
+    IdArrayDto_c,
+    IdDto_c,
+    IdStringDto_c,
+    MemberIdDto_c,
+    MemberIdStringDto_c,
+} from '../../../../global-dto';
 
 /* ----------- GET ----------- */
-export class CoordinatorToMemberGetByIdDto extends IntersectionType(IdDto_c) implements IGetByIdReq {}
+export class CoordinatorToMemberGetByIdDto extends IntersectionType(IdStringDto_c) implements IGetByIdReq {}
 
-export class CoordinatorToMemberGetByMemberIdDto extends IntersectionType(MemberIdDto_c) implements IGetByMemberIdReq {}
+export class CoordinatorToMemberGetByMemberIdDto extends IntersectionType(MemberIdStringDto_c) implements IGetByMemberIdReq {}
 
-export class CoordinatorToMemberGetByCadenceIdDto extends IntersectionType(CadenceIdDto_c) implements IGetByCadenceIdReq {}
+export class CoordinatorToMemberGetByCadenceIdDto extends IntersectionType(CadenceIdStringDto_c) implements IGetByCadenceIdReq {}
 
-export class CoordinatorToMemberGetByCoordinatorIdDto extends IntersectionType(CoordinatorIdDto_c) implements IGetByCoordinatorIdReq {}
+export class CoordinatorToMemberGetByCoordinatorIdDto extends IntersectionType(CoordinatorIdStringDto_c) implements IGetByCoordinatorIdReq {}
 
 /* ----------- POST ----------- */
 export class CoordinatorToMemberCreateDto
@@ -32,6 +42,6 @@ export class CoordinatorToMemberUpdateDto
     implements IUpdateReq {}
 
 /* ----------- DELETE ----------- */
-export class CoordinatorToMemberDeleteDto extends IntersectionType(IdDto_c) implements IDeleteReq {}
+export class CoordinatorToMemberDeleteDto extends IntersectionType(IdStringDto_c) implements IDeleteReq {}
 
 export class CoordinatorToMemberDeleteArrayDto extends IntersectionType(IdArrayDto_c) implements IDeleteArrayReq {}

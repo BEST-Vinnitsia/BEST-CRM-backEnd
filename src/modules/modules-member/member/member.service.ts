@@ -51,7 +51,7 @@ export class MemberService implements IMemberService {
 
     public async getById(dto: IGetByIdReq): Promise<IGetByIdRes> {
         const member = await this.prisma.member.findUnique({
-            where: { id: dto.id },
+            where: { id: parseInt(dto.id) },
             select: {
                 id: true,
                 membership: true,
@@ -71,6 +71,13 @@ export class MemberService implements IMemberService {
                 updatedAt: true,
             },
         });
+        if (!member) throw new NotFoundException('Member is not found');
+
+        return member;
+    }
+
+    public async checkById({ id }: { id: number }): Promise<IGetByIdRes> {
+        const member = await this.prisma.member.findUnique({ where: { id } });
         if (!member) throw new NotFoundException('Member is not found');
 
         return member;
@@ -135,11 +142,11 @@ export class MemberService implements IMemberService {
 
     /* ----------------  DELETE  ---------------- */
     public async deleteById(dto: IDeleteReq): Promise<IDeleteRes> {
-        const member = await this.prisma.member.findUnique({ where: { id: dto.id } });
+        const member = await this.prisma.member.findUnique({ where: { id: parseInt(dto.id) } });
         if (!member) throw new NotFoundException('Member is not found');
 
         try {
-            const deleteMember = await this.prisma.member.delete({ where: { id: dto.id } });
+            const deleteMember = await this.prisma.member.delete({ where: { id: parseInt(dto.id) } });
             return { id: deleteMember.id };
         } catch (err) {
             throw new InternalServerErrorException('Error delete member');

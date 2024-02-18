@@ -11,10 +11,10 @@ import {
     UniversityDto_c,
 } from './components.dto';
 import { ICreateReq, IDeleteArrayReq, IDeleteReq, IGetByIdReq, IUpdateReq } from '../interfaces/req.interface';
-import { IdArrayDto_c, IdDto_c } from '../../../../global-dto';
+import { IdArrayDto_c, IdDto_c, IdStringDto_c } from '../../../../global-dto';
 
 /* ----------- GET ----------- */
-export class MemberGetByIdDto extends IntersectionType(IdDto_c) implements IGetByIdReq {}
+export class MemberGetByIdDto extends IntersectionType(IdStringDto_c) implements IGetByIdReq {}
 
 /* ----------- POST ----------- */
 export class MemberCreateDto
@@ -47,6 +47,6 @@ export class MemberUpdateDto
     implements IUpdateReq {}
 
 /* ----------- DELETE ----------- */
-export class MemberDeleteDto extends IntersectionType(IdDto_c) implements IDeleteReq {}
+export class MemberDeleteDto extends IntersectionType(IdStringDto_c) implements IDeleteReq {}
 
 export class MemberDeleteArrayDto extends IntersectionType(IdArrayDto_c) implements IDeleteArrayReq {}

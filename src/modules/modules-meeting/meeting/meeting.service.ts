@@ -52,7 +52,7 @@ export class MeetingService implements IMeetingService {
         // });
         // if (meeting) throw new BadRequestException('This meeting is exist');
 
-        await this.cadenceService.getById({ id: dto.cadenceId });
+        await this.cadenceService.checkById({ id: dto.cadenceId });
 
         const createMeeting = await this.prisma.meeting.create({
             data: {
@@ -71,7 +71,7 @@ export class MeetingService implements IMeetingService {
         const meeting = await this.prisma.meeting.findUnique({ where: { id: dto.id } });
         if (!meeting) throw new NotFoundException('Meeting not found');
 
-        await this.cadenceService.getById({ id: dto.cadenceId });
+        await this.cadenceService.checkById({ id: dto.cadenceId });
 
         const updateMeeting = await this.prisma.meeting.update({
             where: { id: dto.id },

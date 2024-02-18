@@ -27,7 +27,14 @@ export class EventService implements IEventService {
     }
 
     public async getById(dto: IGetByIdReq): Promise<IGetByIdRes> {
-        const coordinator = await this.prisma.event.findUnique({ where: { id: dto.id } });
+        const coordinator = await this.prisma.event.findUnique({ where: { id: parseInt(dto.id) } });
+        if (!coordinator) throw new NotFoundException('Event not found');
+
+        return coordinator;
+    }
+
+    public async checkById({ id }: { id: number }): Promise<IGetByIdRes> {
+        const coordinator = await this.prisma.event.findUnique({ where: { id } });
         if (!coordinator) throw new NotFoundException('Event not found');
 
         return coordinator;
@@ -69,11 +76,11 @@ export class EventService implements IEventService {
 
     /* ----------------  DELETE  ---------------- */
     public async deleteById(dto: IDeleteReq): Promise<IDeleteRes> {
-        const event = await this.prisma.event.findUnique({ where: { id: dto.id } });
+        const event = await this.prisma.event.findUnique({ where: { id: parseInt(dto.id) } });
         if (!event) throw new NotFoundException('Event is not found');
 
         try {
-            const deleteEvent = await this.prisma.event.delete({ where: { id: dto.id } });
+            const deleteEvent = await this.prisma.event.delete({ where: { id: parseInt(dto.id) } });
             return { id: deleteEvent.id };
         } catch (err) {
             throw new InternalServerErrorException('Error delete event');

@@ -29,7 +29,14 @@ export class BoardService implements IBoardService {
     }
 
     public async getById(dto: IGetByIdReq): Promise<IGetByIdRes> {
-        const board = await this.prisma.board.findUnique({ where: { id: dto.id } });
+        const board = await this.prisma.board.findUnique({ where: { id: parseInt(dto.id) } });
+        if (!board) throw new NotFoundException('board not found');
+
+        return board;
+    }
+
+    public async checkById({ id }: { id: number }): Promise<IGetByIdRes> {
+        const board = await this.prisma.board.findUnique({ where: { id } });
         if (!board) throw new NotFoundException('board not found');
 
         return board;
@@ -71,11 +78,11 @@ export class BoardService implements IBoardService {
 
     /* ----------------  DELETE  ---------------- */
     public async deleteById(dto: IDeleteReq): Promise<IDeleteRes> {
-        const board = await this.prisma.board.findUnique({ where: { id: dto.id } });
+        const board = await this.prisma.board.findUnique({ where: { id: parseInt(dto.id) } });
         if (!board) throw new NotFoundException('Board is not found');
 
         try {
-            const deleteBoard = await this.prisma.board.delete({ where: { id: dto.id } });
+            const deleteBoard = await this.prisma.board.delete({ where: { id: parseInt(dto.id) } });
             return { id: deleteBoard.id };
         } catch (err) {
             throw new InternalServerErrorException('Error delete board');

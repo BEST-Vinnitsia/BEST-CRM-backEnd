@@ -43,25 +43,31 @@ export class ResponsibleService implements IResponsibleService {
     }
 
     public async getById(dto: IGetByIdReq): Promise<IGetByIdRes> {
-        const responsible = await this.prisma.responsible.findUnique({ where: { id: dto.id } });
+        const responsible = await this.prisma.responsible.findUnique({ where: { id: parseInt(dto.id) } });
+        if (!responsible) throw new NotFoundException('Responsible not found');
+
+        return responsible;
+    }
+
+    public async checkById({ id }: { id: number }): Promise<IGetByIdRes> {
+        const responsible = await this.prisma.responsible.findUnique({ where: { id } });
         if (!responsible) throw new NotFoundException('Responsible not found');
 
         return responsible;
     }
 
     public async getByEventId(dto: IGetByEventIdReq): Promise<IGetByEventIdRes[]> {
-        return this.prisma.responsible.findMany({ where: { eventId: dto.eventId } });
+        return this.prisma.responsible.findMany({ where: { eventId: parseInt(dto.eventId) } });
     }
 
     /* ----------------  POST  ---------------- */
     public async create(dto: ICreateReq): Promise<ICreateRes> {
-
         const responsible = await this.prisma.responsible.findFirst({
             where: { eventId: dto.eventId, name: dto.name, role: dto.role },
         });
         if (responsible) throw new BadRequestException('Responsible with this params is exist');
 
-        await this.eventService.getById({ id: dto.eventId });
+        await this.eventService.checkById({ id: dto.eventId });
 
         const responsibleCreate = await this.prisma.responsible.create({
             data: {
@@ -82,7 +88,7 @@ export class ResponsibleService implements IResponsibleService {
         const responsibleById = await this.prisma.responsible.findUnique({ where: { id: dto.id } });
         if (!responsibleById) throw new NotFoundException('Responsible is not found');
 
-        await this.eventService.getById({ id: dto.eventId });
+        await this.eventService.checkById({ id: dto.eventId });
 
         const responsibleUpdate = await this.prisma.responsible.update({
             where: { id: dto.id },
@@ -101,11 +107,11 @@ export class ResponsibleService implements IResponsibleService {
 
     /* ----------------  DELETE  ---------------- */
     public async deleteById(dto: IDeleteReq): Promise<IDeleteRes> {
-        const responsible = await this.prisma.responsible.findUnique({ where: { id: dto.id } });
+        const responsible = await this.prisma.responsible.findUnique({ where: { id: parseInt(dto.id) } });
         if (!responsible) throw new NotFoundException('Responsible is not found');
 
         try {
-            const deleteResponsible = await this.prisma.responsible.delete({ where: { id: dto.id } });
+            const deleteResponsible = await this.prisma.responsible.delete({ where: { id: parseInt(dto.id) } });
             return { id: deleteResponsible.id };
         } catch (err) {
             throw new InternalServerErrorException('Error delete responsible');

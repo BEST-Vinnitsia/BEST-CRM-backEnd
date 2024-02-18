@@ -54,22 +54,22 @@ export class BoardToMemberService implements IBoardService {
     }
 
     public async getById(dto: IGetByIdReq): Promise<IGetByIdRes> {
-        const boardToMember = await this.prisma.boardToMember.findUnique({ where: { id: dto.id } });
+        const boardToMember = await this.prisma.boardToMember.findUnique({ where: { id: parseInt(dto.id) } });
         if (!boardToMember) throw new NotFoundException('Board to member not found');
 
         return boardToMember;
     }
 
     public async getByMemberId(dto: IGetByMemberIdReq): Promise<IGetByMemberIdRes[]> {
-        return this.prisma.boardToMember.findMany({ where: { memberId: dto.memberId } });
+        return this.prisma.boardToMember.findMany({ where: { memberId: parseInt(dto.memberId) } });
     }
 
     public async getByCadenceId(dto: IGetByCadenceIdReq): Promise<IGetByCadenceIdRes[]> {
-        return this.prisma.boardToMember.findMany({ where: { cadenceId: dto.cadenceId } });
+        return this.prisma.boardToMember.findMany({ where: { cadenceId: parseInt(dto.cadenceId) } });
     }
 
     public async getByBoardId(dto: IGetByBoardIdReq): Promise<IGetByBoardIdRes[]> {
-        return this.prisma.boardToMember.findMany({ where: { boardId: dto.boardId } });
+        return this.prisma.boardToMember.findMany({ where: { boardId: parseInt(dto.boardId) } });
     }
 
     /* ----------------  POST  ---------------- */
@@ -79,9 +79,9 @@ export class BoardToMemberService implements IBoardService {
         });
         if (boardToMember) throw new BadRequestException('This board to member is exist');
 
-        await this.memberService.getById({ id: dto.memberId });
-        await this.boardService.getById({ id: dto.boardId });
-        await this.cadenceService.getById({ id: dto.cadenceId });
+        await this.memberService.checkById({ id: dto.memberId });
+        await this.boardService.checkById({ id: dto.boardId });
+        await this.cadenceService.checkById({ id: dto.cadenceId });
 
         const createBoardToMember = await this.prisma.boardToMember.create({
             data: {
@@ -101,9 +101,9 @@ export class BoardToMemberService implements IBoardService {
         const boardToMember = await this.prisma.boardToMember.findUnique({ where: { id: dto.id } });
         if (!boardToMember) throw new NotFoundException('Board to member not found');
 
-        await this.memberService.getById({ id: dto.memberId });
-        await this.boardService.getById({ id: dto.boardId });
-        await this.cadenceService.getById({ id: dto.cadenceId });
+        await this.memberService.checkById({ id: dto.memberId });
+        await this.boardService.checkById({ id: dto.boardId });
+        await this.cadenceService.checkById({ id: dto.cadenceId });
 
         const updateBoardToMember = await this.prisma.boardToMember.update({
             where: { id: dto.id },
@@ -121,11 +121,11 @@ export class BoardToMemberService implements IBoardService {
 
     /* ----------------  DELETE  ---------------- */
     public async deleteById(dto: IDeleteReq): Promise<IDeleteRes> {
-        const boardToMember = await this.prisma.boardToMember.findUnique({ where: { id: dto.id } });
+        const boardToMember = await this.prisma.boardToMember.findUnique({ where: { id: parseInt(dto.id) } });
         if (!boardToMember) throw new NotFoundException('Board to member is not found');
 
         try {
-            const deleteBoardToMember = await this.prisma.boardToMember.delete({ where: { id: dto.id } });
+            const deleteBoardToMember = await this.prisma.boardToMember.delete({ where: { id: parseInt(dto.id) } });
             return { id: deleteBoardToMember.id };
         } catch (err) {
             throw new InternalServerErrorException('Error delete board to member');

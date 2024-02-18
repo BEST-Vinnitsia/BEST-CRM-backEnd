@@ -65,7 +65,7 @@ export class IncreaseService implements IIncreaseService {
 
     /* ----------------  POST  ---------------- */
     public async create(dto: ICreateReq): Promise<ICreateRes> {
-        await this.memberService.getById({ id: dto.memberId });
+        await this.memberService.checkById({ id: dto.memberId });
         await this.meetingService.getById({ id: dto.meetingId });
 
         const increase = await this.prisma.increase.create({
@@ -84,7 +84,7 @@ export class IncreaseService implements IIncreaseService {
         const increase = await this.prisma.increase.findUnique({ where: { id: dto.id } });
         if (!increase) throw new NotFoundException('This increase is not found');
 
-        await this.memberService.getById({ id: dto.memberId });
+        await this.memberService.checkById({ id: dto.memberId });
         await this.meetingService.getById({ id: dto.meetingId });
         
         const updateIncrease = await this.prisma.increase.update({

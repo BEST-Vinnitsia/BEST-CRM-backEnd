@@ -27,7 +27,14 @@ export class CoordinatorService implements ICoordinatorService {
     }
 
     public async getById(dto: IGetByIdReq): Promise<IGetByIdRes> {
-        const coordinator = await this.prisma.coordinator.findUnique({ where: { id: dto.id } });
+        const coordinator = await this.prisma.coordinator.findUnique({ where: { id: parseInt(dto.id) } });
+        if (!coordinator) throw new NotFoundException('Coordinator not found');
+
+        return coordinator;
+    }
+
+    public async checkById({ id }: { id: number }): Promise<IGetByIdRes> {
+        const coordinator = await this.prisma.coordinator.findUnique({ where: { id } });
         if (!coordinator) throw new NotFoundException('Coordinator not found');
 
         return coordinator;
@@ -69,11 +76,11 @@ export class CoordinatorService implements ICoordinatorService {
 
     /* ----------------  DELETE  ---------------- */
     public async deleteById(dto: IDeleteReq): Promise<IDeleteRes> {
-        const coordinator = await this.prisma.coordinator.findUnique({ where: { id: dto.id } });
+        const coordinator = await this.prisma.coordinator.findUnique({ where: { id: parseInt(dto.id) } });
         if (!coordinator) throw new NotFoundException('Coordinator is not found');
 
         try {
-            const deleteCoordinator = await this.prisma.coordinator.delete({ where: { id: dto.id } });
+            const deleteCoordinator = await this.prisma.coordinator.delete({ where: { id: parseInt(dto.id) } });
             return { id: deleteCoordinator.id };
         } catch (err) {
             throw new InternalServerErrorException('Error delete coordinator');

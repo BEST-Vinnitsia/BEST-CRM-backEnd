@@ -1,5 +1,5 @@
-import { AtDateDto_c, IdDto_c } from '../../../../global-dto';
-import { DescriptionDto_c, EventIdDto_c, IsActiveDto_c, NameDto_c, RoleDto_c } from '../dto/components.dto';
+import { AtDateDto_c, IdDto_c, EventIdDto_c } from '../../../../global-dto';
+import { DescriptionDto_c, IsActiveDto_c, NameDto_c, RoleDto_c } from '../dto/components.dto';
 import { ApiProperty, IntersectionType } from '@nestjs/swagger';
 import { ICreateRes, IDeleteArrayRes, IGetByEventIdRes, IGetByIdRes, IGetListRes } from '../interfaces/res.interface';
 

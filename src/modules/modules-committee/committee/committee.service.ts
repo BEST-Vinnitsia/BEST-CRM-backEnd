@@ -27,7 +27,14 @@ export class CommitteeService implements ICommitteeService {
     }
 
     public async getById(dto: IGetByIdReq): Promise<IGetByIdRes> {
-        const committee = await this.prisma.committee.findUnique({ where: { id: dto.id } });
+        const committee = await this.prisma.committee.findUnique({ where: { id: parseInt(dto.id) } });
+        if (!committee) throw new NotFoundException('Committee not found');
+
+        return committee;
+    }
+
+    public async checkById({ id }: { id: number }): Promise<IGetByIdRes> {
+        const committee = await this.prisma.committee.findUnique({ where: { id } });
         if (!committee) throw new NotFoundException('Committee not found');
 
         return committee;
@@ -69,11 +76,11 @@ export class CommitteeService implements ICommitteeService {
 
     /* ----------------  DELETE  ---------------- */
     public async deleteById(dto: IDeleteReq): Promise<IDeleteRes> {
-        const committee = await this.prisma.committee.findUnique({ where: { id: dto.id } });
+        const committee = await this.prisma.committee.findUnique({ where: { id: parseInt(dto.id) } });
         if (!committee) throw new NotFoundException('Committee is not found');
 
         try {
-            const deleteCommittee = await this.prisma.committee.delete({ where: { id: dto.id } });
+            const deleteCommittee = await this.prisma.committee.delete({ where: { id: parseInt(dto.id) } });
             return { id: deleteCommittee.id };
         } catch (err) {
             throw new InternalServerErrorException('Error delete committee');

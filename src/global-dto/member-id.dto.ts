@@ -1,16 +1,16 @@
 import { IsNotEmpty, IsNumber, IsNumberString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class IdDto_c {
+export class MemberIdDto_c {
     @ApiProperty()
     @IsNotEmpty()
     @IsNumber()
-    id: number;
+    memberId: number;
 }
 
-export class IdStringDto_c {
+export class MemberIdStringDto_c {
     @ApiProperty()
     @IsNotEmpty()
     @IsNumberString()
-    id: string;
+    memberId: string;
 }

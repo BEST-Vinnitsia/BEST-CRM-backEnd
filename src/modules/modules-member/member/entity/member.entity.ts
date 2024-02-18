@@ -15,7 +15,7 @@ import { ICreateRes, IDeleteArrayRes, IGetByIdRes, IGetListRes } from '../interf
 /* ----------------  GET  ---------------- */
 export class MemberGetListEntity
     extends IntersectionType(IdDto_c, MembershipDto_c, BestEmailDto_c, MessageDto_c, NameDto_c, BirthdayDto_c, UniversityDto_c)
-    implements IGetListRes {}
+    implements IGetListRes {} 
 
 export class MemberGetByIdEntity
     extends IntersectionType(

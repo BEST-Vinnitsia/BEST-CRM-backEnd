@@ -1,12 +1,12 @@
 import { IntersectionType } from '@nestjs/swagger';
-import { DescriptionDto_c, EventIdDto_c, IsActiveDto_c, NameDto_c, RoleDto_c } from './components.dto';
+import { DescriptionDto_c, IsActiveDto_c, NameDto_c, RoleDto_c } from './components.dto';
 import { ICreateReq, IDeleteArrayReq, IDeleteReq, IGetByEventIdReq, IGetByIdReq, IUpdateReq } from '../interfaces/req.interface';
-import { IdArrayDto_c, IdDto_c } from '../../../../global-dto';
+import { IdArrayDto_c, IdDto_c, EventIdDto_c, IdStringDto_c, EventIdStringDto_c } from '../../../../global-dto';
 
 /* ----------- GET ----------- */
-export class ResponsibleGetByIdDto extends IntersectionType(IdDto_c) implements IGetByIdReq {}
+export class ResponsibleGetByIdDto extends IntersectionType(IdStringDto_c) implements IGetByIdReq {}
 
-export class ResponsibleGetEventByIdDto extends IntersectionType(EventIdDto_c) implements IGetByEventIdReq {}
+export class ResponsibleGetEventByIdDto extends IntersectionType(EventIdStringDto_c) implements IGetByEventIdReq {}
 
 /* ----------- POST ----------- */
 export class ResponsibleCreateDto
@@ -19,6 +19,6 @@ export class ResponsibleUpdateDto
     implements IUpdateReq {}
 
 /* ----------- DELETE ----------- */
-export class ResponsibleDeleteDto extends IntersectionType(IdDto_c) implements IDeleteReq {}
+export class ResponsibleDeleteDto extends IntersectionType(IdStringDto_c) implements IDeleteReq {}
 
 export class ResponsibleDeleteArrayDto extends IntersectionType(IdArrayDto_c) implements IDeleteArrayReq {}

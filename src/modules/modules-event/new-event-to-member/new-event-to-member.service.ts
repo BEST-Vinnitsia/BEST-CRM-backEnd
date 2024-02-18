@@ -68,22 +68,22 @@ export class NewEventToMemberService implements IMemberToNewEventService {
     }
 
     public async getById(dto: IGetByIdReq): Promise<IGetByIdRes> {
-        const responsible = await this.prisma.newEventToMember.findUnique({ where: { id: dto.id } });
+        const responsible = await this.prisma.newEventToMember.findUnique({ where: { id: parseInt(dto.id) } });
         if (!responsible) throw new NotFoundException('Not found');
 
         return responsible;
     }
 
     public async getByNewEventId(dto: IGetByNewEventIdReq): Promise<IGetByNewEventIdRes[]> {
-        return this.prisma.newEventToMember.findMany({ where: { newEventId: dto.newEventId } });
+        return this.prisma.newEventToMember.findMany({ where: { newEventId: parseInt(dto.newEventId) } });
     }
 
     public async getByResponsibleId(dto: IGetByResponsibleIdReq): Promise<IGetByResponsibleIdRes[]> {
-        return this.prisma.newEventToMember.findMany({ where: { responsibleId: dto.responsibleId } });
+        return this.prisma.newEventToMember.findMany({ where: { responsibleId: parseInt(dto.responsibleId) } });
     }
 
     public async getByMemberId(dto: IGetByMemberIdReq): Promise<IGetByMemberIdRes[]> {
-        return this.prisma.newEventToMember.findMany({ where: { memberId: dto.memberId } });
+        return this.prisma.newEventToMember.findMany({ where: { memberId: parseInt(dto.memberId) } });
     }
 
     /* ----------------  POST  ---------------- */
@@ -93,9 +93,9 @@ export class NewEventToMemberService implements IMemberToNewEventService {
         });
         if (newEventToMemberById) throw new BadRequestException('New event to member is exist');
 
-        await this.newEventService.getById({ id: dto.newEventId });
-        await this.responsibleService.getById({ id: dto.responsibleId });
-        await this.memberService.getById({ id: dto.memberId });
+        await this.newEventService.checkById({ id: dto.newEventId });
+        await this.responsibleService.checkById({ id: dto.responsibleId });
+        await this.memberService.checkById({ id: dto.memberId });
 
         const newEventToMemberByIdUpdate = await this.prisma.newEventToMember.create({
             data: {
@@ -115,9 +115,9 @@ export class NewEventToMemberService implements IMemberToNewEventService {
         const newEventToMemberById = await this.prisma.newEventToMember.findUnique({ where: { id: dto.id } });
         if (!newEventToMemberById) throw new NotFoundException('New event to member is not found');
 
-        await this.newEventService.getById({ id: dto.newEventId });
-        await this.responsibleService.getById({ id: dto.responsibleId });
-        await this.memberService.getById({ id: dto.memberId });
+        await this.newEventService.checkById({ id: dto.newEventId });
+        await this.responsibleService.checkById({ id: dto.responsibleId });
+        await this.memberService.checkById({ id: dto.memberId });
 
         const newEventToMemberByIdUpdate = await this.prisma.newEventToMember.update({
             where: { id: dto.id },
@@ -135,11 +135,11 @@ export class NewEventToMemberService implements IMemberToNewEventService {
 
     /* ----------------  DELETE  ---------------- */
     public async deleteById(dto: IDeleteReq): Promise<IDeleteRes> {
-        const newEventToMember = await this.prisma.newEventToMember.findUnique({ where: { id: dto.id } });
+        const newEventToMember = await this.prisma.newEventToMember.findUnique({ where: { id: parseInt(dto.id) } });
         if (!newEventToMember) throw new NotFoundException('Is not found');
 
         try {
-            const deleteNewEventToMember = await this.prisma.newEventToMember.delete({ where: { id: dto.id } });
+            const deleteNewEventToMember = await this.prisma.newEventToMember.delete({ where: { id: parseInt(dto.id) } });
             return { id: deleteNewEventToMember.id };
         } catch (err) {
             throw new InternalServerErrorException('Error delete');

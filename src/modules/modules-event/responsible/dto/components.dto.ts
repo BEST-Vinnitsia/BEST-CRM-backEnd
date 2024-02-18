@@ -1,12 +1,5 @@
-import { IsBoolean, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsBoolean, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-
-export class EventIdDto_c {
-    @ApiProperty()
-    @IsNotEmpty()
-    @IsNumber()
-    eventId: number;
-}
 
 export class NameDto_c {
     @ApiProperty({ example: 'MO | FR | HR | Food ...' })

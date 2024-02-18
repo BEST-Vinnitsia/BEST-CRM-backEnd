@@ -46,18 +46,25 @@ export class NewEventService implements IResponsibleService {
     }
 
     public async getById(dto: IGetByIdReq): Promise<IGetByIdRes> {
-        const newEvent = await this.prisma.newEvent.findUnique({ where: { id: dto.id } });
+        const newEvent = await this.prisma.newEvent.findUnique({ where: { id: parseInt(dto.id) } });
+        if (!newEvent) throw new NotFoundException('New event not found');
+
+        return newEvent;
+    }
+
+    public async checkById({ id }: { id: number }): Promise<IGetByIdRes> {
+        const newEvent = await this.prisma.newEvent.findUnique({ where: { id } });
         if (!newEvent) throw new NotFoundException('New event not found');
 
         return newEvent;
     }
 
     public async getByCadenceId(dto: IGetByCadenceIdReq): Promise<IGetByCadenceIdRes[]> {
-        return this.prisma.newEvent.findMany({ where: { cadenceId: dto.cadenceId } });
+        return this.prisma.newEvent.findMany({ where: { cadenceId: parseInt(dto.cadenceId) } });
     }
 
     public async getByEventId(dto: IGetByEventIdReq): Promise<IGetByEventIdRes[]> {
-        return this.prisma.newEvent.findMany({ where: { eventId: dto.eventId } });
+        return this.prisma.newEvent.findMany({ where: { eventId: parseInt(dto.eventId) } });
     }
 
     /* ----------------  POST  ---------------- */
@@ -67,7 +74,7 @@ export class NewEventService implements IResponsibleService {
         });
         if (newEvent) throw new BadRequestException('New event is exist');
 
-        await this.eventService.getById({ id: dto.eventId });
+        await this.eventService.checkById({ id: dto.eventId });
 
         const createNewEvent = await this.prisma.newEvent.create({
             data: { eventId: dto.eventId, cadenceId: dto.cadenceId, name: dto.name },
@@ -81,7 +88,7 @@ export class NewEventService implements IResponsibleService {
         const newEvent = await this.prisma.newEvent.findUnique({ where: { id: dto.id } });
         if (!newEvent) throw new NotFoundException('New event is not exist');
 
-        await this.eventService.getById({ id: dto.eventId });
+        await this.eventService.checkById({ id: dto.eventId });
 
         const updateNewEvent = await this.prisma.newEvent.update({
             where: { id: dto.id },
@@ -93,11 +100,11 @@ export class NewEventService implements IResponsibleService {
 
     /* ----------------  DELETE  ---------------- */
     public async deleteById(dto: IDeleteReq): Promise<IDeleteRes> {
-        const newEvent = await this.prisma.newEvent.findUnique({ where: { id: dto.id } });
+        const newEvent = await this.prisma.newEvent.findUnique({ where: { id: parseInt(dto.id) } });
         if (!newEvent) throw new NotFoundException('New event is not found');
 
         try {
-            const deleteNewEvent = await this.prisma.newEvent.delete({ where: { id: dto.id } });
+            const deleteNewEvent = await this.prisma.newEvent.delete({ where: { id: parseInt(dto.id) } });
             return { id: deleteNewEvent.id };
         } catch (err) {
             throw new InternalServerErrorException('Error delete new event');

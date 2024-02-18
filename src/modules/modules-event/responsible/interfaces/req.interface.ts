@@ -2,14 +2,21 @@ import { IResponsiblePrisma } from '../../../../interfaces/prisma';
 
 export interface IGetListReq {}
 
-export interface IGetByIdReq extends Pick<IResponsiblePrisma, 'id'> {}
-export interface IGetByEventIdReq extends Pick<IResponsiblePrisma, 'eventId'> {}
+export interface IGetByIdReq {
+    id: string;
+}
+
+export interface IGetByEventIdReq {
+    eventId: string;
+}
 
 export interface ICreateReq extends Omit<IResponsiblePrisma, 'id' | 'createdAt' | 'updatedAt'> {}
 
 export interface IUpdateReq extends Omit<IResponsiblePrisma, 'createdAt' | 'updatedAt'> {}
 
-export interface IDeleteReq extends Pick<IResponsiblePrisma, 'id'> {}
+export interface IDeleteReq {
+    id: string;
+}
 
 export interface IDeleteArrayReq {
     id: number[];

@@ -31,7 +31,7 @@ export class CadenceService implements ICadenceService {
 
     public async getById(dto: IGetByIdReq): Promise<IGetByIdRes> {
         const cadence = await this.prisma.cadence.findUnique({
-            where: { id: dto.id },
+            where: { id: parseInt(dto.id) },
             select: {
                 id: true,
                 number: true,
@@ -42,6 +42,13 @@ export class CadenceService implements ICadenceService {
                 createdAt: true,
             },
         });
+        if (!cadence) throw new NotFoundException('cadence not found');
+
+        return cadence;
+    }
+
+    public async checkById({ id }: { id: number }): Promise<IGetByIdRes> {
+        const cadence = await this.prisma.cadence.findUnique({ where: { id } });
         if (!cadence) throw new NotFoundException('cadence not found');
 
         return cadence;
@@ -87,10 +94,10 @@ export class CadenceService implements ICadenceService {
 
     /* ----------------  DELETE  ---------------- */
     public async deleteById(dto: IDeleteReq): Promise<IDeleteRes> {
-        const cadence = await this.prisma.cadence.findUnique({ where: { id: dto.id } });
+        const cadence = await this.prisma.cadence.findUnique({ where: { id: parseInt(dto.id) } });
         if (!cadence) throw new NotFoundException('Cadence is not found');
 
-        const deleteCadence = await this.prisma.cadence.delete({ where: { id: dto.id } });
+        const deleteCadence = await this.prisma.cadence.delete({ where: { id: parseInt(dto.id) } });
 
         return { id: deleteCadence.id };
     }
