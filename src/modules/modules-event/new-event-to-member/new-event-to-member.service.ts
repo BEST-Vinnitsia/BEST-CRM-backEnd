@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
 import {
     ICreateRes,
@@ -91,7 +91,7 @@ export class NewEventToMemberService implements IMemberToNewEventService {
         const newEventToMemberById = await this.prisma.newEventToMember.findFirst({
             where: { memberId: dto.memberId, responsibleId: dto.responsibleId, newEventId: dto.newEventId },
         });
-        if (!newEventToMemberById) throw new NotFoundException('Is not found');
+        if (newEventToMemberById) throw new BadRequestException('New event to member is exist');
 
         await this.newEventService.getById({ id: dto.newEventId });
         await this.responsibleService.getById({ id: dto.responsibleId });
@@ -113,12 +113,12 @@ export class NewEventToMemberService implements IMemberToNewEventService {
     /* ----------------  PUT  ---------------- */
     public async update(dto: IUpdateReq): Promise<IUpdateRes> {
         const newEventToMemberById = await this.prisma.newEventToMember.findUnique({ where: { id: dto.id } });
-        if (!newEventToMemberById) throw new NotFoundException('Is not found');
+        if (!newEventToMemberById) throw new NotFoundException('New event to member is not found');
 
         await this.newEventService.getById({ id: dto.newEventId });
         await this.responsibleService.getById({ id: dto.responsibleId });
         await this.memberService.getById({ id: dto.memberId });
-        
+
         const newEventToMemberByIdUpdate = await this.prisma.newEventToMember.update({
             where: { id: dto.id },
             data: {
