@@ -1,10 +1,10 @@
-import { IsArray, IsNotEmpty, IsNumber } from 'class-validator';
+import { IsArray, IsInt, IsNotEmpty } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class IdArrayDto_c {
     @ApiProperty({ type: ['number'] })
     @IsNotEmpty()
-    @IsNumber()
     @IsArray()
+    @IsInt({ each: true, message: 'Each ID must be an integer' })
     id: number[];
 }
