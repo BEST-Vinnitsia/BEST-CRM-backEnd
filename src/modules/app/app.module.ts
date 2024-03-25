@@ -18,10 +18,7 @@ import { CoordinatorToMemberModule } from '../modules-coordinator/coordinator-to
 import { CommitteeModule } from '../modules-committee/committee/committee.module';
 import { CommitteeToMemberModule } from '../modules-committee/committee-to-member/committee-to-member.module';
 // event
-import { EventModule } from '../modules-event/event/event.module';
-import { ResponsibleModule } from '../modules-event/responsible/responsible.module';
-import { NewEventModule } from '../modules-event/new-event/new-event.module';
-import { NewEventToMemberModule } from '../modules-event/new-event-to-member/new-event-to-member.module';
+import { EventModule } from '../event/event.module';
 // meeting
 import { MeetingModule } from '../modules-meeting/meeting/meeting.module';
 import { IncreaseModule } from '../modules-meeting/increase/increase.module';
@@ -52,9 +49,6 @@ import { IncreaseModule } from '../modules-meeting/increase/increase.module';
 
         // event
         EventModule,
-        ResponsibleModule,
-        NewEventModule,
-        NewEventToMemberModule,
 
         // meeting
         MeetingModule,

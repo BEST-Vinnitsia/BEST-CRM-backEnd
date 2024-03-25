@@ -2,8 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 datasource db {
-  // provider = "sqlite"
-  provider = "postgresql"
+  provider = "sqlite"
+  // provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -182,8 +182,8 @@ model CommitteeToMember {
 model Event {
   id        Int      @id @default(autoincrement())
   name      String   @unique
-  fullName  String   @unique
-  isActive  Boolean  @default(true)
+  type      String
+  status    String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -191,6 +191,27 @@ model Event {
   newEvent    NewEvent[]
 }
 
+model EventCategory {
+  id            Int             @id @default(autoincrement())
+  name          String
+  type          String
+  status        String
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  eventPosition EventPosition[]
+}
+
+model EventPosition {
+  id              Int           @id @default(autoincrement())
+  eventCategoryId Int
+  eventCategory   EventCategory @relation(fields: [eventCategoryId], references: [id], onDelete: Restrict, onUpdate: Restrict)
+  name            String
+  role            String
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+}
+
+// to delete
 model NewEvent {
   id        Int      @id @default(autoincrement())
   eventId   Int
@@ -204,6 +225,7 @@ model NewEvent {
   cadence          Cadence            @relation(fields: [cadenceId], references: [id], onDelete: Restrict, onUpdate: Restrict)
 }
 
+// to delete
 model Responsible {
   id          Int      @id @default(autoincrement())
   eventId     Int
