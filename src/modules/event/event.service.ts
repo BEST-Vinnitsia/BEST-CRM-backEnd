@@ -63,9 +63,14 @@ export class EventService /*implements IEventService*/ {
         }
 
         // delete positions
-        for (const position of positionsList) {
-            const findPosition = dto.positions.find((position) => position.id === position.id);
-            if (findPosition) continue;
+        const positionsToDelete = positionsList.filter(
+            (item) =>
+                !dto.positions.some(
+                    (item2) => item2.id === item.id, //
+                ),
+        );
+
+        for (const position of positionsToDelete) {
             await this.prisma.eventPosition.delete({
                 where: { id: position.id },
             });
